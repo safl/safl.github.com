@@ -9,7 +9,7 @@ An index of the notes on the site.
 
 {% for page in site.pages %}
 
- - {{ page.link }}
+ - {{ page.url }}
 
 {% end for %}
 
