@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta name="google-site-verification" content="SHVLLF38z-0duz9aklVzsNBszGdITlo81NAl-groiOg" />
+<link rel="stylesheet" type="text/css" href="http://static.safl.dk/css/pixel.elements.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="http://static.safl.dk/css/pixel.style.css" media="screen" />
+<title>{{ site.name }}</title>
+</head>
+<body>
+<div id="frame">
+
+    <div id="head">
+        <a href="/">safl.dk</a>
+    </div> <!-- end head -->
+
+    <div id="nav">
+        <a href="/about">about</a>,
+        <a href="/index">notebook</a>,
+        <a href="/projects">projects</a>,
+        <a href="/uni">uni</a>,
+        <a href="/cv">cv</a>.
+    </div> <!-- end nav -->
+
+    <div id="inner">
+
+        <div class="meta" style="text-align: right; color: gray; font-size: 0.7em;">
+        {{ page.date }}
+        </div>
+        {% include content.md %}
+
+    </div> <!-- end inner -->
+
+    <div id="foot">
+    copyright - safl.dk
+    </div> <!-- end foot -->
+
+</div> <!-- end frame -->
+
+</body>
+</html>
