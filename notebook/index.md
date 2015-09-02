@@ -11,5 +11,5 @@ An index of the notes on the site.
 
  - {{ page.url }}
 
-{% end for %}
+{% endfor %}
 
