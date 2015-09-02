@@ -1,0 +1,42 @@
+body {
+  margin:0; 
+  padding:0;
+  background: #7caafc url('/media/background.png') repeat-x;
+  font-family: Palatino, roman;
+}
+
+/* hide hover stuff */
+body ul li ul li {
+	display: none;
+}
+
+body ul li:hover li {
+	display: block;
+}
+
+h1 {
+  margin: 0;
+	font-family: Georgia;
+	font-size: 1.5em;
+}
+
+h2 {
+	font-family: Georgia;
+	font-size: 1.2em;
+}
+
+h3 {
+	font-family: Georgia;
+	font-size: 1em;
+}
+
+a {
+  font-family: Georgia, Times, serif;
+  text-decoration: none;
+  color: black;
+}
+
+textarea {
+	width: 99%;
+	height: 450px;
+}

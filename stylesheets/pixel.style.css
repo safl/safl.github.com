@@ -1,0 +1,92 @@
+#frame {
+	width:70%;
+	margin: 0 auto;
+	text-align:left;
+	border:0;
+}
+
+#head {
+  padding: 1px;
+	background: transparent url('/media/me.png') no-repeat;
+	background-position: bottom left;
+  color: 	#007FFF;
+  text-align: right;
+	border: 0;
+  border-bottom: 1px solid black;
+	margin-top: 10px;
+	font-size: 32px;
+	font-weight: bold;
+}
+
+#head a { color: #003153; margin: 0; }
+#head a:hover { color: #007FFF; }
+
+#nav {
+  width: auto;
+  padding: 5px 10px 5px 5px;
+  background-color: #003153;
+  color: #FFF;
+  text-transform: lowercase;
+	border: 1px solid black;
+	border-top: 0;
+	border-bottom: 0;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #007FFF;
+}
+
+#nav a:hover {
+  font-weight: bold;
+  color: #FFF;
+}
+
+#inner {
+  border: 1px solid black;
+  padding: 5px;
+	/*
+	background-image: url('/img/desk.png');
+	background-position: bottom right;
+	background-repeat: no-repeat;*/
+	background-color: #fff;
+}
+
+#inner a {
+  color: #007FFF;
+}
+
+#foot {
+  border: 0;
+  padding: 3px;
+  text-align: right;
+  font-size: 9px;
+}
+
+.schedule {
+	border: 1px solid black;
+}
+
+.schedule td {
+	padding: 5px;
+}
+
+.courseone {
+	background-color: green;
+}
+
+.coursetwo {
+	background-color: orange;
+}
+
+table.education {
+	font-size: 12px;
+}
+
+table.education td {
+	padding: 3px;
+}
+
+table.education th {
+	margin-top: 10px;
+}
