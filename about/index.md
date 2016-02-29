@@ -1,6 +1,7 @@
 ---
 title: "About me and this site"
 layout: default
+date: 01-03-2016 14:38:00
 ---
 
 This place is a notebook I like to have accessible online, Ive got a hobby-project doing something a bit "Personal Server" ish. This site is part of that...
