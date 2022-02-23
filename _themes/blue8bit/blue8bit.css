@@ -1,0 +1,78 @@
+body {
+  background: #7caafc url('/_static/background.png') repeat-x;
+  font-family: Palatino, roman;
+}
+
+a {
+  font-family: Georgia, Times, serif;
+  text-decoration: none;
+}
+
+header {
+  background: transparent url('/_static/me-2x.png') no-repeat;
+  background-position: bottom left;
+
+  padding-top: 1rem;
+  text-align: right;
+  font-size: 3rem;
+  font-weight: bold;
+}
+header a {
+  color: #003153;
+}
+header a:hover {
+  color: #007FFF;
+}
+
+nav {
+  background-color: #003153;
+  text-transform: lowercase;
+  color: #FFF;
+  border: 1px solid black;
+  padding: 0.55rem 0rem 0.50rem 0rem;
+}
+
+nav a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #007FFF;
+}
+
+nav a:hover {
+  font-weight: bold;
+  color: #FFF;
+}
+
+nav > div > ul {
+  display: inline-flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav > div > ul > li {
+  margin-right: 1em;
+}
+
+main {
+  background-color: white;
+  border: 1px solid black;
+  border-top: 0;
+}
+
+footer {
+  text-align: right;
+}
+
+#localtoc  {
+  margin: 0.5rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  border: 1px solid black;
+}
+
+.highlight {
+  box-shadow: 0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);
+  border-radius: 3px;
+  padding: 15px 15px;
+  margin: 15px 0;
+}

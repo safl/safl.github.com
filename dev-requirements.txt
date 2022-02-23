@@ -1,0 +1,8 @@
+flake8
+invocations
+invoke
+releases
+semantic_version
+sphinx
+twine
+wheel

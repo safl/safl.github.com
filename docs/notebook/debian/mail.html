@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mail &#8212; safl.dk  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Proprietary Applications" href="nonfree.html" />
+    <link rel="prev" title="Installation" href="install.html" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link href="/_static/blue8bit.css" rel="stylesheet" crossorigin="anonymous">
+
+  </head><body>
+
+
+  
+
+
+<div class="container justify-content-md-center">
+
+  <header class="row">
+    <div class="col-lg-12"><a href="/">safl.dk</a></div>
+  </header>
+
+  <nav class="row" style="vertical-align:baseline;">
+    <div class="col-lg-8">
+      <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../projects/index.html">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../uni/index.html">Uni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cv/index.html">CV</a></li>
+</ul>
+
+    </div>
+    <div id="search" class="col-lg-4 ms-sm-auto">
+      <form action="../../search.html" method="get">
+      <input type="text" name="q" class="form-control" placeholder="Search" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </nav>
+
+  <main class="row">
+    <div class="col-lg-9">
+    
+    
+  <div class="section" id="mail">
+<h1>Mail<a class="headerlink" href="#mail" title="Permalink to this headline">¶</a></h1>
+<p>Awesome sauce.</p>
+<p>Mail, the asynchronous communication channel which uses a bunch of different
+technologies under-the-hood.</p>
+<p>mail-user-agent (MUA), the</p>
+<p>You might be used to just starting one monolithic application such as Outlook
+or Thunderbird to read your mail. However, for a text-based approach including
+tools such as neomutt, then things a quite different, and a Wizard won’t pop up
+for you to fill out.</p>
+<p>For instance before even diving into NeoMutt, then you probably want to setup a
+way to encrypt/decrypt secrets. Yeah, everything is bare-bones, you are not
+relying on Thunderbird/Outlook to store your passwords safely, no no, you
+define how your “secrets” are kept.</p>
+<ul class="simple">
+<li><p>gnupg, in your various configuration-files then passwords a needed unless you
+want to type in your username/password everything you send/receive email, it
+is super bad practice to just stuff those as plain-text in your configs, so
+to avoid that then something like gnupg can be used to store them encrypted
+and decrypt the passwords when needed</p></li>
+<li><p>pass</p></li>
+<li><p>abook, an address-book, such that you can get some auto-completion when
+writing mails to people, e.g. helps you to fill out the <code class="docutils literal notranslate"><span class="pre">to:</span></code> portion when
+writing an email.</p></li>
+<li><p>mbsync,</p></li>
+<li><p>notmuch, virtual inbox and mail-filtering</p></li>
+</ul>
+<div class="section" id="password-management-using-gnupg-pass">
+<h2>Password Management using gnupg + pass<a class="headerlink" href="#password-management-using-gnupg-pass" title="Permalink to this headline">¶</a></h2>
+<p>Fancy tools/services such as 1password, LastPass, and more free alternatives
+include KeepX. For what we do here the goal is simple:</p>
+<ul class="simple">
+<li><p>Avoid clear-text passwords in configuration-files</p></li>
+</ul>
+<p>A bonus feature is that, when using a password-manager then it becomes much
+easier to change passwords, as you would just change it in the manager and not
+in every configuration file using it.</p>
+<p>For this task the approach is using GnuPG and pass.</p>
+<p>Arch Linux has some great documentation on <a class="reference external" href="https://wiki.archlinux.org/title/GnuPG">GnuPG</a></p>
+<p>Install:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">gnupg</span> <span class="k">pass</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The default location for your GnuPG stuff is in <code class="docutils literal notranslate"><span class="pre">~/.gnupg</span></code>.</p>
+</div>
+<p>Create a key-pair:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gpg</span> <span class="o">--</span><span class="n">full</span><span class="o">-</span><span class="n">gen</span><span class="o">-</span><span class="n">key</span>
+</pre></div>
+</div>
+<p>You could just use <code class="docutils literal notranslate"><span class="pre">gpg</span> <span class="pre">--decrypt</span></code>/<code class="docutils literal notranslate"><span class="pre">gpg</span> <span class="pre">--encrypt</span></code>, however, the <code class="docutils literal notranslate"><span class="pre">pass</span></code>
+tool is really convenient. Set it up it like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pass init $USER
+</pre></div>
+</div>
+<p>This should create your password store in <code class="docutils literal notranslate"><span class="pre">~/.password-store</span></code>, and it should
+be initialized with your gpg-id. You can then store passwords for your
+mail-accounts, something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add your passwod for your private email</span>
+<span class="k">pass</span> <span class="n">insert</span> <span class="n">Email</span><span class="o">/</span><span class="n">private</span>
+
+<span class="c1"># Add your passwod for your business email</span>
+<span class="k">pass</span> <span class="n">insert</span> <span class="n">Email</span><span class="o">/</span><span class="n">business</span>
+</pre></div>
+</div>
+<p>Try and see if you can also retrieve them:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">pass</span> <span class="n">show</span> <span class="n">Email</span><span class="o">/</span><span class="n">private</span>
+<span class="k">pass</span> <span class="n">show</span> <span class="n">Email</span><span class="o">/</span><span class="n">business</span>
+</pre></div>
+</div>
+<p>You can then use <code class="docutils literal notranslate"><span class="pre">pass</span> <span class="pre">show</span> <span class="pre">Email/private</span></code> in your configuration files
+instead of the password itself. This is convenient when you rotate your
+password, then you do not need to go an edit all your configuration-files, you
+just update the password manager. Also, you  avoid storing the password in
+clear-text inside all those configuration files.</p>
+</div>
+<div class="section" id="retrieve-email-using-mbsync">
+<h2>Retrieve Email using <code class="docutils literal notranslate"><span class="pre">mbsync</span></code><a class="headerlink" href="#retrieve-email-using-mbsync" title="Permalink to this headline">¶</a></h2>
+<p>For reference, here are alternatives tools/setup: offlineimap, getmail or
+configure <a class="reference external" href="https://neomutt.org/">NeoMutt</a> to connect to your imap mail-servers. What
+I use here is setting up <code class="docutils literal notranslate"><span class="pre">mbsync</span></code> for accounts on different servers, that is,
+my personal GMail and the Exchange server for work.</p>
+<p>Install:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">isync</span>
+</pre></div>
+</div>
+<p>Create mail-directories for personal and work email:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">~/</span><span class="n">mail</span><span class="o">/</span><span class="p">{</span><span class="n">personal</span><span class="p">,</span><span class="n">work</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Now, configure <code class="docutils literal notranslate"><span class="pre">mbsync</span></code> to retrieve/sync your personal and work email in the
+sub-directories of <code class="docutils literal notranslate"><span class="pre">~/mail</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Open the mbsync configuration file</span>
+<span class="n">editor</span> <span class="o">~/.</span><span class="n">mbsyncrc</span>
+</pre></div>
+</div>
+<p>Fill it with something similar to below, where the personal mail is on GMail
+and the workmail is on an Exchange Server:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">IMAPAccount</span> <span class="n">personal</span>
+<span class="n">Host</span> <span class="n">imap</span><span class="o">.</span><span class="n">gmail</span><span class="o">.</span><span class="n">com</span>
+<span class="n">SSLType</span> <span class="n">IMAPS</span>
+<span class="n">User</span> <span class="o">&lt;</span><span class="n">FILL_IN_YOUR_EMAIL_ADDRESS_HERE</span><span class="o">&gt;</span>
+<span class="n">PassCmd</span> <span class="s2">&quot;pass show Email/personal.imap&quot;</span>
+<span class="n">Pipelinedepth</span> <span class="mi">1</span>
+
+<span class="n">IMAPStore</span> <span class="n">personal</span><span class="o">-</span><span class="n">remote</span>
+<span class="n">Account</span> <span class="n">personal</span>
+
+<span class="n">MaildirStore</span> <span class="n">personal</span><span class="o">-</span><span class="n">local</span>
+<span class="n">SubFolders</span> <span class="n">Verbatim</span>
+<span class="n">Path</span> <span class="o">~/</span><span class="n">mail</span><span class="o">/</span><span class="n">personal</span><span class="o">/</span>
+<span class="n">Inbox</span> <span class="o">~/</span><span class="n">mail</span><span class="o">/</span><span class="n">personal</span><span class="o">/</span><span class="n">Inbox</span>
+
+<span class="n">Channel</span> <span class="n">personal</span>
+<span class="n">Far</span> <span class="p">:</span><span class="n">personal</span><span class="o">-</span><span class="n">remote</span><span class="p">:</span>
+<span class="n">Near</span> <span class="p">:</span><span class="n">personal</span><span class="o">-</span><span class="n">local</span><span class="p">:</span>
+<span class="n">Patterns</span> <span class="o">*</span>
+<span class="n">SyncState</span> <span class="o">*</span>
+</pre></div>
+</div>
+<p>Synchornize all accounts / channels:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mbsync</span> <span class="o">-</span><span class="n">a</span>
+</pre></div>
+</div>
+<p>Synchronize a single account / channel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mbsync</span> <span class="n">personal</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="address-book-using-abook">
+<h2>Address Book using <code class="docutils literal notranslate"><span class="pre">abook</span></code><a class="headerlink" href="#address-book-using-abook" title="Permalink to this headline">¶</a></h2>
+<p>…</p>
+</div>
+<div class="section" id="notmuch">
+<h2>notmuch<a class="headerlink" href="#notmuch" title="Permalink to this headline">¶</a></h2>
+<p>…</p>
+</div>
+<div class="section" id="neomutt">
+<h2>neomutt<a class="headerlink" href="#neomutt" title="Permalink to this headline">¶</a></h2>
+<p>Setup NeoMutt configuration:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">~/.</span><span class="n">config</span><span class="o">/</span><span class="n">neomutt</span>
+</pre></div>
+</div>
+<p>Edit the NeoMutt configuration <code class="docutils literal notranslate"><span class="pre">vim</span> <span class="pre">~/.config/neomutt/neomuttrc</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">foo</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+    
+    </div>
+    <div class="col-lg-3 ms-sm-auto d-none d-lg-block">
+      <div id="localtoc">
+      <h3>On this page</h3>
+      <hr/>
+      <ul>
+<li><a class="reference internal" href="#">Mail</a><ul>
+<li><a class="reference internal" href="#password-management-using-gnupg-pass">Password Management using gnupg + pass</a></li>
+<li><a class="reference internal" href="#retrieve-email-using-mbsync">Retrieve Email using <code class="docutils literal notranslate"><span class="pre">mbsync</span></code></a></li>
+<li><a class="reference internal" href="#address-book-using-abook">Address Book using <code class="docutils literal notranslate"><span class="pre">abook</span></code></a></li>
+<li><a class="reference internal" href="#notmuch">notmuch</a></li>
+<li><a class="reference internal" href="#neomutt">neomutt</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="row">
+    <div class="col-lg-12">
+        &copy; Copyright 2022 Simon A. F. Lund.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.
+    </div>
+  </footer>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  </body>
+</html>
