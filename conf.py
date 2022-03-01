@@ -56,6 +56,7 @@ extlinks = {
     'xref-wm-openbox': ('http://openbox.org/', None),
     'xref-wm-xmonad': ('https://xmonad.org/', None),
     'xref-x11': ('http://www.opengroup.org/tech/desktop/x-window-system/', None),
+    'xref-kvm': ('https://wiki.debian.org/KVM', None)
 }
 
 def update_context(app, pagename, templatename, context, doctree):
