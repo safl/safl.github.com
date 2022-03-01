@@ -15,6 +15,7 @@ source_suffix = ".rst"
 
 html_theme_path = ["_themes"]
 html_theme = "blue8bit"
+html_title = "safl.dk - Don't push me cause I'm close to the edge..."
 html_theme_options = {
 }
 html_static_path = ["_static"]
