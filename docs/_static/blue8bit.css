@@ -9,7 +9,7 @@ a {
 }
 
 header {
-  background: transparent url('/_static/me-2x.png') no-repeat;
+  background: transparent url('/_static/me-2x-left.png') no-repeat;
   background-position: bottom left;
 
   padding-top: 1rem;
@@ -17,6 +17,16 @@ header {
   font-size: 3rem;
   font-weight: bold;
 }
+header:hover {
+  background: transparent url('/_static/me-2x.png') no-repeat;
+  background-position: bottom left;
+}
+header:active {
+  background: transparent url('/_static/me-2x-right-stressed.png') no-repeat;
+  background-position: bottom left;
+}
+
+
 header a {
   color: #003153;
 }
