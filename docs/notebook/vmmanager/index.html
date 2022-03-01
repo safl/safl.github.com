@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Installation &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
+    <title>VM-Manager &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css" />
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
@@ -14,8 +14,8 @@
     <script src="../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Mail" href="mail.html" />
-    <link rel="prev" title="Changing Hostname" href="hostname.html" />
+    <link rel="next" title="FreeBSD" href="../freebsd/index.html" />
+    <link rel="prev" title="Elgato Stream Deck" href="../debian/stream_deck.html" />
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -60,34 +60,35 @@
     <div class="col-lg-9">
     
     
-  <div class="section" id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>…</p>
-<div class="section" id="post-install">
-<h2>Post-install<a class="headerlink" href="#post-install" title="Permalink to this headline">¶</a></h2>
-<p>…</p>
-</div>
+  <div class="section" id="vm-manager">
+<h1>VM-Manager<a class="headerlink" href="#vm-manager" title="Permalink to this headline">¶</a></h1>
+<p>For the purpose of spinning up self-hosted runners for GitHUB Actions, then
+here is one approach to slice up some bare metal as virtual machines each
+instance to run a self-hosted runner.</p>
+<div class="section" id="install-debian-bullseye">
+<h2>Install Debian Bullseye<a class="headerlink" href="#install-debian-bullseye" title="Permalink to this headline">¶</a></h2>
+<p>Fill the entire disk, create a user and install the Open-SSH server.</p>
 <div class="section" id="enable-sudo">
-<h2>Enable <code class="docutils literal notranslate"><span class="pre">sudo</span></code><a class="headerlink" href="#enable-sudo" title="Permalink to this headline">¶</a></h2>
+<h3>Enable <code class="docutils literal notranslate"><span class="pre">sudo</span></code><a class="headerlink" href="#enable-sudo" title="Permalink to this headline">¶</a></h3>
 <p>Switch user to <code class="docutils literal notranslate"><span class="pre">root</span></code>, update repositories, install <code class="docutils literal notranslate"><span class="pre">sudo</span></code> and add your
 user to sudoers:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Switch user to &#39;root&#39;</span>
 <span class="n">su</span> <span class="o">-</span>
 <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span> <span class="o">&amp;&amp;</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">sudo</span>
-<span class="n">usermod</span> <span class="o">-</span><span class="n">aG</span> <span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;</span> <span class="n">sudo</span>
+<span class="n">usermod</span> <span class="o">-</span><span class="n">aG</span> <span class="n">sudo</span> <span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>Log out and log back in for the group addition to take effect.</p>
 </div>
 <div class="section" id="update-repositories-and-packages">
-<h2>Update repositories and packages<a class="headerlink" href="#update-repositories-and-packages" title="Permalink to this headline">¶</a></h2>
+<h3>Update repositories and packages<a class="headerlink" href="#update-repositories-and-packages" title="Permalink to this headline">¶</a></h3>
 <p>Make sure repositories and installation is up-to-date:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">upgrade</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">dist</span><span class="o">-</span><span class="n">upgrade</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="update-firmware">
-<h2>Update Firmware<a class="headerlink" href="#update-firmware" title="Permalink to this headline">¶</a></h2>
+<h3>Update Firmware<a class="headerlink" href="#update-firmware" title="Permalink to this headline">¶</a></h3>
 <p>Update firmware:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">isenkram</span>
 <span class="n">sudo</span> <span class="n">isenkram</span><span class="o">-</span><span class="n">autoinstall</span><span class="o">-</span><span class="n">firmware</span>
@@ -95,23 +96,42 @@ user to sudoers:</p>
 </div>
 <p>Then reboot for the firmware additons to take effect.</p>
 </div>
-<div class="section" id="toolbelt">
-<h2>Toolbelt<a class="headerlink" href="#toolbelt" title="Permalink to this headline">¶</a></h2>
-<p>For the rest we need some basic tools:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> \
-  <span class="n">build</span><span class="o">-</span><span class="n">essential</span> \
-  <span class="n">git</span> \
-  <span class="n">htop</span> \
-  <span class="n">python3</span><span class="o">-</span><span class="n">pip</span> \
-  <span class="n">shellcheck</span> \
-  <span class="n">stow</span> \
-  <span class="n">vim</span><span class="o">-</span><span class="n">gtk</span>
-
-<span class="c1"># Installing this with sudo via pip3 to get the latest version and install it</span>
-<span class="c1"># system-wide</span>
-<span class="n">sudo</span> <span class="n">pip3</span> <span class="n">install</span> <span class="n">meson</span> <span class="n">ninja</span>
+</div>
+<div class="section" id="install-prerequisites">
+<h2>Install Prerequisites<a class="headerlink" href="#install-prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>Install qemu, libvirt and vm-manager:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> \
+  <span class="n">qemu</span> \
+  <span class="n">qemu</span><span class="o">-</span><span class="n">utils</span> \
+  <span class="n">qemu</span><span class="o">-</span><span class="n">system</span> \
+  <span class="n">libvirt</span><span class="o">-</span><span class="n">daemon</span><span class="o">-</span><span class="n">system</span> \
+  <span class="n">cloud</span><span class="o">-</span><span class="n">utils</span> \
+  <span class="n">time</span> \
+  <span class="n">python3</span> \
+  <span class="n">python3</span><span class="o">-</span><span class="n">pip</span>
 </pre></div>
 </div>
+<p>This should install qemu, enable KVM, and provide tools management.</p>
+<p>Add your user to the <cite>libvirt</cite> group:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sudo adduser $USER libvirt
+</pre></div>
+</div>
+</div>
+<div class="section" id="cijoe-pkg-qemu">
+<h2>cijoe-pkg-qemu<a class="headerlink" href="#cijoe-pkg-qemu" title="Permalink to this headline">¶</a></h2>
+<p>…</p>
+</div>
+<div class="section" id="id1">
+<h2>VM-Manager<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Install:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">virt</span><span class="o">-</span><span class="n">manager</span>
+</pre></div>
+</div>
+<p>…</p>
+</div>
+<div class="section" id="images">
+<h2>Images<a class="headerlink" href="#images" title="Permalink to this headline">¶</a></h2>
+<p>…</p>
 </div>
 </div>
 
@@ -123,12 +143,17 @@ user to sudoers:</p>
       <h3>On this page</h3>
       <hr/>
       <ul>
-<li><a class="reference internal" href="#">Installation</a><ul>
-<li><a class="reference internal" href="#post-install">Post-install</a></li>
+<li><a class="reference internal" href="#">VM-Manager</a><ul>
+<li><a class="reference internal" href="#install-debian-bullseye">Install Debian Bullseye</a><ul>
 <li><a class="reference internal" href="#enable-sudo">Enable <code class="docutils literal notranslate"><span class="pre">sudo</span></code></a></li>
 <li><a class="reference internal" href="#update-repositories-and-packages">Update repositories and packages</a></li>
 <li><a class="reference internal" href="#update-firmware">Update Firmware</a></li>
-<li><a class="reference internal" href="#toolbelt">Toolbelt</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#install-prerequisites">Install Prerequisites</a></li>
+<li><a class="reference internal" href="#cijoe-pkg-qemu">cijoe-pkg-qemu</a></li>
+<li><a class="reference internal" href="#id1">VM-Manager</a></li>
+<li><a class="reference internal" href="#images">Images</a></li>
 </ul>
 </li>
 </ul>

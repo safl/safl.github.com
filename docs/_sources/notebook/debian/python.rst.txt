@@ -4,6 +4,6 @@ Python Linter-tools
 Foo::
 
   sudo apt-get install \
-    pyflakes3 \
+    flake8 \
     pylint3
 
