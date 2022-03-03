@@ -1,5 +1,5 @@
-Desktop Environment using XFCE4 and i3-gaps
--------------------------------------------
+Desktop Environment
+===================
 
 There are a ton options when it comes to desktop environments including
 :xref-de-gnome:`GNOME<>`, :xref-de-kde:`KDE<>`, with lightweight derivatives
@@ -22,13 +22,16 @@ with **tiling** window-managers being one of the main reasons to replace the
 All of the above are based on the :xref-x11:`X Window System<>`, a replacement
 for which has been underway for 10+ years called :xref-wayland:`Wayland<>`.
 
+DE using XFCE4 and i3-gaps
+--------------------------
+
 .. image:: screenshot-i3-gaps.png
     :width: 45%
 .. image:: screenshot-i3-gaps-rofi.png
     :width: 45%
 
 Tiling with i3-gaps
-~~~~~~~~~~~~~~~~~~~
+-------------------
 
 i3-gaps is a fork of i3 which is actively maintained as a set of patches on top
 of i3.
@@ -52,7 +55,7 @@ that is updating it as new releases come out make sure it is still working as
 intended.
 
 i3ipc-glib
-~~~~~~~~~~
+----------
 
 This is needed for the ``i3-workspaces-plugin``. It too has dependencies::
 
@@ -63,7 +66,7 @@ This is needed for the ``i3-workspaces-plugin``. It too has dependencies::
 
 Do this::
 
-  cd ~/git
+  cd -/git
   git clone https://github.com/altdesktop/i3ipc-glib.git
   cd i3ipc-glib
   git checkout v1.0.1
@@ -73,7 +76,7 @@ Do this::
   sudo make install
 
 i3-workspaces-plugin
-~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 Requirements::
 
@@ -87,7 +90,7 @@ XFCE4 provides the same with a bunch of well-supported applets like the
 gnome-network-manager. So instead of using the i3bar, this setup favors using
 the xfce-panel instead, and then integrating the i3 workspaces via a plugin::
 
-  cd ~/git
+  cd -/git
   git clone https://github.com/denesb/xfce4-i3-workspaces-plugin.git
   cd xfce4-i3-workspaces-plugin
   git checkout 1.4.0
@@ -97,7 +100,7 @@ the xfce-panel instead, and then integrating the i3 workspaces via a plugin::
   sudo make install
 
 i3 - aux
-~~~~~~~~
+--------
 
 Application launcher::
 
