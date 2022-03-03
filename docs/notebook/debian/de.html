@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Desktop Environment using XFCE4 and i3-gaps &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
+    <title>Desktop Environment &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css" />
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
@@ -56,12 +56,21 @@
     </div>
   </nav>
 
+  <div id="related" class="row">
+    <div class="col-lg-12">
+      <a href="/">safl.dk</a> &#187;
+      <a href="../index.html" >Notebook</a> &#187;
+      <a href="index.html" accesskey="U">Debian</a> &#187;
+      <a href="">Desktop Environment</a>
+    </div>
+  </div>
+
   <main class="row">
     <div class="col-lg-9">
     
     
-  <div class="section" id="desktop-environment-using-xfce4-and-i3-gaps">
-<h1>Desktop Environment using XFCE4 and i3-gaps<a class="headerlink" href="#desktop-environment-using-xfce4-and-i3-gaps" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="desktop-environment">
+<h1>Desktop Environment<a class="headerlink" href="#desktop-environment" title="Permalink to this headline">¶</a></h1>
 <p>There are a ton options when it comes to desktop environments including
 <a class="reference external" href="https://www.gnome.org/">GNOME</a>, <a class="reference external" href="https://kde.org/">KDE</a>, with lightweight derivatives
 such as <a class="reference external" href="https://xfce.org/">XFCE</a>, <a class="reference external" href="https://mate-desktop.org/">MATE</a> and
@@ -80,8 +89,11 @@ before-mentioned desktop-environments or replace the window-manager part.
 with <strong>tiling</strong> window-managers being one of the main reasons to replace the</p>
 <p>All of the above are based on the <a class="reference external" href="http://www.opengroup.org/tech/desktop/x-window-system/">X Window System</a>, a replacement
 for which has been underway for 10+ years called <a class="reference external" href="https://wayland.freedesktop.org/">Wayland</a>.</p>
+<div class="section" id="de-using-xfce4-and-i3-gaps">
+<h2>DE using XFCE4 and i3-gaps<a class="headerlink" href="#de-using-xfce4-and-i3-gaps" title="Permalink to this headline">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/screenshot-i3-gaps.png"><img alt="../../_images/screenshot-i3-gaps.png" src="../../_images/screenshot-i3-gaps.png" style="width: 45%;" /></a>
 <a class="reference internal image-reference" href="../../_images/screenshot-i3-gaps-rofi.png"><img alt="../../_images/screenshot-i3-gaps-rofi.png" src="../../_images/screenshot-i3-gaps-rofi.png" style="width: 45%;" /></a>
+</div>
 <div class="section" id="tiling-with-i3-gaps">
 <h2>Tiling with i3-gaps<a class="headerlink" href="#tiling-with-i3-gaps" title="Permalink to this headline">¶</a></h2>
 <p>i3-gaps is a fork of i3 which is actively maintained as a set of patches on top
@@ -133,7 +145,7 @@ intended.</p>
 </pre></div>
 </div>
 <p>Do this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">-/</span><span class="n">git</span>
 <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">altdesktop</span><span class="o">/</span><span class="n">i3ipc</span><span class="o">-</span><span class="n">glib</span><span class="o">.</span><span class="n">git</span>
 <span class="n">cd</span> <span class="n">i3ipc</span><span class="o">-</span><span class="n">glib</span>
 <span class="n">git</span> <span class="n">checkout</span> <span class="n">v1</span><span class="o">.</span><span class="mf">0.1</span>
@@ -157,7 +169,7 @@ intended.</p>
 XFCE4 provides the same with a bunch of well-supported applets like the
 gnome-network-manager. So instead of using the i3bar, this setup favors using
 the xfce-panel instead, and then integrating the i3 workspaces via a plugin:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">-/</span><span class="n">git</span>
 <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">denesb</span><span class="o">/</span><span class="n">xfce4</span><span class="o">-</span><span class="n">i3</span><span class="o">-</span><span class="n">workspaces</span><span class="o">-</span><span class="n">plugin</span><span class="o">.</span><span class="n">git</span>
 <span class="n">cd</span> <span class="n">xfce4</span><span class="o">-</span><span class="n">i3</span><span class="o">-</span><span class="n">workspaces</span><span class="o">-</span><span class="n">plugin</span>
 <span class="n">git</span> <span class="n">checkout</span> <span class="mf">1.4</span><span class="o">.</span><span class="mi">0</span>
@@ -185,11 +197,11 @@ the xfce-panel instead, and then integrating the i3 workspaces via a plugin:</p>
     
     </div>
     <div class="col-lg-3 ms-sm-auto d-none d-lg-block">
-      <div id="localtoc">
-      <h3>On this page</h3>
-      <hr/>
+      <div id="localtoc" >
+      <h3>Here</h3>
       <ul>
-<li><a class="reference internal" href="#">Desktop Environment using XFCE4 and i3-gaps</a><ul>
+<li><a class="reference internal" href="#">Desktop Environment</a><ul>
+<li><a class="reference internal" href="#de-using-xfce4-and-i3-gaps">DE using XFCE4 and i3-gaps</a></li>
 <li><a class="reference internal" href="#tiling-with-i3-gaps">Tiling with i3-gaps</a></li>
 <li><a class="reference internal" href="#i3ipc-glib">i3ipc-glib</a></li>
 <li><a class="reference internal" href="#i3-workspaces-plugin">i3-workspaces-plugin</a></li>
@@ -198,7 +210,17 @@ the xfce-panel instead, and then integrating the i3 workspaces via a plugin:</p>
 </li>
 </ul>
 
+      <hr/>
+      <h4>Prev</h4>
+      <ul><li>
+        <a href="barrier.html" title="previous chapter">Software-KVM using Barrier</a>
+      </li></ul>
+        <h4>Next</h4>
+      <ul><li>
+        <a href="docker.html" title="next chapter">Docker Engine</a>
+      </li></ul>
       </div>
+
     </div>
   </main>
 

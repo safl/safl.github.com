@@ -56,27 +56,76 @@
     </div>
   </nav>
 
+  <div id="related" class="row">
+    <div class="col-lg-12">
+      <a href="/">safl.dk</a> &#187;
+      <a href="../index.html" accesskey="U">Notebook</a> &#187;
+      <a href="">FreeBSD</a>
+    </div>
+  </div>
+
   <main class="row">
     <div class="col-lg-9">
     
     
   <div class="section" id="freebsd">
 <h1>FreeBSD<a class="headerlink" href="#freebsd" title="Permalink to this headline">¶</a></h1>
-<p>Barrr</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>…</p>
+</div>
+<div class="section" id="first-boot">
+<h2>First-boot<a class="headerlink" href="#first-boot" title="Permalink to this headline">¶</a></h2>
+<p>Login as <code class="docutils literal notranslate"><span class="pre">root</span></code> and run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Update the kernel and userland</span>
+<span class="n">freebsd</span><span class="o">-</span><span class="n">update</span> <span class="n">fetch</span>
+<span class="n">freebsd</span><span class="o">-</span><span class="n">update</span> <span class="n">install</span>
+
+<span class="c1"># Refresh the third-party binary package registry</span>
+<span class="n">pkg</span> <span class="n">update</span>
+<span class="n">pkg</span> <span class="n">upgrade</span>
+
+<span class="c1"># Install a couple of utilities</span>
+<span class="n">pkg</span> <span class="n">install</span> \
+  <span class="n">vim</span> \
+  <span class="n">git</span> \
+  <span class="n">bash</span> \
+  <span class="n">bash</span><span class="o">-</span><span class="n">completion</span> \
+  <span class="n">htop</span> \
+  <span class="n">sudo</span>
+
+<span class="n">echo</span> <span class="s2">&quot;odus    ALL=(ALL) ALL&quot;</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sudoers</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">odus</span>
+</pre></div>
+</div>
+<p>Then log out and log in with <code class="docutils literal notranslate"><span class="pre">odus</span></code></p>
+</div>
 </div>
 
 
     
     </div>
     <div class="col-lg-3 ms-sm-auto d-none d-lg-block">
-      <div id="localtoc">
-      <h3>On this page</h3>
-      <hr/>
+      <div id="localtoc" >
+      <h3>Here</h3>
       <ul>
-<li><a class="reference internal" href="#">FreeBSD</a></li>
+<li><a class="reference internal" href="#">FreeBSD</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#first-boot">First-boot</a></li>
+</ul>
+</li>
 </ul>
 
+      <hr/>
+      <h4>Prev</h4>
+      <ul><li>
+        <a href="../vmmanager/index.html" title="previous chapter">VM-Manager</a>
+      </li></ul>
+        <h4>Next</h4>
+      <ul><li>
+        <a href="../sphinx/index.html" title="next chapter">Sphinx: Python Documentation Generator</a>
+      </li></ul>
       </div>
+
     </div>
   </main>
 
