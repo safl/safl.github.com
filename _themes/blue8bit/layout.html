@@ -36,6 +36,16 @@
     </div>
   </nav>
 
+  <div id="related" class="row">
+    <div class="col-lg-12">
+      <a href="/">safl.dk</a>{{ reldelim1 }}
+      {%- for parent in parents %}
+      <a href="{{ parent.link|e }}" {% if loop.last %}{{ accesskey("U") }}{% endif %}>{{ parent.title }}</a>{{ reldelim1 }}
+      {%- endfor %}
+      <a href="{{ link|e }}">{{ title }}</a>
+    </div>
+  </div>
+
   <main class="row">
     <div class="col-lg-9">
     {% block document %}
@@ -43,11 +53,24 @@
     {% endblock %}
     </div>
     <div class="col-lg-3 ms-sm-auto d-none d-lg-block">
-      <div id="localtoc">
-      <h3>On this page</h3>
-      <hr/>
+      <div id="localtoc" >
+      <h3>Here</h3>
       {{ toc }}
+      <hr/>
+      {%- if prev %}
+      <h4>{{ _('Prev') }}</h4>
+      <ul><li>
+        <a href="{{ prev.link|e }}" title="{{ _('previous chapter') }}">{{ prev.title }}</a>
+      </li></ul>
+      {%- endif %}
+      {%- if next %}
+        <h4>{{ _('Next') }}</h4>
+      <ul><li>
+        <a href="{{ next.link|e }}" title="{{ _('next chapter') }}">{{ next.title }}</a>
+      </li></ul>
+      {%- endif %}
       </div>
+
     </div>
   </main>
 
