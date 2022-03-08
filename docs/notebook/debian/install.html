@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Installation &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
+    <title>Workstation Installation &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css" />
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
@@ -61,7 +61,7 @@
       <a href="/">safl.dk</a> &#187;
       <a href="../index.html" >Notebook</a> &#187;
       <a href="index.html" accesskey="U">Debian</a> &#187;
-      <a href="">Installation</a>
+      <a href="">Workstation Installation</a>
     </div>
   </div>
 
@@ -69,9 +69,10 @@
     <div class="col-lg-9">
     
     
-  <div class="section" id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>…</p>
+  <div class="section" id="workstation-installation">
+<h1>Workstation Installation<a class="headerlink" href="#workstation-installation" title="Permalink to this headline">¶</a></h1>
+<p>Grab the non-free installer image, it is just a lot easier to use since it
+contains non-free drivers for network devices like your WiFi adapter.</p>
 <div class="section" id="post-install">
 <h2>Post-install<a class="headerlink" href="#post-install" title="Permalink to this headline">¶</a></h2>
 <p>…</p>
@@ -82,8 +83,15 @@
 user to sudoers:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Switch user to &#39;root&#39;</span>
 <span class="n">su</span> <span class="o">-</span>
-<span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span> <span class="o">&amp;&amp;</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">sudo</span>
-<span class="n">usermod</span> <span class="o">-</span><span class="n">aG</span> <span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;</span> <span class="n">sudo</span>
+<span class="n">apt</span> <span class="o">-</span><span class="n">qy</span> <span class="n">update</span>
+<span class="n">apt</span> <span class="o">-</span><span class="n">qy</span> <span class="n">install</span> \
+  <span class="n">sudo</span> \
+  <span class="n">vim</span><span class="o">-</span><span class="n">gtk</span> \
+  <span class="n">git</span> \
+  <span class="n">git</span><span class="o">-</span><span class="n">gui</span> \
+  <span class="n">meld</span> \
+  <span class="n">htop</span>
+<span class="n">usermod</span> <span class="o">-</span><span class="n">aG</span> <span class="n">sudo</span> <span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>Log out and log back in for the group addition to take effect.</p>
@@ -131,7 +139,7 @@ user to sudoers:</p>
       <div id="localtoc" >
       <h3>Here</h3>
       <ul>
-<li><a class="reference internal" href="#">Installation</a><ul>
+<li><a class="reference internal" href="#">Workstation Installation</a><ul>
 <li><a class="reference internal" href="#post-install">Post-install</a></li>
 <li><a class="reference internal" href="#enable-sudo">Enable <code class="docutils literal notranslate"><span class="pre">sudo</span></code></a></li>
 <li><a class="reference internal" href="#update-repositories-and-packages">Update repositories and packages</a></li>
@@ -142,13 +150,13 @@ user to sudoers:</p>
 </ul>
 
       <hr/>
-      <h4>Prev</h4>
-      <ul><li>
-        <a href="hostname.html" title="previous chapter">Changing Hostname</a>
-      </li></ul>
         <h4>Next</h4>
       <ul><li>
         <a href="mail.html" title="next chapter">Mail</a>
+      </li></ul>
+      <h4>Prev</h4>
+      <ul><li>
+        <a href="hostname.html" title="previous chapter">Changing Hostname</a>
       </li></ul>
       </div>
 

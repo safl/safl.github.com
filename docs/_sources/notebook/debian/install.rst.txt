@@ -1,7 +1,8 @@
-Installation
-============
+Workstation Installation
+========================
 
-...
+Grab the non-free installer image, it is just a lot easier to use since it
+contains non-free drivers for network devices like your WiFi adapter.
 
 
 Post-install
@@ -17,8 +18,15 @@ user to sudoers::
 
   # Switch user to 'root'
   su -
-  apt-get update && apt-get install sudo
-  usermod -aG <username> sudo
+  apt -qy update
+  apt -qy install \
+    sudo \
+    vim-gtk \
+    git \
+    git-gui \
+    meld \
+    htop
+  usermod -aG sudo <username>
 
 Log out and log back in for the group addition to take effect.
 
