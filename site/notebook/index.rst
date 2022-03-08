@@ -8,6 +8,7 @@ Notes of various stuff...
    :glob:
    :maxdepth: 2
 
+   *
    debian/index.rst
    vmmanager/index.rst
    freebsd/index.rst
