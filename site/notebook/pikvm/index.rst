@@ -1,8 +1,16 @@
 PiKVM with v3 HAT
 =================
 
+Bla bla bla
+
+Installation
+------------
+
 From the download-page, grab ``v3-hdmi-rpi4-latest.img.xz`` and write it to
 sdcard. Assemble the thing and let it boot.
+
+Post-install
+------------
 
 Post-installation tasks in the PiKVM shell::
 
