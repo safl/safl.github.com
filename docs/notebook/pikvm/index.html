@@ -70,8 +70,14 @@
     
   <div class="section" id="pikvm-with-v3-hat">
 <h1>PiKVM with v3 HAT<a class="headerlink" href="#pikvm-with-v3-hat" title="Permalink to this headline">¶</a></h1>
+<p>Bla bla bla</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>From the download-page, grab <code class="docutils literal notranslate"><span class="pre">v3-hdmi-rpi4-latest.img.xz</span></code> and write it to
 sdcard. Assemble the thing and let it boot.</p>
+</div>
+<div class="section" id="post-install">
+<h2>Post-install<a class="headerlink" href="#post-install" title="Permalink to this headline">¶</a></h2>
 <p>Post-installation tasks in the PiKVM shell:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Change storage to read/write mode</span>
 <span class="n">rw</span>
@@ -97,8 +103,60 @@ sdcard. Assemble the thing and let it boot.</p>
 <span class="n">ro</span>
 </pre></div>
 </div>
+</div>
 <div class="section" id="troubleshooting">
 <h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<p>A couple of notes on issues faced and how to solve them. For more, then</p>
+<div class="section" id="garbled-graphics">
+<h3>Garbled graphics<a class="headerlink" href="#garbled-graphics" title="Permalink to this headline">¶</a></h3>
+<p>In case your BIOS/UEFI looks and behaves weird, here is an example of weird:</p>
+<a class="reference internal image-reference" href="../../_images/video-garbled-02.png"><img alt="../../_images/video-garbled-02.png" src="../../_images/video-garbled-02.png" style="width: 45%;" /></a>
+<p>then you probably needs the tweak the <strong>edid</strong>. For details look at
+<a class="reference external" href="https://docs.pikvm.org/edid/#default-edid">PiKVM-edid</a>. In my case using a <code class="docutils literal notranslate"><span class="pre">MSI</span> <span class="pre">PRO</span> <span class="pre">Z690-A</span></code>, then it looked like the
+picture above and the following custom-edit fixed it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Switch to root</span>
+<span class="n">su</span> <span class="o">-</span>
+
+<span class="c1"># Change storage-mode to read-write</span>
+<span class="n">rw</span>
+
+<span class="c1"># Update the edit</span>
+<span class="n">echo</span> <span class="s2">&quot;00FFFFFFFFFFFF005262888800888888</span>
+<span class="mi">1</span><span class="n">C150103800000780AEE91A3544C9926</span>
+<span class="mi">0</span><span class="n">F505425400001000100010001000100</span>
+<span class="mi">010001010101</span><span class="n">D32C80A070381A403020</span>
+<span class="mf">350040442100001E7</span><span class="n">E1D00A050001940</span>
+<span class="mf">3020370080001000001E000000</span><span class="n">FC0050</span>
+<span class="mi">492</span><span class="n">D4B564D20566964656F0A000000FD</span>
+<span class="mi">00323</span><span class="n">D0F2E0F000000000000000001C4</span>
+<span class="mi">02030400</span><span class="n">DE0D20A03058122030203400</span>
+<span class="n">F0B400000018E01500A0400016303020</span>
+<span class="mi">3400000000000018</span><span class="n">B41400A050D01120</span>
+<span class="mi">3020350080</span><span class="n">D810000018AB22A0A05084</span>
+<span class="mi">1</span><span class="n">A3030203600B00E1100001800000000</span>
+<span class="mi">00000000000000000000000000000000</span>
+<span class="mi">00000000000000000000000000000000</span>
+<span class="mi">00000000000000000000000000000045</span><span class="s2">&quot; &gt; /etc/kvmd/tc358743-edid.hex</span>
+
+<span class="c1"># Refresh it</span>
+<span class="n">v4l2</span><span class="o">-</span><span class="n">ctl</span> \
+  <span class="o">--</span><span class="n">device</span><span class="o">=/</span><span class="n">dev</span><span class="o">/</span><span class="n">kvmd</span><span class="o">-</span><span class="n">video</span> \
+  <span class="o">--</span><span class="nb">set</span><span class="o">-</span><span class="n">edid</span><span class="o">=</span><span class="n">file</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">kvmd</span><span class="o">/</span><span class="n">tc358743</span><span class="o">-</span><span class="n">edid</span><span class="o">.</span><span class="n">hex</span> \
+  <span class="o">--</span><span class="n">fix</span><span class="o">-</span><span class="n">edid</span><span class="o">-</span><span class="n">checksums</span>
+
+<span class="c1"># Change storage-mode to read-only</span>
+<span class="n">ro</span>
+</pre></div>
+</div>
+<p>A power-cycle of the target-machine might be needed, it was for me. I am
+assuming that some video-subsystem probably needed re-negotiating. The above
+worked for me, however, you should probably have a look at the manual and how
+to “test” an edid, before you overwrite it like above. It is the same steps,
+but instead of writing the edid to <code class="docutils literal notranslate"><span class="pre">tc358743-edid.hex</span></code> then you write it to
+temporary file and run <code class="docutils literal notranslate"><span class="pre">v4l2-ctl</span></code> to see that it works.</p>
+</div>
+<div class="section" id="keyboard-mouse-are-not-working">
+<h3>Keyboard / mouse are not working<a class="headerlink" href="#keyboard-mouse-are-not-working" title="Permalink to this headline">¶</a></h3>
 <p>If you find that mouse / keyboard is not working then check:</p>
 <ul class="simple">
 <li><p>Make sure you have the small USB-C bridge connected. That is the thing that
@@ -114,6 +172,7 @@ else works, then this might be why.</p></li>
 </ul>
 </div>
 </div>
+</div>
 
 
     
@@ -123,7 +182,13 @@ else works, then this might be why.</p></li>
       <h3>Here</h3>
       <ul>
 <li><a class="reference internal" href="#">PiKVM with v3 HAT</a><ul>
-<li><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#post-install">Post-install</a></li>
+<li><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li><a class="reference internal" href="#garbled-graphics">Garbled graphics</a></li>
+<li><a class="reference internal" href="#keyboard-mouse-are-not-working">Keyboard / mouse are not working</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
