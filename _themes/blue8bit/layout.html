@@ -57,16 +57,16 @@
       <h3>Here</h3>
       {{ toc }}
       <hr/>
-      {%- if prev %}
-      <h4>{{ _('Prev') }}</h4>
-      <ul><li>
-        <a href="{{ prev.link|e }}" title="{{ _('previous chapter') }}">{{ prev.title }}</a>
-      </li></ul>
-      {%- endif %}
       {%- if next %}
         <h4>{{ _('Next') }}</h4>
       <ul><li>
         <a href="{{ next.link|e }}" title="{{ _('next chapter') }}">{{ next.title }}</a>
+      </li></ul>
+      {%- endif %}
+      {%- if prev %}
+      <h4>{{ _('Prev') }}</h4>
+      <ul><li>
+        <a href="{{ prev.link|e }}" title="{{ _('previous chapter') }}">{{ prev.title }}</a>
       </li></ul>
       {%- endif %}
       </div>
