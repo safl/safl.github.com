@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Secure-SHell (ssh) &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
+    <title>Java &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css" />
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
@@ -14,8 +14,8 @@
     <script src="../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Stowing Dotfiles" href="stow.html" />
-    <link rel="prev" title="qemu" href="qemu.html" />
+    <link rel="next" title="Mail" href="mail.html" />
+    <link rel="prev" title="Workstation Installation" href="install.html" />
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -66,7 +66,7 @@
       <a href="/">safl.dk</a> &#187;
       <a href="../index.html" >Notebook</a> &#187;
       <a href="index.html" accesskey="U">Debian</a> &#187;
-      <a href="">Secure-SHell (ssh)</a>
+      <a href="">Java</a>
     </div>
   </div>
 
@@ -74,56 +74,13 @@
     <div class="col-lg-9">
     
     
-  <div class="section" id="secure-shell-ssh">
-<h1>Secure-SHell (ssh)<a class="headerlink" href="#secure-shell-ssh" title="Permalink to this headline">¶</a></h1>
-<p>Unsafe configuration, <code class="docutils literal notranslate"><span class="pre">vim</span> <span class="pre">/etc/ssh/sshd_config</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PermitRootLogin</span> <span class="n">yes</span>
+  <div class="section" id="java">
+<h1>Java<a class="headerlink" href="#java" title="Permalink to this headline">¶</a></h1>
+<p>Install:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="o">-</span><span class="n">qy</span> \
+  <span class="n">openjdk</span><span class="o">-</span><span class="mi">17</span><span class="o">-</span><span class="n">jre</span> \
+  <span class="n">openjdk</span><span class="o">-</span><span class="mi">17</span><span class="o">-</span><span class="n">jdk</span>
 </pre></div>
-</div>
-<p>Then restart ssh:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">service</span> <span class="n">ssh</span> <span class="n">restart</span>
-</pre></div>
-</div>
-<p>Transfer keys:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span><span class="o">-</span><span class="n">copy</span><span class="o">-</span><span class="nb">id</span> <span class="n">root</span><span class="nd">@localhost</span>
-</pre></div>
-</div>
-<div class="section" id="configure-agent">
-<h2>Configure Agent<a class="headerlink" href="#configure-agent" title="Permalink to this headline">¶</a></h2>
-<p>Add the following to your <code class="docutils literal notranslate"><span class="pre">~/.bash_aliases</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># SSH-agent when logging in over SSH
-SSH_ENV=&quot;$HOME/.ssh/environment&quot;
-
-function start_agent {
-    echo &quot;Initialising new SSH agent...&quot;
-    /usr/bin/ssh-agent | sed &#39;s/^echo/#echo/&#39; &gt; &quot;${SSH_ENV}&quot;
-    echo succeeded
-    chmod 600 &quot;${SSH_ENV}&quot;
-    . &quot;${SSH_ENV}&quot; &gt; /dev/null
-
-    # Add your keys here for example &#39;id_rsa&#39;
-    /usr/bin/ssh-add &quot;$HOME/.ssh/id_rsa&quot;;
-}
-
-# Source SSH settings, if applicable
-if [ -f &quot;${SSH_ENV}&quot; ]; then
-    . &quot;${SSH_ENV}&quot; &gt; /dev/null
-    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ &gt; /dev/null || {
-        start_agent;
-    }
-else
-    start_agent;
-fi
-</pre></div>
-</div>
-</div>
-<div class="section" id="keys-key-pairs">
-<h2>Keys (key-pairs)<a class="headerlink" href="#keys-key-pairs" title="Permalink to this headline">¶</a></h2>
-<p>…</p>
-</div>
-<div class="section" id="keychain-ssh-agent">
-<h2>Keychain / ssh-agent<a class="headerlink" href="#keychain-ssh-agent" title="Permalink to this headline">¶</a></h2>
-<p>…</p>
 </div>
 </div>
 
@@ -134,22 +91,17 @@ fi
       <div id="localtoc" >
       <h3>Here</h3>
       <ul>
-<li><a class="reference internal" href="#">Secure-SHell (ssh)</a><ul>
-<li><a class="reference internal" href="#configure-agent">Configure Agent</a></li>
-<li><a class="reference internal" href="#keys-key-pairs">Keys (key-pairs)</a></li>
-<li><a class="reference internal" href="#keychain-ssh-agent">Keychain / ssh-agent</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#">Java</a></li>
 </ul>
 
       <hr/>
         <h4>Next</h4>
       <ul><li>
-        <a href="stow.html" title="next chapter">Stowing Dotfiles</a>
+        <a href="mail.html" title="next chapter">Mail</a>
       </li></ul>
       <h4>Prev</h4>
       <ul><li>
-        <a href="qemu.html" title="previous chapter">qemu</a>
+        <a href="install.html" title="previous chapter">Workstation Installation</a>
       </li></ul>
       </div>
 
