@@ -1,3 +1,6 @@
 docs/.doctrees/environment.pickle
 docs/.buildinfo
 *.py[cod]
+*vim/backups*
+*vim/bundle*
+vim/.netrwhist
