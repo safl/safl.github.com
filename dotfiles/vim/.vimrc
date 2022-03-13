@@ -15,6 +15,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'kien/ctrlp.vim'
+Plugin 'valloric/youcompleteme'
 
 " Unused plugins
 "Plugin 'scrooloose/syntastic'
@@ -24,13 +26,13 @@ Plugin 'ludovicchabant/vim-gutentags'
 call vundle#end()            " required
 " ==== Plugin-Manager: vundle -- end ==============================================================
 filetype plugin indent on    " required
-" ==== Plugin-Configuration -- begin ==============================================================
+" ==== Plugin-Configuration:-- begin ==============================================================
 
 " ==== vim-airline
 let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
 let g:airline_powerline_fonts=1
-let g:airline_statusline_ontop=1
+"let g:airline_statusline_ontop=1
 
 " ==== Plugin-Configuration -- end ================================================================
 
