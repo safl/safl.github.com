@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Finding devices &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
+    <title>Alternatives &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css" />
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
@@ -14,8 +14,8 @@
     <script src="../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="asciinema" href="asciinema.html" />
-    <link rel="prev" title="Tools for apt" href="apt_tools.html" />
+    <link rel="next" title="Tools for apt" href="apt_tools.html" />
+    <link rel="prev" title="Debian" href="index.html" />
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -66,7 +66,7 @@
       <a href="/">safl.dk</a> &#187;
       <a href="../index.html" >Notebook</a> &#187;
       <a href="index.html" accesskey="U">Debian</a> &#187;
-      <a href="">Finding devices</a>
+      <a href="">Alternatives</a>
     </div>
   </div>
 
@@ -74,17 +74,22 @@
     <div class="col-lg-9">
     
     
-  <div class="section" id="finding-devices">
-<h1>Finding devices<a class="headerlink" href="#finding-devices" title="Permalink to this headline">¶</a></h1>
-<p>Install:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">qy</span> <span class="n">install</span> <span class="n">arpscan</span>
+  <div class="section" id="alternatives">
+<h1>Alternatives<a class="headerlink" href="#alternatives" title="Permalink to this headline">¶</a></h1>
+<p>And how to update them, and change the preferred change the default.</p>
+<p>Sometimes you just need a piece a software in the latest and greatest version.
+When provided these are often affixed the version-name… bla bla… here is
+the snippet for what you typically need.</p>
+<p>Here is an example, for Debian Bullseye only <code class="docutils literal notranslate"><span class="pre">clang-format</span></code> version is
+provided. However, llvm provides recent version via their own package
+repositires. Since this is a command-line tool, invoked via its name
+<code class="docutils literal notranslate"><span class="pre">clang-format</span></code> by default, then one can easily change to a different source
+and redirect <code class="docutils literal notranslate"><span class="pre">clang-format</span></code> to the latest version installed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">update</span><span class="o">-</span><span class="n">alternatives</span> <span class="o">--</span><span class="n">install</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">clang</span><span class="o">-</span><span class="nb">format</span> <span class="n">clang</span><span class="o">-</span><span class="nb">format</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">clang</span><span class="o">-</span><span class="nb">format</span><span class="o">-</span><span class="mi">14</span> <span class="mi">100</span>
+<span class="n">sudo</span> <span class="n">update</span><span class="o">-</span><span class="n">alternatives</span> <span class="o">--</span><span class="n">install</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">clang</span><span class="o">-</span><span class="nb">format</span> <span class="n">clang</span><span class="o">-</span><span class="nb">format</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">clang</span><span class="o">-</span><span class="nb">format</span><span class="o">-</span><span class="mi">13</span> <span class="mi">90</span>
+<span class="n">update</span><span class="o">-</span><span class="n">alternatives</span> <span class="o">--</span><span class="nb">list</span> <span class="n">clang</span><span class="o">-</span><span class="nb">format</span>
 </pre></div>
 </div>
-<p>Then run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">arp</span><span class="o">-</span><span class="n">scan</span> <span class="o">--</span><span class="n">localnet</span>
-</pre></div>
-</div>
-<p>This will show</p>
 </div>
 
 
@@ -94,17 +99,17 @@
       <div id="localtoc" >
       <h3>Here</h3>
       <ul>
-<li><a class="reference internal" href="#">Finding devices</a></li>
+<li><a class="reference internal" href="#">Alternatives</a></li>
 </ul>
 
       <hr/>
         <h4>Next</h4>
       <ul><li>
-        <a href="asciinema.html" title="next chapter">asciinema</a>
+        <a href="apt_tools.html" title="next chapter">Tools for <code class="docutils literal notranslate"><span class="pre">apt</span></code></a>
       </li></ul>
       <h4>Prev</h4>
       <ul><li>
-        <a href="apt_tools.html" title="previous chapter">Tools for <code class="docutils literal notranslate"><span class="pre">apt</span></code></a>
+        <a href="index.html" title="previous chapter">Debian</a>
       </li></ul>
       </div>
 

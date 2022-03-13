@@ -8,9 +8,10 @@ Notes of various stuff...
    :glob:
    :maxdepth: 2
 
-   pikvm/index
    debian/index.rst
-   vmmanager/index.rst
+   dotfiles/index
    freebsd/index.rst
+   pikvm/index
    sphinx/index.rst
+   vmmanager/index.rst
    windows/index.rst

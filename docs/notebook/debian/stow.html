@@ -78,7 +78,15 @@
 <h1>Stowing Dotfiles<a class="headerlink" href="#stowing-dotfiles" title="Permalink to this headline">¶</a></h1>
 <p>There is a trend of using a massive dotfile collection such as yadr, to me I
 prefer keeping it barebones:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">stow</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="o">-</span><span class="n">qy</span> <span class="n">install</span> <span class="n">stow</span>
+</pre></div>
+</div>
+<p>Layout of dotfiles, inside some directory, do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">stow</span> <span class="o">-</span><span class="n">t</span> <span class="o">~</span> <span class="n">byobu</span>
+</pre></div>
+</div>
+<p>Unlink:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">stow</span> <span class="o">-</span><span class="n">t</span> <span class="o">~</span> <span class="o">-</span><span class="n">D</span> <span class="n">byobu</span>
 </pre></div>
 </div>
 </div>

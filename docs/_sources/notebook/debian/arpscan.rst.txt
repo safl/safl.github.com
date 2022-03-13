@@ -3,7 +3,7 @@ Finding devices
 
 Install::
 
-  sudo apt-get install arpscan
+  sudo apt-get qy install arpscan
 
 Then run::
 
