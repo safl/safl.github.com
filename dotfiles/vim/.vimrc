@@ -1,13 +1,12 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" ==== Plugin-Manager =============================================================================
+" ==== Plugin-Manager: vundle -- begin ============================================================
+" Brief help: {PluginList, PluginInstall, PluginClean}
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" Plugins, the short-hand form here assumes that it is on github.com
-" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'flazz/vim-colorschemes'
@@ -15,29 +14,25 @@ Plugin 'powerline/fonts'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'ludovicchabant/vim-gutentags'
 
+" Unused plugins
 "Plugin 'scrooloose/syntastic'
 "Plugin 'nathanaelkane/vim-indent-guides'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+" ==== Plugin-Manager: vundle -- end ==============================================================
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" ==== Plugin Configuration =======================================================================
+" ==== Plugin-Configuration -- begin ==============================================================
 
 " ==== vim-airline
 let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
 let g:airline_powerline_fonts=1
 let g:airline_statusline_ontop=1
+
+" ==== Plugin-Configuration -- end ================================================================
 
 " ==== General Configuration ======================================================================
 set number                      "Line numbers are good
