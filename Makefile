@@ -13,6 +13,7 @@ build:
 	@mkdir -p $(BUILD_DIR)
 	sphinx-build -E -b html -c ./ site  $(BUILD_DIR)
 	touch $(BUILD_DIR)/.nojekyll
+	echo -n "safl.dk" >> $(BUILD_DIR)/CNAME
 
 .PHONY: view
 view:
