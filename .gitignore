@@ -3,3 +3,4 @@ docs/.buildinfo
 *.py[cod]
 dotfiles/vim/.vim
 dotfiles/vim/.netrwhist
+tags
