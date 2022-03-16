@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom Kernel &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Desktop Environment" href="de.html" />
+    <link rel="prev" title="Clang Format" href="clang-format.html" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link href="/_static/blue8bit.css" rel="stylesheet" crossorigin="anonymous">
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-222706364-1']);
+      _gaq.push(['_trackPageview']);
+    </script>
+
+  </head><body>
+
+
+  
+
+
+<div class="container justify-content-md-center">
+
+  <header class="row">
+    <div class="col-lg-12"><a href="/">safl.dk</a></div>
+  </header>
+
+  <nav class="row" style="vertical-align:baseline;">
+    <div class="col-lg-8">
+      <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../projects/index.html">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../uni/index.html">Uni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cv/index.html">CV</a></li>
+</ul>
+
+    </div>
+    <div id="search" class="col-lg-4 ms-sm-auto">
+      <form action="../../search.html" method="get">
+      <input type="text" name="q" class="form-control" placeholder="Search" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </nav>
+
+  <div id="related" class="row">
+    <div class="col-lg-12">
+      <a href="/">safl.dk</a> &#187;
+      <a href="../index.html" >Notebook</a> &#187;
+      <a href="index.html" accesskey="U">Debian</a> &#187;
+      <a href="">Custom Kernel</a>
+    </div>
+  </div>
+
+  <main class="row">
+    <div class="col-lg-9">
+    
+    
+  <div class="section" id="custom-kernel">
+<h1>Custom Kernel<a class="headerlink" href="#custom-kernel" title="Permalink to this headline">¶</a></h1>
+<p>These are instructions for building a custom Linux Kernel as a Debian package
+on the system where it will be installed.</p>
+<ul class="simple">
+<li><p>The kernel will be built using the current Kernel configuration with minimal
+custom changes, you can add more.</p></li>
+<li><p>The kernel will be built as an installable Debian Package, this is
+conventient as it can easily be uninstalled again.</p></li>
+<li><p>The kernel is built from sources available in the folder <code class="docutils literal notranslate"><span class="pre">$HOME/git/linux</span></code>.</p></li>
+</ul>
+<p>Install pre-reqs:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> \
+  <span class="n">bc</span> \
+  <span class="n">build</span><span class="o">-</span><span class="n">essential</span> \
+  <span class="n">cpio</span> \
+  <span class="n">flex</span> \
+  <span class="n">kmod</span> \
+  <span class="n">libelf</span><span class="o">-</span><span class="n">dev</span> \
+  <span class="n">libncurses5</span><span class="o">-</span><span class="n">dev</span> \
+  <span class="n">libssl</span><span class="o">-</span><span class="n">dev</span> \
+  <span class="n">linux</span><span class="o">-</span><span class="n">source</span> \
+  <span class="n">rsync</span> \
+  <span class="n">time</span>
+</pre></div>
+</div>
+<p>Grab the kernel sources and then do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">olddefconfig</span>
+</pre></div>
+</div>
+<p>Edit the <code class="docutils literal notranslate"><span class="pre">.config</span></code> making sure that the following is set:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CONFIG_SYSTEM_TRUSTED_KEYS</span><span class="o">-</span><span class="s2">&quot;&quot;</span>
+</pre></div>
+</div>
+<p>And unless you need it, then disable debug info, with the option:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CONFIG_DEBUG_INFO</span><span class="o">-</span><span class="n">n</span>
+</pre></div>
+</div>
+<p>Define the environment variable <code class="docutils literal notranslate"><span class="pre">LOCALVERSION</span></code>, this will embed the string in
+the kernel-version, making it easy to identify your customized Kernel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">LOCALVERSION</span><span class="o">-</span><span class="s2">&quot;foo&quot;</span>
+</pre></div>
+</div>
+<p>Then go ahead and build:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/usr/bin/time make -j`nproc` bindeb-pkg
+</pre></div>
+</div>
+<p>The Debian packages are emitted in the parent directory, this can get messy.
+So, go ahead and put the packages somewhere else, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rm</span> <span class="o">-</span><span class="n">r</span> <span class="s2">&quot;$</span><span class="si">{HOME}</span><span class="s2">/packages/$</span><span class="si">{LOCALVERSION}</span><span class="s2">&quot;</span>
+<span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="s2">&quot;$</span><span class="si">{HOME}</span><span class="s2">/packages/$</span><span class="si">{LOCALVERSION}</span><span class="s2">&quot;</span>
+<span class="n">mv</span> <span class="o">../</span><span class="p">{</span><span class="o">*.</span><span class="n">deb</span><span class="p">,</span><span class="o">*.</span><span class="n">buildinfo</span><span class="p">,</span><span class="o">*.</span><span class="n">changes</span><span class="p">}</span> <span class="s2">&quot;$HOME/packages/$</span><span class="si">{LOCALVERSION}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>Go ahead and install it by invoking:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dpkg</span> <span class="o">-</span><span class="n">i</span> <span class="s2">&quot;$HOME/packages/$</span><span class="si">{LOCALVERSION}</span><span class="s2">/*.deb&quot;</span>
+</pre></div>
+</div>
+<p>You organize the packages as you see fit, but something like the above is not a
+bad idea.</p>
+</div>
+
+
+    
+    </div>
+    <div class="col-lg-3 ms-sm-auto d-none d-lg-block">
+      <div id="localtoc" >
+      <h3>Here</h3>
+      <ul>
+<li><a class="reference internal" href="#">Custom Kernel</a></li>
+</ul>
+
+      <hr/>
+        <h4>Next</h4>
+      <ul><li>
+        <a href="de.html" title="next chapter">Desktop Environment</a>
+      </li></ul>
+      <h4>Prev</h4>
+      <ul><li>
+        <a href="clang-format.html" title="previous chapter">Clang Format</a>
+      </li></ul>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="row">
+    <div class="col-lg-12">
+        &copy; Copyright 2022 Simon A. F. Lund.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.
+    </div>
+  </footer>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script>
+  (function() {
+    var ga = document.createElement('script');
+    ga.src = ('https:' == document.location.protocol ?
+              'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    ga.setAttribute('async', 'true');
+    document.documentElement.firstChild.appendChild(ga);
+  })();
+</script>
+
+  </body>
+</html>

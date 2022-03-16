@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>qemu &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
+    <title>Disable Beep / System Beep / pcspeaker &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css" />
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
@@ -14,8 +14,8 @@
     <script src="../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="rsync" href="rsync.html" />
-    <link rel="prev" title="Python Linter-tools" href="python.html" />
+    <link rel="next" title="Clang Format" href="clang-format.html" />
+    <link rel="prev" title="Software-KVM using Barrier" href="barrier.html" />
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -66,7 +66,7 @@
       <a href="/">safl.dk</a> &#187;
       <a href="../index.html" >Notebook</a> &#187;
       <a href="index.html" accesskey="U">Debian</a> &#187;
-      <a href="">qemu</a>
+      <a href="">Disable Beep / System Beep / pcspeaker</a>
     </div>
   </div>
 
@@ -74,57 +74,15 @@
     <div class="col-lg-9">
     
     
-  <div class="section" id="qemu">
-<h1>qemu<a class="headerlink" href="#qemu" title="Permalink to this headline">¶</a></h1>
-<p>Install:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> \
-  <span class="n">qemu</span> \
-  <span class="n">qemu</span><span class="o">-</span><span class="n">utils</span> \
-  <span class="n">qemu</span><span class="o">-</span><span class="n">system</span><span class="o">-</span><span class="n">x86</span>
+  <div class="section" id="disable-beep-system-beep-pcspeaker">
+<h1>Disable Beep / System Beep / pcspeaker<a class="headerlink" href="#disable-beep-system-beep-pcspeaker" title="Permalink to this headline">¶</a></h1>
+<p>Unload the module:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">rmmod</span> <span class="n">pcspkr</span>
 </pre></div>
 </div>
-<div class="section" id="compiling-from-source">
-<h2>Compiling from source<a class="headerlink" href="#compiling-from-source" title="Permalink to this headline">¶</a></h2>
-<p>Thenf or building qemu, install these:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> \
-  <span class="n">libcap</span><span class="o">-</span><span class="n">ng</span><span class="o">-</span><span class="n">devel</span> \
-  <span class="n">libattr1</span><span class="o">-</span><span class="n">dev</span>
+<p>Make sure it is not loaded again, by “blacklisting” it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="s2">&quot;blacklist pcspkr&quot;</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">modprobe</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">blacklist</span><span class="o">.</span><span class="n">conf</span>
 </pre></div>
-</div>
-<p>Build like:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mkdir -p build
-cd build
-../configure \
---audio-drv-list=&quot;&quot; \
---disable-docs \
---disable-opengl \
---disable-virglrenderer \
---disable-vte \
---disable-gtk \
---disable-sdl \
---disable-spice \
---disable-vnc \
---disable-curses \
---disable-xen \
---disable-smartcard \
---disable-libnfs \
---disable-libusb \
---disable-glusterfs \
---enable-virtfs \
---enable-debug \
---prefix=/opt/qemu \
---target-list=x86_64-softmmu
-make -j$(nproc)
-</pre></div>
-</div>
-</div>
-<div class="section" id="cloud-utils">
-<h2>cloud-utils<a class="headerlink" href="#cloud-utils" title="Permalink to this headline">¶</a></h2>
-<p>Related to qemu are the cloud-init utilities:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> \
-  <span class="n">cloud</span><span class="o">-</span><span class="n">utils</span>
-</pre></div>
-</div>
 </div>
 </div>
 
@@ -135,21 +93,17 @@ make -j$(nproc)
       <div id="localtoc" >
       <h3>Here</h3>
       <ul>
-<li><a class="reference internal" href="#">qemu</a><ul>
-<li><a class="reference internal" href="#compiling-from-source">Compiling from source</a></li>
-<li><a class="reference internal" href="#cloud-utils">cloud-utils</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#">Disable Beep / System Beep / pcspeaker</a></li>
 </ul>
 
       <hr/>
         <h4>Next</h4>
       <ul><li>
-        <a href="rsync.html" title="next chapter">rsync</a>
+        <a href="clang-format.html" title="next chapter">Clang Format</a>
       </li></ul>
       <h4>Prev</h4>
       <ul><li>
-        <a href="python.html" title="previous chapter">Python Linter-tools</a>
+        <a href="barrier.html" title="previous chapter">Software-KVM using Barrier</a>
       </li></ul>
       </div>
 
