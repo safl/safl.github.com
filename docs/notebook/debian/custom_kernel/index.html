@@ -6,16 +6,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Custom Kernel &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Desktop Environment" href="de.html" />
-    <link rel="prev" title="Clang Format" href="clang-format.html" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/blue8bit.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Desktop Environment" href="../desktop/index.html" />
+    <link rel="prev" title="Elgato Stream Deck" href="../stream_deck.html" />
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,15 +45,15 @@
   <nav class="row" style="vertical-align:baseline;">
     <div class="col-lg-8">
       <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Notebook</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../projects/index.html">Projects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../uni/index.html">Uni</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../cv/index.html">CV</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../projects/index.html">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../uni/index.html">Uni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cv/index.html">CV</a></li>
 </ul>
 
     </div>
     <div id="search" class="col-lg-4 ms-sm-auto">
-      <form action="../../search.html" method="get">
+      <form action="../../../search.html" method="get">
       <input type="text" name="q" class="form-control" placeholder="Search" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -64,8 +64,8 @@
   <div id="related" class="row">
     <div class="col-lg-12">
       <a href="/">safl.dk</a> &#187;
-      <a href="../index.html" >Notebook</a> &#187;
-      <a href="index.html" accesskey="U">Debian</a> &#187;
+      <a href="../../index.html" >Notebook</a> &#187;
+      <a href="../index.html" accesskey="U">Debian</a> &#187;
       <a href="">Custom Kernel</a>
     </div>
   </div>
@@ -86,18 +86,19 @@ conventient as it can easily be uninstalled again.</p></li>
 <li><p>The kernel is built from sources available in the folder <code class="docutils literal notranslate"><span class="pre">$HOME/git/linux</span></code>.</p></li>
 </ul>
 <p>Install pre-reqs:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> \
-  <span class="n">bc</span> \
-  <span class="n">build</span><span class="o">-</span><span class="n">essential</span> \
-  <span class="n">cpio</span> \
-  <span class="n">flex</span> \
-  <span class="n">kmod</span> \
-  <span class="n">libelf</span><span class="o">-</span><span class="n">dev</span> \
-  <span class="n">libncurses5</span><span class="o">-</span><span class="n">dev</span> \
-  <span class="n">libssl</span><span class="o">-</span><span class="n">dev</span> \
-  <span class="n">linux</span><span class="o">-</span><span class="n">source</span> \
-  <span class="n">rsync</span> \
-  <span class="n">time</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
+sudo apt-get install <span class="se">\</span>
+  bc <span class="se">\</span>
+  build-essential <span class="se">\</span>
+  cpio <span class="se">\</span>
+  flex <span class="se">\</span>
+  kmod <span class="se">\</span>
+  libelf-dev <span class="se">\</span>
+  libncurses5-dev <span class="se">\</span>
+  libssl-dev <span class="se">\</span>
+  linux-source <span class="se">\</span>
+  rsync <span class="se">\</span>
+  <span class="nb">time</span>
 </pre></div>
 </div>
 <p>Grab the kernel sources and then do:</p>
@@ -105,16 +106,16 @@ conventient as it can easily be uninstalled again.</p></li>
 </pre></div>
 </div>
 <p>Edit the <code class="docutils literal notranslate"><span class="pre">.config</span></code> making sure that the following is set:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CONFIG_SYSTEM_TRUSTED_KEYS</span><span class="o">-</span><span class="s2">&quot;&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CONFIG_SYSTEM_TRUSTED_KEYS</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
 </pre></div>
 </div>
 <p>And unless you need it, then disable debug info, with the option:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CONFIG_DEBUG_INFO</span><span class="o">-</span><span class="n">n</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CONFIG_DEBUG_INFO</span><span class="o">=</span><span class="n">n</span>
 </pre></div>
 </div>
 <p>Define the environment variable <code class="docutils literal notranslate"><span class="pre">LOCALVERSION</span></code>, this will embed the string in
 the kernel-version, making it easy to identify your customized Kernel:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">LOCALVERSION</span><span class="o">-</span><span class="s2">&quot;foo&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">LOCALVERSION</span><span class="o">=</span><span class="s2">&quot;foo42&quot;</span>
 </pre></div>
 </div>
 <p>Then go ahead and build:</p>
@@ -149,11 +150,11 @@ bad idea.</p>
       <hr/>
         <h4>Next</h4>
       <ul><li>
-        <a href="de.html" title="next chapter">Desktop Environment</a>
+        <a href="../desktop/index.html" title="next chapter">Desktop Environment</a>
       </li></ul>
       <h4>Prev</h4>
       <ul><li>
-        <a href="clang-format.html" title="previous chapter">Clang Format</a>
+        <a href="../stream_deck.html" title="previous chapter">Elgato Stream Deck</a>
       </li></ul>
       </div>
 

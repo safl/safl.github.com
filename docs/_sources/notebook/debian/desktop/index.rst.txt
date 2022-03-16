@@ -40,7 +40,7 @@ At the time of writing/updating this, then i3-gaps version ``v4.20.1`` was the
 latest. Which in addition to the ``toolbelt`` packages requires installation of
 the following:
 
-.. literalinclude:: i3-gaps-install-pkgs.sh
+.. literalinclude:: install.sh
    :language: bash
    :lines: 2-
 

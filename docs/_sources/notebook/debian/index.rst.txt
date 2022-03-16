@@ -35,3 +35,5 @@ as :xref-flatpak:`Flatpak<>`, :xref-snapcraft:`SnapCraft<>` and
    :glob:
 
    *
+   custom_kernel/index.rst
+   desktop/index.rst

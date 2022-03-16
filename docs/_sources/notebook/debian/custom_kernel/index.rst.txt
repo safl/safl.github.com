@@ -10,20 +10,11 @@ on the system where it will be installed.
   conventient as it can easily be uninstalled again.
 * The kernel is built from sources available in the folder ``$HOME/git/linux``.
 
-Install pre-reqs::
+Install pre-reqs:
 
-  sudo apt-get install \
-    bc \
-    build-essential \
-    cpio \
-    flex \
-    kmod \
-    libelf-dev \
-    libncurses5-dev \
-    libssl-dev \
-    linux-source \
-    rsync \
-    time
+.. literalinclude:: install.sh
+   :language: bash
+   :lines: 1-
 
 Grab the kernel sources and then do::
 
@@ -31,16 +22,16 @@ Grab the kernel sources and then do::
 
 Edit the ``.config`` making sure that the following is set::
 
-  CONFIG_SYSTEM_TRUSTED_KEYS-""
+  CONFIG_SYSTEM_TRUSTED_KEYS=""
 
 And unless you need it, then disable debug info, with the option::
 
-  CONFIG_DEBUG_INFO-n
+  CONFIG_DEBUG_INFO=n
 
 Define the environment variable ``LOCALVERSION``, this will embed the string in
 the kernel-version, making it easy to identify your customized Kernel::
 
-  export LOCALVERSION-"foo"
+  export LOCALVERSION="foo42"
 
 Then go ahead and build::
 
