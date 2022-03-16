@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-sudo apt-get install \
+sudo apt-get -qy install \
   libcairo2-dev \
   libev-dev \
   libpango1.0-dev \
