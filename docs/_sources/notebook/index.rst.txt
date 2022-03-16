@@ -11,7 +11,8 @@ Notes of various stuff...
    debian/index.rst
    dotfiles/index
    freebsd/index.rst
-   pikvm/index
+   pikvm/index.rst
+   github/index.rst
    sphinx/index.rst
    vmmanager/index.rst
    windows/index.rst
