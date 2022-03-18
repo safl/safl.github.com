@@ -12,7 +12,13 @@ sdcard. Assemble the thing and let it boot.
 Post-install
 ------------
 
-Post-installation tasks in the PiKVM shell::
+Login via the web-interface and dump yourself into the Shell/terminal and
+switch to ``root``::
+
+  # Switch to root
+  su
+
+Post-installation tasks in the PiKVM shell, as ``root`` do the following::
 
   # Change storage to read/write mode
   rw
