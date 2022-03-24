@@ -100,20 +100,34 @@ switch to <code class="docutils literal notranslate"><span class="pre">root</spa
 <span class="n">echo</span> <span class="s2">&quot;dtoverlay=disable-wifi&quot;</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">config</span><span class="o">.</span><span class="n">txt</span>
 <span class="n">echo</span> <span class="s2">&quot;dtoverlay=disable-bt&quot;</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">config</span><span class="o">.</span><span class="n">txt</span>
 
+<span class="c1"># Disable janus, it relays information via google STUN servers for webrtc</span>
+<span class="n">systemctl</span> <span class="n">disable</span> <span class="o">--</span><span class="n">now</span> <span class="n">kvmd</span><span class="o">-</span><span class="n">janus</span>
+
+<span class="c1"># Enable the oled-display of the steel-case</span>
+<span class="n">systemctl</span> <span class="n">enable</span> <span class="o">--</span><span class="n">now</span> <span class="n">kvmd</span><span class="o">-</span><span class="n">oled</span> <span class="n">kvmd</span><span class="o">-</span><span class="n">oled</span><span class="o">-</span><span class="n">reboot</span> <span class="n">kvmd</span><span class="o">-</span><span class="n">oled</span><span class="o">-</span><span class="n">shutdown</span>
+<span class="n">systemctl</span> <span class="n">enable</span> <span class="o">--</span><span class="n">now</span> <span class="n">kvmd</span><span class="o">-</span><span class="n">information</span>
+
 <span class="c1"># Change the password</span>
 <span class="n">passwd</span> <span class="n">root</span>
 
 <span class="c1"># Change password for ui</span>
 <span class="n">kvmd</span><span class="o">-</span><span class="n">htpasswd</span> <span class="nb">set</span> <span class="n">admin</span>
 
-<span class="c1"># Enable the oled-display of the steel-case</span>
-<span class="n">systemctl</span> <span class="n">enable</span> <span class="o">--</span><span class="n">now</span> <span class="n">kvmd</span><span class="o">-</span><span class="n">oled</span> <span class="n">kvmd</span><span class="o">-</span><span class="n">oled</span><span class="o">-</span><span class="n">reboot</span> <span class="n">kvmd</span><span class="o">-</span><span class="n">oled</span><span class="o">-</span><span class="n">shutdown</span>
-<span class="n">systemctl</span> <span class="n">enable</span> <span class="o">--</span><span class="n">now</span> <span class="n">kvmd</span><span class="o">-</span><span class="n">fan</span>
-
 <span class="c1"># Change storage to read-only mode</span>
 <span class="n">ro</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="h-264-webrtc">
+<h2>H.264/WebRTC<a class="headerlink" href="#h-264-webrtc" title="Permalink to this headline">¶</a></h2>
+<p>It requires internet access and is by default configured to use a STUN server
+hosted by google. To avoid this, then disable the janus service and enable the
+static version:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">systemctl</span> <span class="n">disable</span> <span class="o">--</span><span class="n">now</span> <span class="n">kvmd</span><span class="o">-</span><span class="n">janus</span>
+<span class="n">systemctl</span> <span class="n">enable</span> <span class="o">--</span><span class="n">now</span> <span class="n">kvmd</span><span class="o">-</span><span class="n">janus</span><span class="o">-</span><span class="n">static</span>
+</pre></div>
+</div>
+<p>See <a class="reference external" href="https://docs.pikvm.org/edid/#default-edid">PiKVM-edid</a> for more information about this.</p>
 </div>
 <div class="section" id="troubleshooting">
 <h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
@@ -195,6 +209,7 @@ else works, then this might be why.</p></li>
 <li><a class="reference internal" href="#">PiKVM with v3 HAT</a><ul>
 <li><a class="reference internal" href="#installation">Installation</a></li>
 <li><a class="reference internal" href="#post-install">Post-install</a></li>
+<li><a class="reference internal" href="#h-264-webrtc">H.264/WebRTC</a></li>
 <li><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
 <li><a class="reference internal" href="#garbled-graphics">Garbled graphics</a></li>
 <li><a class="reference internal" href="#keyboard-mouse-are-not-working">Keyboard / mouse are not working</a></li>

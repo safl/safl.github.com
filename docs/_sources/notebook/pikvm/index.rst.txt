@@ -30,18 +30,33 @@ Post-installation tasks in the PiKVM shell, as ``root`` do the following::
   echo "dtoverlay=disable-wifi" >> /boot/config.txt
   echo "dtoverlay=disable-bt" >> /boot/config.txt
 
+  # Disable janus, it relays information via google STUN servers for webrtc
+  systemctl disable --now kvmd-janus
+
+  # Enable the oled-display of the steel-case
+  systemctl enable --now kvmd-oled kvmd-oled-reboot kvmd-oled-shutdown
+  systemctl enable --now kvmd-information
+
   # Change the password
   passwd root
 
   # Change password for ui
   kvmd-htpasswd set admin
 
-  # Enable the oled-display of the steel-case
-  systemctl enable --now kvmd-oled kvmd-oled-reboot kvmd-oled-shutdown
-  systemctl enable --now kvmd-fan
-
   # Change storage to read-only mode
   ro
+
+H.264/WebRTC
+------------
+
+It requires internet access and is by default configured to use a STUN server
+hosted by google. To avoid this, then disable the janus service and enable the
+static version::
+
+  systemctl disable --now kvmd-janus
+  systemctl enable --now kvmd-janus-static
+
+See `PiKVM-edid`_ for more information about this.
 
 Troubleshooting
 ---------------
@@ -120,3 +135,4 @@ If you find that mouse / keyboard is not working then check:
   else works, then this might be why.
 
 .. _PiKVM-edid: https://docs.pikvm.org/edid/#default-edid
+.. _PiKVM-webrtc: https://docs.pikvm.org/webrtc/
