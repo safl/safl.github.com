@@ -20,13 +20,11 @@ Grab the kernel sources and then do::
 
   make olddefconfig
 
-Edit the ``.config`` making sure that the following is set::
+Disabled trusted keys and debug-info::
 
-  CONFIG_SYSTEM_TRUSTED_KEYS=""
-
-And unless you need it, then disable debug info, with the option::
-
-  CONFIG_DEBUG_INFO=n
+  ./scripts/config --disable CONFIG_DEBUG_INFO
+  ./scripts/config --disable SYSTEM_TRUSTED_KEYS
+  ./scripts/config --disable SYSTEM_REVOCATION_KEYS
 
 Define the environment variable ``LOCALVERSION``, this will embed the string in
 the kernel-version, making it easy to identify your customized Kernel::

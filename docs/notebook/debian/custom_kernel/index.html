@@ -105,12 +105,10 @@ sudo apt-get install <span class="se">\</span>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">olddefconfig</span>
 </pre></div>
 </div>
-<p>Edit the <code class="docutils literal notranslate"><span class="pre">.config</span></code> making sure that the following is set:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CONFIG_SYSTEM_TRUSTED_KEYS</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
-</pre></div>
-</div>
-<p>And unless you need it, then disable debug info, with the option:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CONFIG_DEBUG_INFO</span><span class="o">=</span><span class="n">n</span>
+<p>Disabled trusted keys and debug-info:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">scripts</span><span class="o">/</span><span class="n">config</span> <span class="o">--</span><span class="n">disable</span> <span class="n">CONFIG_DEBUG_INFO</span>
+<span class="o">./</span><span class="n">scripts</span><span class="o">/</span><span class="n">config</span> <span class="o">--</span><span class="n">disable</span> <span class="n">SYSTEM_TRUSTED_KEYS</span>
+<span class="o">./</span><span class="n">scripts</span><span class="o">/</span><span class="n">config</span> <span class="o">--</span><span class="n">disable</span> <span class="n">SYSTEM_REVOCATION_KEYS</span>
 </pre></div>
 </div>
 <p>Define the environment variable <code class="docutils literal notranslate"><span class="pre">LOCALVERSION</span></code>, this will embed the string in
