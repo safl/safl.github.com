@@ -104,7 +104,7 @@ autocmd Filetype cpp setlocal ts=2 sw=2 expandtab
 autocmd Filetype html setlocal ts=2 sw=2 expandtab textwidth=99
 autocmd Filetype js setlocal ts=2 sw=2 expandtab textwidth=99
 autocmd Filetype markdown setlocal ts=4 sw=4 expandtab
-autocmd Filetype python setlocal ts=4 sw=4 textwidth=79 autoindent fileformat=unix expandtab
+autocmd Filetype python setlocal ts=4 sw=4 textwidth=88 autoindent fileformat=unix expandtab
 autocmd Filetype rst setlocal ts=2 sw=2 expandtab textwidth=79 wrapmargin=0 formatoptions=nt
 autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 autocmd Filetype shell setlocal textwidth=0 wrapmargin=0
