@@ -80,15 +80,46 @@
 <p>Sometimes you just need a piece a software in the latest and greatest version.
 When provided these are often affixed the version-name… bla bla… here is
 the snippet for what you typically need.</p>
-<p>Here is an example, for Debian Bullseye only <code class="docutils literal notranslate"><span class="pre">clang-format</span></code> version is
+<div class="section" id="multiple-clang-format">
+<h2>Multiple <code class="docutils literal notranslate"><span class="pre">clang-format</span></code><a class="headerlink" href="#multiple-clang-format" title="Permalink to this headline">¶</a></h2>
+<p>Here is an example, for Debian Bullseye only <code class="docutils literal notranslate"><span class="pre">clang-format</span></code> version 13 is
 provided. However, llvm provides recent version via their own package
 repositires. Since this is a command-line tool, invoked via its name
 <code class="docutils literal notranslate"><span class="pre">clang-format</span></code> by default, then one can easily change to a different source
 and redirect <code class="docutils literal notranslate"><span class="pre">clang-format</span></code> to the latest version installed:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">update</span><span class="o">-</span><span class="n">alternatives</span> <span class="o">--</span><span class="n">install</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">clang</span><span class="o">-</span><span class="nb">format</span> <span class="n">clang</span><span class="o">-</span><span class="nb">format</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">clang</span><span class="o">-</span><span class="nb">format</span><span class="o">-</span><span class="mi">14</span> <span class="mi">100</span>
-<span class="n">sudo</span> <span class="n">update</span><span class="o">-</span><span class="n">alternatives</span> <span class="o">--</span><span class="n">install</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">clang</span><span class="o">-</span><span class="nb">format</span> <span class="n">clang</span><span class="o">-</span><span class="nb">format</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">clang</span><span class="o">-</span><span class="nb">format</span><span class="o">-</span><span class="mi">13</span> <span class="mi">90</span>
-<span class="n">update</span><span class="o">-</span><span class="n">alternatives</span> <span class="o">--</span><span class="nb">list</span> <span class="n">clang</span><span class="o">-</span><span class="nb">format</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">update</span><span class="o">-</span><span class="n">alternatives</span> <span class="o">--</span><span class="n">install</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">clang</span><span class="o">-</span><span class="nb">format</span> <span class="n">clang</span><span class="o">-</span><span class="nb">format</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">clang</span><span class="o">-</span><span class="nb">format</span><span class="o">-</span><span class="mi">14</span> <span class="mi">14</span>
+<span class="n">sudo</span> <span class="n">update</span><span class="o">-</span><span class="n">alternatives</span> <span class="o">--</span><span class="n">install</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">clang</span><span class="o">-</span><span class="nb">format</span> <span class="n">clang</span><span class="o">-</span><span class="nb">format</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">clang</span><span class="o">-</span><span class="nb">format</span><span class="o">-</span><span class="mi">13</span> <span class="mi">13</span>
+<span class="n">sudo</span> <span class="n">update</span><span class="o">-</span><span class="n">alternatives</span> <span class="o">--</span><span class="n">config</span> <span class="n">gcc</span>
 </pre></div>
+</div>
+<p>You can inspect alternatives by running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">update</span><span class="o">-</span><span class="n">alternatives</span> <span class="o">--</span><span class="nb">list</span> <span class="n">clang</span><span class="o">-</span><span class="nb">format</span>
+</pre></div>
+</div>
+<p>And switch between then using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">update</span><span class="o">-</span><span class="n">alternatives</span> <span class="o">--</span><span class="n">config</span> <span class="n">gcc</span>
+</pre></div>
+</div>
+<p>The number furtherst to the right is the “priority” of the alternative, by
+using the version-number then newer versions are prioritzed higher.</p>
+</div>
+<div class="section" id="multiple-gcc">
+<h2>Multiple <code class="docutils literal notranslate"><span class="pre">gcc</span></code><a class="headerlink" href="#multiple-gcc" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes a project doesn’t work with default version provided. For example, I
+has a build issue with the Linux kernel using <code class="docutils literal notranslate"><span class="pre">gcc</span> <span class="pre">10</span></code>. So, I attempted
+builded the kernel using an older version of <code class="docutils literal notranslate"><span class="pre">gcc</span></code> by doing the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">update</span><span class="o">-</span><span class="n">alternatives</span> <span class="o">--</span><span class="n">config</span> <span class="n">gcc</span>
+<span class="n">sudo</span> <span class="n">update</span><span class="o">-</span><span class="n">alternatives</span> <span class="o">--</span><span class="n">install</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">gcc</span> <span class="n">gcc</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">gcc</span><span class="o">-</span><span class="mi">10</span> <span class="mi">10</span>
+<span class="n">sudo</span> <span class="n">update</span><span class="o">-</span><span class="n">alternatives</span> <span class="o">--</span><span class="n">install</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">g</span><span class="o">++</span> <span class="n">g</span><span class="o">++</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">g</span><span class="o">++-</span><span class="mi">10</span> <span class="mi">10</span>
+<span class="n">sudo</span> <span class="n">update</span><span class="o">-</span><span class="n">alternatives</span> <span class="o">--</span><span class="n">install</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">gcc</span> <span class="n">gcc</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">gcc</span><span class="o">-</span><span class="mi">9</span> <span class="mi">9</span>
+<span class="n">sudo</span> <span class="n">update</span><span class="o">-</span><span class="n">alternatives</span> <span class="o">--</span><span class="n">install</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">g</span><span class="o">++</span> <span class="n">g</span><span class="o">++</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">g</span><span class="o">++-</span><span class="mi">9</span> <span class="mi">9</span>
+<span class="n">sudo</span> <span class="n">update</span><span class="o">-</span><span class="n">alternatives</span> <span class="o">--</span><span class="n">config</span> <span class="n">gcc</span>
+</pre></div>
+</div>
+<p>Note, this is not always fruitful, as other versions of the linker and standard
+library might be the real root of the issue. However, for the issue I had where
+a new default was introduced with gcc 10, which for the version of the Kernel I
+had, was not yet addressed. Then it was a quick’n’dirty work-around.</p>
 </div>
 </div>
 
@@ -99,7 +130,11 @@ and redirect <code class="docutils literal notranslate"><span class="pre">clang-
       <div id="localtoc" >
       <h3>Here</h3>
       <ul>
-<li><a class="reference internal" href="#">Alternatives</a></li>
+<li><a class="reference internal" href="#">Alternatives</a><ul>
+<li><a class="reference internal" href="#multiple-clang-format">Multiple <code class="docutils literal notranslate"><span class="pre">clang-format</span></code></a></li>
+<li><a class="reference internal" href="#multiple-gcc">Multiple <code class="docutils literal notranslate"><span class="pre">gcc</span></code></a></li>
+</ul>
+</li>
 </ul>
 
       <hr/>
