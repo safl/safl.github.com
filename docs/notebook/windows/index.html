@@ -75,7 +75,103 @@
     
   <div class="section" id="windows">
 <h1>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h1>
-<p>Fooo</p>
+<p>I got a Windows 95 installation CD with my first PC. I installed it, played
+around, played Pinball, Hearts, Moto Racer, and QUAKE. Then I installed Borland
+Delphi, then Apache + PHP. Then I started getting annoyed with Windows and
+switched to FreeBSD and later Linux.</p>
+<p>Haven’t used Windows for my personal computer since, except of course… to
+play games that would not run on Wine. However, I have needed Windows in a
+bunch of scenarious, but usually running it via VM would suffice. So, can’t
+really shake Windows. Thus, i decided to note down a couple of nice things
+which are actually possible today which makes not too terrible to use.</p>
+<p>Here are a couple of notes on setting up a Windows machine in such a manner
+that it is bearable to use. First steps involve waiting for updates to finish,
+give the system a proper name, then enable remote access via RDP and SSH.</p>
+<p>Then the tool-installation can commence, starting with the Chocolatey package
+manager and msys2. Later, the other stuff such as the Microsoft Visual Studio.</p>
+<div class="section" id="chocolatey">
+<h2>Chocolatey<a class="headerlink" href="#chocolatey" title="Permalink to this headline">¶</a></h2>
+<p>A package manager for Windows providing native software installation. How
+<strong>sweet</strong>. Install it via an elevated PowerShell:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Set</span><span class="o">-</span><span class="n">ExecutionPolicy</span> <span class="n">Bypass</span> <span class="o">-</span><span class="n">Scope</span> <span class="n">Process</span> <span class="o">-</span><span class="n">Force</span><span class="p">;</span> <span class="p">[</span><span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">ServicePointManager</span><span class="p">]::</span><span class="n">SecurityProtocol</span> <span class="o">=</span> <span class="p">[</span><span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">ServicePointManager</span><span class="p">]::</span><span class="n">SecurityProtocol</span> <span class="o">-</span><span class="n">bor</span> <span class="mi">3072</span><span class="p">;</span> <span class="n">iex</span> <span class="p">((</span><span class="n">New</span><span class="o">-</span><span class="n">Object</span> <span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">WebClient</span><span class="p">)</span><span class="o">.</span><span class="n">DownloadString</span><span class="p">(</span><span class="s1">&#39;https://community.chocolatey.org/install.ps1&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tools">
+<h2>Tools<a class="headerlink" href="#tools" title="Permalink to this headline">¶</a></h2>
+<p>Here are a couple of the usual suspects on Windows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">choco</span><span class="o">.</span><span class="n">exe</span> <span class="n">install</span> <span class="n">git</span> <span class="n">vscode</span> <span class="n">firefox</span>
+</pre></div>
+</div>
+<p>It is so nice, that one does not need to go visit a bunch of websites and
+download <code class="docutils literal notranslate"><span class="pre">.msi</span></code> and random <code class="docutils literal notranslate"><span class="pre">.exe</span></code> installation Wizards. It is all
+downloaded from the same arbitrary places, they are to the greatest extended
+untrusted and untested, however, Chocolatey does a an effort to scan, verify,
+etc. the packages that they ship as “community” packages, as well as those with
+regular maintenance. Excellent!</p>
+<p>After installing the tools above, then bash is also avaiable via the
+git-installation, you can find it somewhere equivalent to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="p">:</span>\<span class="n">Program</span> <span class="n">Files</span>\<span class="n">Git</span>\<span class="nb">bin</span>\<span class="n">bash</span><span class="o">.</span><span class="n">exe</span>
+</pre></div>
+</div>
+<p>This is incredibly nice, as you can tell the OpenSSH server to use Bash as your
+login shell. Ahh, serenity.</p>
+</div>
+<div class="section" id="rename-your-pc">
+<h2>Rename your PC<a class="headerlink" href="#rename-your-pc" title="Permalink to this headline">¶</a></h2>
+<p>…</p>
+</div>
+<div class="section" id="remote-desktop">
+<h2>Remote Desktop<a class="headerlink" href="#remote-desktop" title="Permalink to this headline">¶</a></h2>
+<p>…</p>
+</div>
+<div class="section" id="enable-openssh-server">
+<h2>Enable OpenSSH Server<a class="headerlink" href="#enable-openssh-server" title="Permalink to this headline">¶</a></h2>
+<p>Something wonderful has happened; Windows has native OpenSSH support and it is
+officially documented here:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview">https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview</a></p></li>
+</ul>
+</div></blockquote>
+<p><strong>Notes:</strong></p>
+<p>Check whether it is installed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">WindowsCapability</span> <span class="o">-</span><span class="n">Online</span> <span class="o">|</span> <span class="n">Where</span><span class="o">-</span><span class="n">Object</span> <span class="n">Name</span> <span class="o">-</span><span class="n">like</span> <span class="s1">&#39;OpenSSH*&#39;</span>
+</pre></div>
+</div>
+<p>Then install it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install the OpenSSH Client</span>
+<span class="n">Add</span><span class="o">-</span><span class="n">WindowsCapability</span> <span class="o">-</span><span class="n">Online</span> <span class="o">-</span><span class="n">Name</span> <span class="n">OpenSSH</span><span class="o">.</span><span class="n">Client</span><span class="o">~~~~</span><span class="mf">0.0</span><span class="o">.</span><span class="mf">1.0</span>
+
+<span class="c1"># Install the OpenSSH Server</span>
+<span class="n">Add</span><span class="o">-</span><span class="n">WindowsCapability</span> <span class="o">-</span><span class="n">Online</span> <span class="o">-</span><span class="n">Name</span> <span class="n">OpenSSH</span><span class="o">.</span><span class="n">Server</span><span class="o">~~~~</span><span class="mf">0.0</span><span class="o">.</span><span class="mf">1.0</span>
+</pre></div>
+</div>
+<p>Then continue:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Start the sshd service
+Start-Service sshd
+
+# OPTIONAL but recommended:
+Set-Service -Name sshd -StartupType &#39;Automatic&#39;
+
+# Confirm the Firewall rule is configured. It should be created automatically by setup. Run the following to verify
+if (!(Get-NetFirewallRule -Name &quot;OpenSSH-Server-In-TCP&quot; -ErrorAction SilentlyContinue | Select-Object Name, Enabled)) {
+    Write-Output &quot;Firewall Rule &#39;OpenSSH-Server-In-TCP&#39; does not exist, creating it...&quot;
+    New-NetFirewallRule -Name &#39;OpenSSH-Server-In-TCP&#39; -DisplayName &#39;OpenSSH Server (sshd)&#39; -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22
+} else {
+    Write-Output &quot;Firewall rule &#39;OpenSSH-Server-In-TCP&#39; has been created and exists.&quot;
+}
+
+# Add your authorized_keys file and set permissions
+# Copy it to: C:\ProgramData\ssh\administrators_authorized_keys, then
+icacls.exe &quot;C:\ProgramData\ssh\administrators_authorized_keys&quot; /inheritance:r /grant &quot;Administrators:F&quot; /grant &quot;SYSTEM:F&quot;
+</pre></div>
+</div>
+<p>And here is the winner, set <code class="docutils literal notranslate"><span class="pre">Bash</span></code> as your default Shell:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">New</span><span class="o">-</span><span class="n">ItemProperty</span> <span class="o">-</span><span class="n">Path</span> <span class="s2">&quot;HKLM:\SOFTWARE\OpenSSH&quot;</span> <span class="o">-</span><span class="n">Name</span> <span class="n">DefaultShell</span> <span class="o">-</span><span class="n">Value</span> <span class="s2">&quot;c:\Program Files\Git</span><span class="se">\b</span><span class="s2">in</span><span class="se">\b</span><span class="s2">ash.exe&quot;</span> <span class="o">-</span><span class="n">PropertyType</span> <span class="n">String</span> <span class="o">-</span><span class="n">Force</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -85,7 +181,14 @@
       <div id="localtoc" >
       <h3>Here</h3>
       <ul>
-<li><a class="reference internal" href="#">Windows</a></li>
+<li><a class="reference internal" href="#">Windows</a><ul>
+<li><a class="reference internal" href="#chocolatey">Chocolatey</a></li>
+<li><a class="reference internal" href="#tools">Tools</a></li>
+<li><a class="reference internal" href="#rename-your-pc">Rename your PC</a></li>
+<li><a class="reference internal" href="#remote-desktop">Remote Desktop</a></li>
+<li><a class="reference internal" href="#enable-openssh-server">Enable OpenSSH Server</a></li>
+</ul>
+</li>
 </ul>
 
       <hr/>
