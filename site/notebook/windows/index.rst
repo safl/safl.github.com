@@ -30,7 +30,7 @@ A package manager for Windows providing native software installation. How
 Tools
 -----
 
-Here are a couple of the usual suspects on Windows:
+Here are a couple of the usual suspects on Windows::
 
   choco.exe install git vscode firefox
 
