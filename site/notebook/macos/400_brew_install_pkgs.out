@@ -1,0 +1,98 @@
+
+Warning: Treating doxygen as a formula. For the cask, use homebrew/cask/doxygen
+Warning: bash 5.2.15 is already installed and up-to-date.
+To reinstall 5.2.15, run:
+  brew reinstall bash
+Warning: black 23.1.0 is already installed and up-to-date.
+To reinstall 23.1.0, run:
+  brew reinstall black
+Warning: clang-format 15.0.7 is already installed and up-to-date.
+To reinstall 15.0.7, run:
+  brew reinstall clang-format
+Warning: docutils 0.19 is already installed and up-to-date.
+To reinstall 0.19, run:
+  brew reinstall docutils
+Warning: doxygen 1.9.6 is already installed and up-to-date.
+To reinstall 1.9.6, run:
+  brew reinstall doxygen
+Warning: gcovr 5.2 is already installed and up-to-date.
+To reinstall 5.2, run:
+  brew reinstall gcovr
+Warning: git 2.39.1 is already installed and up-to-date.
+To reinstall 2.39.1, run:
+  brew reinstall git
+Warning: git-gui 2.39.1 is already installed and up-to-date.
+To reinstall 2.39.1, run:
+  brew reinstall git-gui
+Warning: graphviz 7.1.0 is already installed and up-to-date.
+To reinstall 7.1.0, run:
+  brew reinstall graphviz
+Warning: htop 3.2.1 is already installed and up-to-date.
+To reinstall 3.2.1, run:
+  brew reinstall htop
+Warning: ipython 8.9.0 is already installed and up-to-date.
+To reinstall 8.9.0, run:
+  brew reinstall ipython
+Warning: isort 5.12.0 is already installed and up-to-date.
+To reinstall 5.12.0, run:
+  brew reinstall isort
+Warning: meson 1.0.0 is already installed and up-to-date.
+To reinstall 1.0.0, run:
+  brew reinstall meson
+Warning: moreutils 0.67 is already installed and up-to-date.
+To reinstall 0.67, run:
+  brew reinstall moreutils
+Warning: mutagen-io/mutagen/mutagen 0.16.4 is already installed and up-to-date.
+To reinstall 0.16.4, run:
+  brew reinstall mutagen
+Warning: mypy 0.991 is already installed and up-to-date.
+To reinstall 0.991, run:
+  brew reinstall mypy
+Warning: ncurses 6.4 is already installed and up-to-date.
+To reinstall 6.4, run:
+  brew reinstall ncurses
+Warning: neovim 0.8.3 is already installed and up-to-date.
+To reinstall 0.8.3, run:
+  brew reinstall neovim
+Warning: ninja 1.11.1 is already installed and up-to-date.
+To reinstall 1.11.1, run:
+  brew reinstall ninja
+Warning: pkg-config 0.29.2_3 is already installed and up-to-date.
+To reinstall 0.29.2_3, run:
+  brew reinstall pkg-config
+Warning: pre-commit 3.0.3 is already installed and up-to-date.
+To reinstall 3.0.3, run:
+  brew reinstall pre-commit
+Warning: pygments 2.14.0 is already installed and up-to-date.
+To reinstall 2.14.0, run:
+  brew reinstall pygments
+Warning: python@3.10 3.10.9 is already installed and up-to-date.
+To reinstall 3.10.9, run:
+  brew reinstall python@3.10
+Warning: readline 8.2.1 is already installed and up-to-date.
+To reinstall 8.2.1, run:
+  brew reinstall readline
+Warning: ruby 3.2.0 is already installed and up-to-date.
+To reinstall 3.2.0, run:
+  brew reinstall ruby
+Warning: koekeishiya/formulae/skhd 0.3.5 is already installed and up-to-date.
+To reinstall 0.3.5, run:
+  brew reinstall skhd
+Warning: sloccount 2.26 is already installed and up-to-date.
+To reinstall 2.26, run:
+  brew reinstall sloccount
+Warning: sqlite 3.40.1 is already installed and up-to-date.
+To reinstall 3.40.1, run:
+  brew reinstall sqlite
+Warning: sshuttle 1.1.1 is already installed and up-to-date.
+To reinstall 1.1.1, run:
+  brew reinstall sshuttle
+Warning: tree 2.1.0 is already installed and up-to-date.
+To reinstall 2.1.0, run:
+  brew reinstall tree
+Warning: vim 9.0.1250 is already installed and up-to-date.
+To reinstall 9.0.1250, run:
+  brew reinstall vim
+Warning: koekeishiya/formulae/yabai 5.0.2 is already installed and up-to-date.
+To reinstall 5.0.2, run:
+  brew reinstall yabai

@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Secure-SHell (ssh) &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css" />
@@ -74,7 +75,7 @@
     <div class="col-lg-9">
     
     
-  <div class="section" id="secure-shell-ssh">
+  <section id="secure-shell-ssh">
 <h1>Secure-SHell (ssh)<a class="headerlink" href="#secure-shell-ssh" title="Permalink to this headline">¶</a></h1>
 <p>Unsafe configuration, <code class="docutils literal notranslate"><span class="pre">vim</span> <span class="pre">/etc/ssh/sshd_config</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PermitRootLogin</span> <span class="n">yes</span>
@@ -88,7 +89,7 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span><span class="o">-</span><span class="n">copy</span><span class="o">-</span><span class="nb">id</span> <span class="n">root</span><span class="nd">@localhost</span>
 </pre></div>
 </div>
-<div class="section" id="configure-agent">
+<section id="configure-agent">
 <h2>Configure Agent<a class="headerlink" href="#configure-agent" title="Permalink to this headline">¶</a></h2>
 <p>Add the following to your <code class="docutils literal notranslate"><span class="pre">~/.bash_aliases</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span># SSH-agent when logging in over SSH
@@ -116,16 +117,16 @@ else
 fi
 </pre></div>
 </div>
-</div>
-<div class="section" id="keys-key-pairs">
+</section>
+<section id="keys-key-pairs">
 <h2>Keys (key-pairs)<a class="headerlink" href="#keys-key-pairs" title="Permalink to this headline">¶</a></h2>
 <p>…</p>
-</div>
-<div class="section" id="keychain-ssh-agent">
+</section>
+<section id="keychain-ssh-agent">
 <h2>Keychain / ssh-agent<a class="headerlink" href="#keychain-ssh-agent" title="Permalink to this headline">¶</a></h2>
 <p>…</p>
-</div>
-</div>
+</section>
+</section>
 
 
     
@@ -158,7 +159,7 @@ fi
 
   <footer class="row">
     <div class="col-lg-12">
-        &copy; Copyright 2022 Simon A. F. Lund.
+        &copy; Copyright 2023 Simon A. F. Lund.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.
     </div>
   </footer>

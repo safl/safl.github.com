@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>MacOS &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title=".files" href="../dotfiles/index.html" />
+    <link rel="prev" title="Desktop Environment" href="../debian/desktop/index.html" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link href="/_static/blue8bit.css" rel="stylesheet" crossorigin="anonymous">
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-222706364-1']);
+      _gaq.push(['_trackPageview']);
+    </script>
+
+  </head><body>
+
+
+  
+
+
+<div class="container justify-content-md-center">
+
+  <header class="row">
+    <div class="col-lg-12"><a href="/">safl.dk</a></div>
+  </header>
+
+  <nav class="row" style="vertical-align:baseline;">
+    <div class="col-lg-8">
+      <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../projects/index.html">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../uni/index.html">Uni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cv/index.html">CV</a></li>
+</ul>
+
+    </div>
+    <div id="search" class="col-lg-4 ms-sm-auto">
+      <form action="../../search.html" method="get">
+      <input type="text" name="q" class="form-control" placeholder="Search" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </nav>
+
+  <div id="related" class="row">
+    <div class="col-lg-12">
+      <a href="/">safl.dk</a> &#187;
+      <a href="../index.html" accesskey="U">Notebook</a> &#187;
+      <a href="">MacOS</a>
+    </div>
+  </div>
+
+  <main class="row">
+    <div class="col-lg-9">
+    
+    
+  <section id="macos">
+<h1>MacOS<a class="headerlink" href="#macos" title="Permalink to this headline">¶</a></h1>
+<section id="software">
+<h2>Software<a class="headerlink" href="#software" title="Permalink to this headline">¶</a></h2>
+<p>Apple provides an App store, however, it requires logging in with an
+Apple-account. That is not really something I like… so instead I go with the
+Brew package manager. In addition to providing packages, then it also have a
+service-controller.</p>
+<p>There are alternatives, such as macports, similar to the FreeBSD ports
+collection. However, brew also contains non-free software, which is why I am
+using MacOS to begin with: better support for non-free software.</p>
+<p>The neat thing about brew is that everything I need can be installed using it,
+with the exception of Rust, which should be installed via <code class="docutils literal notranslate"><span class="pre">rustup</span></code>.</p>
+<section id="rust">
+<h3>Rust<a class="headerlink" href="#rust" title="Permalink to this headline">¶</a></h3>
+<p>Install via untrusted sources:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>--proto<span class="w"> </span><span class="s1">&#39;=https&#39;</span><span class="w"> </span>--tlsv1.2<span class="w"> </span>-sSf<span class="w"> </span>https://sh.rustup.rs<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</pre></div>
+</div>
+</section>
+<section id="via-brew">
+<h3>via Brew<a class="headerlink" href="#via-brew" title="Permalink to this headline">¶</a></h3>
+<p>Install brew:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="k">)</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>Setup <code class="docutils literal notranslate"><span class="pre">PATH</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>echo &#39;# Set PATH, MANPATH, etc., for Homebrew.&#39; &gt;&gt; /Users/$USER/.zprofile
+echo &#39;eval &quot;$(/opt/homebrew/bin/brew shellenv)&quot;&#39; &gt;&gt; /Users/$USER/.zprofile
+eval &quot;$(/opt/homebrew/bin/brew shellenv)&quot;
+</pre></div>
+</div>
+<p>Install Packages:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew<span class="w"> </span>install<span class="w"> </span><span class="k">$(</span>cat<span class="w"> </span>brew-pkgs.txt<span class="k">)</span>
+</pre></div>
+</div>
+<p>Install Casks:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew<span class="w"> </span>install<span class="w"> </span><span class="k">$(</span>cat<span class="w"> </span>brew-casks.txt<span class="k">)</span>
+</pre></div>
+</div>
+</section>
+<section id="via-pip">
+<h3>via pip<a class="headerlink" href="#via-pip" title="Permalink to this headline">¶</a></h3>
+<p>…</p>
+</section>
+</section>
+<section id="cdrtools">
+<h2>cdrtools<a class="headerlink" href="#cdrtools" title="Permalink to this headline">¶</a></h2>
+<p>Using cloud-init tools… images… recall which tool was used here.</p>
+</section>
+<section id="macos-tweaks">
+<h2>macOS Tweaks<a class="headerlink" href="#macos-tweaks" title="Permalink to this headline">¶</a></h2>
+<section id="keyboard-shortcuts">
+<h3>Keyboard Shortcuts<a class="headerlink" href="#keyboard-shortcuts" title="Permalink to this headline">¶</a></h3>
+<p>Modifier Keys</p>
+<p>Caps Lock -&gt; Control</p>
+</section>
+<section id="home-end">
+<h3>Home/End<a class="headerlink" href="#home-end" title="Permalink to this headline">¶</a></h3>
+<p>Create the file <code class="docutils literal notranslate"><span class="pre">~/Library/KeyBindings/DefaultKeyBinding.dict</span></code>, with the content:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">{</span>
+<span class="w">  </span><span class="s2">&quot;\UF729&quot;</span><span class="w">  </span><span class="o">=</span><span class="w"> </span>moveToBeginningOfParagraph:<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>home
+<span class="w">  </span><span class="s2">&quot;\UF72B&quot;</span><span class="w">  </span><span class="o">=</span><span class="w"> </span>moveToEndOfParagraph:<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>end
+<span class="w">  </span><span class="s2">&quot;</span>$<span class="s2">\UF729&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>moveToBeginningOfParagraphAndModifySelection:<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>shift-home
+<span class="w">  </span><span class="s2">&quot;</span>$<span class="s2">\UF72B&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>moveToEndOfParagraphAndModifySelection:<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>shift-end
+<span class="w">  </span><span class="s2">&quot;^\UF729&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>moveToBeginningOfDocument:<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>ctrl-home
+<span class="w">  </span><span class="s2">&quot;^\UF72B&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>moveToEndOfDocument:<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>ctrl-end
+<span class="w">  </span><span class="s2">&quot;^</span>$<span class="s2">\UF729&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>moveToBeginningOfDocumentAndModifySelection:<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>ctrl-shift-home
+<span class="w">  </span><span class="s2">&quot;^</span>$<span class="s2">\UF72B&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>moveToEndOfDocumentAndModifySelection:<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>ctrl-shift-end
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Very nice… I just much prefer the way this works… being able to use
+Home/End, and selecting text.</p>
+</section>
+</section>
+<section id="window-manager">
+<h2>Window Manager<a class="headerlink" href="#window-manager" title="Permalink to this headline">¶</a></h2>
+<p>Using skhd and yabai:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">homebrew</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">yabai</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">yabai</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">yabairc</span> <span class="o">~/.</span><span class="n">yabairc</span>
+<span class="n">cp</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">homebrew</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">yabai</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">yabai</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">skhdrc</span> <span class="o">~/.</span><span class="n">skhdrc</span>
+</pre></div>
+</div>
+<p>Yabai is controlled via brew-services:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">services</span> <span class="n">start</span> <span class="n">yabai</span>
+</pre></div>
+</div>
+<section id="yabai-scripting-additions">
+<h3>yabai – scripting additions<a class="headerlink" href="#yabai-scripting-additions" title="Permalink to this headline">¶</a></h3>
+<p>Is this really needed? Stuff:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>shasum -a 256 $(which yabai)
+
+# input the line below into the file you are editing.
+#  replace &lt;yabai&gt; with the path to the yabai binary (output of: which yabai).
+#  replace &lt;user&gt; with your username (output of: whoami).
+#  replace &lt;hash&gt; with the sha256 hash of the yabai binary (output of: shasum -a 256 $(which yabai)).
+#   this hash must be updated manually after running brew upgrade.
+
+safl ALL = (root) NOPASSWD: sha256:f1e7ca9556f7ba49f8a0be3e0b917dc0739da66b5760093a9a0f552798f5c92d /opt/homebrew/bin/yabai --load-sa
+
+sudo visudo -f /private/etc/sudoers.d/yabai
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+    
+    </div>
+    <div class="col-lg-3 ms-sm-auto d-none d-lg-block">
+      <div id="localtoc" >
+      <h3>Here</h3>
+      <ul>
+<li><a class="reference internal" href="#">MacOS</a><ul>
+<li><a class="reference internal" href="#software">Software</a><ul>
+<li><a class="reference internal" href="#rust">Rust</a></li>
+<li><a class="reference internal" href="#via-brew">via Brew</a></li>
+<li><a class="reference internal" href="#via-pip">via pip</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cdrtools">cdrtools</a></li>
+<li><a class="reference internal" href="#macos-tweaks">macOS Tweaks</a><ul>
+<li><a class="reference internal" href="#keyboard-shortcuts">Keyboard Shortcuts</a></li>
+<li><a class="reference internal" href="#home-end">Home/End</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#window-manager">Window Manager</a><ul>
+<li><a class="reference internal" href="#yabai-scripting-additions">yabai – scripting additions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      <hr/>
+        <h4>Next</h4>
+      <ul><li>
+        <a href="../dotfiles/index.html" title="next chapter">.files</a>
+      </li></ul>
+      <h4>Prev</h4>
+      <ul><li>
+        <a href="../debian/desktop/index.html" title="previous chapter">Desktop Environment</a>
+      </li></ul>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="row">
+    <div class="col-lg-12">
+        &copy; Copyright 2023 Simon A. F. Lund.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.
+    </div>
+  </footer>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script>
+  (function() {
+    var ga = document.createElement('script');
+    ga.src = ('https:' == document.location.protocol ?
+              'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    ga.setAttribute('async', 'true');
+    document.documentElement.firstChild.appendChild(ga);
+  })();
+</script>
+
+  </body>
+</html>

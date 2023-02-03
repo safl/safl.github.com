@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Text Editors &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css" />
@@ -74,10 +75,10 @@
     <div class="col-lg-9">
     
     
-  <div class="section" id="text-editors">
+  <section id="text-editors">
 <h1>Text Editors<a class="headerlink" href="#text-editors" title="Permalink to this headline">¶</a></h1>
 <p>Text-editing, the main tool for developers.</p>
-<div class="section" id="vim">
+<section id="vim">
 <h2>Vim<a class="headerlink" href="#vim" title="Permalink to this headline">¶</a></h2>
 <p>Install:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="o">-</span><span class="n">qy</span> <span class="n">install</span> \
@@ -99,15 +100,15 @@ dependencies for plugins, installing them ahead of time:</p>
   <span class="n">vim</span><span class="o">-</span><span class="n">nox</span>
 </pre></div>
 </div>
-<div class="section" id="configuration">
+<section id="configuration">
 <h3>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h3>
 <p>Create directory layout and initial configuration file:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">.</span><span class="n">vim</span>
 <span class="n">touch</span> <span class="o">.</span><span class="n">vimrc</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="plugin-manager">
+</section>
+<section id="plugin-manager">
 <h3>Plugin Manager<a class="headerlink" href="#plugin-manager" title="Permalink to this headline">¶</a></h3>
 <p>vundle or pathogen:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">VundleVim</span><span class="o">/</span><span class="n">Vundle</span><span class="o">.</span><span class="n">vim</span><span class="o">.</span><span class="n">git</span> <span class="o">~/.</span><span class="n">vim</span><span class="o">/</span><span class="n">bundle</span><span class="o">/</span><span class="n">Vundle</span><span class="o">.</span><span class="n">vim</span>
@@ -140,7 +141,7 @@ dependencies for plugins, installing them ahead of time:</p>
 <span class="linenos"> 24</span>
 <span class="linenos"> 25</span><span class="c">&quot; All of your Plugins must be added before the following line</span>
 <span class="linenos"> 26</span><span class="k">call</span> vundle#<span class="k">end</span><span class="p">()</span>            <span class="c">&quot; required</span>
-<span class="linenos"> 27</span><span class="hll"><span class="c">&quot; ==== Plugin-Manager: vundle -- end ==============================================================</span>
+<span class="hll"><span class="linenos"> 27</span><span class="c">&quot; ==== Plugin-Manager: vundle -- end ==============================================================</span>
 </span><span class="linenos"> 28</span><span class="k">filetype</span> plugin indent <span class="k">on</span>    <span class="c">&quot; required</span>
 <span class="linenos"> 29</span><span class="c">&quot; ==== Plugin-Configuration:-- begin ==============================================================</span>
 <span class="linenos"> 30</span>
@@ -265,8 +266,8 @@ dependencies for plugins, installing them ahead of time:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">PluginInstall</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="code-completion">
+</section>
+<section id="code-completion">
 <h3>Code-Completion<a class="headerlink" href="#code-completion" title="Permalink to this headline">¶</a></h3>
 <p>Go ahead, build and install YouCompleteMe(YCM):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/.</span><span class="n">vim</span><span class="o">/</span><span class="n">bundle</span><span class="o">/</span><span class="n">youcompleteme</span>
@@ -275,19 +276,19 @@ dependencies for plugins, installing them ahead of time:</p>
 <span class="n">python3</span> <span class="n">install</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="nb">all</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="clipboard">
+</section>
+<section id="clipboard">
 <h3>Clipboard<a class="headerlink" href="#clipboard" title="Permalink to this headline">¶</a></h3>
 <p>…</p>
-</div>
-<div class="section" id="indentation">
+</section>
+<section id="indentation">
 <h3>Indentation<a class="headerlink" href="#indentation" title="Permalink to this headline">¶</a></h3>
 <p>…</p>
 <p><a class="reference external" href="https://vimawesome.com/plugin/vim-colors-solarized-ours">https://vimawesome.com/plugin/vim-colors-solarized-ours</a></p>
 <p><a class="reference external" href="https://shapeshed.com/vim-netrw/">https://shapeshed.com/vim-netrw/</a></p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
     
@@ -325,7 +326,7 @@ dependencies for plugins, installing them ahead of time:</p>
 
   <footer class="row">
     <div class="col-lg-12">
-        &copy; Copyright 2022 Simon A. F. Lund.
+        &copy; Copyright 2023 Simon A. F. Lund.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.
     </div>
   </footer>

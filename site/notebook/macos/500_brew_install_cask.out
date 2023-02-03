@@ -1,0 +1,85 @@
+
+Warning: Cask '1password' is already installed.
+
+To re-install 1password, run:
+  brew reinstall --cask 1password
+Warning: Cask 'brave-browser' is already installed.
+
+To re-install brave-browser, run:
+  brew reinstall --cask brave-browser
+Warning: Cask 'discord' is already installed.
+
+To re-install discord, run:
+  brew reinstall --cask discord
+Warning: Cask 'firefox' is already installed.
+
+To re-install firefox, run:
+  brew reinstall --cask firefox
+Warning: Cask 'font-dejavu-sans-mono-nerd-font' is already installed.
+
+To re-install font-dejavu-sans-mono-nerd-font, run:
+  brew reinstall --cask font-dejavu-sans-mono-nerd-font
+Warning: Cask 'gimp' is already installed.
+
+To re-install gimp, run:
+  brew reinstall --cask gimp
+Warning: Cask 'google-chrome' is already installed.
+
+To re-install google-chrome, run:
+  brew reinstall --cask google-chrome
+Warning: Cask 'inkscape' is already installed.
+
+To re-install inkscape, run:
+  brew reinstall --cask inkscape
+Warning: Cask 'iterm2' is already installed.
+
+To re-install iterm2, run:
+  brew reinstall --cask iterm2
+Warning: Cask 'meld' is already installed.
+
+To re-install meld, run:
+  brew reinstall --cask meld
+Warning: Cask 'microsoft-office' is already installed.
+
+To re-install microsoft-office, run:
+  brew reinstall --cask microsoft-office
+Warning: Cask 'microsoft-remote-desktop' is already installed.
+
+To re-install microsoft-remote-desktop, run:
+  brew reinstall --cask microsoft-remote-desktop
+Warning: Cask 'openscad' is already installed.
+
+To re-install openscad, run:
+  brew reinstall --cask openscad
+Warning: Cask 'pycharm' is already installed.
+
+To re-install pycharm, run:
+  brew reinstall --cask pycharm
+Warning: Cask 'slack' is already installed.
+
+To re-install slack, run:
+  brew reinstall --cask slack
+Warning: Cask 'spotify' is already installed.
+
+To re-install spotify, run:
+  brew reinstall --cask spotify
+Warning: Cask 'sublime-text' is already installed.
+
+To re-install sublime-text, run:
+  brew reinstall --cask sublime-text
+Warning: Cask 'todoist' is already installed.
+
+To re-install todoist, run:
+  brew reinstall --cask todoist
+Warning: Cask 'vlc' is already installed.
+
+To re-install vlc, run:
+  brew reinstall --cask vlc
+Warning: Cask 'wkhtmltopdf' is already installed.
+
+To re-install wkhtmltopdf, run:
+  brew reinstall --cask wkhtmltopdf
+Warning: Cask 'zoom' is already installed.
+
+To re-install zoom, run:
+  brew reinstall --cask zoom
