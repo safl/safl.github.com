@@ -1,6 +1,7 @@
 MacOS
 =====
 
+...
 
 Software
 --------
@@ -61,15 +62,30 @@ cdrtools
 
 Using cloud-init tools... images... recall which tool was used here.
 
+macOS Settings
+--------------
+
+* Appearance
+
+  * Appearance: Dark
+  * Sidebar icon size: Large
+
+* Desktop & Dock
+
+  * Position on Screen: Left
+
+Remove icons from taskbar
+
+* Keyboard
+  * Modifier Keys -> Caps Lock key: Control
+
+* Trackpad
+  * Scroll & Zoom -> Natural scrolling: off
+
 macOS Tweaks
 ------------
 
-Keyboard Shortcuts
-~~~~~~~~~~~~~~~~~~
-
-Modifier Keys
-
-Caps Lock -> Control
+...
 
 Home/End
 ~~~~~~~~
@@ -110,3 +126,12 @@ Is this really needed? Stuff::
   safl ALL = (root) NOPASSWD: sha256:f1e7ca9556f7ba49f8a0be3e0b917dc0739da66b5760093a9a0f552798f5c92d /opt/homebrew/bin/yabai --load-sa
 
   sudo visudo -f /private/etc/sudoers.d/yabai
+
+iTerm2
+~~~~~~
+
+* Appearance -> General -> Theme: Compact
+
+* Profiles -> Colors -> Color Presets: Solarized Dark
+
+* Profiles -> Colors -> Font: ??? 18
