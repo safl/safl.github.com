@@ -1,6 +1,7 @@
 MacOS
 =====
 
+...
 
 Software
 --------
@@ -17,16 +18,8 @@ using MacOS to begin with: better support for non-free software.
 The neat thing about brew is that everything I need can be installed using it,
 with the exception of Rust, which should be installed via ``rustup``.
 
-Rust
+Brew
 ~~~~
-
-Install via untrusted sources:
-
-.. literalinclude:: 200_rustup_install.cmd
-   :language: bash
-
-via Brew
-~~~~~~~~
 
 Install brew:
 
@@ -49,27 +42,60 @@ Install Casks:
 .. literalinclude:: 500_brew_install_cask.cmd
    :language: bash
 
-
-
-via pip
-~~~~~~~
-
-...
-
 cdrtools
 --------
 
 Using cloud-init tools... images... recall which tool was used here.
 
+Rust
+----
+
+Install via untrusted sources:
+
+.. literalinclude:: 200_rustup_install.cmd
+   :language: bash
+
+setting ``PATH``.
+
+Python
+~~~~~~
+
+A recent Python interpreter comes with macOS, thus no need to graba newer one
+via Brew, thus, just setup you shell to expand ``PATH`` with the executables
+provided via Python packages:
+
+.. literalinclude:: 600_python_bin.cmd
+   :language: bash
+
+via pip
+~~~~~~~
+
+The PYthon Package Index (pypi) has a bunch tools implemented in Python, are reaidly installable via ``python3 -m pip instal ...``.
+
+macOS Settings
+--------------
+
+* Appearance
+
+  * Appearance: Dark
+  * Sidebar icon size: Large
+
+* Desktop & Dock
+
+  * Position on Screen: Left
+
+Remove icons from taskbar
+
+* Keyboard
+  * Modifier Keys -> Caps Lock key: Control
+
+* Trackpad
+  * Scroll & Zoom -> Natural scrolling: off
+
 macOS Tweaks
 ------------
 
-Keyboard Shortcuts
-~~~~~~~~~~~~~~~~~~
-
-Modifier Keys
-
-Caps Lock -> Control
+...
 
 Home/End
 ~~~~~~~~
@@ -110,3 +136,17 @@ Is this really needed? Stuff::
   safl ALL = (root) NOPASSWD: sha256:f1e7ca9556f7ba49f8a0be3e0b917dc0739da66b5760093a9a0f552798f5c92d /opt/homebrew/bin/yabai --load-sa
 
   sudo visudo -f /private/etc/sudoers.d/yabai
+
+iTerm2
+~~~~~~
+
+* Appearance -> General -> Theme: Compact
+
+* Profiles -> Colors -> Color Presets: Solarized Dark
+
+* Profiles -> Colors -> Font: ??? 18
+
+LunarVim
+--------
+
+macOS comes with vim, which is pretty great!
