@@ -1,10 +1,11 @@
 MacOS
 =====
 
-...
+Those Apple Silicon based Macs are pretty awesome, especially in terms of
+power-efficiency and battery-life.
 
-Software
---------
+Brew
+----
 
 Apple provides an App store, however, it requires logging in with an
 Apple-account. That is not really something I like... so instead I go with the
@@ -17,9 +18,6 @@ using MacOS to begin with: better support for non-free software.
 
 The neat thing about brew is that everything I need can be installed using it,
 with the exception of Rust, which should be installed via ``rustup``.
-
-Brew
-~~~~
 
 Install brew:
 
@@ -42,11 +40,6 @@ Install Casks:
 .. literalinclude:: 500_brew_install_cask.cmd
    :language: bash
 
-cdrtools
---------
-
-Using cloud-init tools... images... recall which tool was used here.
-
 Rust
 ----
 
@@ -58,7 +51,7 @@ Install via untrusted sources:
 setting ``PATH``.
 
 Python
-~~~~~~
+------
 
 A recent Python interpreter comes with macOS, thus no need to graba newer one
 via Brew, thus, just setup you shell to expand ``PATH`` with the executables
@@ -72,41 +65,10 @@ via pip
 
 The PYthon Package Index (pypi) has a bunch tools implemented in Python, are reaidly installable via ``python3 -m pip instal ...``.
 
-macOS Settings
---------------
+LunarVim
+--------
 
-* Appearance
-
-  * Appearance: Dark
-  * Sidebar icon size: Large
-
-* Desktop & Dock
-
-  * Position on Screen: Left
-
-Remove icons from taskbar
-
-* Keyboard
-  * Modifier Keys -> Caps Lock key: Control
-
-* Trackpad
-  * Scroll & Zoom -> Natural scrolling: off
-
-macOS Tweaks
-------------
-
-...
-
-Home/End
-~~~~~~~~
-
-Create the file ``~/Library/KeyBindings/DefaultKeyBinding.dict``, with the content:
-
-.. literalinclude:: DefaultKeyBinding.dict
-   :language: bash
-
-Very nice... I just much prefer the way this works... being able to use
-Home/End, and selecting text.
+macOS comes with vim, which is pretty great!
 
 Window Manager
 --------------
@@ -146,7 +108,44 @@ iTerm2
 
 * Profiles -> Colors -> Font: ??? 18
 
-LunarVim
+cdrtools
 --------
 
-macOS comes with vim, which is pretty great!
+Using cloud-init tools... images... recall which tool was used here.
+
+macOS Settings
+--------------
+
+* Appearance
+
+  * Appearance: Dark
+  * Sidebar icon size: Large
+
+* Desktop & Dock
+
+  * Position on Screen: Left
+
+Remove icons from taskbar
+
+* Keyboard
+  * Modifier Keys -> Caps Lock key: Control
+
+* Trackpad
+  * Scroll & Zoom -> Natural scrolling: off
+
+macOS Tweaks
+------------
+
+...
+
+Home/End
+~~~~~~~~
+
+Create the file ``~/Library/KeyBindings/DefaultKeyBinding.dict``, with the content:
+
+.. literalinclude:: DefaultKeyBinding.dict
+   :language: bash
+
+Very nice... I just much prefer the way this works... being able to use
+Home/End, and selecting text.
+
