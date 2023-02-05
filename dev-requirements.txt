@@ -3,6 +3,7 @@ invocations
 invoke
 releases
 semantic_version
+sphinx-copybutton
 sphinx==4.4
 twine
 wheel

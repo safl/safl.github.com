@@ -3,7 +3,7 @@ brew install \
  brave-browser \
  discord \
  firefox \
- font-dejavu-sans-mono-nerd-font \
+ homebrew/cask-fonts/font-dejavu-sans-mono-nerd-font \
  gimp \
  google-chrome \
  inkscape \

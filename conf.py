@@ -8,6 +8,7 @@ copyright = u"%d Simon A. F. Lund" % year
 
 extensions = [
     "sphinx.ext.extlinks",
+    "sphinx_copybutton",
 ]
 source_suffix = ".rst"
 

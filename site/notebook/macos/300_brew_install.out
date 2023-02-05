@@ -10,7 +10,7 @@
 Press RETURN/ENTER to continue or any other key to abort:
 ==> /usr/bin/sudo /usr/sbin/chown -R safl:admin /opt/homebrew
 ==> Downloading and installing Homebrew...
-HEAD is now at 3af2f0ece Merge pull request #14470 from Homebrew/sponsors-maintainers-man-completions
+HEAD is now at 6b5b786f2 Merge pull request #14496 from Rylan12/update-max-time
 ==> Installation successful!
 
 ==> Homebrew has enabled anonymous aggregate formulae and cask analytics.
@@ -27,3 +27,7 @@ No analytics data has been sent yet (nor will any be during this install run).
     https://docs.brew.sh
 
 
+From https://github.com/Homebrew/brew
+ * [new branch]          dependabot/bundler/Library/Homebrew/rspec-core-3.12.1 -> origin/dependabot/bundler/Library/Homebrew/rspec-core-3.12.1
+   6a8dd4ff5..6b5b786f2  master     -> origin/master
+Updated 1 tap (homebrew/core).

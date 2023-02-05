@@ -18,16 +18,8 @@ using MacOS to begin with: better support for non-free software.
 The neat thing about brew is that everything I need can be installed using it,
 with the exception of Rust, which should be installed via ``rustup``.
 
-Rust
+Brew
 ~~~~
-
-Install via untrusted sources:
-
-.. literalinclude:: 200_rustup_install.cmd
-   :language: bash
-
-via Brew
-~~~~~~~~
 
 Install brew:
 
@@ -50,17 +42,35 @@ Install Casks:
 .. literalinclude:: 500_brew_install_cask.cmd
    :language: bash
 
-
-
-via pip
-~~~~~~~
-
-...
-
 cdrtools
 --------
 
 Using cloud-init tools... images... recall which tool was used here.
+
+Rust
+----
+
+Install via untrusted sources:
+
+.. literalinclude:: 200_rustup_install.cmd
+   :language: bash
+
+setting ``PATH``.
+
+Python
+~~~~~~
+
+A recent Python interpreter comes with macOS, thus no need to graba newer one
+via Brew, thus, just setup you shell to expand ``PATH`` with the executables
+provided via Python packages:
+
+.. literalinclude:: 600_python_bin.cmd
+   :language: bash
+
+via pip
+~~~~~~~
+
+The PYthon Package Index (pypi) has a bunch tools implemented in Python, are reaidly installable via ``python3 -m pip instal ...``.
 
 macOS Settings
 --------------
@@ -135,3 +145,8 @@ iTerm2
 * Profiles -> Colors -> Color Presets: Solarized Dark
 
 * Profiles -> Colors -> Font: ??? 18
+
+LunarVim
+--------
+
+macOS comes with vim, which is pretty great!

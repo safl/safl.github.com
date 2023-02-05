@@ -1,98 +1,991 @@
+==> Fetching bash
+==> Downloading https://ghcr.io/v2/homebrew/core/bash/manifests/5.2.15
+==> Downloading https://ghcr.io/v2/homebrew/core/bash/blobs/sha256:f3a42b9282e6779504034485634a2f3e6e3bddfc70b9990e09e66e3c8c926b7d
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:f3a42b9282e6779504034485634a2f3e6e3bddfc70b9990e09e66e3c8c926b7d?se=2023-02-03T19%3A25%3A00Z&sig=Bo3X1oCCnjfF%2Fip7fAncz67tCM8JCfZAg0I0j%2FR%2F14I%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching dependencies for black: mpdecimal, ca-certificates, openssl@1.1, readline, sqlite, xz and python@3.11
+==> Fetching mpdecimal
+==> Downloading https://ghcr.io/v2/homebrew/core/mpdecimal/manifests/2.5.1
+==> Downloading https://ghcr.io/v2/homebrew/core/mpdecimal/blobs/sha256:5b1c62c08b42feb6e48c461a9de4751803f3ccc76830213a517f0905178dbbef
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:5b1c62c08b42feb6e48c461a9de4751803f3ccc76830213a517f0905178dbbef?se=2023-02-03T19%3A25%3A00Z&sig=yqeX64UOq9vf3qB4SwM5LBgfbBfI3zbtQp0hhCKlXgg%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching ca-certificates
+==> Downloading https://ghcr.io/v2/homebrew/core/ca-certificates/manifests/2023-01-10
+==> Downloading https://ghcr.io/v2/homebrew/core/ca-certificates/blobs/sha256:11fe9d0a98a2ac454fa1db95762a697c3340f46560ff27e5e9db8fdeb003f17e
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:11fe9d0a98a2ac454fa1db95762a697c3340f46560ff27e5e9db8fdeb003f17e?se=2023-02-03T19%3A25%3A00Z&sig=RlR6kO%2FqDiOkv%2FXy8EZ7jeDvIAD39gsoIlchnI4Bzns%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching openssl@1.1
+==> Downloading https://ghcr.io/v2/homebrew/core/openssl/1.1/manifests/1.1.1s
+==> Downloading https://ghcr.io/v2/homebrew/core/openssl/1.1/blobs/sha256:3a7812321f40490623859b1c31644c6f3ba1b76c1ca7f780b9413b912e1b1415
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:3a7812321f40490623859b1c31644c6f3ba1b76c1ca7f780b9413b912e1b1415?se=2023-02-03T19%3A25%3A00Z&sig=h4hQSXNHtbCgeRWxm2FiHuIDkOFzbbOvwakbRBzexM8%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching readline
+==> Downloading https://ghcr.io/v2/homebrew/core/readline/manifests/8.2.1
+==> Downloading https://ghcr.io/v2/homebrew/core/readline/blobs/sha256:fba42a9bd6feaa8902ae4491ffdf177662e0a165a0d0ddef0988ad6ecf0f23dd
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:fba42a9bd6feaa8902ae4491ffdf177662e0a165a0d0ddef0988ad6ecf0f23dd?se=2023-02-03T19%3A25%3A00Z&sig=yzCS3cPPNpAq6N0lJmq21MccZ1Ir2vqDsoTBzNYhWNY%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching sqlite
+==> Downloading https://ghcr.io/v2/homebrew/core/sqlite/manifests/3.40.1
+==> Downloading https://ghcr.io/v2/homebrew/core/sqlite/blobs/sha256:e19a160e1012ed0d58f0e1f631d6954c2bb6feb3cf9f8e9417d6f8955b81236d
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:e19a160e1012ed0d58f0e1f631d6954c2bb6feb3cf9f8e9417d6f8955b81236d?se=2023-02-03T19%3A25%3A00Z&sig=TfhU3uJqyYzDgYv6ZuCKNkPVIBa3XfyUl%2FazufJkSZw%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching xz
+==> Downloading https://ghcr.io/v2/homebrew/core/xz/manifests/5.4.1
+==> Downloading https://ghcr.io/v2/homebrew/core/xz/blobs/sha256:26ede511c3cc726f939dd2f61b7e6798409c86b62be4678f008a12d515584efb
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:26ede511c3cc726f939dd2f61b7e6798409c86b62be4678f008a12d515584efb?se=2023-02-03T19%3A25%3A00Z&sig=7JzPDjPP5cMQYL8LQsMoFF4i%2B76NySQtmyqEzS8PZoc%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching python@3.11
+==> Downloading https://ghcr.io/v2/homebrew/core/python/3.11/manifests/3.11.1
+==> Downloading https://ghcr.io/v2/homebrew/core/python/3.11/blobs/sha256:8e3962bac859e8e01badafd6d77cb6858ddd35f45adc81aac3d68a2096955e1a
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:8e3962bac859e8e01badafd6d77cb6858ddd35f45adc81aac3d68a2096955e1a?se=2023-02-03T19%3A25%3A00Z&sig=UCD5OUoBXykbQXGhaHiUsMlVvGGebHPqBRlkueiEiAg%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching black
+==> Downloading https://ghcr.io/v2/homebrew/core/black/manifests/23.1.0
+==> Downloading https://ghcr.io/v2/homebrew/core/black/blobs/sha256:ae6062bf90830375e496dfd84eba77d0a9312b909fbba4957e45da3fed54951d
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:ae6062bf90830375e496dfd84eba77d0a9312b909fbba4957e45da3fed54951d?se=2023-02-03T19%3A25%3A00Z&sig=1k%2FydfIxjbVIOetxfwx3naju20zFg2rYVQtxschRWK0%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching cdrtools
+==> Downloading https://ghcr.io/v2/homebrew/core/cdrtools/manifests/3.02a09
+==> Downloading https://ghcr.io/v2/homebrew/core/cdrtools/blobs/sha256:5bce367688103071cb34a38002f0c2dc767b3e55912c2605e27c705013ed3285
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:5bce367688103071cb34a38002f0c2dc767b3e55912c2605e27c705013ed3285?se=2023-02-03T19%3A25%3A00Z&sig=7MYenipEdyGo3Bae6Y3ko6I0PvTGTZgUKS36vGAwzMw%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching clang-format
+==> Downloading https://ghcr.io/v2/homebrew/core/clang-format/manifests/15.0.7
+==> Downloading https://ghcr.io/v2/homebrew/core/clang-format/blobs/sha256:f272332a2b75d4b2e6a51d4832a848a598b923b4c6dc14568f004ec1f8fda6a5
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:f272332a2b75d4b2e6a51d4832a848a598b923b4c6dc14568f004ec1f8fda6a5?se=2023-02-03T19%3A25%3A00Z&sig=E%2BWy2s1ogalmbPdOB8NjGl7qQUanap76avBdWqp7AJI%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching docutils
+==> Downloading https://ghcr.io/v2/homebrew/core/docutils/manifests/0.19-2
+==> Downloading https://ghcr.io/v2/homebrew/core/docutils/blobs/sha256:137618cfdeedcb9cdb104c8ac7ba4e17d1f08dafc0ebabdddfe6f18dde061793
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:137618cfdeedcb9cdb104c8ac7ba4e17d1f08dafc0ebabdddfe6f18dde061793?se=2023-02-03T19%3A25%3A00Z&sig=oti5KX%2FkSI4PYEDLrDsEPvPDHMhAR4h5VvYnzGerxyA%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching doxygen
+==> Downloading https://ghcr.io/v2/homebrew/core/doxygen/manifests/1.9.6
+==> Downloading https://ghcr.io/v2/homebrew/core/doxygen/blobs/sha256:ff3b2363de6662c5f02baee6ba7125aa1bfd3063e11e4b7d0ffe95249dbe0e8c
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:ff3b2363de6662c5f02baee6ba7125aa1bfd3063e11e4b7d0ffe95249dbe0e8c?se=2023-02-03T19%3A25%3A00Z&sig=puZ%2Bj3KypivKDZzLm5kQxWIWPxVJ6g0y0UnHlEOGFO0%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching dependencies for gcovr: pygments
+==> Fetching pygments
+==> Downloading https://ghcr.io/v2/homebrew/core/pygments/manifests/2.14.0
+==> Downloading https://ghcr.io/v2/homebrew/core/pygments/blobs/sha256:d4b2214521e36150b21673e1e3b3e627a22919a98274bebeaa1fb8daa0ec086d
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:d4b2214521e36150b21673e1e3b3e627a22919a98274bebeaa1fb8daa0ec086d?se=2023-02-03T19%3A25%3A00Z&sig=yzU0Z%2FHee7xHmf8i22vBu8BfwNEuhHXzlTXyVXgSQ20%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching gcovr
+==> Downloading https://ghcr.io/v2/homebrew/core/gcovr/manifests/5.2-1
+==> Downloading https://ghcr.io/v2/homebrew/core/gcovr/blobs/sha256:0621f715f63d20dfe82a3f343f80d4b36074e3664f548aabe004711503eb1001
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:0621f715f63d20dfe82a3f343f80d4b36074e3664f548aabe004711503eb1001?se=2023-02-03T19%3A25%3A00Z&sig=dYklyLeBA09sLzdqWHIWFrONxZfeD%2BY6BfFlLm1%2Fh08%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching dependencies for git-gui: tcl-tk
+==> Fetching tcl-tk
+==> Downloading https://ghcr.io/v2/homebrew/core/tcl-tk/manifests/8.6.13
+==> Downloading https://ghcr.io/v2/homebrew/core/tcl-tk/blobs/sha256:53300b4a5e2d7ef71b25b5ecb7b1b20ae435234dd114d2163e643d5857b1de21
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:53300b4a5e2d7ef71b25b5ecb7b1b20ae435234dd114d2163e643d5857b1de21?se=2023-02-03T19%3A25%3A00Z&sig=KLFcDpXP4IPP8y%2Bi2Zd5QZ8MtyZqmG45o7PTmnc1ELA%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching git-gui
+==> Downloading https://ghcr.io/v2/homebrew/core/git-gui/manifests/2.39.1
+==> Downloading https://ghcr.io/v2/homebrew/core/git-gui/blobs/sha256:107a3c99cef391f0f805bc0866af655aad8ffed15d870aa2c0074ba95070cf90
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:107a3c99cef391f0f805bc0866af655aad8ffed15d870aa2c0074ba95070cf90?se=2023-02-03T19%3A25%3A00Z&sig=ZTUNKnFb4fMiBqIO7nIYElPCf9f%2FK5vcpoAr%2BIyCJ%2Fs%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching dependencies for graphviz: libpng, freetype, fontconfig, jpeg-turbo, brotli, giflib, highway, imath, lz4, zstd, libtiff, little-cms2, openexr, webp, jpeg-xl, libvmaf, aom, libavif, gd, glib, jasper, netpbm, gts, xorgproto, libxau, libxdmcp, libxcb, libx11, libxext, libxrender, lzo, pixman, cairo, gdk-pixbuf, fribidi, graphite2, icu4c, harfbuzz, pango, librsvg, m4 and libtool
+==> Fetching libpng
+==> Downloading https://ghcr.io/v2/homebrew/core/libpng/manifests/1.6.39
+==> Downloading https://ghcr.io/v2/homebrew/core/libpng/blobs/sha256:5fcb6945c7fe220f8b983c18edd7a42d8d84a9d62696b4fec001c1697300fb61
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:5fcb6945c7fe220f8b983c18edd7a42d8d84a9d62696b4fec001c1697300fb61?se=2023-02-03T19%3A25%3A00Z&sig=HtVktaZzyqrgSlEb%2BQ72n93xAcHu%2FbHKsq5utI52I1g%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching freetype
+==> Downloading https://ghcr.io/v2/homebrew/core/freetype/manifests/2.12.1
+==> Downloading https://ghcr.io/v2/homebrew/core/freetype/blobs/sha256:f91e2b53f5f3753508ba81d17a01974285b90696033053837fbe20aac876883f
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:f91e2b53f5f3753508ba81d17a01974285b90696033053837fbe20aac876883f?se=2023-02-03T19%3A25%3A00Z&sig=TfVtAYcb7xjLToxxJeGqP5b0%2B77wb6ohWdUzZ4NJEqs%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching fontconfig
+==> Downloading https://ghcr.io/v2/homebrew/core/fontconfig/manifests/2.14.2
+==> Downloading https://ghcr.io/v2/homebrew/core/fontconfig/blobs/sha256:11cd488fc519d98142ed747300546eb65976c9a3bc973d955a934741c609b5df
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:11cd488fc519d98142ed747300546eb65976c9a3bc973d955a934741c609b5df?se=2023-02-03T19%3A25%3A00Z&sig=MKy5dQGP1foktnQWj2Tz48ZPo42ZTqu07p4bZyeqk8s%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching jpeg-turbo
+==> Downloading https://ghcr.io/v2/homebrew/core/jpeg-turbo/manifests/2.1.5
+==> Downloading https://ghcr.io/v2/homebrew/core/jpeg-turbo/blobs/sha256:d00e1ed5362087315ba0d537102311e6d8432c5cbe9296697141a02d53a6cdbe
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:d00e1ed5362087315ba0d537102311e6d8432c5cbe9296697141a02d53a6cdbe?se=2023-02-03T19%3A25%3A00Z&sig=owyXNhS1e8yv7DG51PzY%2F9RF1KdiBbGAO1V798HYgCk%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching brotli
+==> Downloading https://ghcr.io/v2/homebrew/core/brotli/manifests/1.0.9
+==> Downloading https://ghcr.io/v2/homebrew/core/brotli/blobs/sha256:dda0779953c24b98703ae950195fdd7f5ae6dbd697e026cb65520d13ea8b1258
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:dda0779953c24b98703ae950195fdd7f5ae6dbd697e026cb65520d13ea8b1258?se=2023-02-03T19%3A25%3A00Z&sig=3xxNfWSPWgtdePcfhRB%2BwTa2L8EhZa8BkIG5aP8Moag%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching giflib
+==> Downloading https://ghcr.io/v2/homebrew/core/giflib/manifests/5.2.1
+==> Downloading https://ghcr.io/v2/homebrew/core/giflib/blobs/sha256:ced5a24b12f7057504aa8821a81c03c4d83ff6ba861487e25eba34b863237c20
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:ced5a24b12f7057504aa8821a81c03c4d83ff6ba861487e25eba34b863237c20?se=2023-02-03T19%3A25%3A00Z&sig=HVEz3%2BsDyW%2BtI0F%2Fs7I1ZCoXTqrzyeWxuXyUOjqxeW4%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching highway
+==> Downloading https://ghcr.io/v2/homebrew/core/highway/manifests/1.0.3
+==> Downloading https://ghcr.io/v2/homebrew/core/highway/blobs/sha256:0df1dfbfba2f4aa51b6c8d06cd25a5734bd64c4eac4dd642bdf05e1c6a4faee1
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:0df1dfbfba2f4aa51b6c8d06cd25a5734bd64c4eac4dd642bdf05e1c6a4faee1?se=2023-02-03T19%3A25%3A00Z&sig=oT8AtObU5HwxSYQvBaD0wwhj9y68tE5sfRuqgAp517Q%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching imath
+==> Downloading https://ghcr.io/v2/homebrew/core/imath/manifests/3.1.6
+==> Downloading https://ghcr.io/v2/homebrew/core/imath/blobs/sha256:0b0165f1503e0230d80cee448635ddb08e376d62069b9b426f5e363bb5cc8ba6
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:0b0165f1503e0230d80cee448635ddb08e376d62069b9b426f5e363bb5cc8ba6?se=2023-02-03T19%3A25%3A00Z&sig=K3nbtpm%2Fnba2ZXRERqZL5DsNjrG7V0bChgNXtXOPYIc%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching lz4
+==> Downloading https://ghcr.io/v2/homebrew/core/lz4/manifests/1.9.4
+==> Downloading https://ghcr.io/v2/homebrew/core/lz4/blobs/sha256:cd29e40287b0a2d665a647acbea5512e8db4c371687147aab5c60bf9059b2cca
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:cd29e40287b0a2d665a647acbea5512e8db4c371687147aab5c60bf9059b2cca?se=2023-02-03T19%3A25%3A00Z&sig=FJySJKNXgdfzd7%2Bzt%2ButWC%2Ftf2F390R9HombwffV4HU%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching zstd
+==> Downloading https://ghcr.io/v2/homebrew/core/zstd/manifests/1.5.2-3
+==> Downloading https://ghcr.io/v2/homebrew/core/zstd/blobs/sha256:92f953ed8a8c77b9e282d7cb6a6288d77e6f40bb1b3eec78e2fbbae29c12b220
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:92f953ed8a8c77b9e282d7cb6a6288d77e6f40bb1b3eec78e2fbbae29c12b220?se=2023-02-03T19%3A25%3A00Z&sig=1GSn4MtbORo9Xz90KsasnnkJWlDjJC5V%2BOPDAGWFLt8%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching libtiff
+==> Downloading https://ghcr.io/v2/homebrew/core/libtiff/manifests/4.4.0_1-1
+==> Downloading https://ghcr.io/v2/homebrew/core/libtiff/blobs/sha256:4f8764b4cf388d7fdf727b2c61d1b48efb43ba4d337949bf34a932c08361681a
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:4f8764b4cf388d7fdf727b2c61d1b48efb43ba4d337949bf34a932c08361681a?se=2023-02-03T19%3A25%3A00Z&sig=A4MoScSUJzw14E72WDOP6AgoKJdZcJ1Njdf39WtzjEk%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching little-cms2
+==> Downloading https://ghcr.io/v2/homebrew/core/little-cms2/manifests/2.14
+==> Downloading https://ghcr.io/v2/homebrew/core/little-cms2/blobs/sha256:f65e0095a8a82a803ac26c5bbd5197032b8e744cc6f6361d992ee40d68174f1e
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:f65e0095a8a82a803ac26c5bbd5197032b8e744cc6f6361d992ee40d68174f1e?se=2023-02-03T19%3A25%3A00Z&sig=cyKhLu4bEd9kjDOlIZqsG%2FZErdVe7t%2BIOu3F4wcPhK0%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching openexr
+==> Downloading https://ghcr.io/v2/homebrew/core/openexr/manifests/3.1.5
+==> Downloading https://ghcr.io/v2/homebrew/core/openexr/blobs/sha256:abbb61fdcaa3c461dbfca5176764409f11c8900d6a39d2d6a069fb3205d400e2
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:abbb61fdcaa3c461dbfca5176764409f11c8900d6a39d2d6a069fb3205d400e2?se=2023-02-03T19%3A25%3A00Z&sig=ho81QLND1bqmclYu%2BCDuq2AaU967%2FDcNyVjbPx2hXew%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching webp
+==> Downloading https://ghcr.io/v2/homebrew/core/webp/manifests/1.3.0
+==> Downloading https://ghcr.io/v2/homebrew/core/webp/blobs/sha256:fb2edf5a9f207f41aa11ff72efb0822da454f3a15e633738df8afdf69c40857d
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:fb2edf5a9f207f41aa11ff72efb0822da454f3a15e633738df8afdf69c40857d?se=2023-02-03T19%3A25%3A00Z&sig=DHIGgL7PuHU6PRu2FbA0jbkKCttZHfc8eBTh7zt4Zng%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching jpeg-xl
+==> Downloading https://ghcr.io/v2/homebrew/core/jpeg-xl/manifests/0.8.0
+==> Downloading https://ghcr.io/v2/homebrew/core/jpeg-xl/blobs/sha256:ed917915e08fac5108f4682a4351d046a844a7729355b45452f7abe011152471
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:ed917915e08fac5108f4682a4351d046a844a7729355b45452f7abe011152471?se=2023-02-03T19%3A25%3A00Z&sig=HYquzEPKQwVpev1uKjL%2B8Rze1yYq5CnHc%2BuoeXEMt0s%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching libvmaf
+==> Downloading https://ghcr.io/v2/homebrew/core/libvmaf/manifests/2.3.1
+==> Downloading https://ghcr.io/v2/homebrew/core/libvmaf/blobs/sha256:ddf330046166c9f25ad89679d04bc12375d3ad8b4454edeebb2e39667af53dce
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:ddf330046166c9f25ad89679d04bc12375d3ad8b4454edeebb2e39667af53dce?se=2023-02-03T19%3A25%3A00Z&sig=1vD3ygwCMsSestKzCxFX5lujFl2ZLTTrM87tZDPlgn0%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching aom
+==> Downloading https://ghcr.io/v2/homebrew/core/aom/manifests/3.5.0_2
+==> Downloading https://ghcr.io/v2/homebrew/core/aom/blobs/sha256:5e1e6e6885424f0a37072048e988338cc54874fd960ab6b75461e3d2b1da25f5
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:5e1e6e6885424f0a37072048e988338cc54874fd960ab6b75461e3d2b1da25f5?se=2023-02-03T19%3A25%3A00Z&sig=oV28iG%2BtOuoSwNZIo%2BObykhNLYF%2BIcSr544oiTjC9Ds%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching libavif
+==> Downloading https://ghcr.io/v2/homebrew/core/libavif/manifests/0.11.1
+==> Downloading https://ghcr.io/v2/homebrew/core/libavif/blobs/sha256:9b4735a70692b1e1cb060a3239bc22b2226cb663c7321474aaaa7b237772a68c
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:9b4735a70692b1e1cb060a3239bc22b2226cb663c7321474aaaa7b237772a68c?se=2023-02-03T19%3A25%3A00Z&sig=8srRVk7uCJDsHn%2B7GMZh8uFQqW8b0xEXX5DnUleC4rA%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching gd
+==> Downloading https://ghcr.io/v2/homebrew/core/gd/manifests/2.3.3_4
+==> Downloading https://ghcr.io/v2/homebrew/core/gd/blobs/sha256:62e2d11e1a556084beab6320187c522647cb15308233f164d9fe1e177701d37f
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:62e2d11e1a556084beab6320187c522647cb15308233f164d9fe1e177701d37f?se=2023-02-03T19%3A25%3A00Z&sig=fdyzsZPY%2Fc912SnP6dxsF%2FFP2%2FJ%2BdmBGOBgwSrG8ps0%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching glib
+==> Downloading https://ghcr.io/v2/homebrew/core/glib/manifests/2.74.5
+==> Downloading https://ghcr.io/v2/homebrew/core/glib/blobs/sha256:dbc8e8fdf0da9f4df7b4a3f576dd55ec4fc7504b71dbdfebaf4c380cb556815b
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:dbc8e8fdf0da9f4df7b4a3f576dd55ec4fc7504b71dbdfebaf4c380cb556815b?se=2023-02-03T19%3A25%3A00Z&sig=xMItfSaIn4ujeetL0CU6643xgz%2Fy9tYbeh5h8LPCUmE%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching jasper
+==> Downloading https://ghcr.io/v2/homebrew/core/jasper/manifests/4.0.0
+==> Downloading https://ghcr.io/v2/homebrew/core/jasper/blobs/sha256:a24af85ebb8fadcbbb9be24fbc7c715fbe31441a768f1094e066e6056631424c
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:a24af85ebb8fadcbbb9be24fbc7c715fbe31441a768f1094e066e6056631424c?se=2023-02-03T19%3A25%3A00Z&sig=RUhwxql%2F5Q5PfIFxyMRJ1jXday7ilRayRLv0T2Wc%2Fks%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching netpbm
+==> Downloading https://ghcr.io/v2/homebrew/core/netpbm/manifests/10.86.37
+==> Downloading https://ghcr.io/v2/homebrew/core/netpbm/blobs/sha256:56ff56d19bc7d7295f3476d7b175c19cecc0ad1eb66eda08676e2861c60d0367
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:56ff56d19bc7d7295f3476d7b175c19cecc0ad1eb66eda08676e2861c60d0367?se=2023-02-03T19%3A25%3A00Z&sig=0B0hv%2B8kOhEYLUerm4VrY7%2BrbjxFHPY2mz5cNdj8%2B%2BM%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching gts
+==> Downloading https://ghcr.io/v2/homebrew/core/gts/manifests/0.7.6_2
+==> Downloading https://ghcr.io/v2/homebrew/core/gts/blobs/sha256:c35739e0ed8143e634eb8f0f55b892a16ced6ec9a2970eabc1f64292a5d81215
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:c35739e0ed8143e634eb8f0f55b892a16ced6ec9a2970eabc1f64292a5d81215?se=2023-02-03T19%3A25%3A00Z&sig=eFcrM1%2BUtb%2FhTKR51LpLNNLgtepxvd9L2ZNTdGNQ7lE%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching xorgproto
+==> Downloading https://ghcr.io/v2/homebrew/core/xorgproto/manifests/2022.2
+==> Downloading https://ghcr.io/v2/homebrew/core/xorgproto/blobs/sha256:d6deb2e4712bdd55eadfdcd7156814a6c42c9d94eb5cda72b89c9e4221a8a99d
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:d6deb2e4712bdd55eadfdcd7156814a6c42c9d94eb5cda72b89c9e4221a8a99d?se=2023-02-03T19%3A25%3A00Z&sig=rPhUVcsKg7nHm266VN0%2Bz9CbPTeiqyIpDV%2BkViEbIlE%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching libxau
+==> Downloading https://ghcr.io/v2/homebrew/core/libxau/manifests/1.0.11
+==> Downloading https://ghcr.io/v2/homebrew/core/libxau/blobs/sha256:d8cc440c5804ecf424d96d3cd4e92e88c83d43e7f927126c768caee2dffe36a8
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:d8cc440c5804ecf424d96d3cd4e92e88c83d43e7f927126c768caee2dffe36a8?se=2023-02-03T19%3A25%3A00Z&sig=gUEpm1sAMGpKny04rvrh3cx5QXfOt9Fy7hiWQrcbdEA%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching libxdmcp
+==> Downloading https://ghcr.io/v2/homebrew/core/libxdmcp/manifests/1.1.4
+==> Downloading https://ghcr.io/v2/homebrew/core/libxdmcp/blobs/sha256:2fb2d55b8f9722e68eeb76bcd77d3e9d5bbe52c96db2c05ceb70152f0ff4883d
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:2fb2d55b8f9722e68eeb76bcd77d3e9d5bbe52c96db2c05ceb70152f0ff4883d?se=2023-02-03T19%3A25%3A00Z&sig=lFxh7y6TeJ%2Bh90ilqg%2F%2B%2BEYIyg22d6m0sPWb2KeIMWk%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching libxcb
+==> Downloading https://ghcr.io/v2/homebrew/core/libxcb/manifests/1.15-2
+==> Downloading https://ghcr.io/v2/homebrew/core/libxcb/blobs/sha256:2a2826a150a07d7cb11afc60822d235156f4b0e26fce2b40127aa427c1d702d5
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:2a2826a150a07d7cb11afc60822d235156f4b0e26fce2b40127aa427c1d702d5?se=2023-02-03T19%3A25%3A00Z&sig=mW9bMmQCaSga6zpz8pp8dumyMIqsmRHJPAusCq7HjeM%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching libx11
+==> Downloading https://ghcr.io/v2/homebrew/core/libx11/manifests/1.8.3
+==> Downloading https://ghcr.io/v2/homebrew/core/libx11/blobs/sha256:7371880b0132555d489372a030da8d7729f5e9d616cfe7bf85eaf96582e009dc
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:7371880b0132555d489372a030da8d7729f5e9d616cfe7bf85eaf96582e009dc?se=2023-02-03T19%3A25%3A00Z&sig=NrcGRChyxkLdg3WYB5I4UPY4Jb30alsJcvgKwaA4MaU%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching libxext
+==> Downloading https://ghcr.io/v2/homebrew/core/libxext/manifests/1.3.5
+==> Downloading https://ghcr.io/v2/homebrew/core/libxext/blobs/sha256:36ef5333565be1614ad8eb2d740ea93df80c5d2ee41b403145179e7c5d1e1e82
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:36ef5333565be1614ad8eb2d740ea93df80c5d2ee41b403145179e7c5d1e1e82?se=2023-02-03T19%3A25%3A00Z&sig=3pSzwOe9js68LFGLqAscI%2FxJ0a9FiEXo7Yei26199OI%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching libxrender
+==> Downloading https://ghcr.io/v2/homebrew/core/libxrender/manifests/0.9.11
+==> Downloading https://ghcr.io/v2/homebrew/core/libxrender/blobs/sha256:510d0cd0f72480d716b38cd935e3a334ed1be972210ffac7309d0dd80469c8bb
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:510d0cd0f72480d716b38cd935e3a334ed1be972210ffac7309d0dd80469c8bb?se=2023-02-03T19%3A25%3A00Z&sig=jDAaGuP6U6d%2FyYBvDwGed1gDCOlKyIqqjUgtgEhA99E%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching lzo
+==> Downloading https://ghcr.io/v2/homebrew/core/lzo/manifests/2.10
+==> Downloading https://ghcr.io/v2/homebrew/core/lzo/blobs/sha256:a565c627b13f2dc7fc4550aa8290a4c3feb2f48fcaa45c9f7f4bc4fe4535aa66
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:a565c627b13f2dc7fc4550aa8290a4c3feb2f48fcaa45c9f7f4bc4fe4535aa66?se=2023-02-03T19%3A25%3A00Z&sig=SlgNEN7aylNQg%2BZhRXJC87B%2FwwTnd1NpgR%2B1VPitzxM%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching pixman
+==> Downloading https://ghcr.io/v2/homebrew/core/pixman/manifests/0.42.2
+==> Downloading https://ghcr.io/v2/homebrew/core/pixman/blobs/sha256:f98b74948d7fa6edc00158c63c02de8f9c58276efb076ab1d6e740ef061f8dee
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:f98b74948d7fa6edc00158c63c02de8f9c58276efb076ab1d6e740ef061f8dee?se=2023-02-03T19%3A25%3A00Z&sig=gdDnU27Y651TfrKkW3%2Bt2Bvtul%2F1U1FbJrSr%2BwzNMtw%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching cairo
+==> Downloading https://ghcr.io/v2/homebrew/core/cairo/manifests/1.16.0_5
+==> Downloading https://ghcr.io/v2/homebrew/core/cairo/blobs/sha256:4a0f5f55a3314f6b4223661c3af406d3551349b4dcabfda7a6e7b6a569187764
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:4a0f5f55a3314f6b4223661c3af406d3551349b4dcabfda7a6e7b6a569187764?se=2023-02-03T19%3A25%3A00Z&sig=xMO1gDwv1h%2F3kIwwrzMR0gWH80pyaZH4aWdtGQmnF80%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching gdk-pixbuf
+==> Downloading https://ghcr.io/v2/homebrew/core/gdk-pixbuf/manifests/2.42.10-1
+==> Downloading https://ghcr.io/v2/homebrew/core/gdk-pixbuf/blobs/sha256:e399064e72c6d5a754054ab177507d166d61fcf8a774880ef18f0c5c25d7c8b4
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:e399064e72c6d5a754054ab177507d166d61fcf8a774880ef18f0c5c25d7c8b4?se=2023-02-03T19%3A25%3A00Z&sig=yMP%2BpPSOKF2Xd7QX17LKkHy9FEbc38KR7%2Bda9kTu0vc%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching fribidi
+==> Downloading https://ghcr.io/v2/homebrew/core/fribidi/manifests/1.0.12
+==> Downloading https://ghcr.io/v2/homebrew/core/fribidi/blobs/sha256:98d26d50c4443a28950bdedc0fac9a708feb6e79e5f42e9c0622e133381c0056
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:98d26d50c4443a28950bdedc0fac9a708feb6e79e5f42e9c0622e133381c0056?se=2023-02-03T19%3A25%3A00Z&sig=DQ38IaHM1DeUNRM2NHPxaAW2SYIjf9NNs3kVW2Gxs98%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching graphite2
+==> Downloading https://ghcr.io/v2/homebrew/core/graphite2/manifests/1.3.14
+==> Downloading https://ghcr.io/v2/homebrew/core/graphite2/blobs/sha256:3ec770419ed60d211670f73bf078512824151b460c5c37740ee8b83e3dbb8357
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:3ec770419ed60d211670f73bf078512824151b460c5c37740ee8b83e3dbb8357?se=2023-02-03T19%3A25%3A00Z&sig=TTSCWobbzhDbjKW92Ok79QmHLUsXyCdWpByqpiq4EjE%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching icu4c
+==> Downloading https://ghcr.io/v2/homebrew/core/icu4c/manifests/72.1
+==> Downloading https://ghcr.io/v2/homebrew/core/icu4c/blobs/sha256:0666e999875e81eadd009af55007c95cda37c7234acc12eb85cf42177984c699
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:0666e999875e81eadd009af55007c95cda37c7234acc12eb85cf42177984c699?se=2023-02-03T19%3A25%3A00Z&sig=LMh6OQe5AFonBrfayqXN6wbIsPlLtmCKyu22I06OMGw%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching harfbuzz
+==> Downloading https://ghcr.io/v2/homebrew/core/harfbuzz/manifests/6.0.0_1
+==> Downloading https://ghcr.io/v2/homebrew/core/harfbuzz/blobs/sha256:469d30da77414cc94994cf99cb6c3d1809db910bc20433edca00523d00bd845f
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:469d30da77414cc94994cf99cb6c3d1809db910bc20433edca00523d00bd845f?se=2023-02-03T19%3A25%3A00Z&sig=cFfFgEVuViVYZxFdjP2TEbM6sW3U1KomodxCB9Z35ao%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching pango
+==> Downloading https://ghcr.io/v2/homebrew/core/pango/manifests/1.50.12
+==> Downloading https://ghcr.io/v2/homebrew/core/pango/blobs/sha256:51b7e3860cd156895f0490cc129b566a1651aff7f7cce73c323696848ae20023
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:51b7e3860cd156895f0490cc129b566a1651aff7f7cce73c323696848ae20023?se=2023-02-03T19%3A25%3A00Z&sig=nD1gdPqZKAxWYvxNo%2ByMNozQ7w8KmE%2BlE4mQANMiluM%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching librsvg
+==> Downloading https://ghcr.io/v2/homebrew/core/librsvg/manifests/2.55.1
+==> Downloading https://ghcr.io/v2/homebrew/core/librsvg/blobs/sha256:ab87ef72c0f3772c7073f34cd88138ae60a9a6d1da7e9200ba4f1596c0715eee
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:ab87ef72c0f3772c7073f34cd88138ae60a9a6d1da7e9200ba4f1596c0715eee?se=2023-02-03T19%3A25%3A00Z&sig=MAU%2B28uMJfOI5mUPlWcI7ZAwJTWHvHprOqWF74px5lk%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching m4
+==> Downloading https://ghcr.io/v2/homebrew/core/m4/manifests/1.4.19
+==> Downloading https://ghcr.io/v2/homebrew/core/m4/blobs/sha256:11308abe8d607be35da9e88a1d789f191914bf043bca4fdde2b50a6cbf1713cc
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:11308abe8d607be35da9e88a1d789f191914bf043bca4fdde2b50a6cbf1713cc?se=2023-02-03T19%3A25%3A00Z&sig=IF2W7XpOI%2FYs8r48fwoOZiWD7ixc9P7GLPWXO7X3EY4%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching libtool
+==> Downloading https://ghcr.io/v2/homebrew/core/libtool/manifests/2.4.7
+==> Downloading https://ghcr.io/v2/homebrew/core/libtool/blobs/sha256:924534e0a6c2f0562d3b6d033be241bfb0554211103daa14c46790803b9a8b9e
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:924534e0a6c2f0562d3b6d033be241bfb0554211103daa14c46790803b9a8b9e?se=2023-02-03T19%3A25%3A00Z&sig=%2Fe7%2BJu0kegyUD5GTEdIbnwT5J%2FwxGTr%2FrrXt6ZG4mOc%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching graphviz
+==> Downloading https://ghcr.io/v2/homebrew/core/graphviz/manifests/7.1.0
+==> Downloading https://ghcr.io/v2/homebrew/core/graphviz/blobs/sha256:8f42f2e0db33e105b865830b59e9e5b4f4a467b03c696ab05ed3a5dd8509f6e8
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:8f42f2e0db33e105b865830b59e9e5b4f4a467b03c696ab05ed3a5dd8509f6e8?se=2023-02-03T19%3A25%3A00Z&sig=fmrOUncjCLHxn99mHaLnT4GM1HsL8gIi2AOkc2dmER4%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching dependencies for htop: ncurses
+==> Fetching ncurses
+==> Downloading https://ghcr.io/v2/homebrew/core/ncurses/manifests/6.4
+==> Downloading https://ghcr.io/v2/homebrew/core/ncurses/blobs/sha256:7f6ef060a13afca7fbd510a95b8f687e9a44f2c06ab18a68ee0037f60abebb67
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:7f6ef060a13afca7fbd510a95b8f687e9a44f2c06ab18a68ee0037f60abebb67?se=2023-02-03T19%3A25%3A00Z&sig=XbB95DCdfEvA5VbjCKdrsgUadh0NyhJWzKrOvqq7Hgs%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching htop
+==> Downloading https://ghcr.io/v2/homebrew/core/htop/manifests/3.2.1
+==> Downloading https://ghcr.io/v2/homebrew/core/htop/blobs/sha256:9fca1606520e7cfb5ab4990b1cca6f57cd4e28c705abdf46d72ce433f445a9b5
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:9fca1606520e7cfb5ab4990b1cca6f57cd4e28c705abdf46d72ce433f445a9b5?se=2023-02-03T19%3A25%3A00Z&sig=1lnwyDC%2FMcnO%2BdLzwVG%2BL6i%2BPdGU3FjmGFA0uBNo3qQ%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching isort
+==> Downloading https://ghcr.io/v2/homebrew/core/isort/manifests/5.12.0
+==> Downloading https://ghcr.io/v2/homebrew/core/isort/blobs/sha256:9ef29d8c4cf23dc882bc6c9e9557f3768c9958542158f6edd203b9be08a7c34d
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:9ef29d8c4cf23dc882bc6c9e9557f3768c9958542158f6edd203b9be08a7c34d?se=2023-02-03T19%3A25%3A00Z&sig=H0JB6khzKMbY9RAwLmd%2FZOqqXiID7z%2F7iYxHyv3c%2BeY%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching koekeishiya/formulae/skhd
+==> Downloading https://github.com/koekeishiya/skhd/archive/v0.3.5.zip
+==> Downloading from https://codeload.github.com/koekeishiya/skhd/zip/refs/tags/v0.3.5
+==> Fetching koekeishiya/formulae/yabai
+==> Downloading https://github.com/koekeishiya/yabai/releases/download/v5.0.2/yabai-v5.0.2.tar.gz
+==> Downloading from https://objects.githubusercontent.com/github-production-release-asset-2e65be/184909163/ea163e71-aceb-46dd-90d3-0d7f78d0702d?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230203T191804Z&X-Amz-Expires=300&X-Amz-Signature=b9582d3fa32f13e701f7cb95a80b4839c7a6fce4b9d108a6149d61e69489dec0&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=184909163&response-content-disposition=attachment%3B%20filename%3Dyabai-v5.0.2.tar.gz&response-content-type=application%2Foctet-stream
+==> Fetching dependencies for meson: ninja
+==> Fetching ninja
+==> Downloading https://ghcr.io/v2/homebrew/core/ninja/manifests/1.11.1
+==> Downloading https://ghcr.io/v2/homebrew/core/ninja/blobs/sha256:6202ee2d9cdb003e70bd93acca07a070eb9145f0a2fe658d22ffd8119260b4bb
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:6202ee2d9cdb003e70bd93acca07a070eb9145f0a2fe658d22ffd8119260b4bb?se=2023-02-03T19%3A25%3A00Z&sig=W6vXuBg%2FbxlpN%2FSVTjT4u%2Bner7oikmhokyJUk%2BH%2BNwg%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching meson
+==> Downloading https://ghcr.io/v2/homebrew/core/meson/manifests/1.0.0
+==> Downloading https://ghcr.io/v2/homebrew/core/meson/blobs/sha256:17d37236c5897dce15263e14c94dbb779525a19db7ba86d2a4ca7d80147ed8e5
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:17d37236c5897dce15263e14c94dbb779525a19db7ba86d2a4ca7d80147ed8e5?se=2023-02-03T19%3A25%3A00Z&sig=u1wDZRJGMHua2WM7aa563TY7h%2FgaaYrjuKPfxZf%2BC2M%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching moreutils
+==> Downloading https://ghcr.io/v2/homebrew/core/moreutils/manifests/0.67
+==> Downloading https://ghcr.io/v2/homebrew/core/moreutils/blobs/sha256:d2d7aea31dd1470da60cf4c7382407338c8bbc9806765a8eeb22084fb86541df
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:d2d7aea31dd1470da60cf4c7382407338c8bbc9806765a8eeb22084fb86541df?se=2023-02-03T19%3A25%3A00Z&sig=Roht5V5zLKXu0nQVd76IZg7JE%2FyvX2YaoWQ4UfgNHCk%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching mutagen-io/mutagen/mutagen
+==> Downloading https://github.com/mutagen-io/mutagen/releases/download/v0.16.4/mutagen_darwin_arm64_v0.16.4.tar.gz
+==> Downloading from https://objects.githubusercontent.com/github-production-release-asset-2e65be/78026877/b3762fc1-e573-4185-be94-7ca89e4434b8?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230203T191811Z&X-Amz-Expires=300&X-Amz-Signature=65d0a5adaf789ec8044f2c9bbe0466996fc938704c0e6787723bfa0c694d8bd2&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=78026877&response-content-disposition=attachment%3B%20filename%3Dmutagen_darwin_arm64_v0.16.4.tar.gz&response-content-type=application%2Foctet-stream
+==> Fetching mypy
+==> Downloading https://ghcr.io/v2/homebrew/core/mypy/manifests/0.991
+==> Downloading https://ghcr.io/v2/homebrew/core/mypy/blobs/sha256:895f00e65b177c34d4b4bcacb81c8d7f44ab9f9a9df88566a8f417b3c998b934
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:895f00e65b177c34d4b4bcacb81c8d7f44ab9f9a9df88566a8f417b3c998b934?se=2023-02-03T19%3A25%3A00Z&sig=TeLUONhH3ZHu1plh32R2bIFXweOPb6tsjVHrvfDtq5o%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching dependencies for neovim: unibilium, libtermkey, libuv, libvterm, luajit, luv, msgpack and tree-sitter
+==> Fetching unibilium
+==> Downloading https://ghcr.io/v2/homebrew/core/unibilium/manifests/2.1.1
+==> Downloading https://ghcr.io/v2/homebrew/core/unibilium/blobs/sha256:8c1ce852ab217647233c414474d2a1e0b744118097a77ce4e24c0fde62244c1d
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:8c1ce852ab217647233c414474d2a1e0b744118097a77ce4e24c0fde62244c1d?se=2023-02-03T19%3A25%3A00Z&sig=fcYQqpcuGJK1dd9KMV6gunDp2cQTMITPeMUa%2BezvIaw%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching libtermkey
+==> Downloading https://ghcr.io/v2/homebrew/core/libtermkey/manifests/0.22-1
+==> Downloading https://ghcr.io/v2/homebrew/core/libtermkey/blobs/sha256:7d8785550b878770b207750a28a857906ddcca4dd23ad01d2c1c342adca32e2a
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:7d8785550b878770b207750a28a857906ddcca4dd23ad01d2c1c342adca32e2a?se=2023-02-03T19%3A25%3A00Z&sig=Lo0FO1ZcAaXtYaRSzadO3su234mpHIRrZ4m0dEpEvwE%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching libuv
+==> Downloading https://ghcr.io/v2/homebrew/core/libuv/manifests/1.44.2-1
+==> Downloading https://ghcr.io/v2/homebrew/core/libuv/blobs/sha256:2653486daddca69315ee9b5bd12c7ba262ecc5a159ddd1d0277a3e5fb14708ac
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:2653486daddca69315ee9b5bd12c7ba262ecc5a159ddd1d0277a3e5fb14708ac?se=2023-02-03T19%3A25%3A00Z&sig=hUpBobY%2FFMZYjzEr3NqFW3YpY0Ccw%2BqwebJzh0XPgLg%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching libvterm
+==> Downloading https://ghcr.io/v2/homebrew/core/libvterm/manifests/0.3.1
+==> Downloading https://ghcr.io/v2/homebrew/core/libvterm/blobs/sha256:8223c9b38657d9029e9ca4fbed618de2819a26d2c55662a2ac249ddb2e19ee20
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:8223c9b38657d9029e9ca4fbed618de2819a26d2c55662a2ac249ddb2e19ee20?se=2023-02-03T19%3A25%3A00Z&sig=sW37LwO5hAqp%2B%2FAEUP%2BtoPj%2BibxWHkPuVFP%2Fa5szd14%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching luajit
+==> Downloading https://ghcr.io/v2/homebrew/core/luajit/manifests/2.1.0-beta3-20230104.2
+==> Downloading https://ghcr.io/v2/homebrew/core/luajit/blobs/sha256:d9569bbad3c273769c5ec51a25c5c65e3e95bc126a7e2587726a5c16ccafddb2
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:d9569bbad3c273769c5ec51a25c5c65e3e95bc126a7e2587726a5c16ccafddb2?se=2023-02-03T19%3A25%3A00Z&sig=PAWUNEg1hASquvm8fZUoyX%2FIp3eJZdqny8s%2B15SHCp0%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching luv
+==> Downloading https://ghcr.io/v2/homebrew/core/luv/manifests/1.44.2-1
+==> Downloading https://ghcr.io/v2/homebrew/core/luv/blobs/sha256:7c8432625ecd382168eac3d0bc3615519528a8e338f8f33ee0c6761bf9f5dd65
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:7c8432625ecd382168eac3d0bc3615519528a8e338f8f33ee0c6761bf9f5dd65?se=2023-02-03T19%3A25%3A00Z&sig=djfrAVc8jW7C1hNbZK2TfEKTYP%2BJORHK1J2h4lztwsI%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching msgpack
+==> Downloading https://ghcr.io/v2/homebrew/core/msgpack/manifests/5.0.0
+==> Downloading https://ghcr.io/v2/homebrew/core/msgpack/blobs/sha256:7e65889bade2f78f3373705054899204cee0231846d4bebe6eae1d39e05b3b60
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:7e65889bade2f78f3373705054899204cee0231846d4bebe6eae1d39e05b3b60?se=2023-02-03T19%3A25%3A00Z&sig=K8El0FBbY%2FIbWdxxBN5tIg%2BOizI49gdXtuhWic7ZnqM%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching tree-sitter
+==> Downloading https://ghcr.io/v2/homebrew/core/tree-sitter/manifests/0.20.7-1
+==> Downloading https://ghcr.io/v2/homebrew/core/tree-sitter/blobs/sha256:c1fb86aa4f3e621a51b8a3162ffab2acc64ca814f3cd758bf5e167128a90c8dd
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:c1fb86aa4f3e621a51b8a3162ffab2acc64ca814f3cd758bf5e167128a90c8dd?se=2023-02-03T19%3A25%3A00Z&sig=44FifyxYDwm5YZtt%2BcXamk8MonJ1zlIDgwxgudTJt8g%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching neovim
+==> Downloading https://ghcr.io/v2/homebrew/core/neovim/manifests/0.8.3
+==> Downloading https://ghcr.io/v2/homebrew/core/neovim/blobs/sha256:c8a5997c58714fb6175d271979b1acb1d11d19e31be524550b07163391838f66
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:c8a5997c58714fb6175d271979b1acb1d11d19e31be524550b07163391838f66?se=2023-02-03T19%3A25%3A00Z&sig=oJQV9CD71T%2BRQb%2FTLHP1ETPrSJM%2Bdv5eUO6%2Bx%2F3eovM%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching pkg-config
+==> Downloading https://ghcr.io/v2/homebrew/core/pkg-config/manifests/0.29.2_3
+==> Downloading https://ghcr.io/v2/homebrew/core/pkg-config/blobs/sha256:3ff612c5e44b945c8c0cc6df7d3edb407ca67cddad9c89f9ab99ced494b7a8c2
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:3ff612c5e44b945c8c0cc6df7d3edb407ca67cddad9c89f9ab99ced494b7a8c2?se=2023-02-03T19%3A25%3A00Z&sig=obngMYQlnZeVsGKNEltLoJ0F9TZyYBVcdVlKdKkqksk%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching dependencies for pre-commit: libyaml, pyyaml, six and virtualenv
+==> Fetching libyaml
+==> Downloading https://ghcr.io/v2/homebrew/core/libyaml/manifests/0.2.5
+==> Downloading https://ghcr.io/v2/homebrew/core/libyaml/blobs/sha256:11239e8f5066c6d0d0718208d4eab518da00c7289f33c9c76c0a09ba5c0417c9
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:11239e8f5066c6d0d0718208d4eab518da00c7289f33c9c76c0a09ba5c0417c9?se=2023-02-03T19%3A25%3A00Z&sig=TQPW9ls80xRT75qbdRPSbh66rzqsRA8sH5P7d7Ptd2A%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching pyyaml
+==> Downloading https://ghcr.io/v2/homebrew/core/pyyaml/manifests/6.0_1
+==> Downloading https://ghcr.io/v2/homebrew/core/pyyaml/blobs/sha256:9cdc9ef202bb642be23ec38c05c0ab6ce9b08d09ba5d954fb6440c946aa31e56
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:9cdc9ef202bb642be23ec38c05c0ab6ce9b08d09ba5d954fb6440c946aa31e56?se=2023-02-03T19%3A25%3A00Z&sig=1B51B%2FdSHBDNbp160Nr8%2BrLEGl%2FxuDcWRlfzbBPzTWg%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching six
+==> Downloading https://ghcr.io/v2/homebrew/core/six/manifests/1.16.0_3
+==> Downloading https://ghcr.io/v2/homebrew/core/six/blobs/sha256:0dee50367c6facbfc8f65e8a82bcd3e08d43da262b1adff6ccf943ef5bfaf313
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:0dee50367c6facbfc8f65e8a82bcd3e08d43da262b1adff6ccf943ef5bfaf313?se=2023-02-03T19%3A25%3A00Z&sig=HDnIE6zki9qFK1AWuzUYDByiyuoerirjMBVv7KP%2BE%2F4%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching virtualenv
+==> Downloading https://ghcr.io/v2/homebrew/core/virtualenv/manifests/20.17.1
+==> Downloading https://ghcr.io/v2/homebrew/core/virtualenv/blobs/sha256:b6433eccf52ce3b733b122932e64c2446bedfbec22f5bcf84ab6323968541dca
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:b6433eccf52ce3b733b122932e64c2446bedfbec22f5bcf84ab6323968541dca?se=2023-02-03T19%3A25%3A00Z&sig=yZqLdEwlVFD699qc6OPltAtUEeSULNLuX9lhPUh3uoU%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching pre-commit
+==> Downloading https://ghcr.io/v2/homebrew/core/pre-commit/manifests/3.0.3
+==> Downloading https://ghcr.io/v2/homebrew/core/pre-commit/blobs/sha256:0b1d5d91d04e2bc20b59fac79046137b2db86dda06bc56f7b237a5ebdd9c6cde
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:0b1d5d91d04e2bc20b59fac79046137b2db86dda06bc56f7b237a5ebdd9c6cde?se=2023-02-03T19%3A25%3A00Z&sig=yofkU7IoLufO0buvZHPOOFgN8UQMT7iUF0abyPqtmVw%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching dependencies for python@3.10: gdbm
+==> Fetching gdbm
+==> Downloading https://ghcr.io/v2/homebrew/core/gdbm/manifests/1.23
+==> Downloading https://ghcr.io/v2/homebrew/core/gdbm/blobs/sha256:a7321472cc9ff32a54c549556340dd1ad9dd95415828149005fb4959d04e83b7
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:a7321472cc9ff32a54c549556340dd1ad9dd95415828149005fb4959d04e83b7?se=2023-02-03T19%3A25%3A00Z&sig=L5LIdC36nYU7ikj9WBtEq8%2BydhQERXHzeyhZ8XSCJTM%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching python@3.10
+==> Downloading https://ghcr.io/v2/homebrew/core/python/3.10/manifests/3.10.9
+==> Downloading https://ghcr.io/v2/homebrew/core/python/3.10/blobs/sha256:b6bfa71a7d5f6188a1a28e45aed1e8ee08e0e4be11f99ed6d27774b149994364
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:b6bfa71a7d5f6188a1a28e45aed1e8ee08e0e4be11f99ed6d27774b149994364?se=2023-02-03T19%3A25%3A00Z&sig=JDX9I514VgD1mMzuwM4oNSKaiQiwstJAMecif9d1fP4%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching ruby
+==> Downloading https://ghcr.io/v2/homebrew/core/ruby/manifests/3.2.0
+==> Downloading https://ghcr.io/v2/homebrew/core/ruby/blobs/sha256:a6e42d4316b36bfdbd7677b33132240b1da967a8fbc3d400048907c93d90fcdf
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:a6e42d4316b36bfdbd7677b33132240b1da967a8fbc3d400048907c93d90fcdf?se=2023-02-03T19%3A25%3A00Z&sig=Xp9bVEGEa13mxb8zlGMKg6C7ZWwAYRBPcod5hVB305E%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching sloccount
+==> Downloading https://ghcr.io/v2/homebrew/core/sloccount/manifests/2.26-1
+==> Downloading https://ghcr.io/v2/homebrew/core/sloccount/blobs/sha256:b0a3aa39555a21889bb78e1826ba3842915234a4728497877ecf83a7520bd7c1
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:b0a3aa39555a21889bb78e1826ba3842915234a4728497877ecf83a7520bd7c1?se=2023-02-03T19%3A25%3A00Z&sig=L%2B%2F8MeiC%2BPJ4GWLUOUAafzyJAGvO0%2BdKt0tuDL%2F2pjs%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching sshuttle
+==> Downloading https://ghcr.io/v2/homebrew/core/sshuttle/manifests/1.1.1-1
+==> Downloading https://ghcr.io/v2/homebrew/core/sshuttle/blobs/sha256:90c2823e56ebaeb8b25636b88c882d9345d04e55af0d83269a09a952c459e111
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:90c2823e56ebaeb8b25636b88c882d9345d04e55af0d83269a09a952c459e111?se=2023-02-03T19%3A25%3A00Z&sig=r9JBMA%2B07HFUH1%2B%2BQBP0Bm2cSIYFHEDbUejTlT9TbEQ%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching tree
+==> Downloading https://ghcr.io/v2/homebrew/core/tree/manifests/2.1.0
+==> Downloading https://ghcr.io/v2/homebrew/core/tree/blobs/sha256:4488b659e08f179e364d7aab216a2b3ba5ca7b6fbdf6340b25d5cb82f9d144b9
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:4488b659e08f179e364d7aab216a2b3ba5ca7b6fbdf6340b25d5cb82f9d144b9?se=2023-02-03T19%3A25%3A00Z&sig=iLP2HMS%2B8kdJiMxnmUepCRCDIfBUSHuiMd6rl%2FWjtjY%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching dependencies for vim: lua, berkeley-db and perl
+==> Fetching lua
+==> Downloading https://ghcr.io/v2/homebrew/core/lua/manifests/5.4.4_1
+==> Downloading https://ghcr.io/v2/homebrew/core/lua/blobs/sha256:c26caf8003f23124219d6f35ce9b49f39471d40d31527dd393ac2ffe5fd376c5
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:c26caf8003f23124219d6f35ce9b49f39471d40d31527dd393ac2ffe5fd376c5?se=2023-02-03T19%3A25%3A00Z&sig=2yrgx%2FYPiOjwLCpelNfLFWF569xDC3G7HwfxZ188WLg%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching berkeley-db
+==> Downloading https://ghcr.io/v2/homebrew/core/berkeley-db/manifests/18.1.40_1
+==> Downloading https://ghcr.io/v2/homebrew/core/berkeley-db/blobs/sha256:9f95fac93b53a02ecf42f3abf60c5657f74aea8fccd7b8077c1b567a959bf750
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:9f95fac93b53a02ecf42f3abf60c5657f74aea8fccd7b8077c1b567a959bf750?se=2023-02-03T19%3A25%3A00Z&sig=By6IS6KKsh7vHJuFrzQGnaA%2Fh78GPiBQs9tCxhgxs2Q%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching perl
+==> Downloading https://ghcr.io/v2/homebrew/core/perl/manifests/5.36.0
+==> Downloading https://ghcr.io/v2/homebrew/core/perl/blobs/sha256:060d846955f6c1263f550709f425b02b232a9f61adc755af6a4749fac8250f13
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:060d846955f6c1263f550709f425b02b232a9f61adc755af6a4749fac8250f13?se=2023-02-03T19%3A25%3A00Z&sig=RQMM%2FLS34MsqcUWMfGyT26iAuJqHcbFlieN1um4UQBs%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching vim
+==> Downloading https://ghcr.io/v2/homebrew/core/vim/manifests/9.0.1250
+==> Downloading https://ghcr.io/v2/homebrew/core/vim/blobs/sha256:52f32fbe651a67e835de9da1195f1e25a87e74af1307b90dfd21221746e1b7c6
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:52f32fbe651a67e835de9da1195f1e25a87e74af1307b90dfd21221746e1b7c6?se=2023-02-03T19%3A25%3A00Z&sig=0f4cMA6j4PmEfaM3FJykzFrxm6w6sUmSsn0iKaK68J8%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching dependencies for wget: libunistring, libidn2 and openssl@3
+==> Fetching libunistring
+==> Downloading https://ghcr.io/v2/homebrew/core/libunistring/manifests/1.1
+==> Downloading https://ghcr.io/v2/homebrew/core/libunistring/blobs/sha256:c78e7b0af88bef155ad7f12d63ad60f0c87e5a8cccb8f40ec5d9304f8fdfaee7
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:c78e7b0af88bef155ad7f12d63ad60f0c87e5a8cccb8f40ec5d9304f8fdfaee7?se=2023-02-03T19%3A25%3A00Z&sig=rnbAAAl0SrneeMSM1yqNlsVU3FgH45E%2BL%2FIqvsmgk8w%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching libidn2
+==> Downloading https://ghcr.io/v2/homebrew/core/libidn2/manifests/2.3.4_1-1
+==> Downloading https://ghcr.io/v2/homebrew/core/libidn2/blobs/sha256:b044c66cc0f1feea87d229f3f4016c5ff29a0fb0f712d0d5219f05465247b10f
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:b044c66cc0f1feea87d229f3f4016c5ff29a0fb0f712d0d5219f05465247b10f?se=2023-02-03T19%3A25%3A00Z&sig=kks%2B2DhxSgPQa%2FQMVW7UwU1EKFBAiKdPEmh5DUq10us%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching openssl@3
+==> Downloading https://ghcr.io/v2/homebrew/core/openssl/3/manifests/3.0.7
+==> Downloading https://ghcr.io/v2/homebrew/core/openssl/3/blobs/sha256:5b3d605f5c1fcadfea094c5670091e4bec2b2de7c121874be166bc737ef64ccf
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:5b3d605f5c1fcadfea094c5670091e4bec2b2de7c121874be166bc737ef64ccf?se=2023-02-03T19%3A25%3A00Z&sig=SSU3gXMb6X9vzFTrLbLyoM88wrmRBgtElFGD31LgXMM%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Fetching wget
+==> Downloading https://ghcr.io/v2/homebrew/core/wget/manifests/1.21.3_1-1
+==> Downloading https://ghcr.io/v2/homebrew/core/wget/blobs/sha256:7415a3b847237e0a981f2df42761578d6b6b285361c450c010219355bd1c0df2
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:7415a3b847237e0a981f2df42761578d6b6b285361c450c010219355bd1c0df2?se=2023-02-03T19%3A25%3A00Z&sig=VdPiS%2BK3rGg1EPo5xASvWIx1GEMLwo6A4hf7%2BrL90Qs%3D&sp=r&spr=https&sr=b&sv=2019-12-12
+==> Pouring bash--5.2.15.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/bash/5.2.15: 162 files, 12.4MB
+==> Running `brew cleanup bash`...
+Disable this behaviour by setting HOMEBREW_NO_INSTALL_CLEANUP.
+Hide these hints with HOMEBREW_NO_ENV_HINTS (see `man brew`).
+==> Installing dependencies for black: mpdecimal, ca-certificates, openssl@1.1, readline, sqlite, xz and python@3.11
+==> Installing black dependency: mpdecimal
+==> Pouring mpdecimal--2.5.1.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/mpdecimal/2.5.1: 71 files, 2.2MB
+==> Installing black dependency: ca-certificates
+==> Pouring ca-certificates--2023-01-10.all.bottle.tar.gz
+[34m==>[0m [1mRegenerating CA certificate bundle from keychain, this may take a while...[0m
+🍺  /opt/homebrew/Cellar/ca-certificates/2023-01-10: 3 files, 216.9KB
+==> Installing black dependency: openssl@1.1
+==> Pouring openssl@1.1--1.1.1s.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/openssl@1.1/1.1.1s: 8,101 files, 18MB
+==> Installing black dependency: readline
+==> Pouring readline--8.2.1.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/readline/8.2.1: 50 files, 1.7MB
+==> Installing black dependency: sqlite
+==> Pouring sqlite--3.40.1.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/sqlite/3.40.1: 11 files, 4.4MB
+==> Installing black dependency: xz
+==> Pouring xz--5.4.1.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/xz/5.4.1: 95 files, 1.7MB
+==> Installing black dependency: python@3.11
+==> Pouring python@3.11--3.11.1.arm64_ventura.bottle.tar.gz
+[34m==>[0m [1m/opt/homebrew/Cellar/python@3.11/3.11.1/bin/python3.11 -m ensurepip[0m
+[34m==>[0m [1m/opt/homebrew/Cellar/python@3.11/3.11.1/bin/python3.11 -m pip install -v --n[0m
+🍺  /opt/homebrew/Cellar/python@3.11/3.11.1: 3,165 files, 62MB
+==> Installing black
+==> Pouring black--23.1.0.arm64_ventura.bottle.tar.gz
+==> Caveats
+To restart black after an upgrade:
+  sudo brew services restart black
+Or, if you don't want/need a background service you can just run:
+  /opt/homebrew/opt/black/bin/blackd
+==> Summary
+🍺  /opt/homebrew/Cellar/black/23.1.0: 1,124 files, 13.9MB
+==> Running `brew cleanup black`...
+==> Pouring cdrtools--3.02a09.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/cdrtools/3.02a09: 209 files, 6MB
+==> Running `brew cleanup cdrtools`...
+==> Pouring clang-format--15.0.7.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/clang-format/15.0.7: 10 files, 2.8MB
+==> Running `brew cleanup clang-format`...
+==> Pouring docutils--0.19.all.bottle.2.tar.gz
+🍺  /opt/homebrew/Cellar/docutils/0.19: 231 files, 2MB
+==> Running `brew cleanup docutils`...
+==> Pouring doxygen--1.9.6.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/doxygen/1.9.6: 9 files, 19.6MB
+==> Running `brew cleanup doxygen`...
+==> Installing dependencies for gcovr: pygments
+==> Installing gcovr dependency: pygments
+==> Pouring pygments--2.14.0.all.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/pygments/2.14.0: 624 files, 8.1MB
+==> Installing gcovr
+==> Pouring gcovr--5.2.arm64_ventura.bottle.1.tar.gz
+🍺  /opt/homebrew/Cellar/gcovr/5.2: 1,212 files, 19MB
+==> Running `brew cleanup gcovr`...
+==> Installing dependencies for git-gui: tcl-tk
+==> Installing git-gui dependency: tcl-tk
+==> Pouring tcl-tk--8.6.13.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/tcl-tk/8.6.13: 3,070 files, 53MB
+==> Installing git-gui
+==> Pouring git-gui--2.39.1.all.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/git-gui/2.39.1: 79 files, 2.3MB
+==> Running `brew cleanup git-gui`...
+==> Installing dependencies for graphviz: libpng, freetype, fontconfig, jpeg-turbo, brotli, giflib, highway, imath, lz4, zstd, libtiff, little-cms2, openexr, webp, jpeg-xl, libvmaf, aom, libavif, gd, glib, jasper, netpbm, gts, xorgproto, libxau, libxdmcp, libxcb, libx11, libxext, libxrender, lzo, pixman, cairo, gdk-pixbuf, fribidi, graphite2, icu4c, harfbuzz, pango, librsvg, m4 and libtool
+==> Installing graphviz dependency: libpng
+==> Pouring libpng--1.6.39.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/libpng/1.6.39: 27 files, 1.3MB
+==> Installing graphviz dependency: freetype
+==> Pouring freetype--2.12.1.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/freetype/2.12.1: 67 files, 2.3MB
+==> Installing graphviz dependency: fontconfig
+==> Pouring fontconfig--2.14.2.arm64_ventura.bottle.tar.gz
+[34m==>[0m [1mRegenerating font cache, this may take a while[0m
+[34m==>[0m [1m/opt/homebrew/Cellar/fontconfig/2.14.2/bin/fc-cache -frv[0m
+🍺  /opt/homebrew/Cellar/fontconfig/2.14.2: 88 files, 2.4MB
+==> Installing graphviz dependency: jpeg-turbo
+==> Pouring jpeg-turbo--2.1.5.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/jpeg-turbo/2.1.5: 44 files, 2.5MB
+==> Installing graphviz dependency: brotli
+==> Pouring brotli--1.0.9.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/brotli/1.0.9: 25 files, 2.3MB
+==> Installing graphviz dependency: giflib
+==> Pouring giflib--5.2.1.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/giflib/5.2.1: 19 files, 540.2KB
+==> Installing graphviz dependency: highway
+==> Pouring highway--1.0.3.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/highway/1.0.3: 61 files, 2.3MB
+==> Installing graphviz dependency: imath
+==> Pouring imath--3.1.6.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/imath/3.1.6: 49 files, 931.4KB
+==> Installing graphviz dependency: lz4
+==> Pouring lz4--1.9.4.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/lz4/1.9.4: 22 files, 680.1KB
+==> Installing graphviz dependency: zstd
+==> Pouring zstd--1.5.2.arm64_ventura.bottle.3.tar.gz
+🍺  /opt/homebrew/Cellar/zstd/1.5.2: 31 files, 2.2MB
+==> Installing graphviz dependency: libtiff
+==> Pouring libtiff--4.4.0_1.arm64_ventura.bottle.1.tar.gz
+🍺  /opt/homebrew/Cellar/libtiff/4.4.0_1: 249 files, 4.8MB
+==> Installing graphviz dependency: little-cms2
+==> Pouring little-cms2--2.14.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/little-cms2/2.14: 21 files, 1.4MB
+==> Installing graphviz dependency: openexr
+==> Pouring openexr--3.1.5.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/openexr/3.1.5: 194 files, 6.0MB
+==> Installing graphviz dependency: webp
+==> Pouring webp--1.3.0.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/webp/1.3.0: 47 files, 2.3MB
+==> Installing graphviz dependency: jpeg-xl
+==> Pouring jpeg-xl--0.8.0.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/jpeg-xl/0.8.0: 41 files, 10.7MB
+==> Installing graphviz dependency: libvmaf
+==> Pouring libvmaf--2.3.1.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/libvmaf/2.3.1: 234 files, 7MB
+==> Installing graphviz dependency: aom
+==> Pouring aom--3.5.0_2.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/aom/3.5.0_2: 23 files, 8.5MB
+==> Installing graphviz dependency: libavif
+==> Pouring libavif--0.11.1.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/libavif/0.11.1: 19 files, 496.6KB
+==> Installing graphviz dependency: gd
+==> Pouring gd--2.3.3_4.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/gd/2.3.3_4: 33 files, 1.5MB
+==> Installing graphviz dependency: glib
+==> Pouring glib--2.74.5.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/glib/2.74.5: 449 files, 21.9MB
+==> Installing graphviz dependency: jasper
+==> Pouring jasper--4.0.0.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/jasper/4.0.0: 44 files, 1.6MB
+==> Installing graphviz dependency: netpbm
+==> Pouring netpbm--10.86.37.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/netpbm/10.86.37: 408 files, 18.5MB
+==> Installing graphviz dependency: gts
+==> Pouring gts--0.7.6_2.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/gts/0.7.6_2: 25 files, 1.5MB
+==> Installing graphviz dependency: xorgproto
+==> Pouring xorgproto--2022.2.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/xorgproto/2022.2: 268 files, 3.9MB
+==> Installing graphviz dependency: libxau
+==> Pouring libxau--1.0.11.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/libxau/1.0.11: 21 files, 123.5KB
+==> Installing graphviz dependency: libxdmcp
+==> Pouring libxdmcp--1.1.4.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/libxdmcp/1.1.4: 11 files, 130.4KB
+==> Installing graphviz dependency: libxcb
+==> Pouring libxcb--1.15.arm64_ventura.bottle.2.tar.gz
+🍺  /opt/homebrew/Cellar/libxcb/1.15: 2,461 files, 7.3MB
+==> Installing graphviz dependency: libx11
+==> Pouring libx11--1.8.3.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/libx11/1.8.3: 1,054 files, 7MB
+==> Installing graphviz dependency: libxext
+==> Pouring libxext--1.3.5.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/libxext/1.3.5: 87 files, 445.8KB
+==> Installing graphviz dependency: libxrender
+==> Pouring libxrender--0.9.11.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/libxrender/0.9.11: 12 files, 213.9KB
+==> Installing graphviz dependency: lzo
+==> Pouring lzo--2.10.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/lzo/2.10: 31 files, 566.3KB
+==> Installing graphviz dependency: pixman
+==> Pouring pixman--0.42.2.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/pixman/0.42.2: 11 files, 842.5KB
+==> Installing graphviz dependency: cairo
+==> Pouring cairo--1.16.0_5.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/cairo/1.16.0_5: 126 files, 6.4MB
+==> Installing graphviz dependency: gdk-pixbuf
+==> Pouring gdk-pixbuf--2.42.10.arm64_ventura.bottle.1.tar.gz
+[34m==>[0m [1m/opt/homebrew/Cellar/gdk-pixbuf/2.42.10/bin/gdk-pixbuf-query-loaders --updat[0m
+🍺  /opt/homebrew/Cellar/gdk-pixbuf/2.42.10: 150 files, 3.9MB
+==> Installing graphviz dependency: fribidi
+==> Pouring fribidi--1.0.12.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/fribidi/1.0.12: 67 files, 662.1KB
+==> Installing graphviz dependency: graphite2
+==> Pouring graphite2--1.3.14.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/graphite2/1.3.14: 18 files, 281.2KB
+==> Installing graphviz dependency: icu4c
+==> Pouring icu4c--72.1.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/icu4c/72.1: 263 files, 78.4MB
+==> Installing graphviz dependency: harfbuzz
+==> Pouring harfbuzz--6.0.0_1.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/harfbuzz/6.0.0_1: 69 files, 8MB
+==> Installing graphviz dependency: pango
+==> Pouring pango--1.50.12.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/pango/1.50.12: 68 files, 3.3MB
+==> Installing graphviz dependency: librsvg
+==> Pouring librsvg--2.55.1.arm64_ventura.bottle.tar.gz
+[34m==>[0m [1m/opt/homebrew/opt/gdk-pixbuf/bin/gdk-pixbuf-query-loaders --update-cache[0m
+🍺  /opt/homebrew/Cellar/librsvg/2.55.1: 24 files, 54.5MB
+==> Installing graphviz dependency: m4
+==> Pouring m4--1.4.19.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/m4/1.4.19: 13 files, 742.4KB
+==> Installing graphviz dependency: libtool
+==> Pouring libtool--2.4.7.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/libtool/2.4.7: 75 files, 3.8MB
+==> Installing graphviz
+==> Pouring graphviz--7.1.0.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/graphviz/7.1.0: 285 files, 7.2MB
+==> Running `brew cleanup graphviz`...
+==> Installing dependencies for htop: ncurses
+==> Installing htop dependency: ncurses
+==> Pouring ncurses--6.4.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/ncurses/6.4: 4,001 files, 9.7MB
+==> Installing htop
+==> Pouring htop--3.2.1.arm64_ventura.bottle.tar.gz
+==> Caveats
+htop requires root privileges to correctly display all running processes,
+so you will need to run `sudo htop`.
+You should be certain that you trust any software you grant root privileges.
+==> Summary
+🍺  /opt/homebrew/Cellar/htop/3.2.1: 12 files, 347.1KB
+==> Running `brew cleanup htop`...
+==> Pouring isort--5.12.0.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/isort/5.12.0: 821 files, 10.8MB
+==> Running `brew cleanup isort`...
+==> Installing skhd from koekeishiya/formulae
+[34m==>[0m [1mmake install[0m
+==> Caveats
+Copy the example configuration into your home directory:
+  cp /opt/homebrew/opt/skhd/share/skhd/examples/skhdrc ~/.skhdrc
 
+If the formula has been built with --with-logging, logs will be found in
+  /opt/homebrew/var/log/skhd/skhd.[out|err].log
+
+To start koekeishiya/formulae/skhd now and restart at login:
+  brew services start koekeishiya/formulae/skhd
+Or, if you don't want/need a background service you can just run:
+  skhd
+==> Summary
+🍺  /opt/homebrew/Cellar/skhd/0.3.5: 7 files, 100.4KB, built in 2 seconds
+==> Running `brew cleanup skhd`...
+==> Installing yabai from koekeishiya/formulae
+==> Caveats
+Copy the example configuration into your home directory:
+  cp /opt/homebrew/opt/yabai/share/yabai/examples/yabairc ~/.yabairc
+  cp /opt/homebrew/opt/yabai/share/yabai/examples/skhdrc ~/.skhdrc
+
+Logs will be found in
+  /opt/homebrew/var/log/yabai/yabai.[out|err].log
+
+If you are using the scripting-addition; remember to update your sudoers file:
+  sudo visudo -f /private/etc/sudoers.d/yabai
+
+Build the configuration row by running:
+  echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa"
+
+README: https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#configure-scripting-addition
+
+To start koekeishiya/formulae/yabai now and restart at login:
+  brew services start koekeishiya/formulae/yabai
+Or, if you don't want/need a background service you can just run:
+  yabai
+==> Summary
+🍺  /opt/homebrew/Cellar/yabai/5.0.2: 7 files, 1.7MB, built in 1 second
+==> Running `brew cleanup yabai`...
+==> Installing dependencies for meson: ninja
+==> Installing meson dependency: ninja
+==> Pouring ninja--1.11.1.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/ninja/1.11.1: 10 files, 435.3KB
+==> Installing meson
+==> Pouring meson--1.0.0.all.bottle.tar.gz
+==> Caveats
+zsh completions have been installed to:
+  /opt/homebrew/share/zsh/site-functions
+==> Summary
+🍺  /opt/homebrew/Cellar/meson/1.0.0: 238 files, 3.5MB
+==> Running `brew cleanup meson`...
+==> Pouring moreutils--0.67.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/moreutils/0.67: 68 files, 783.1KB
+==> Running `brew cleanup moreutils`...
+==> Installing mutagen from mutagen-io/mutagen
+[34m==>[0m [1m../mutagen generate --bash-completion-script=mutagen.bash --fish-completion-[0m
+==> Caveats
+Mutagen has a daemon component that runs on a per-user basis. You'll need
+to invoke the following manually and/or add it to your shell
+initialization script:
+
+  mutagen daemon start
+
+This command is idempotent and can be run any number of times.
+
+Experimental support for automatically starting the daemon on macOS via
+launchd is also available. To register Mutagen as a per-user daemon with
+launchd, use:
+
+  mutagen daemon register
+
+This registration can be removed with:
+
+  mutagen daemon unregister
+
+In order to take advantage of automatic start-up, either log out and log
+back in or run:
+
+  mutagen daemon start
+
+This support is experimental, so please provide feedback if you run into
+any issues.
+
+Please note that the Mutagen daemon should be manually restarted after an
+update using:
+
+  mutagen daemon stop
+  mutagen daemon start
+
+zsh completions have been installed to:
+  /opt/homebrew/share/zsh/site-functions
+==> Summary
+🍺  /opt/homebrew/Cellar/mutagen/0.16.4: 7 files, 86.8MB, built in 1 second
+==> Running `brew cleanup mutagen`...
+==> Pouring mypy--0.991.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/mypy/0.991: 1,917 files, 44.4MB
+==> Running `brew cleanup mypy`...
+==> Running `brew cleanup ncurses`...
+==> Installing dependencies for neovim: unibilium, libtermkey, libuv, libvterm, luajit, luv, msgpack and tree-sitter
+==> Installing neovim dependency: unibilium
+==> Pouring unibilium--2.1.1.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/unibilium/2.1.1: 63 files, 307.7KB
+==> Installing neovim dependency: libtermkey
+==> Pouring libtermkey--0.22.arm64_ventura.bottle.1.tar.gz
+🍺  /opt/homebrew/Cellar/libtermkey/0.22: 33 files, 164.9KB
+==> Installing neovim dependency: libuv
+==> Pouring libuv--1.44.2.arm64_ventura.bottle.1.tar.gz
+🍺  /opt/homebrew/Cellar/libuv/1.44.2: 51 files, 3.5MB
+==> Installing neovim dependency: libvterm
+==> Pouring libvterm--0.3.1.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/libvterm/0.3.1: 12 files, 392.4KB
+==> Installing neovim dependency: luajit
+==> Pouring luajit--2.1.0-beta3-20230104.2.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/luajit/2.1.0-beta3-20230104.2: 55 files, 2.1MB
+==> Installing neovim dependency: luv
+==> Pouring luv--1.44.2-1.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/luv/1.44.2-1: 15 files, 809KB
+==> Installing neovim dependency: msgpack
+==> Pouring msgpack--5.0.0.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/msgpack/5.0.0: 35 files, 219.4KB
+==> Installing neovim dependency: tree-sitter
+==> Pouring tree-sitter--0.20.7.arm64_ventura.bottle.1.tar.gz
+🍺  /opt/homebrew/Cellar/tree-sitter/0.20.7: 18 files, 12.8MB
+==> Installing neovim
+==> Pouring neovim--0.8.3.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/neovim/0.8.3: 1,674 files, 25.0MB
+==> Running `brew cleanup neovim`...
+==> Running `brew cleanup ninja`...
+==> Pouring pkg-config--0.29.2_3.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/pkg-config/0.29.2_3: 11 files, 676.2KB
+==> Running `brew cleanup pkg-config`...
+==> Installing dependencies for pre-commit: libyaml, pyyaml, six and virtualenv
+==> Installing pre-commit dependency: libyaml
+==> Pouring libyaml--0.2.5.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/libyaml/0.2.5: 10 files, 351.3KB
+==> Installing pre-commit dependency: pyyaml
+==> Pouring pyyaml--6.0_1.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/pyyaml/6.0_1: 74 files, 1.5MB
+==> Installing pre-commit dependency: six
+==> Pouring six--1.16.0_3.all.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/six/1.16.0_3: 20 files, 122.4KB
+==> Installing pre-commit dependency: virtualenv
+==> Pouring virtualenv--20.17.1.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/virtualenv/20.17.1: 947 files, 20.4MB
+==> Installing pre-commit
+==> Pouring pre-commit--3.0.3.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/pre-commit/3.0.3: 886 files, 11.1MB
+==> Running `brew cleanup pre-commit`...
+==> Running `brew cleanup pygments`...
+==> Installing dependencies for python@3.10: gdbm
+==> Installing python@3.10 dependency: gdbm
+==> Pouring gdbm--1.23.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/gdbm/1.23: 24 files, 1MB
+==> Installing python@3.10
+==> Pouring python@3.10--3.10.9.arm64_ventura.bottle.tar.gz
+[34m==>[0m [1m/opt/homebrew/Cellar/python@3.10/3.10.9/bin/python3.10 -m ensurepip[0m
+[34m==>[0m [1m/opt/homebrew/Cellar/python@3.10/3.10.9/bin/python3.10 -m pip install -v --n[0m
+==> Caveats
+Python has been installed as
+  /opt/homebrew/bin/python3
+
+Unversioned symlinks `python`, `python-config`, `pip` etc. pointing to
+`python3`, `python3-config`, `pip3` etc., respectively, have been installed into
+  /opt/homebrew/opt/python@3.10/libexec/bin
+
+You can install Python packages with
+  pip3 install <package>
+They will install into the site-package directory
+  /opt/homebrew/lib/python3.10/site-packages
+
+tkinter is no longer included with this formula, but it is available separately:
+  brew install python-tk@3.10
+
+See: https://docs.brew.sh/Homebrew-and-Python
+==> Summary
+🍺  /opt/homebrew/Cellar/python@3.10/3.10.9: 3,110 files, 57.1MB
+==> Running `brew cleanup python@3.10`...
+==> Running `brew cleanup readline`...
+==> Pouring ruby--3.2.0.arm64_ventura.bottle.tar.gz
+==> Caveats
+By default, binaries installed by gem will be placed into:
+  /opt/homebrew/lib/ruby/gems/3.2.0/bin
+
+You may want to add this to your PATH.
+
+ruby is keg-only, which means it was not symlinked into /opt/homebrew,
+because macOS already provides this software and installing another version in
+parallel can cause all kinds of trouble.
+
+If you need to have ruby first in your PATH, run:
+  echo 'export PATH="/opt/homebrew/opt/ruby/bin:$PATH"' >> ~/.zshrc
+
+For compilers to find ruby you may need to set:
+  export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
+  export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
+
+For pkg-config to find ruby you may need to set:
+  export PKG_CONFIG_PATH="/opt/homebrew/opt/ruby/lib/pkgconfig"
+
+==> Summary
+🍺  /opt/homebrew/Cellar/ruby/3.2.0: 16,574 files, 46.8MB
+==> Running `brew cleanup ruby`...
+==> Pouring sloccount--2.26.arm64_ventura.bottle.1.tar.gz
+🍺  /opt/homebrew/Cellar/sloccount/2.26: 52 files, 639.7KB
+==> Running `brew cleanup sloccount`...
+==> Running `brew cleanup sqlite`...
+==> Pouring sshuttle--1.1.1.arm64_ventura.bottle.1.tar.gz
+🍺  /opt/homebrew/Cellar/sshuttle/1.1.1: 793 files, 10.6MB
+==> Running `brew cleanup sshuttle`...
+==> Pouring tree--2.1.0.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/tree/2.1.0: 8 files, 175.1KB
+==> Running `brew cleanup tree`...
+==> Installing dependencies for vim: lua, berkeley-db and perl
+==> Installing vim dependency: lua
+==> Pouring lua--5.4.4_1.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/lua/5.4.4_1: 29 files, 794.9KB
+==> Installing vim dependency: berkeley-db
+==> Pouring berkeley-db--18.1.40_1.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/berkeley-db/18.1.40_1: 44 files, 6MB
+==> Installing vim dependency: perl
+==> Pouring perl--5.36.0.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/perl/5.36.0: 2,490 files, 66.9MB
+==> Installing vim
+==> Pouring vim--9.0.1250.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/vim/9.0.1250: 2,137 files, 38.3MB
+==> Running `brew cleanup vim`...
+==> Installing dependencies for wget: libunistring, libidn2 and openssl@3
+==> Installing wget dependency: libunistring
+==> Pouring libunistring--1.1.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/libunistring/1.1: 56 files, 5.0MB
+==> Installing wget dependency: libidn2
+==> Pouring libidn2--2.3.4_1.arm64_ventura.bottle.1.tar.gz
+🍺  /opt/homebrew/Cellar/libidn2/2.3.4_1: 79 files, 1MB
+==> Installing wget dependency: openssl@3
+==> Pouring openssl@3--3.0.7.arm64_ventura.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/openssl@3/3.0.7: 6,454 files, 28.0MB
+==> Installing wget
+==> Pouring wget--1.21.3_1.arm64_ventura.bottle.1.tar.gz
+🍺  /opt/homebrew/Cellar/wget/1.21.3_1: 89 files, 4.2MB
+==> Running `brew cleanup wget`...
+==> Caveats
+==> black
+To restart black after an upgrade:
+  sudo brew services restart black
+Or, if you don't want/need a background service you can just run:
+  /opt/homebrew/opt/black/bin/blackd
+==> htop
+htop requires root privileges to correctly display all running processes,
+so you will need to run `sudo htop`.
+You should be certain that you trust any software you grant root privileges.
+==> skhd
+Copy the example configuration into your home directory:
+  cp /opt/homebrew/opt/skhd/share/skhd/examples/skhdrc ~/.skhdrc
+
+If the formula has been built with --with-logging, logs will be found in
+  /opt/homebrew/var/log/skhd/skhd.[out|err].log
+
+To start koekeishiya/formulae/skhd now and restart at login:
+  brew services start koekeishiya/formulae/skhd
+Or, if you don't want/need a background service you can just run:
+  skhd
+==> yabai
+Copy the example configuration into your home directory:
+  cp /opt/homebrew/opt/yabai/share/yabai/examples/yabairc ~/.yabairc
+  cp /opt/homebrew/opt/yabai/share/yabai/examples/skhdrc ~/.skhdrc
+
+Logs will be found in
+  /opt/homebrew/var/log/yabai/yabai.[out|err].log
+
+If you are using the scripting-addition; remember to update your sudoers file:
+  sudo visudo -f /private/etc/sudoers.d/yabai
+
+Build the configuration row by running:
+  echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa"
+
+README: https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#configure-scripting-addition
+
+To start koekeishiya/formulae/yabai now and restart at login:
+  brew services start koekeishiya/formulae/yabai
+Or, if you don't want/need a background service you can just run:
+  yabai
+==> meson
+zsh completions have been installed to:
+  /opt/homebrew/share/zsh/site-functions
+==> mutagen
+Mutagen has a daemon component that runs on a per-user basis. You'll need
+to invoke the following manually and/or add it to your shell
+initialization script:
+
+  mutagen daemon start
+
+This command is idempotent and can be run any number of times.
+
+Experimental support for automatically starting the daemon on macOS via
+launchd is also available. To register Mutagen as a per-user daemon with
+launchd, use:
+
+  mutagen daemon register
+
+This registration can be removed with:
+
+  mutagen daemon unregister
+
+In order to take advantage of automatic start-up, either log out and log
+back in or run:
+
+  mutagen daemon start
+
+This support is experimental, so please provide feedback if you run into
+any issues.
+
+Please note that the Mutagen daemon should be manually restarted after an
+update using:
+
+  mutagen daemon stop
+  mutagen daemon start
+
+zsh completions have been installed to:
+  /opt/homebrew/share/zsh/site-functions
+==> python@3.10
+Python has been installed as
+  /opt/homebrew/bin/python3
+
+Unversioned symlinks `python`, `python-config`, `pip` etc. pointing to
+`python3`, `python3-config`, `pip3` etc., respectively, have been installed into
+  /opt/homebrew/opt/python@3.10/libexec/bin
+
+You can install Python packages with
+  pip3 install <package>
+They will install into the site-package directory
+  /opt/homebrew/lib/python3.10/site-packages
+
+tkinter is no longer included with this formula, but it is available separately:
+  brew install python-tk@3.10
+
+See: https://docs.brew.sh/Homebrew-and-Python
+==> ruby
+By default, binaries installed by gem will be placed into:
+  /opt/homebrew/lib/ruby/gems/3.2.0/bin
+
+You may want to add this to your PATH.
+
+ruby is keg-only, which means it was not symlinked into /opt/homebrew,
+because macOS already provides this software and installing another version in
+parallel can cause all kinds of trouble.
+
+If you need to have ruby first in your PATH, run:
+  echo 'export PATH="/opt/homebrew/opt/ruby/bin:$PATH"' >> ~/.zshrc
+
+For compilers to find ruby you may need to set:
+  export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
+  export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
+
+For pkg-config to find ruby you may need to set:
+  export PKG_CONFIG_PATH="/opt/homebrew/opt/ruby/lib/pkgconfig"
+
+
+==> Tapping koekeishiya/formulae
+Cloning into '/opt/homebrew/Library/Taps/koekeishiya/homebrew-formulae'...
+Tapped 3 formulae (14 files, 66.6KB).
+==> Tapping mutagen-io/mutagen
+Cloning into '/opt/homebrew/Library/Taps/mutagen-io/homebrew-mutagen'...
+Tapped 12 formulae (26 files, 166.2KB).
 Warning: Treating doxygen as a formula. For the cask, use homebrew/cask/doxygen
-Warning: bash 5.2.15 is already installed and up-to-date.
-To reinstall 5.2.15, run:
-  brew reinstall bash
-Warning: black 23.1.0 is already installed and up-to-date.
-To reinstall 23.1.0, run:
-  brew reinstall black
-Warning: clang-format 15.0.7 is already installed and up-to-date.
-To reinstall 15.0.7, run:
-  brew reinstall clang-format
-Warning: docutils 0.19 is already installed and up-to-date.
-To reinstall 0.19, run:
-  brew reinstall docutils
-Warning: doxygen 1.9.6 is already installed and up-to-date.
-To reinstall 1.9.6, run:
-  brew reinstall doxygen
-Warning: gcovr 5.2 is already installed and up-to-date.
-To reinstall 5.2, run:
-  brew reinstall gcovr
 Warning: git 2.39.1 is already installed and up-to-date.
 To reinstall 2.39.1, run:
   brew reinstall git
-Warning: git-gui 2.39.1 is already installed and up-to-date.
-To reinstall 2.39.1, run:
-  brew reinstall git-gui
-Warning: graphviz 7.1.0 is already installed and up-to-date.
-To reinstall 7.1.0, run:
-  brew reinstall graphviz
-Warning: htop 3.2.1 is already installed and up-to-date.
-To reinstall 3.2.1, run:
-  brew reinstall htop
-Warning: ipython 8.9.0 is already installed and up-to-date.
-To reinstall 8.9.0, run:
-  brew reinstall ipython
-Warning: isort 5.12.0 is already installed and up-to-date.
-To reinstall 5.12.0, run:
-  brew reinstall isort
-Warning: meson 1.0.0 is already installed and up-to-date.
-To reinstall 1.0.0, run:
-  brew reinstall meson
-Warning: moreutils 0.67 is already installed and up-to-date.
-To reinstall 0.67, run:
-  brew reinstall moreutils
-Warning: mutagen-io/mutagen/mutagen 0.16.4 is already installed and up-to-date.
-To reinstall 0.16.4, run:
-  brew reinstall mutagen
-Warning: mypy 0.991 is already installed and up-to-date.
-To reinstall 0.991, run:
-  brew reinstall mypy
-Warning: ncurses 6.4 is already installed and up-to-date.
-To reinstall 6.4, run:
-  brew reinstall ncurses
-Warning: neovim 0.8.3 is already installed and up-to-date.
-To reinstall 0.8.3, run:
-  brew reinstall neovim
-Warning: ninja 1.11.1 is already installed and up-to-date.
-To reinstall 1.11.1, run:
-  brew reinstall ninja
-Warning: pkg-config 0.29.2_3 is already installed and up-to-date.
-To reinstall 0.29.2_3, run:
-  brew reinstall pkg-config
-Warning: pre-commit 3.0.3 is already installed and up-to-date.
-To reinstall 3.0.3, run:
-  brew reinstall pre-commit
-Warning: pygments 2.14.0 is already installed and up-to-date.
-To reinstall 2.14.0, run:
-  brew reinstall pygments
-Warning: python@3.10 3.10.9 is already installed and up-to-date.
-To reinstall 3.10.9, run:
-  brew reinstall python@3.10
-Warning: readline 8.2.1 is already installed and up-to-date.
-To reinstall 8.2.1, run:
-  brew reinstall readline
-Warning: ruby 3.2.0 is already installed and up-to-date.
-To reinstall 3.2.0, run:
-  brew reinstall ruby
-Warning: koekeishiya/formulae/skhd 0.3.5 is already installed and up-to-date.
-To reinstall 0.3.5, run:
-  brew reinstall skhd
-Warning: sloccount 2.26 is already installed and up-to-date.
-To reinstall 2.26, run:
-  brew reinstall sloccount
-Warning: sqlite 3.40.1 is already installed and up-to-date.
-To reinstall 3.40.1, run:
-  brew reinstall sqlite
-Warning: sshuttle 1.1.1 is already installed and up-to-date.
-To reinstall 1.1.1, run:
-  brew reinstall sshuttle
-Warning: tree 2.1.0 is already installed and up-to-date.
-To reinstall 2.1.0, run:
-  brew reinstall tree
-Warning: vim 9.0.1250 is already installed and up-to-date.
-To reinstall 9.0.1250, run:
-  brew reinstall vim
-Warning: koekeishiya/formulae/yabai 5.0.2 is already installed and up-to-date.
-To reinstall 5.0.2, run:
-  brew reinstall yabai
