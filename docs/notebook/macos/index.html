@@ -79,18 +79,87 @@
     
   <section id="macos">
 <h1>MacOS<a class="headerlink" href="#macos" title="Permalink to this headline">¶</a></h1>
+<p>These are a couple of notes on how I like to use a Mac with macOS on it, and
+why I bother.</p>
 <p>Those Apple Silicon based Macs are pretty awesome, especially in terms of
 power-efficiency / battery-life. Additionally, macOS has excellent support for
-a bunch of non-free software, specifically the office-suite. These are the two
-main reasons for me to use a mac.</p>
-<p>As far as a proprietary systems goes, then macOS can be comfortable, it comes
-with <code class="docutils literal notranslate"><span class="pre">vim</span></code> and a decent <code class="docutils literal notranslate"><span class="pre">Terminal.app</span></code>. However, just remember that if you
-want to change anything kernel-wise, then you are stuck. And when you go down
-the route of disabling system protection, then macOS quickly becomes unstable
-and <strong>very</strong> annoying.</p>
+free as well as non-free software, specifically the office-suite. These are the
+two main reasons for me to use macOS on a Mac.</p>
+<p>As far as a proprietary systems goes, then macOS can be comfortable, it get you
+started with <code class="docutils literal notranslate"><span class="pre">vim</span></code> and a decent <code class="docutils literal notranslate"><span class="pre">Terminal.app</span></code>. However, just remember that
+if you want to change anything kernel-wise, then you are stuck. And when you go
+down the route of disabling system protection, then macOS quickly becomes
+unstable and <strong>very</strong> annoying.</p>
 <p>So, sticking within the provided system sandbox seems like the best use of a
-mac, for me atleast. Allowing myself the use of things like Yabai, to spend
+mac, for me atleast. Allowing myself the use of things like <strong>Yabai</strong>, to spend
 less time moving and resizing windwows.</p>
+<section id="settings">
+<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
+<p>The stuff below are settings in the macOS Ventura System Settings:</p>
+<ul class="simple">
+<li><p>Appearance</p>
+<ul>
+<li><p>Appearance: Dark</p></li>
+<li><p>Sidebar icon size: Large</p></li>
+</ul>
+</li>
+<li><p>Desktop &amp; Dock</p>
+<ul>
+<li><p>Position on Screen: Left</p></li>
+</ul>
+</li>
+<li><p>Keyboard</p>
+<ul>
+<li><p>Keyboard Shortcuts -&gt; Modifier Keys</p>
+<ul>
+<li><p>Select keyboard: Apple Internal Keyboard / Trackpad</p></li>
+<li><p>Caps Lock key: Control</p></li>
+</ul>
+</li>
+<li><p>Keyboard Shortcuts -&gt; Modifier Keys</p>
+<ul>
+<li><p>Select keyboard: USB Keyboard</p></li>
+<li><p>Caps Lock key: Control</p></li>
+<li><p>Option key: Command</p></li>
+<li><p>Command key: Option</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Trackpad</p>
+<ul>
+<li><p>Scroll &amp; Zoom -&gt; Natural scrolling: off</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="tweaks">
+<h2>Tweaks<a class="headerlink" href="#tweaks" title="Permalink to this headline">¶</a></h2>
+<p>The <strong>tweaks</strong> are things which I haven’t found a convenient way to configure
+via <code class="docutils literal notranslate"><span class="pre">Settings.app</span></code>. Howevever, they are still within the functionality of the
+macOS sandbox.</p>
+<section id="home-end">
+<h3>Home/End<a class="headerlink" href="#home-end" title="Permalink to this headline">¶</a></h3>
+<p>When hitting the physcial Home/End keys on a keyboard, which actually have
+those keys, then it moves the text-cursor to the begginning / end of the line.
+Additionally, then shift/move selects text.</p>
+<p>Create the file <code class="docutils literal notranslate"><span class="pre">~/Library/KeyBindings/DefaultKeyBinding.dict</span></code>, with the content:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">{</span>
+<span class="w">  </span><span class="s2">&quot;\UF729&quot;</span><span class="w">  </span><span class="o">=</span><span class="w"> </span>moveToBeginningOfParagraph:<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>home
+<span class="w">  </span><span class="s2">&quot;\UF72B&quot;</span><span class="w">  </span><span class="o">=</span><span class="w"> </span>moveToEndOfParagraph:<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>end
+<span class="w">  </span><span class="s2">&quot;</span>$<span class="s2">\UF729&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>moveToBeginningOfParagraphAndModifySelection:<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>shift-home
+<span class="w">  </span><span class="s2">&quot;</span>$<span class="s2">\UF72B&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>moveToEndOfParagraphAndModifySelection:<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>shift-end
+<span class="w">  </span><span class="s2">&quot;^\UF729&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>moveToBeginningOfDocument:<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>ctrl-home
+<span class="w">  </span><span class="s2">&quot;^\UF72B&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>moveToEndOfDocument:<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>ctrl-end
+<span class="w">  </span><span class="s2">&quot;^</span>$<span class="s2">\UF729&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>moveToBeginningOfDocumentAndModifySelection:<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>ctrl-shift-home
+<span class="w">  </span><span class="s2">&quot;^</span>$<span class="s2">\UF72B&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>moveToEndOfDocumentAndModifySelection:<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>ctrl-shift-end
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Unfortunately, then this does not work for everything… however… better than
+nothing.</p>
+</section>
+</section>
 <section id="brew">
 <h2>Brew<a class="headerlink" href="#brew" title="Permalink to this headline">¶</a></h2>
 <p>Apple provides an App store, however, it requires logging in with an
@@ -204,9 +273,42 @@ evolutionary step to the greatest text-editor ever.</p>
 </pre></div>
 </div>
 </section>
+<section id="iterm2">
+<h2>iTerm2<a class="headerlink" href="#iterm2" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Terminal.app</span></code> is great, however for use with <code class="docutils literal notranslate"><span class="pre">lvim</span></code>, then better
+color-support is needed. Also, <code class="docutils literal notranslate"><span class="pre">iTerm2.app</span></code> has been the “category-killer”
+for Terminal applications on macOS for 10+ years. Thus, when looking to
+customize/configuring something, then there is more hits on <code class="docutils literal notranslate"><span class="pre">iTerm2.app</span></code> over
+<code class="docutils literal notranslate"><span class="pre">Terminal.app</span></code> simply due to its popularity.</p>
+<ul class="simple">
+<li><p>iTerm2 -&gt; Settings -&gt; Appearance</p>
+<ul>
+<li><p>General -&gt; Theme: Compact</p></li>
+</ul>
+</li>
+<li><p>iTerm2 -&gt; Settings -&gt; Profiles -&gt; Profile Name: Default</p>
+<ul>
+<li><p>General -&gt; Working Directory: Reuse preivous session’s directory</p></li>
+<li><p>Colors -&gt; Color Presets: Solarized Dark</p></li>
+<li><p>Colors -&gt; Font: DejaVuSansMono Nerd Font 18</p></li>
+</ul>
+</li>
+</ul>
+</section>
 <section id="window-manager">
 <h2>Window Manager<a class="headerlink" href="#window-manager" title="Permalink to this headline">¶</a></h2>
-<p>Edit the Yabai configuration <code class="docutils literal notranslate"><span class="pre">vim</span> <span class="pre">~/.yabairc</span></code>:</p>
+<p><strong>Yabai</strong> is a tiling window manager, other alternatives include Amethyst, and the
+very simple <code class="docutils literal notranslate"><span class="pre">Rectangle.app</span></code>. I tried out <code class="docutils literal notranslate"><span class="pre">Rectangle.app</span></code> but got frustrated
+as it allows be to position windows, however, it does not automatically manage
+their position as a tiling window manager does. When coming from e.g. i3 on
+Linux, then it is worth noting that macOS was not built for this, also, it is
+very easy to disable window-management for things like <code class="docutils literal notranslate"><span class="pre">Calculator.app</span></code> and
+<code class="docutils literal notranslate"><span class="pre">System</span> <span class="pre">Settings.app</span></code>.</p>
+<p>Thus, if <code class="docutils literal notranslate"><span class="pre">yabai</span></code> is getting in the way, then disable it for certain
+applications. Also, it can be completely switched off easily withouth bring
+down everything. Thus, it is relatively “safe” to use what it provides, and opt
+out when it fails you.</p>
+<p>Edit the <strong>Yabai</strong> configuration <code class="docutils literal notranslate"><span class="pre">vim</span> <span class="pre">~/.yabairc</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env sh</span>
 
 <span class="c1">#</span>
@@ -261,96 +363,30 @@ yabai<span class="w"> </span>-m<span class="w"> </span>config<span class="w">   
 <span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;yabai configuration loaded..&quot;</span>
 </pre></div>
 </div>
-<p>Edit short-cuts for Yabai by using skhd <code class="docutils literal notranslate"><span class="pre">vim</span>&#160; <span class="pre">~/.skhdrc</span></code>:</p>
+<p>Edit shortcuts for <strong>Yabai</strong> by using skhd <code class="docutils literal notranslate"><span class="pre">vim</span>&#160; <span class="pre">~/.skhdrc</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>alt<span class="w"> </span>-<span class="w"> </span>left<span class="w"> </span>:<span class="w"> </span>yabai<span class="w"> </span>-m<span class="w"> </span>window<span class="w"> </span>--focus<span class="w"> </span>west
 alt<span class="w"> </span>-<span class="w"> </span>down<span class="w"> </span>:<span class="w"> </span>yabai<span class="w"> </span>-m<span class="w"> </span>window<span class="w"> </span>--focus<span class="w"> </span>south
 alt<span class="w"> </span>-<span class="w"> </span>up<span class="w"> </span>:<span class="w"> </span>yabai<span class="w"> </span>-m<span class="w"> </span>window<span class="w"> </span>--focus<span class="w"> </span>north
 alt<span class="w"> </span>-<span class="w"> </span>right<span class="w"> </span>:<span class="w"> </span>yabai<span class="w"> </span>-m<span class="w"> </span>window<span class="w"> </span>--focus<span class="w"> </span>east
 </pre></div>
 </div>
-<p>Yabai is controlled via brew-services:</p>
+<p><strong>Yabai</strong> is controlled via brew-services:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">services</span> <span class="n">start</span> <span class="n">yabai</span>
 </pre></div>
 </div>
-</section>
-<section id="iterm2">
-<h2>iTerm2<a class="headerlink" href="#iterm2" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Appearance -&gt; General -&gt; Theme: Compact</p></li>
-<li><p>Profiles -&gt; Colors -&gt; Color Presets: Solarized Dark</p></li>
-<li><p>Profiles -&gt; Colors -&gt; Font: DejaVuSansMono Nerd Font 18</p></li>
-</ul>
 </section>
 <section id="cdrtools">
 <h2>cdrtools<a class="headerlink" href="#cdrtools" title="Permalink to this headline">¶</a></h2>
 <p>Using cloud-init tools… images… recall which tool was used here.</p>
 </section>
-<section id="macos-settings">
-<h2>macOS Settings<a class="headerlink" href="#macos-settings" title="Permalink to this headline">¶</a></h2>
-<p>The stuff below are settings in the macOS Ventura System Settings:</p>
-<ul class="simple">
-<li><p>Appearance</p>
-<ul>
-<li><p>Appearance: Dark</p></li>
-<li><p>Sidebar icon size: Large</p></li>
-</ul>
-</li>
-<li><p>Desktop &amp; Dock</p>
-<ul>
-<li><p>Position on Screen: Left</p></li>
-</ul>
-</li>
-<li><p>Keyboard</p>
-<ul>
-<li><p>Keyboard Shortcuts -&gt; Modifier Keys</p>
-<ul>
-<li><p>Select keyboard: Apple Internal Keyboard / Trackpad</p></li>
-<li><p>Caps Lock key: Control</p></li>
-</ul>
-</li>
-<li><p>Keyboard Shortcuts -&gt; Modifier Keys</p>
-<ul>
-<li><p>Select keyboard: USB Keyboard</p></li>
-<li><p>Caps Lock key: Control</p></li>
-<li><p>Option key: Command</p></li>
-<li><p>Command key: Option</p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Trackpad</p>
-<ul>
-<li><p>Scroll &amp; Zoom -&gt; Natural scrolling: off</p></li>
-</ul>
-</li>
-</ul>
-</section>
-<section id="macos-tweaks">
-<h2>macOS Tweaks<a class="headerlink" href="#macos-tweaks" title="Permalink to this headline">¶</a></h2>
-<p>The <strong>tweaks</strong> are things which I haven’t found a convenient way to configure
-via <code class="docutils literal notranslate"><span class="pre">Settings.app</span></code>. Howevever, they are still within the functionality of the
-macOS sandbox.</p>
-<section id="home-end">
-<h3>Home/End<a class="headerlink" href="#home-end" title="Permalink to this headline">¶</a></h3>
-<p>When hitting the physcial Home/End keys on a keyboard, which actually have
-those keys, then it moves the text-cursor to the begginning / end of the line.
-Additionally, then shift/move selects text.</p>
-<p>Create the file <code class="docutils literal notranslate"><span class="pre">~/Library/KeyBindings/DefaultKeyBinding.dict</span></code>, with the content:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">{</span>
-<span class="w">  </span><span class="s2">&quot;\UF729&quot;</span><span class="w">  </span><span class="o">=</span><span class="w"> </span>moveToBeginningOfParagraph:<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>home
-<span class="w">  </span><span class="s2">&quot;\UF72B&quot;</span><span class="w">  </span><span class="o">=</span><span class="w"> </span>moveToEndOfParagraph:<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>end
-<span class="w">  </span><span class="s2">&quot;</span>$<span class="s2">\UF729&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>moveToBeginningOfParagraphAndModifySelection:<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>shift-home
-<span class="w">  </span><span class="s2">&quot;</span>$<span class="s2">\UF72B&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>moveToEndOfParagraphAndModifySelection:<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>shift-end
-<span class="w">  </span><span class="s2">&quot;^\UF729&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>moveToBeginningOfDocument:<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>ctrl-home
-<span class="w">  </span><span class="s2">&quot;^\UF72B&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>moveToEndOfDocument:<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>ctrl-end
-<span class="w">  </span><span class="s2">&quot;^</span>$<span class="s2">\UF729&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>moveToBeginningOfDocumentAndModifySelection:<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>ctrl-shift-home
-<span class="w">  </span><span class="s2">&quot;^</span>$<span class="s2">\UF72B&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>moveToEndOfDocumentAndModifySelection:<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>ctrl-shift-end
-<span class="o">}</span>
-</pre></div>
-</div>
-<p>Unfortunately, then this does not work for everything… however… better than
-nothing.</p>
-</section>
+<section id="microsoft-office">
+<h2>Microsoft Office<a class="headerlink" href="#microsoft-office" title="Permalink to this headline">¶</a></h2>
+<p>This thing just works, with OneDrive sync and everything with your Microsoft
+Account. One note, regarding the use of Outlook and Exchange, To utilize this,
+then first log into Word/Excel/OneDrive, because then the office-suite knows
+that it is <strong>licenced</strong>.</p>
+<p>Then you can open Outlook, and in “Help”, there is an option “Revert to
+Legacy”. With this version Exchange is functional.</p>
 </section>
 </section>
 
@@ -362,18 +398,19 @@ nothing.</p>
       <h3>Here</h3>
       <ul>
 <li><a class="reference internal" href="#">MacOS</a><ul>
+<li><a class="reference internal" href="#settings">Settings</a></li>
+<li><a class="reference internal" href="#tweaks">Tweaks</a><ul>
+<li><a class="reference internal" href="#home-end">Home/End</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#brew">Brew</a></li>
 <li><a class="reference internal" href="#python">Python</a></li>
 <li><a class="reference internal" href="#rust">Rust</a></li>
 <li><a class="reference internal" href="#lunarvim">LunarVim</a></li>
-<li><a class="reference internal" href="#window-manager">Window Manager</a></li>
 <li><a class="reference internal" href="#iterm2">iTerm2</a></li>
+<li><a class="reference internal" href="#window-manager">Window Manager</a></li>
 <li><a class="reference internal" href="#cdrtools">cdrtools</a></li>
-<li><a class="reference internal" href="#macos-settings">macOS Settings</a></li>
-<li><a class="reference internal" href="#macos-tweaks">macOS Tweaks</a><ul>
-<li><a class="reference internal" href="#home-end">Home/End</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#microsoft-office">Microsoft Office</a></li>
 </ul>
 </li>
 </ul>
