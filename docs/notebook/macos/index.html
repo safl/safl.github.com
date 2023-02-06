@@ -79,20 +79,31 @@
     
   <section id="macos">
 <h1>MacOS<a class="headerlink" href="#macos" title="Permalink to this headline">¶</a></h1>
-<p>…</p>
-<section id="software">
-<h2>Software<a class="headerlink" href="#software" title="Permalink to this headline">¶</a></h2>
+<p>Those Apple Silicon based Macs are pretty awesome, especially in terms of
+power-efficiency / battery-life. Additionally, macOS has excellent support for
+a bunch of non-free software, specifically the office-suite. These are the two
+main reasons for me to use a mac.</p>
+<p>As far as a proprietary systems goes, then macOS can be comfortable, it comes
+with <code class="docutils literal notranslate"><span class="pre">vim</span></code> and a decent <code class="docutils literal notranslate"><span class="pre">Terminal.app</span></code>. However, just remember that if you
+want to change anything kernel-wise, then you are stuck. And when you go down
+the route of disabling system protection, then macOS quickly becomes unstable
+and <strong>very</strong> annoying.</p>
+<p>So, sticking within the provided system sandbox seems like the best use of a
+mac, for me atleast. Allowing myself the use of things like Yabai, to spend
+less time moving and resizing windwows.</p>
+<section id="brew">
+<h2>Brew<a class="headerlink" href="#brew" title="Permalink to this headline">¶</a></h2>
 <p>Apple provides an App store, however, it requires logging in with an
-Apple-account. That is not really something I like… so instead I go with the
-Brew package manager. In addition to providing packages, then it also have a
-service-controller.</p>
+Apple-account. Plus, it is a graphical application, I much prefer a
+software/package manager in the <code class="docutils literal notranslate"><span class="pre">SHELL</span></code>.
+Thus, I go with the Brew package manager. In addition to providing packages,
+then it also provides a service-controller. So, when installing a <strong>daemon</strong>,
+then you can start/stop it via <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">services</span></code>.</p>
 <p>There are alternatives, such as macports, similar to the FreeBSD ports
 collection. However, brew also contains non-free software, which is why I am
 using MacOS to begin with: better support for non-free software.</p>
 <p>The neat thing about brew is that everything I need can be installed using it,
 with the exception of Rust, which should be installed via <code class="docutils literal notranslate"><span class="pre">rustup</span></code>.</p>
-<section id="brew">
-<h3>Brew<a class="headerlink" href="#brew" title="Permalink to this headline">¶</a></h3>
 <p>Install brew:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="k">)</span><span class="s2">&quot;</span>
 </pre></div>
@@ -166,10 +177,14 @@ eval &quot;$(/opt/homebrew/bin/brew shellenv)&quot;
 </pre></div>
 </div>
 </section>
-</section>
-<section id="cdrtools">
-<h2>cdrtools<a class="headerlink" href="#cdrtools" title="Permalink to this headline">¶</a></h2>
-<p>Using cloud-init tools… images… recall which tool was used here.</p>
+<section id="python">
+<h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
+<p>A recent Python interpreter comes with macOS, thus no need to grab a newer one
+via Brew, thus, just setup you shell to expand <code class="docutils literal notranslate"><span class="pre">PATH</span></code> with the executables
+provided via Python packages:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export PATH=\&quot;</span><span class="nv">$PATH</span><span class="s2">:</span><span class="k">$(</span>python3<span class="w"> </span>-m<span class="w"> </span>site<span class="w"> </span>--user-base<span class="k">)</span><span class="s2">/bin\&quot;&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.zprofile
+</pre></div>
+</div>
 </section>
 <section id="rust">
 <h2>Rust<a class="headerlink" href="#rust" title="Permalink to this headline">¶</a></h2>
@@ -178,22 +193,101 @@ eval &quot;$(/opt/homebrew/bin/brew shellenv)&quot;
 </pre></div>
 </div>
 <p>setting <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.</p>
-<section id="python">
-<h3>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h3>
-<p>A recent Python interpreter comes with macOS, thus no need to graba newer one
-via Brew, thus, just setup you shell to expand <code class="docutils literal notranslate"><span class="pre">PATH</span></code> with the executables
-provided via Python packages:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export PATH=\&quot;</span><span class="nv">$PATH</span><span class="s2">:</span><span class="k">$(</span>python3<span class="w"> </span>-m<span class="w"> </span>site<span class="w"> </span>--user-base<span class="k">)</span><span class="s2">/bin\&quot;&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.zprofile
+</section>
+<section id="lunarvim">
+<h2>LunarVim<a class="headerlink" href="#lunarvim" title="Permalink to this headline">¶</a></h2>
+<p>macOS comes with vim, which is pretty great! However, much like <code class="docutils literal notranslate"><span class="pre">vim</span></code> was an
+improvement over <code class="docutils literal notranslate"><span class="pre">vi</span></code>, then the extended <code class="docutils literal notranslate"><span class="pre">neovim</span></code> is a potential
+evolutionary step to the greatest text-editor ever.</p>
+<p>Projects such as LunarVim, turns <code class="docutils literal notranslate"><span class="pre">neovim</span></code> into an IDE.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">LV_BRANCH</span><span class="o">=</span><span class="s1">&#39;release-1.2/neovim-0.8&#39;</span><span class="w"> </span>bash<span class="w"> </span>&lt;<span class="o">(</span>curl<span class="w"> </span>-s<span class="w"> </span>https://raw.githubusercontent.com/lunarvim/lunarvim/fc6873809934917b470bff1b072171879899a36b/utils/installer/install.sh<span class="o">)</span>
 </pre></div>
 </div>
 </section>
-<section id="via-pip">
-<h3>via pip<a class="headerlink" href="#via-pip" title="Permalink to this headline">¶</a></h3>
-<p>The PYthon Package Index (pypi) has a bunch tools implemented in Python, are reaidly installable via <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">instal</span> <span class="pre">...</span></code>.</p>
+<section id="window-manager">
+<h2>Window Manager<a class="headerlink" href="#window-manager" title="Permalink to this headline">¶</a></h2>
+<p>Edit the Yabai configuration <code class="docutils literal notranslate"><span class="pre">vim</span> <span class="pre">~/.yabairc</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env sh</span>
+
+<span class="c1">#</span>
+<span class="c1"># for this to work you must configure sudo such that</span>
+<span class="c1"># it will be able to run the command without password</span>
+<span class="c1">#</span>
+<span class="c1"># see this wiki page for information:</span>
+<span class="c1">#  - https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#configure-scripting-addition</span>
+<span class="c1">#</span>
+<span class="c1"># yabai -m signal --add event=dock_did_restart action=&quot;sudo yabai --load-sa&quot;</span>
+<span class="c1"># sudo yabai --load-sa</span>
+<span class="c1">#</span>
+
+yabai<span class="w"> </span>-m<span class="w"> </span>rule<span class="w"> </span>--add<span class="w"> </span><span class="nv">app</span><span class="o">=</span><span class="s2">&quot;^Discord</span>$<span class="s2">&quot;</span><span class="w"> </span><span class="nv">grid</span><span class="o">=</span><span class="m">1</span>:1:0:0:1:1<span class="w"> </span><span class="nv">manage</span><span class="o">=</span>off
+yabai<span class="w"> </span>-m<span class="w"> </span>rule<span class="w"> </span>--add<span class="w"> </span><span class="nv">app</span><span class="o">=</span><span class="s2">&quot;^(Calculator|System Settings|System Preferences|Archive Utility)</span>$<span class="s2">&quot;</span><span class="w"> </span><span class="nv">manage</span><span class="o">=</span>off
+
+<span class="c1"># global settings</span>
+yabai<span class="w"> </span>-m<span class="w"> </span>config<span class="w">                                 </span><span class="se">\</span>
+<span class="w">    </span>mouse_follows_focus<span class="w">          </span>off<span class="w">            </span><span class="se">\</span>
+<span class="w">    </span>focus_follows_mouse<span class="w">          </span>off<span class="w">            </span><span class="se">\</span>
+<span class="w">    </span>window_origin_display<span class="w">        </span>default<span class="w">        </span><span class="se">\</span>
+<span class="w">    </span>window_placement<span class="w">             </span>second_child<span class="w">   </span><span class="se">\</span>
+<span class="w">    </span>window_topmost<span class="w">               </span>off<span class="w">            </span><span class="se">\</span>
+<span class="w">    </span>window_shadow<span class="w">                </span>on<span class="w">             </span><span class="se">\</span>
+<span class="w">    </span>window_animation_duration<span class="w">    </span><span class="m">0</span>.0<span class="w">            </span><span class="se">\</span>
+<span class="w">    </span>window_opacity_duration<span class="w">      </span><span class="m">0</span>.0<span class="w">            </span><span class="se">\</span>
+<span class="w">    </span>active_window_opacity<span class="w">        </span><span class="m">1</span>.0<span class="w">            </span><span class="se">\</span>
+<span class="w">    </span>normal_window_opacity<span class="w">        </span><span class="m">0</span>.90<span class="w">           </span><span class="se">\</span>
+<span class="w">    </span>window_opacity<span class="w">               </span>off<span class="w">            </span><span class="se">\</span>
+<span class="w">    </span>insert_feedback_color<span class="w">        </span>0xffd75f5f<span class="w">     </span><span class="se">\</span>
+<span class="w">    </span>active_window_border_color<span class="w">   </span>0xff775759<span class="w">     </span><span class="se">\</span>
+<span class="w">    </span>normal_window_border_color<span class="w">   </span>0xff555555<span class="w">     </span><span class="se">\</span>
+<span class="w">    </span>window_border_width<span class="w">          </span><span class="m">4</span><span class="w">              </span><span class="se">\</span>
+<span class="w">    </span>window_border_radius<span class="w">         </span><span class="m">12</span><span class="w">             </span><span class="se">\</span>
+<span class="w">    </span>window_border_blur<span class="w">           </span>off<span class="w">            </span><span class="se">\</span>
+<span class="w">    </span>window_border_hidpi<span class="w">          </span>on<span class="w">             </span><span class="se">\</span>
+<span class="w">    </span>window_border<span class="w">                </span>off<span class="w">            </span><span class="se">\</span>
+<span class="w">    </span>split_ratio<span class="w">                  </span><span class="m">0</span>.50<span class="w">           </span><span class="se">\</span>
+<span class="w">    </span>split_type<span class="w">                   </span>auto<span class="w">           </span><span class="se">\</span>
+<span class="w">    </span>auto_balance<span class="w">                 </span>off<span class="w">            </span><span class="se">\</span>
+<span class="w">    </span>top_padding<span class="w">                  </span><span class="m">12</span><span class="w">             </span><span class="se">\</span>
+<span class="w">    </span>bottom_padding<span class="w">               </span><span class="m">12</span><span class="w">             </span><span class="se">\</span>
+<span class="w">    </span>left_padding<span class="w">                 </span><span class="m">12</span><span class="w">             </span><span class="se">\</span>
+<span class="w">    </span>right_padding<span class="w">                </span><span class="m">12</span><span class="w">             </span><span class="se">\</span>
+<span class="w">    </span>window_gap<span class="w">                   </span><span class="m">06</span><span class="w">             </span><span class="se">\</span>
+<span class="w">    </span>layout<span class="w">                       </span>bsp<span class="w">            </span><span class="se">\</span>
+<span class="w">    </span>mouse_modifier<span class="w">               </span>fn<span class="w">             </span><span class="se">\</span>
+<span class="w">    </span>mouse_action1<span class="w">                </span>move<span class="w">           </span><span class="se">\</span>
+<span class="w">    </span>mouse_action2<span class="w">                </span>resize<span class="w">         </span><span class="se">\</span>
+<span class="w">    </span>mouse_drop_action<span class="w">            </span>swap
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;yabai configuration loaded..&quot;</span>
+</pre></div>
+</div>
+<p>Edit short-cuts for Yabai by using skhd <code class="docutils literal notranslate"><span class="pre">vim</span>&#160; <span class="pre">~/.skhdrc</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>alt<span class="w"> </span>-<span class="w"> </span>left<span class="w"> </span>:<span class="w"> </span>yabai<span class="w"> </span>-m<span class="w"> </span>window<span class="w"> </span>--focus<span class="w"> </span>west
+alt<span class="w"> </span>-<span class="w"> </span>down<span class="w"> </span>:<span class="w"> </span>yabai<span class="w"> </span>-m<span class="w"> </span>window<span class="w"> </span>--focus<span class="w"> </span>south
+alt<span class="w"> </span>-<span class="w"> </span>up<span class="w"> </span>:<span class="w"> </span>yabai<span class="w"> </span>-m<span class="w"> </span>window<span class="w"> </span>--focus<span class="w"> </span>north
+alt<span class="w"> </span>-<span class="w"> </span>right<span class="w"> </span>:<span class="w"> </span>yabai<span class="w"> </span>-m<span class="w"> </span>window<span class="w"> </span>--focus<span class="w"> </span>east
+</pre></div>
+</div>
+<p>Yabai is controlled via brew-services:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">services</span> <span class="n">start</span> <span class="n">yabai</span>
+</pre></div>
+</div>
 </section>
+<section id="iterm2">
+<h2>iTerm2<a class="headerlink" href="#iterm2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Appearance -&gt; General -&gt; Theme: Compact</p></li>
+<li><p>Profiles -&gt; Colors -&gt; Color Presets: Solarized Dark</p></li>
+<li><p>Profiles -&gt; Colors -&gt; Font: DejaVuSansMono Nerd Font 18</p></li>
+</ul>
+</section>
+<section id="cdrtools">
+<h2>cdrtools<a class="headerlink" href="#cdrtools" title="Permalink to this headline">¶</a></h2>
+<p>Using cloud-init tools… images… recall which tool was used here.</p>
 </section>
 <section id="macos-settings">
 <h2>macOS Settings<a class="headerlink" href="#macos-settings" title="Permalink to this headline">¶</a></h2>
+<p>The stuff below are settings in the macOS Ventura System Settings:</p>
 <ul class="simple">
 <li><p>Appearance</p>
 <ul>
@@ -206,20 +300,41 @@ provided via Python packages:</p>
 <li><p>Position on Screen: Left</p></li>
 </ul>
 </li>
+<li><p>Keyboard</p>
+<ul>
+<li><p>Keyboard Shortcuts -&gt; Modifier Keys</p>
+<ul>
+<li><p>Select keyboard: Apple Internal Keyboard / Trackpad</p></li>
+<li><p>Caps Lock key: Control</p></li>
 </ul>
-<p>Remove icons from taskbar</p>
-<ul class="simple">
-<li><p>Keyboard
-* Modifier Keys -&gt; Caps Lock key: Control</p></li>
-<li><p>Trackpad
-* Scroll &amp; Zoom -&gt; Natural scrolling: off</p></li>
+</li>
+<li><p>Keyboard Shortcuts -&gt; Modifier Keys</p>
+<ul>
+<li><p>Select keyboard: USB Keyboard</p></li>
+<li><p>Caps Lock key: Control</p></li>
+<li><p>Option key: Command</p></li>
+<li><p>Command key: Option</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Trackpad</p>
+<ul>
+<li><p>Scroll &amp; Zoom -&gt; Natural scrolling: off</p></li>
+</ul>
+</li>
 </ul>
 </section>
 <section id="macos-tweaks">
 <h2>macOS Tweaks<a class="headerlink" href="#macos-tweaks" title="Permalink to this headline">¶</a></h2>
-<p>…</p>
+<p>The <strong>tweaks</strong> are things which I haven’t found a convenient way to configure
+via <code class="docutils literal notranslate"><span class="pre">Settings.app</span></code>. Howevever, they are still within the functionality of the
+macOS sandbox.</p>
 <section id="home-end">
 <h3>Home/End<a class="headerlink" href="#home-end" title="Permalink to this headline">¶</a></h3>
+<p>When hitting the physcial Home/End keys on a keyboard, which actually have
+those keys, then it moves the text-cursor to the begginning / end of the line.
+Additionally, then shift/move selects text.</p>
 <p>Create the file <code class="docutils literal notranslate"><span class="pre">~/Library/KeyBindings/DefaultKeyBinding.dict</span></code>, with the content:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">{</span>
 <span class="w">  </span><span class="s2">&quot;\UF729&quot;</span><span class="w">  </span><span class="o">=</span><span class="w"> </span>moveToBeginningOfParagraph:<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>home
@@ -233,50 +348,9 @@ provided via Python packages:</p>
 <span class="o">}</span>
 </pre></div>
 </div>
-<p>Very nice… I just much prefer the way this works… being able to use
-Home/End, and selecting text.</p>
+<p>Unfortunately, then this does not work for everything… however… better than
+nothing.</p>
 </section>
-</section>
-<section id="window-manager">
-<h2>Window Manager<a class="headerlink" href="#window-manager" title="Permalink to this headline">¶</a></h2>
-<p>Using skhd and yabai:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">homebrew</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">yabai</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">yabai</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">yabairc</span> <span class="o">~/.</span><span class="n">yabairc</span>
-<span class="n">cp</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">homebrew</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">yabai</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">yabai</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">skhdrc</span> <span class="o">~/.</span><span class="n">skhdrc</span>
-</pre></div>
-</div>
-<p>Yabai is controlled via brew-services:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">services</span> <span class="n">start</span> <span class="n">yabai</span>
-</pre></div>
-</div>
-<section id="yabai-scripting-additions">
-<h3>yabai – scripting additions<a class="headerlink" href="#yabai-scripting-additions" title="Permalink to this headline">¶</a></h3>
-<p>Is this really needed? Stuff:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>shasum -a 256 $(which yabai)
-
-# input the line below into the file you are editing.
-#  replace &lt;yabai&gt; with the path to the yabai binary (output of: which yabai).
-#  replace &lt;user&gt; with your username (output of: whoami).
-#  replace &lt;hash&gt; with the sha256 hash of the yabai binary (output of: shasum -a 256 $(which yabai)).
-#   this hash must be updated manually after running brew upgrade.
-
-safl ALL = (root) NOPASSWD: sha256:f1e7ca9556f7ba49f8a0be3e0b917dc0739da66b5760093a9a0f552798f5c92d /opt/homebrew/bin/yabai --load-sa
-
-sudo visudo -f /private/etc/sudoers.d/yabai
-</pre></div>
-</div>
-</section>
-<section id="iterm2">
-<h3>iTerm2<a class="headerlink" href="#iterm2" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>Appearance -&gt; General -&gt; Theme: Compact</p></li>
-<li><p>Profiles -&gt; Colors -&gt; Color Presets: Solarized Dark</p></li>
-<li><p>Profiles -&gt; Colors -&gt; Font: ??? 18</p></li>
-</ul>
-</section>
-</section>
-<section id="lunarvim">
-<h2>LunarVim<a class="headerlink" href="#lunarvim" title="Permalink to this headline">¶</a></h2>
-<p>macOS comes with vim, which is pretty great!</p>
 </section>
 </section>
 
@@ -288,27 +362,18 @@ sudo visudo -f /private/etc/sudoers.d/yabai
       <h3>Here</h3>
       <ul>
 <li><a class="reference internal" href="#">MacOS</a><ul>
-<li><a class="reference internal" href="#software">Software</a><ul>
 <li><a class="reference internal" href="#brew">Brew</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#cdrtools">cdrtools</a></li>
-<li><a class="reference internal" href="#rust">Rust</a><ul>
 <li><a class="reference internal" href="#python">Python</a></li>
-<li><a class="reference internal" href="#via-pip">via pip</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#rust">Rust</a></li>
+<li><a class="reference internal" href="#lunarvim">LunarVim</a></li>
+<li><a class="reference internal" href="#window-manager">Window Manager</a></li>
+<li><a class="reference internal" href="#iterm2">iTerm2</a></li>
+<li><a class="reference internal" href="#cdrtools">cdrtools</a></li>
 <li><a class="reference internal" href="#macos-settings">macOS Settings</a></li>
 <li><a class="reference internal" href="#macos-tweaks">macOS Tweaks</a><ul>
 <li><a class="reference internal" href="#home-end">Home/End</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#window-manager">Window Manager</a><ul>
-<li><a class="reference internal" href="#yabai-scripting-additions">yabai – scripting additions</a></li>
-<li><a class="reference internal" href="#iterm2">iTerm2</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#lunarvim">LunarVim</a></li>
 </ul>
 </li>
 </ul>
