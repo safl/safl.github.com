@@ -2,10 +2,11 @@ brew install \
  1password \
  brave-browser \
  discord \
+ element \
  firefox \
- homebrew/cask-fonts/font-dejavu-sans-mono-nerd-font \
  gimp \
  google-chrome \
+ homebrew/cask-fonts/font-dejavu-sans-mono-nerd-font \
  inkscape \
  iterm2 \
  meld \
