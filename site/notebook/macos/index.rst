@@ -192,6 +192,16 @@ Edit shortcuts for **Yabai** by using skhd ``vim  ~/.skhdrc``:
 
   brew services start yabai
 
+Meld
+----
+
+Meld is not officially supported on macOS, however, unofficially ``.dmg``
+exists and they are installable via ``brew``. However, they are not **signed**
+and thus, not allowed to run on Ventura. Here is an unsafe way to work around
+that short-coming::
+
+  xattr -r -d com.apple.quarantine /Applications/Meld.app/
+
 cdrtools
 --------
 
@@ -207,3 +217,14 @@ that it is **licenced**.
 
 Then you can open Outlook, and in "Help", there is an option "Revert to
 Legacy". With this version Exchange is functional.
+
+Short-comings
+=============
+
+I miss the following tools:
+
+* cloud-init
+* pahole
+* A native / fast use of Docker and Podman, that is, native containers...
+
+And I miss the i3 setup I have on Debian.
