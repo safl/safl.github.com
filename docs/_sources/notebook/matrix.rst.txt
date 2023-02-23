@@ -1,11 +1,10 @@
-====================
- Matrix self-hosted
-====================
+Matrix self-hosted
+==================
 
 Solution overview.
 
 Prerequisites
-=============
+-------------
 
 * A host to run the software on
 
@@ -17,16 +16,16 @@ Prerequisites
 * DNS pointing to the public IP
 
 DNS Setup
-=========
+---------
 
 * ...
 
 Install Matrix
-==============
+--------------
 
 Install NGinx
-=============
+-------------
 
 Install jitsi
-=============
+-------------
 

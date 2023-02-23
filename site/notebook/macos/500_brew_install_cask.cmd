@@ -2,6 +2,7 @@ brew install \
  1password \
  brave-browser \
  discord \
+ docker \
  element \
  firefox \
  gimp \
