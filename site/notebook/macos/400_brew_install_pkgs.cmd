@@ -1,6 +1,5 @@
 brew install \
  bash \
- black \
  cdrtools \
  clang-format \
  docutils \
@@ -10,7 +9,6 @@ brew install \
  git-gui \
  graphviz \
  htop \
- isort \
  koekeishiya/formulae/skhd \
  koekeishiya/formulae/yabai \
  meson \
@@ -21,9 +19,7 @@ brew install \
  neovim \
  ninja \
  pkg-config \
- pre-commit \
  pygments \
- python3 \
  readline \
  ruby \
  sloccount \
