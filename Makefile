@@ -1,12 +1,20 @@
 BUILD_DIR=docs
 
 .PHONY: default
-default: clean reqs build view
+default: clean deps build view
 	@echo "# DONE!"
 
-.PHONY: reqs
-reqs:
-	pip3 install -r dev-requirements.txt --user
+.PHONY: deps
+deps:
+	pipx install sphinx==4.4
+	pipx inject sphinx flake8
+	pipx inject sphinx invocations
+	pipx inject sphinx invoke
+	pipx inject sphinx releases
+	pipx inject sphinx semantic_version
+	pipx inject sphinx sphinx-copybutton
+	pipx inject sphinx twine
+	pipx inject sphinx wheel
 
 .PHONY: build
 build:
@@ -17,13 +25,13 @@ build:
 
 .PHONY: view
 view:
-	#xdg-open $(BUILD_DIR)/html/index.html
-	xdg-open http://localhost:8080/
+	xdg-open http://localhost:8080/ || open http://localhost:8080 || echo "Failed launching browser"
 
 .PHONY: serve
 serve:
-	cd $(BUILD_DIR) && python3 -m http.server 8080
+	pkill -f http.server || echo "Could not kill server, probably not running"
+	cd $(BUILD_DIR) && screen -d -m python3 -m http.server 8080
 
 .PHONY: clean
 clean:
-	@rm -r $(BUILD_DIR) || echo "Cannot remove => That is OK"
+	rm -r $(BUILD_DIR) || echo "Cannot remove => That is OK"
