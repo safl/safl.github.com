@@ -115,11 +115,10 @@ Python
 ------
 
 A recent Python interpreter comes with macOS, thus no need to grab a newer one
-via Brew, thus, just setup you shell to expand ``PATH`` with the executables
-provided via Python packages:
+via Brew. However, what is nice, is using ``pipx`` to manage Python-based
+cli-tools. Thus ensure you run:
 
-.. literalinclude:: 600_python_bin.cmd
-   :language: bash
+.. literalinclude:: 540_pipx_ensurepath.cmd
 
 Rust
 ----
@@ -201,6 +200,16 @@ and thus, not allowed to run on Ventura. Here is an unsafe way to work around
 that short-coming::
 
   xattr -r -d com.apple.quarantine /Applications/Meld.app/
+
+DS_STORE
+--------
+
+Do::
+
+       defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+
+.. note::
+   Does not take effect until after logout/reboot.
 
 cdrtools
 --------

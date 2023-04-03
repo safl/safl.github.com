@@ -50,7 +50,6 @@
     <div class="col-lg-8">
       <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Notebook</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../matrix.html">Matrix self-hosted</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../projects/index.html">Projects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../uni/index.html">Uni</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../cv/index.html">CV</a></li>
@@ -80,10 +79,168 @@
     
   <section id="github">
 <h1>GitHUB<a class="headerlink" href="#github" title="Permalink to this headline">¶</a></h1>
+<section id="self-hosted-runners">
+<h2>Self-hosted Runners<a class="headerlink" href="#self-hosted-runners" title="Permalink to this headline">¶</a></h2>
+<p>There are limits to what you can do on the runners hosted by GitHUB. This is
+where GitHUB self-hosted runners comes into play. You can BYOD to the GitHUB
+Actions. This can be HW in your garage, basement, attic, or, often more
+conveniently, provided via cloud-hosting or bare-metal host.</p>
+<p>This explores the latter approaches: virtual and bare-metal providers.</p>
+<section id="virtual">
+<h3>Virtual<a class="headerlink" href="#virtual" title="Permalink to this headline">¶</a></h3>
+<p>To the authors knowledge, then the only cloud-provider supporting
+nested-virtualization is <a class="reference external" href="https://www.digitalocean.com/">Digital-Ocean</a>. That is, atleast for low-tier
+virtual machines e.g less than <strong>100USD/mo</strong> per instance.</p>
+<p>Nested virtualization is needed as the GitHUB-runner will start up a custom
+qemu-instance for NVMe emulation. All the droplet types work, however, it is
+usually nice with more than a single core in the VM, 8GB+, Storage, that is,
+when running qemu-instances.</p>
+<p>It will of course vary based on your specific use-case.</p>
+<p>A more cost-effective solution is deploying multiple runners on the same machine.</p>
+</section>
+<section id="bare-metal">
+<h3>Bare-metal<a class="headerlink" href="#bare-metal" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://www.hetzner.com/">Hetzner</a> is a great place to get hosted bare-metal, at the time writing this
+then a <code class="docutils literal notranslate"><span class="pre">AX41-NVMe</span></code> (priced at <strong>51.3EUR/mo</strong>) system gives you a machine with
+the following specs:</p>
+<ul class="simple">
+<li><p>CPU: AMD Ryzen 5 3600 ~ 6 Cores / 12 Threads</p></li>
+<li><p>MEM: 64GB DDR4</p></li>
+<li><p>STORAGE: 2x 512GB SSD (Samsung 980PRO)</p></li>
+</ul>
+<p>In Digital-Ocean terms, this hardware can provide <strong>SIX INSTANCES</strong> of what in DO terms are:</p>
+<ul class="simple">
+<li><p>Droplet Type: Dedicated CPU</p>
+<ul>
+<li><p>General Purpose</p></li>
+<li><p>CPU: 2 Core</p></li>
+<li><p>MEM: 8GB</p></li>
+<li><p>STORAGE: 25GB</p></li>
+</ul>
+</li>
+<li><p>Cost for this instance at the time of writing: <strong>63USD/mo</strong>.</p></li>
+</ul>
+<p>Basically getting six times the resources, plus some to spare.</p>
+</section>
+<section id="system-setup">
+<h3>System Setup<a class="headerlink" href="#system-setup" title="Permalink to this headline">¶</a></h3>
+<p>The machine will be named <code class="docutils literal notranslate"><span class="pre">ghrbox</span></code> with a numeral postfix, specifically <code class="docutils literal notranslate"><span class="pre">ghrbox01</span></code></p>
+<p>Deploy your keys:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-copy-id<span class="w"> </span>root@&lt;SYSTEM_IP&gt;
+</pre></div>
+</div>
+<p>Update it and install various needed libraries and tools:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt-get<span class="w"> </span>-qy<span class="w"> </span>update
+apt-get<span class="w"> </span>-qy<span class="w"> </span>upgrade
+apt-get<span class="w"> </span>-qy<span class="w"> </span>dist-upgrade
+apt-get<span class="w"> </span>-qy<span class="w"> </span>install<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>cloud-utils<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>git<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>htop<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>libvirt-daemon-system<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>qemu<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>qemu-system<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>qemu-utils<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">time</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>tree<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>vim
+</pre></div>
+</div>
+<p>Install <strong>Docker</strong> according to the official documentation:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.docker.com/engine/install/debian/">https://docs.docker.com/engine/install/debian/</a></p></li>
+</ul>
+<p>Give the machine a name:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the hostname</span>
+hostnamectl<span class="w"> </span>set-hostname<span class="w"> </span>ghrbox01
+
+<span class="c1"># Update it in /dev/hosts</span>
+vim<span class="w"> </span>/dev/hosts
+</pre></div>
+</div>
+<p>Log into the machine and create a new non-root user named <code class="docutils literal notranslate"><span class="pre">ghr</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>adduser<span class="w"> </span>ghr
+usermod<span class="w"> </span>-aG<span class="w"> </span>sudo<span class="w"> </span>ghr
+usermod<span class="w"> </span>-aG<span class="w"> </span>libvirt<span class="w"> </span>ghr
+usermod<span class="w"> </span>-aG<span class="w"> </span>docker<span class="w"> </span>ghr
+</pre></div>
+</div>
+<p>The GitHUB Action-runner will be executing as this user.</p>
+<p>Add your keys to system for the <code class="docutils literal notranslate"><span class="pre">ghr</span></code> user as well:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-copy-id<span class="w"> </span>ghr@&lt;SYSTEM_IP&gt;
+</pre></div>
+</div>
+<section id="actions-runner">
+<h4>Actions Runner<a class="headerlink" href="#actions-runner" title="Permalink to this headline">¶</a></h4>
+<p>Log into the system as the <code class="docutils literal notranslate"><span class="pre">ghr</span></code> user, and setup a couple environment
+variables, as they will be needed for the subsequent commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is the username of the user created previously</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">RUNNER_USER</span><span class="o">=</span>ghr
+
+<span class="c1"># This is the URL of your GitHUB Project e.g. https://github.com/OpenMPDK/xNVMe</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">URL</span><span class="o">=</span>
+
+<span class="c1"># This is a GitHUB Runner token, get this from the project-settings/runners page</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">TOKEN</span><span class="o">=</span>
+</pre></div>
+</div>
+<p>Log out and log in as the <code class="docutils literal notranslate"><span class="pre">ghr</span></code> user.</p>
+<p>Install GitHUB-action-runner:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a home for the runner</span>
+mkdir<span class="w"> </span>actions-runner<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>actions-runner
+
+<span class="c1"># Download the runner</span>
+curl<span class="w"> </span>-o<span class="w"> </span>actions-runner-linux-x64-2.303.0.tar.gz<span class="w"> </span>-L<span class="w"> </span>https://github.com/actions/runner/releases/download/v2.303.0/actions-runner-linux-x64-2.303.0.tar.gz
+
+<span class="c1"># Extract it</span>
+tar<span class="w"> </span>xzf<span class="w"> </span>./actions-runner-linux-x64-2.303.0.tar.gz
+</pre></div>
+</div>
+<p>Setup six runners:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>nr<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..6<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>cp<span class="w"> </span>-r<span class="w"> </span>actions-runner<span class="w"> </span><span class="s2">&quot;worker</span><span class="si">${</span><span class="nv">nr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">done</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Setup a token, get this from github.com and place it in an environment variable (<code class="docutils literal notranslate"><span class="pre">TOKEN</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">TOKEN</span><span class="o">=</span>&lt;GET_THIS_TOKEN_FROM_GITHUB&gt;
+</pre></div>
+</div>
+<p>Register runners:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>nr<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..6<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">pushd</span><span class="w"> </span>worker<span class="si">${</span><span class="nv">nr</span><span class="si">}</span><span class="p">;</span><span class="w"> </span>./config.sh<span class="w"> </span>--url<span class="w"> </span><span class="si">${</span><span class="nv">URL</span><span class="si">}</span><span class="w"> </span>--unattended<span class="w"> </span>--disableupdate<span class="w"> </span>--replace<span class="w"> </span>--name<span class="w"> </span>ghrbox01-worker<span class="si">${</span><span class="nv">nr</span><span class="si">}</span><span class="w"> </span>--token<span class="w"> </span><span class="si">${</span><span class="nv">TOKEN</span><span class="si">}</span><span class="p">;</span><span class="w"> </span>popd<span class="p">;</span><span class="w"> </span><span class="k">done</span>
+</pre></div>
+</div>
+<p>Install as a service, start and check them:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Service(s): install</span>
+<span class="k">for</span><span class="w"> </span>nr<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..6<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">pushd</span><span class="w"> </span>worker<span class="si">${</span><span class="nv">nr</span><span class="si">}</span><span class="p">;</span><span class="w"> </span>sudo<span class="w"> </span>./svc.sh<span class="w"> </span>install<span class="w"> </span><span class="si">${</span><span class="nv">RUNNER_USER</span><span class="si">}</span><span class="p">;</span><span class="w"> </span>popd<span class="p">;</span><span class="w"> </span><span class="k">done</span>
+
+<span class="c1"># Service(s): start</span>
+<span class="k">for</span><span class="w"> </span>nr<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..6<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">pushd</span><span class="w"> </span>worker<span class="si">${</span><span class="nv">nr</span><span class="si">}</span><span class="p">;</span><span class="w"> </span>sudo<span class="w"> </span>./svc.sh<span class="w"> </span>start<span class="p">;</span><span class="w"> </span>popd<span class="p">;</span><span class="w"> </span><span class="k">done</span>
+
+<span class="c1"># Service(s): status</span>
+<span class="k">for</span><span class="w"> </span>nr<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..6<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">pushd</span><span class="w"> </span>worker<span class="si">${</span><span class="nv">nr</span><span class="si">}</span><span class="p">;</span><span class="w"> </span>sudo<span class="w"> </span>./svc.sh<span class="w"> </span>status<span class="p">;</span><span class="w"> </span>popd<span class="p">;</span><span class="w"> </span><span class="k">done</span>
+</pre></div>
+</div>
+<p>Stop and uninstall services:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Services: stop</span>
+<span class="k">for</span><span class="w"> </span>nr<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..6<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">pushd</span><span class="w"> </span>worker<span class="si">${</span><span class="nv">nr</span><span class="si">}</span><span class="p">;</span><span class="w"> </span>sudo<span class="w"> </span>./svc.sh<span class="w"> </span>stop<span class="p">;</span><span class="w"> </span>popd<span class="p">;</span><span class="w"> </span><span class="k">done</span>
+
+<span class="c1"># Services: uninstall</span>
+<span class="k">for</span><span class="w"> </span>nr<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..6<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">pushd</span><span class="w"> </span>worker<span class="si">${</span><span class="nv">nr</span><span class="si">}</span><span class="p">;</span><span class="w"> </span>sudo<span class="w"> </span>./svc.sh<span class="w"> </span>uninstall<span class="p">;</span><span class="w"> </span>popd<span class="p">;</span><span class="w"> </span><span class="k">done</span>
+</pre></div>
+</div>
+<p>Remove all runners:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>nr<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..6<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">pushd</span><span class="w"> </span><span class="s2">&quot;worker</span><span class="si">${</span><span class="nv">nr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span>./config.sh<span class="w"> </span>remove<span class="w"> </span>--token<span class="w"> </span><span class="si">${</span><span class="nv">TOKEN</span><span class="si">}</span><span class="p">;</span><span class="w"> </span>popd<span class="p">;</span><span class="w"> </span><span class="k">done</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="tips-n-tricks">
+<h2>Tips’n’Tricks<a class="headerlink" href="#tips-n-tricks" title="Permalink to this headline">¶</a></h2>
 <p>Fetching pull-requests without adding remotes:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">fetch</span> <span class="n">upstream</span> <span class="n">pull</span><span class="o">/</span><span class="mi">49</span><span class="o">/</span><span class="n">head</span><span class="p">:</span><span class="n">ghpr</span><span class="o">-</span><span class="mi">49</span>
 </pre></div>
 </div>
+</section>
 </section>
 
 
@@ -93,7 +250,19 @@
       <div id="localtoc" >
       <h3>Here</h3>
       <ul>
-<li><a class="reference internal" href="#">GitHUB</a></li>
+<li><a class="reference internal" href="#">GitHUB</a><ul>
+<li><a class="reference internal" href="#self-hosted-runners">Self-hosted Runners</a><ul>
+<li><a class="reference internal" href="#virtual">Virtual</a></li>
+<li><a class="reference internal" href="#bare-metal">Bare-metal</a></li>
+<li><a class="reference internal" href="#system-setup">System Setup</a><ul>
+<li><a class="reference internal" href="#actions-runner">Actions Runner</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tips-n-tricks">Tips’n’Tricks</a></li>
+</ul>
+</li>
 </ul>
 
       <hr/>
