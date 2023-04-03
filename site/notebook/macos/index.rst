@@ -201,6 +201,16 @@ that short-coming::
 
   xattr -r -d com.apple.quarantine /Applications/Meld.app/
 
+DS_STORE
+--------
+
+Do::
+
+       defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+
+.. note::
+   Does not take effect until after logout/reboot.
+
 cdrtools
 --------
 
