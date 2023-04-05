@@ -2,6 +2,20 @@
  GitHUB
 ========
 
+Boot-images
+===========
+
+To serve qemu boot images to GitHUB runners. Something simple like::
+
+  sudo apt-get install nginx
+  sudo mkdir /var/www/html/boot_images
+  cd /var/www/html
+  sudo wget https://refenv.fra1.digitaloceanspaces.com/freebsd13-ufs-ksrc.qcow2
+  cd /var/www/html/boot_images
+  sudo wget https://refenv.fra1.digitaloceanspaces.com/boot_images/debian-bullseye-amd64.qcow2
+  sudo wget https://refenv.fra1.digitaloceanspaces.com/boot_images/freebsd-13.1-ksrc-amd64.qcow2
+
+
 Self-hosted Runners
 ===================
 
