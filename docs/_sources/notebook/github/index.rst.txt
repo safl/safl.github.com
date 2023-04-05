@@ -124,11 +124,18 @@ variables, as they will be needed for the subsequent commands:
   # This is the username of the user created previously
   export RUNNER_USER=ghr
 
+  # Name of the runner / prefix
+  export RUNNER_NAME=bgtrunner
+
+  # Number of github runners
+  export RUNNER_COUNT=12
+
   # This is the URL of your GitHUB Project e.g. https://github.com/OpenMPDK/xNVMe
   export URL=
 
   # This is a GitHUB Runner token, get this from the project-settings/runners page
   export TOKEN=
+
 
 Log out and log in as the ``ghr`` user.
 
@@ -145,52 +152,46 @@ Install GitHUB-action-runner:
     # Extract it
     tar xzf ./actions-runner-linux-x64-2.303.0.tar.gz
 
-Setup six runners:
+Setup runners:
 
 .. code-block:: bash
 
-    for nr in {1..6}; do cp -r actions-runner "worker${nr}"; done;
-
-Setup a token, get this from github.com and place it in an environment variable (``TOKEN``):
-
-.. code-block:: bash
-
-    export TOKEN=<GET_THIS_TOKEN_FROM_GITHUB>
+    for NR in $(seq -f "%02g" 1 $RUNNER_COUNT); do cp -r actions-runner "${RUNNER_NAME}${NR}"; done;
 
 Register runners:
 
 .. code-block:: bash
 
-    for nr in {1..6}; do pushd worker${nr}; ./config.sh --url ${URL} --unattended --disableupdate --replace --name ghrbox01-worker${nr} --token ${TOKEN}; popd; done
+    for NR in $(seq -f "%02g" 1 $RUNNER_COUNT); do pushd "${RUNNER_NAME}${NR}"; ./config.sh --url ${URL} --unattended --disableupdate --replace --name "${RUNNER_NAME}${NR}" --token ${TOKEN}; popd; done
 
 Install as a service, start and check them:
 
 .. code-block:: bash
 
     # Service(s): install
-    for nr in {1..6}; do pushd worker${nr}; sudo ./svc.sh install ${RUNNER_USER}; popd; done
+    for NR in $(seq -f "%02g" 1 $RUNNER_COUNT); do pushd "${RUNNER_NAME}${NR}"; sudo ./svc.sh install ${RUNNER_USER}; popd; done
 
     # Service(s): start
-    for nr in {1..6}; do pushd worker${nr}; sudo ./svc.sh start; popd; done
+    for NR in $(seq -f "%02g" 1 $RUNNER_COUNT); do pushd "${RUNNER_NAME}${NR}"; sudo ./svc.sh start; popd; done
 
     # Service(s): status
-    for nr in {1..6}; do pushd worker${nr}; sudo ./svc.sh status; popd; done
+    for NR in $(seq -f "%02g" 1 $RUNNER_COUNT); do pushd "${RUNNER_NAME}${NR}"; sudo ./svc.sh status; popd; done
 
 Stop and uninstall services:
 
 .. code-block:: bash
 
     # Services: stop
-    for nr in {1..6}; do pushd worker${nr}; sudo ./svc.sh stop; popd; done
+    for NR in $(seq -f "%02g" 1 $RUNNER_COUNT); do pushd "${RUNNER_NAME}${NR}"; sudo ./svc.sh stop; popd; done
 
     # Services: uninstall
-    for nr in {1..6}; do pushd worker${nr}; sudo ./svc.sh uninstall; popd; done
+    for NR in $(seq -f "%02g" 1 $RUNNER_COUNT); do pushd "${RUNNER_NAME}${NR}"; sudo ./svc.sh uninstall; popd; done
 
 Remove all runners:
 
 .. code-block:: bash
 
-    for nr in {1..6}; do pushd "worker${nr}"; ./config.sh remove --token ${TOKEN}; popd; done;
+    for NR in $(seq -f "%02g" 1 $RUNNER_COUNT); do pushd "${RUNNER_NAME}${NR}"; ./config.sh remove --token ${TOKEN}; popd; done;
 
 Tips'n'Tricks
 =============
