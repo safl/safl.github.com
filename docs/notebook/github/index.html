@@ -79,6 +79,19 @@
     
   <section id="github">
 <h1>GitHUB<a class="headerlink" href="#github" title="Permalink to this headline">¶</a></h1>
+<section id="boot-images">
+<h2>Boot-images<a class="headerlink" href="#boot-images" title="Permalink to this headline">¶</a></h2>
+<p>To serve qemu boot images to GitHUB runners. Something simple like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">nginx</span>
+<span class="n">sudo</span> <span class="n">mkdir</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">boot_images</span>
+<span class="n">cd</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span>
+<span class="n">sudo</span> <span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">refenv</span><span class="o">.</span><span class="n">fra1</span><span class="o">.</span><span class="n">digitaloceanspaces</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">freebsd13</span><span class="o">-</span><span class="n">ufs</span><span class="o">-</span><span class="n">ksrc</span><span class="o">.</span><span class="n">qcow2</span>
+<span class="n">cd</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">boot_images</span>
+<span class="n">sudo</span> <span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">refenv</span><span class="o">.</span><span class="n">fra1</span><span class="o">.</span><span class="n">digitaloceanspaces</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">boot_images</span><span class="o">/</span><span class="n">debian</span><span class="o">-</span><span class="n">bullseye</span><span class="o">-</span><span class="n">amd64</span><span class="o">.</span><span class="n">qcow2</span>
+<span class="n">sudo</span> <span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">refenv</span><span class="o">.</span><span class="n">fra1</span><span class="o">.</span><span class="n">digitaloceanspaces</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">boot_images</span><span class="o">/</span><span class="n">freebsd</span><span class="o">-</span><span class="mf">13.1</span><span class="o">-</span><span class="n">ksrc</span><span class="o">-</span><span class="n">amd64</span><span class="o">.</span><span class="n">qcow2</span>
+</pre></div>
+</div>
+</section>
 <section id="self-hosted-runners">
 <h2>Self-hosted Runners<a class="headerlink" href="#self-hosted-runners" title="Permalink to this headline">¶</a></h2>
 <p>There are limits to what you can do on the runners hosted by GitHUB. This is
@@ -196,10 +209,10 @@ variables, as they will be needed for the subsequent commands:</p>
 mkdir<span class="w"> </span>actions-runner<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>actions-runner
 
 <span class="c1"># Download the runner</span>
-curl<span class="w"> </span>-o<span class="w"> </span>actions-runner-linux-x64-2.303.0.tar.gz<span class="w"> </span>-L<span class="w"> </span>https://github.com/actions/runner/releases/download/v2.303.0/actions-runner-linux-x64-2.303.0.tar.gz
+curl<span class="w"> </span>-o<span class="w"> </span>actions-runner-linux-x64-2.304.0.tar.gz<span class="w"> </span>-L<span class="w"> </span>https://github.com/actions/runner/releases/download/v2.304.0/actions-runner-linux-x64-2.304.0.tar.gz
 
 <span class="c1"># Extract it</span>
-tar<span class="w"> </span>xzf<span class="w"> </span>./actions-runner-linux-x64-2.303.0.tar.gz
+tar<span class="w"> </span>xzf<span class="w"> </span>./actions-runner-linux-x64-2.304.0.tar.gz
 </pre></div>
 </div>
 <p>Setup runners:</p>
@@ -253,6 +266,7 @@ tar<span class="w"> </span>xzf<span class="w"> </span>./actions-runner-linux-x64
       <h3>Here</h3>
       <ul>
 <li><a class="reference internal" href="#">GitHUB</a><ul>
+<li><a class="reference internal" href="#boot-images">Boot-images</a></li>
 <li><a class="reference internal" href="#self-hosted-runners">Self-hosted Runners</a><ul>
 <li><a class="reference internal" href="#virtual">Virtual</a></li>
 <li><a class="reference internal" href="#bare-metal">Bare-metal</a></li>

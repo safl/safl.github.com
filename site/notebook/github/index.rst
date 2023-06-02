@@ -161,10 +161,10 @@ Install GitHUB-action-runner:
     mkdir actions-runner && cd actions-runner
 
     # Download the runner
-    curl -o actions-runner-linux-x64-2.303.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.303.0/actions-runner-linux-x64-2.303.0.tar.gz
+    curl -o actions-runner-linux-x64-2.304.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.304.0/actions-runner-linux-x64-2.304.0.tar.gz
 
     # Extract it
-    tar xzf ./actions-runner-linux-x64-2.303.0.tar.gz
+    tar xzf ./actions-runner-linux-x64-2.304.0.tar.gz
 
 Setup runners:
 
