@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>v4l2 &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/blue8bit.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link href="/_static/blue8bit.css" rel="stylesheet" crossorigin="anonymous">
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-222706364-1']);
+      _gaq.push(['_trackPageview']);
+    </script>
+
+  </head><body>
+
+
+  
+
+
+<div class="container justify-content-md-center">
+
+  <header class="row">
+    <div class="col-lg-12"><a href="/">safl.dk</a></div>
+  </header>
+
+  <nav class="row" style="vertical-align:baseline;">
+    <div class="col-lg-8">
+      <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../projects/index.html">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../uni/index.html">Uni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cv/index.html">CV</a></li>
+</ul>
+
+    </div>
+    <div id="search" class="col-lg-4 ms-sm-auto">
+      <form action="../../../search.html" method="get">
+      <input type="text" name="q" class="form-control" placeholder="Search" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </nav>
+
+  <div id="related" class="row">
+    <div class="col-lg-12">
+      <a href="/">safl.dk</a> &#187;
+      <a href="">v4l2</a>
+    </div>
+  </div>
+
+  <main class="row">
+    <div class="col-lg-9">
+    
+    
+  <p>Notes for clearing using “maskrom” mode on MacOS.</p>
+<p>Install:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">install</span> <span class="n">python</span> <span class="n">lsusb</span> <span class="n">libusb</span>
+<span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">pyamlboot</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">boot-g12.py</span></code> comes with <code class="docutils literal notranslate"><span class="pre">pyamlboot</span></code>. Run it:</p>
+<p>Download:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># bin for erasing the emmc</span>
+<span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">dl</span><span class="o">.</span><span class="n">radxa</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">zero</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">loader</span><span class="o">/</span><span class="n">radxa</span><span class="o">-</span><span class="n">zero</span><span class="o">-</span><span class="n">erase</span><span class="o">-</span><span class="n">emmc</span><span class="o">.</span><span class="n">bin</span>
+
+<span class="c1"># bin for loading the Zero as a block-device for writing</span>
+<span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">dl</span><span class="o">.</span><span class="n">radxa</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">zero</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">loader</span><span class="o">/</span><span class="n">rz</span><span class="o">-</span><span class="n">udisk</span><span class="o">-</span><span class="n">loader</span><span class="o">.</span><span class="n">bin</span>
+
+<span class="c1"># Erase the eMMC</span>
+<span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">homebrew</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">boot</span><span class="o">-</span><span class="n">g12</span><span class="o">.</span><span class="n">py</span> <span class="n">erase</span><span class="o">.</span><span class="n">bin</span>
+
+<span class="c1"># Write the udisk-loader, provides for blk-device access from host</span>
+<span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">homebrew</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">boot</span><span class="o">-</span><span class="n">g12</span><span class="o">.</span><span class="n">py</span> <span class="n">rz</span><span class="o">-</span><span class="n">udisk</span><span class="o">-</span><span class="n">loader</span><span class="o">.</span><span class="n">bin</span>
+
+<span class="c1"># Write the image</span>
+<span class="n">sudo</span> <span class="n">dd</span> <span class="k">if</span><span class="o">=</span><span class="n">Armbian_23</span><span class="mf">.5.1</span><span class="n">_Radxa</span><span class="o">-</span><span class="n">zero_bookworm_current_6</span><span class="mf">.1.30</span><span class="n">_xfce_desktop</span><span class="o">.</span><span class="n">img</span> <span class="n">of</span><span class="o">=/</span><span class="n">dev</span><span class="o">/</span><span class="n">disk5</span> <span class="n">status</span><span class="o">=</span><span class="n">progress</span> <span class="n">bs</span><span class="o">=</span><span class="mi">1</span><span class="n">M</span> <span class="n">oflag</span><span class="o">=</span><span class="n">direct</span>
+</pre></div>
+</div>
+<section id="v4l2">
+<h1>v4l2<a class="headerlink" href="#v4l2" title="Permalink to this headline">¶</a></h1>
+<p>Useful commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># List of available video devices</span>
+<span class="n">v4l2</span><span class="o">-</span><span class="n">ctl</span> <span class="o">--</span><span class="nb">list</span><span class="o">-</span><span class="n">devices</span><span class="o">.</span>
+
+<span class="c1"># List available control settings</span>
+<span class="n">v4l2</span><span class="o">-</span><span class="n">ctl</span> <span class="o">-</span><span class="n">d</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">video0</span> <span class="o">--</span><span class="nb">list</span><span class="o">-</span><span class="n">ctrls</span><span class="o">.</span>
+
+<span class="c1"># List available video formats</span>
+<span class="n">v4l2</span><span class="o">-</span><span class="n">ctl</span> <span class="o">-</span><span class="n">d</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">video0</span> <span class="o">--</span><span class="nb">list</span><span class="o">-</span><span class="n">formats</span><span class="o">-</span><span class="n">ext</span><span class="o">.</span>
+
+<span class="c1"># Read the current settings</span>
+<span class="n">v4l2</span><span class="o">-</span><span class="n">ctl</span> <span class="o">-</span><span class="n">d</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">video0</span> <span class="o">--</span><span class="n">get</span><span class="o">-</span><span class="n">ctrl</span><span class="o">=</span><span class="n">exposure_auto</span><span class="o">.</span>
+
+<span class="c1"># Change the setting value</span>
+<span class="n">v4l2</span><span class="o">-</span><span class="n">ctl</span> <span class="o">-</span><span class="n">d</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">video0</span> <span class="o">--</span><span class="nb">set</span><span class="o">-</span><span class="n">ctrl</span><span class="o">=</span><span class="n">exposure_auto</span><span class="o">=</span><span class="mi">1</span>
+</pre></div>
+</div>
+</section>
+
+
+    
+    </div>
+    <div class="col-lg-3 ms-sm-auto d-none d-lg-block">
+      <div id="localtoc" >
+      <h3>Here</h3>
+      <ul>
+<li><a class="reference internal" href="#">v4l2</a></li>
+</ul>
+
+      <hr/>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="row">
+    <div class="col-lg-12">
+        &copy; Copyright 2023 Simon A. F. Lund.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.
+    </div>
+  </footer>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script>
+  (function() {
+    var ga = document.createElement('script');
+    ga.src = ('https:' == document.location.protocol ?
+              'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    ga.setAttribute('async', 'true');
+    document.documentElement.firstChild.appendChild(ga);
+  })();
+</script>
+
+  </body>
+</html>
