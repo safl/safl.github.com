@@ -13,13 +13,7 @@ user to sudoers::
   # Switch user to 'root'
   su -
   apt-get -qy update
-  apt-get -qy install \
-    sudo \
-    vim-gtk \
-    git \
-    git-gui \
-    meld \
-    htop
+  apt-get -qy install sudo
   usermod -aG sudo <username>
 
 Log out and log back in for the group addition to take effect.
@@ -58,10 +52,20 @@ For the rest we need some basic tools::
     meson \
     pahole \
     pipx \
+    screen \
     stow \
     valgrind \
     vim
 
-And the rust-lang toolchain::
+Setup ``pipx```:
+
+.. code-block:: bash
+
+  pipx ensurepath
+  pipx completions
+
+Install and setup the toolchain for the Rust language:
+
+.. code-block:: bash
 
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh 

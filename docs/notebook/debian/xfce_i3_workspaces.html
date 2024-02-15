@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Panel Integration &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Custom Kernel" href="custom_kernel/index.html" />
+    <link rel="prev" title="Elgato Stream Deck" href="stream_deck.html" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link href="/_static/blue8bit.css" rel="stylesheet" crossorigin="anonymous">
+    <style>
+    .align-left {
+      float: left;
+    }
+    .align-right {
+      float: right;
+    }
+    </style>
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-222706364-1']);
+      _gaq.push(['_trackPageview']);
+    </script>
+
+  </head><body>
+
+
+  
+
+
+<div class="container justify-content-md-center">
+
+  <header class="row">
+    <div class="col-lg-12"><a href="/">safl.dk</a></div>
+  </header>
+
+  <nav class="row" style="vertical-align:baseline;">
+    <div class="col-lg-8">
+      <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../projects/index.html">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../uni/index.html">Uni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cv/index.html">CV</a></li>
+</ul>
+
+    </div>
+    <div id="search" class="col-lg-4 ms-sm-auto">
+      <form action="../../search.html" method="get">
+      <input type="text" name="q" class="form-control" placeholder="Search" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </nav>
+
+  <div id="related" class="row">
+    <div class="col-lg-12">
+      <a href="/">safl.dk</a> &#187;
+      <a href="../index.html" >Notebook</a> &#187;
+      <a href="index.html" accesskey="U">Debian</a> &#187;
+      <a href="">Panel Integration</a>
+    </div>
+  </div>
+
+  <main class="row">
+    <div class="col-lg-9">
+    
+    
+  <section id="panel-integration">
+<h1>Panel Integration<a class="headerlink" href="#panel-integration" title="Permalink to this heading">¶</a></h1>
+<p>I really like the functionality and ease of use of the XFCE4 panel with
+network-applet, printers, calender etc. it just works and no fuss to change
+or expand. Thus using it, and disabling the i3bar.</p>
+<p>However, this removes the workspace-indicator given by the i3bar. Fortunately a
+XFCE panel applet can fix that. However, it needs to be installed from source.</p>
+<section id="i3ipc-glib">
+<h2>i3ipc-glib<a class="headerlink" href="#i3ipc-glib" title="Permalink to this heading">¶</a></h2>
+<p>This is needed for the <code class="docutils literal notranslate"><span class="pre">i3-workspaces-plugin</span></code>. It too has dependencies:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-qy<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>gobject-introspection<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>gtk-doc-tools<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>libjson-glib-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>libxcb1-dev
+</pre></div>
+</div>
+<p>Do this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>-/git
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/altdesktop/i3ipc-glib.git
+<span class="nb">cd</span><span class="w"> </span>i3ipc-glib
+git<span class="w"> </span>checkout<span class="w"> </span>v1.0.1
+
+./autogen.sh<span class="w"> </span>--prefix<span class="o">=</span>/usr
+make
+sudo<span class="w"> </span>make<span class="w"> </span>install
+</pre></div>
+</div>
+</section>
+<section id="i3-workspaces-plugin">
+<h2>i3-workspaces-plugin<a class="headerlink" href="#i3-workspaces-plugin" title="Permalink to this heading">¶</a></h2>
+<p>Requirements:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>libxfce4panel-2.0-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>libxfce4ui-2-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>xfce4-dev-tools
+</pre></div>
+</div>
+<p>i3 provides stuff like: i3bar, i3status, i3pystatus, i3blocks etc. however, the
+XFCE4 provides the same with a bunch of well-supported applets like the
+gnome-network-manager. So instead of using the i3bar, this setup favors using
+the xfce-panel instead, and then integrating the i3 workspaces via a plugin:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>-/git
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/denesb/xfce4-i3-workspaces-plugin.git
+<span class="nb">cd</span><span class="w"> </span>xfce4-i3-workspaces-plugin
+git<span class="w"> </span>checkout<span class="w"> </span><span class="m">1</span>.4.0
+
+./autogen.sh<span class="w"> </span>--prefix<span class="o">=</span>/usr
+make
+sudo<span class="w"> </span>make<span class="w"> </span>install
+</pre></div>
+</div>
+</section>
+</section>
+
+
+    
+    </div>
+    <div class="col-lg-3 ms-sm-auto d-none d-lg-block">
+      <div id="localtoc" >
+      <h3>Here</h3>
+      <ul>
+<li><a class="reference internal" href="#">Panel Integration</a><ul>
+<li><a class="reference internal" href="#i3ipc-glib">i3ipc-glib</a></li>
+<li><a class="reference internal" href="#i3-workspaces-plugin">i3-workspaces-plugin</a></li>
+</ul>
+</li>
+</ul>
+
+      <hr/>
+        <h4>Next</h4>
+      <ul><li>
+        <a href="custom_kernel/index.html" title="next chapter">Custom Kernel</a>
+      </li></ul>
+      <h4>Prev</h4>
+      <ul><li>
+        <a href="stream_deck.html" title="previous chapter">Elgato Stream Deck</a>
+      </li></ul>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="row">
+    <div class="col-lg-12">
+        &copy; Copyright 2024 Simon A. F. Lund.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.0.
+    </div>
+  </footer>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script>
+  (function() {
+    var ga = document.createElement('script');
+    ga.src = ('https:' == document.location.protocol ?
+              'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    ga.setAttribute('async', 'true');
+    document.documentElement.firstChild.appendChild(ga);
+  })();
+</script>
+
+  </body>
+</html>

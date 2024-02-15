@@ -22,8 +22,8 @@ view:
 
 .PHONY: serve
 serve:
-	pkill -f http.server || echo "Could not kill server, probably not running"
-	cd $(BUILD_DIR) && screen -d -m python3 -m http.server 8080
+	@pkill -f http.server || echo "Could not kill server, probably not running"
+	cd $(BUILD_DIR) && screen -d -m "python3 -m http.server 8080"
 
 .PHONY: clean
 clean:

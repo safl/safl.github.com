@@ -29,6 +29,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <link href="/_static/blue8bit.css" rel="stylesheet" crossorigin="anonymous">
+    <style>
+    .align-left {
+      float: left;
+    }
+    .align-right {
+      float: right;
+    }
+    </style>
     <script>
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-222706364-1']);
@@ -90,13 +98,7 @@ user to sudoers:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Switch user to &#39;root&#39;</span>
 <span class="n">su</span> <span class="o">-</span>
 <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="o">-</span><span class="n">qy</span> <span class="n">update</span>
-<span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="o">-</span><span class="n">qy</span> <span class="n">install</span> \
-  <span class="n">sudo</span> \
-  <span class="n">vim</span><span class="o">-</span><span class="n">gtk</span> \
-  <span class="n">git</span> \
-  <span class="n">git</span><span class="o">-</span><span class="n">gui</span> \
-  <span class="n">meld</span> \
-  <span class="n">htop</span>
+<span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="o">-</span><span class="n">qy</span> <span class="n">install</span> <span class="n">sudo</span>
 <span class="n">usermod</span> <span class="o">-</span><span class="n">aG</span> <span class="n">sudo</span> <span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;</span>
 </pre></div>
 </div>
@@ -133,13 +135,19 @@ user to sudoers:</p>
   <span class="n">meson</span> \
   <span class="n">pahole</span> \
   <span class="n">pipx</span> \
+  <span class="n">screen</span> \
   <span class="n">stow</span> \
   <span class="n">valgrind</span> \
   <span class="n">vim</span>
 </pre></div>
 </div>
-<p>And the rust-lang toolchain:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">--</span><span class="n">proto</span> <span class="s1">&#39;=https&#39;</span> <span class="o">--</span><span class="n">tlsv1</span><span class="mf">.2</span> <span class="o">-</span><span class="n">sSf</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">sh</span><span class="o">.</span><span class="n">rustup</span><span class="o">.</span><span class="n">rs</span> <span class="o">|</span> <span class="n">sh</span>
+<p>Setup <code class="docutils literal notranslate"><span class="pre">pipx`</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pipx<span class="w"> </span>ensurepath
+pipx<span class="w"> </span>completions
+</pre></div>
+</div>
+<p>Install and setup the toolchain for the Rust language:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>--proto<span class="w"> </span><span class="s1">&#39;=https&#39;</span><span class="w"> </span>--tlsv1.2<span class="w"> </span>-sSf<span class="w"> </span>https://sh.rustup.rs<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
 </pre></div>
 </div>
 </section>
