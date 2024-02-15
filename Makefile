@@ -6,7 +6,7 @@ default: clean deps build view
 
 .PHONY: deps
 deps:
-	pipx install sphinx==4.4
+	pipx install sphinx==5.0
 	pipx inject sphinx flake8
 	pipx inject sphinx invocations
 	pipx inject sphinx invoke

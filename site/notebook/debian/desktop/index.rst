@@ -22,44 +22,22 @@ with **tiling** window-managers being one of the main reasons to replace the
 All of the above are based on the :xref-x11:`X Window System<>`, a replacement
 for which has been underway for 10+ years called :xref-wayland:`Wayland<>`.
 
-DE using XFCE4 and i3-gaps
---------------------------
+DE using XFCE4 and i3
+---------------------
 
 .. image:: screenshot-i3-gaps.png
     :width: 45%
 .. image:: screenshot-i3-gaps-rofi.png
     :width: 45%
 
-Tiling with i3-gaps
--------------------
-
-i3-gaps is a fork of i3 which is actively maintained as a set of patches on top
-of i3.
-
-At the time of writing/updating this, then i3-gaps version ``v4.20.1`` was the
-latest. Which in addition to the ``toolbelt`` packages requires installation of
-the following:
-
-.. literalinclude:: install.sh
-   :language: bash
-   :lines: 2-
-
-Then clone the ``i3-gaps`` repos, build and install it from source:
-
-.. literalinclude:: i3-gaps-build.sh
-   :language: bash
-   :lines: 2-
-
-The annoying thing here is that you have to maintain i3-gaps on your system,
-that is updating it as new releases come out make sure it is still working as
-intended.
+Previously getting gaps as in the screenshots above required building and installing a fork of i3 named ``i3-gaps``, however, today the functionality is merge into i3 itself. Thus, much simplified.
 
 i3ipc-glib
 ----------
 
 This is needed for the ``i3-workspaces-plugin``. It too has dependencies::
 
-  sudo apt-get install \
+  sudo apt-get install -qy \
     gobject-introspection \
     gtk-doc-tools \
     libjson-glib-dev

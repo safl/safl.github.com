@@ -1,78 +1,32 @@
 Text Editors
 ============
 
-Text-editing, the main tool for developers.
+I have used vim for some 20+ years. I have tried neovim at several occassions
+and not felt an urge to switch. However, at some pointin 2023 a co-worker of
+mine showed me LunarVIM and i took it for a spin. I liked it, and ditched my
+handrolled vim configs in favor of the turn-key setup provided by LunarVIM.
 
-Vim
----
+At that stage nothing felt sacred anymore and at that point then the very same
+co-worker showed me the Helix editor, then I decided to just go all-in.
 
-Install::
+So, currently piloting vanilla ``vi`` and ``vim`` on systems where they are
+available, and for my main text-editor and code-mangling I use Helix. Thus, this
+page is re-written with notes on getting the Helix editor running.
 
-  sudo apt-get -qy install \
-    git \
-    vim-gtk
+The only thing I don't like about the Helix editor are two tings:
 
-The above get's us vim and git to install vim-plugins. The following are
-dependencies for plugins, installing them ahead of time::
+* There are no packages for Debian Linux
+* The name of the executable ``hx``. I might just be scarred from typing ``vim``
+for decades.
 
-  sudo apt-get -qy install \
-    build-essential \
-    cmake \
-    default-jdk \
-    golang \
-    mono-complete \
-    nodejs \
-    npm \
-    python3-dev \
-    vim-nox
+Configs
+-------
 
-Configuration
-~~~~~~~~~~~~~
+``~/.config/helix/languages.toml``:
 
-Create directory layout and initial configuration file::
+.. literalinclude:: ../dotfiles/config/helix/language.toml
 
-  mkdir .vim
-  touch .vimrc
+``~/.config/helix/config.toml``:
 
-Plugin Manager
-~~~~~~~~~~~~~~
-
-vundle or pathogen::
-
-  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-
-Provide the plugin-manager configuration as the first thing in your ``.vimrc``:
-
-.. literalinclude:: ../../../dotfiles/vim/.vimrc
-   :language: vim
-   :emphasize-lines: 0,27
-   :linenos:
-
-Then install the plugin-manager, by running the following command inside ``vim``::
-
-  :PluginInstall
-
-Code-Completion
-~~~~~~~~~~~~~~~
-
-Go ahead, build and install YouCompleteMe(YCM)::
-
-  cd ~/.vim/bundle/youcompleteme
-  # For c only
-  #python3 install.py --clangd-completer
-  python3 install.py --all
-
-Clipboard
-~~~~~~~~~
-
+.. literalinclude:: ../dotfiles/config/helix/config.toml
 ...
-
-Indentation
-~~~~~~~~~~~
-
-...
-
-
-https://vimawesome.com/plugin/vim-colors-solarized-ours
-
-https://shapeshed.com/vim-netrw/
