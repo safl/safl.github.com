@@ -1,9 +1,0 @@
-flake8
-invocations
-invoke
-releases
-semantic_version
-sphinx-copybutton
-sphinx==5
-twine
-wheel

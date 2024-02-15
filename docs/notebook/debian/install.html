@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Workstation Installation &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
@@ -13,6 +13,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
@@ -79,21 +80,17 @@
     
     
   <section id="workstation-installation">
-<h1>Workstation Installation<a class="headerlink" href="#workstation-installation" title="Permalink to this headline">¶</a></h1>
+<h1>Workstation Installation<a class="headerlink" href="#workstation-installation" title="Permalink to this heading">¶</a></h1>
 <p>Grab the non-free installer image, it is just a lot easier to use since it
 contains non-free drivers for network devices like your WiFi adapter.</p>
-<section id="post-install">
-<h2>Post-install<a class="headerlink" href="#post-install" title="Permalink to this headline">¶</a></h2>
-<p>…</p>
-</section>
 <section id="enable-sudo">
-<h2>Enable <code class="docutils literal notranslate"><span class="pre">sudo</span></code><a class="headerlink" href="#enable-sudo" title="Permalink to this headline">¶</a></h2>
+<h2>Enable <code class="docutils literal notranslate"><span class="pre">sudo</span></code><a class="headerlink" href="#enable-sudo" title="Permalink to this heading">¶</a></h2>
 <p>Switch user to <code class="docutils literal notranslate"><span class="pre">root</span></code>, update repositories, install <code class="docutils literal notranslate"><span class="pre">sudo</span></code> and add your
 user to sudoers:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Switch user to &#39;root&#39;</span>
 <span class="n">su</span> <span class="o">-</span>
-<span class="n">apt</span> <span class="o">-</span><span class="n">qy</span> <span class="n">update</span>
-<span class="n">apt</span> <span class="o">-</span><span class="n">qy</span> <span class="n">install</span> \
+<span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="o">-</span><span class="n">qy</span> <span class="n">update</span>
+<span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="o">-</span><span class="n">qy</span> <span class="n">install</span> \
   <span class="n">sudo</span> \
   <span class="n">vim</span><span class="o">-</span><span class="n">gtk</span> \
   <span class="n">git</span> \
@@ -106,14 +103,14 @@ user to sudoers:</p>
 <p>Log out and log back in for the group addition to take effect.</p>
 </section>
 <section id="update-repositories-and-packages">
-<h2>Update repositories and packages<a class="headerlink" href="#update-repositories-and-packages" title="Permalink to this headline">¶</a></h2>
+<h2>Update repositories and packages<a class="headerlink" href="#update-repositories-and-packages" title="Permalink to this heading">¶</a></h2>
 <p>Make sure repositories and installation is up-to-date:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">upgrade</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">dist</span><span class="o">-</span><span class="n">upgrade</span>
 </pre></div>
 </div>
 </section>
 <section id="update-firmware">
-<h2>Update Firmware<a class="headerlink" href="#update-firmware" title="Permalink to this headline">¶</a></h2>
+<h2>Update Firmware<a class="headerlink" href="#update-firmware" title="Permalink to this heading">¶</a></h2>
 <p>Update firmware:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">isenkram</span>
 <span class="n">sudo</span> <span class="n">isenkram</span><span class="o">-</span><span class="n">autoinstall</span><span class="o">-</span><span class="n">firmware</span>
@@ -122,20 +119,27 @@ user to sudoers:</p>
 <p>Then reboot for the firmware additons to take effect.</p>
 </section>
 <section id="toolbelt">
-<h2>Toolbelt<a class="headerlink" href="#toolbelt" title="Permalink to this headline">¶</a></h2>
+<h2>Toolbelt<a class="headerlink" href="#toolbelt" title="Permalink to this heading">¶</a></h2>
 <p>For the rest we need some basic tools:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> \
   <span class="n">build</span><span class="o">-</span><span class="n">essential</span> \
+  <span class="n">clang</span> \
+  <span class="n">clangd</span> \
+  <span class="n">curl</span> \
+  <span class="n">gdb</span> \
   <span class="n">git</span> \
   <span class="n">htop</span> \
-  <span class="n">python3</span><span class="o">-</span><span class="n">pip</span> \
-  <span class="n">shellcheck</span> \
+  <span class="n">meld</span> \
+  <span class="n">meson</span> \
+  <span class="n">pahole</span> \
+  <span class="n">pipx</span> \
   <span class="n">stow</span> \
-  <span class="n">vim</span><span class="o">-</span><span class="n">gtk</span>
-
-<span class="c1"># Installing this with sudo via pip3 to get the latest version and install it</span>
-<span class="c1"># system-wide</span>
-<span class="n">sudo</span> <span class="n">pip3</span> <span class="n">install</span> <span class="n">meson</span> <span class="n">ninja</span>
+  <span class="n">valgrind</span> \
+  <span class="n">vim</span>
+</pre></div>
+</div>
+<p>And the rust-lang toolchain:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">--</span><span class="n">proto</span> <span class="s1">&#39;=https&#39;</span> <span class="o">--</span><span class="n">tlsv1</span><span class="mf">.2</span> <span class="o">-</span><span class="n">sSf</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">sh</span><span class="o">.</span><span class="n">rustup</span><span class="o">.</span><span class="n">rs</span> <span class="o">|</span> <span class="n">sh</span>
 </pre></div>
 </div>
 </section>
@@ -149,7 +153,6 @@ user to sudoers:</p>
       <h3>Here</h3>
       <ul>
 <li><a class="reference internal" href="#">Workstation Installation</a><ul>
-<li><a class="reference internal" href="#post-install">Post-install</a></li>
 <li><a class="reference internal" href="#enable-sudo">Enable <code class="docutils literal notranslate"><span class="pre">sudo</span></code></a></li>
 <li><a class="reference internal" href="#update-repositories-and-packages">Update repositories and packages</a></li>
 <li><a class="reference internal" href="#update-firmware">Update Firmware</a></li>
@@ -174,8 +177,8 @@ user to sudoers:</p>
 
   <footer class="row">
     <div class="col-lg-12">
-        &copy; Copyright 2023 Simon A. F. Lund.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.
+        &copy; Copyright 2024 Simon A. F. Lund.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.0.
     </div>
   </footer>
 

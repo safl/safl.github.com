@@ -4,12 +4,6 @@ Workstation Installation
 Grab the non-free installer image, it is just a lot easier to use since it
 contains non-free drivers for network devices like your WiFi adapter.
 
-
-Post-install
-------------
-
-...
-
 Enable ``sudo``
 ---------------
 
@@ -18,8 +12,8 @@ user to sudoers::
 
   # Switch user to 'root'
   su -
-  apt -qy update
-  apt -qy install \
+  apt-get -qy update
+  apt-get -qy install \
     sudo \
     vim-gtk \
     git \
@@ -54,13 +48,20 @@ For the rest we need some basic tools::
 
   sudo apt-get install \
     build-essential \
+    clang \
+    clangd \
+    curl \
+    gdb \
     git \
     htop \
-    python3-pip \
-    shellcheck \
+    meld \
+    meson \
+    pahole \
+    pipx \
     stow \
-    vim-gtk
+    valgrind \
+    vim
 
-  # Installing this with sudo via pip3 to get the latest version and install it
-  # system-wide
-  sudo pip3 install meson ninja
+And the rust-lang toolchain::
+
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh 

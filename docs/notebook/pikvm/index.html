@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>PiKVM with v3 HAT &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
@@ -13,6 +13,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
@@ -78,15 +79,15 @@
     
     
   <section id="pikvm-with-v3-hat">
-<h1>PiKVM with v3 HAT<a class="headerlink" href="#pikvm-with-v3-hat" title="Permalink to this headline">¶</a></h1>
+<h1>PiKVM with v3 HAT<a class="headerlink" href="#pikvm-with-v3-hat" title="Permalink to this heading">¶</a></h1>
 <p>Bla bla bla</p>
 <section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h2>
 <p>From the download-page, grab <code class="docutils literal notranslate"><span class="pre">v3-hdmi-rpi4-latest.img.xz</span></code> and write it to
 sdcard. Assemble the thing and let it boot.</p>
 </section>
 <section id="post-install">
-<h2>Post-install<a class="headerlink" href="#post-install" title="Permalink to this headline">¶</a></h2>
+<h2>Post-install<a class="headerlink" href="#post-install" title="Permalink to this heading">¶</a></h2>
 <p>Login via the web-interface and dump yourself into the Shell/terminal and
 switch to <code class="docutils literal notranslate"><span class="pre">root</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Switch to root</span>
@@ -123,7 +124,7 @@ switch to <code class="docutils literal notranslate"><span class="pre">root</spa
 </div>
 </section>
 <section id="h-264-webrtc">
-<h2>H.264/WebRTC<a class="headerlink" href="#h-264-webrtc" title="Permalink to this headline">¶</a></h2>
+<h2>H.264/WebRTC<a class="headerlink" href="#h-264-webrtc" title="Permalink to this heading">¶</a></h2>
 <p>It requires internet access and is by default configured to use a STUN server
 hosted by google. To avoid this, then disable the janus service and enable the
 static version:</p>
@@ -134,10 +135,10 @@ static version:</p>
 <p>See <a class="reference external" href="https://docs.pikvm.org/edid/#default-edid">PiKVM-edid</a> for more information about this.</p>
 </section>
 <section id="troubleshooting">
-<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading">¶</a></h2>
 <p>A couple of notes on issues faced and how to solve them. For more, then</p>
 <section id="garbled-graphics">
-<h3>Garbled graphics<a class="headerlink" href="#garbled-graphics" title="Permalink to this headline">¶</a></h3>
+<h3>Garbled graphics<a class="headerlink" href="#garbled-graphics" title="Permalink to this heading">¶</a></h3>
 <p>In case your BIOS/UEFI looks and behaves weird, here is an example of weird:</p>
 <a class="reference internal image-reference" href="../../_images/video-garbled-02.png"><img alt="../../_images/video-garbled-02.png" src="../../_images/video-garbled-02.png" style="width: 45%;" /></a>
 <p>then you probably needs the tweak the <strong>edid</strong>. For details look at
@@ -203,7 +204,7 @@ but instead of writing the edid to <code class="docutils literal notranslate"><s
 temporary file and run <code class="docutils literal notranslate"><span class="pre">v4l2-ctl</span></code> to see that it works.</p>
 </section>
 <section id="keyboard-mouse-are-not-working">
-<h3>Keyboard / mouse are not working<a class="headerlink" href="#keyboard-mouse-are-not-working" title="Permalink to this headline">¶</a></h3>
+<h3>Keyboard / mouse are not working<a class="headerlink" href="#keyboard-mouse-are-not-working" title="Permalink to this heading">¶</a></h3>
 <p>If you find that mouse / keyboard is not working then check:</p>
 <ul class="simple">
 <li><p>Make sure you have the small USB-C bridge connected. That is the thing that
@@ -257,8 +258,8 @@ else works, then this might be why.</p></li>
 
   <footer class="row">
     <div class="col-lg-12">
-        &copy; Copyright 2023 Simon A. F. Lund.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.
+        &copy; Copyright 2024 Simon A. F. Lund.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.0.
     </div>
   </footer>
 

@@ -17,3 +17,4 @@ Notes of various stuff...
    sphinx/index.rst
    vmmanager/index.rst
    windows/index.rst
+   radxa/zero/index.rst

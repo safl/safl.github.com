@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Text Editors &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
@@ -13,6 +13,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
@@ -79,217 +80,86 @@
     
     
   <section id="text-editors">
-<h1>Text Editors<a class="headerlink" href="#text-editors" title="Permalink to this headline">¶</a></h1>
-<p>Text-editing, the main tool for developers.</p>
-<section id="vim">
-<h2>Vim<a class="headerlink" href="#vim" title="Permalink to this headline">¶</a></h2>
-<p>Install:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="o">-</span><span class="n">qy</span> <span class="n">install</span> \
-  <span class="n">git</span> \
-  <span class="n">vim</span><span class="o">-</span><span class="n">gtk</span>
+<h1>Text Editors<a class="headerlink" href="#text-editors" title="Permalink to this heading">¶</a></h1>
+<p>I have used vim for some 20+ years. I have tried neovim at several occassions
+and not felt an urge to switch. However, at some pointin 2023 a co-worker of
+mine showed me LunarVIM and i took it for a spin. I liked it, and ditched my
+handrolled vim configs in favor of the turn-key setup provided by LunarVIM.</p>
+<p>At that stage nothing felt sacred anymore and at that point then the very same
+co-worker showed me the Helix editor, then I decided to just go all-in.</p>
+<p>The only thing I don’t like about the Helix editor are two tings:</p>
+<ul class="simple">
+<li><p>There are no packages for Debian Linux</p></li>
+<li><p>The name of the executable <code class="docutils literal notranslate"><span class="pre">hx</span></code>. I might just be scarred from typing <code class="docutils literal notranslate"><span class="pre">vim</span></code>
+for decades.</p></li>
+</ul>
+<p>So, currently piloting vanilla <code class="docutils literal notranslate"><span class="pre">vi</span></code> and <code class="docutils literal notranslate"><span class="pre">vim</span></code> on systems where they are
+available, and for my main text-editor and code-mangling I use Helix. Thus, this
+page is re-written with notes on getting the Helix editor running.</p>
+<section id="configs">
+<h2>Configs<a class="headerlink" href="#configs" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">~/.config/helix/languages.toml</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="n">language</span><span class="p">]]</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;c&quot;</span>
+<span class="c1">#indent = { tab-width = 8, unit = &quot;        &quot; }</span>
+<span class="n">indent</span> <span class="o">=</span> <span class="p">{</span> <span class="n">tab</span><span class="o">-</span><span class="n">width</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="n">unit</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span> <span class="p">}</span>
+<span class="n">file</span><span class="o">-</span><span class="n">types</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;h&quot;</span><span class="p">]</span>
+
+<span class="p">[[</span><span class="n">language</span><span class="p">]]</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;git-commit&quot;</span>
+<span class="n">rulers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">72</span><span class="p">]</span>
+<span class="n">text</span><span class="o">-</span><span class="n">width</span> <span class="o">=</span> <span class="mi">72</span>
+
+<span class="p">[[</span><span class="n">language</span><span class="p">]]</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;python&quot;</span>
+<span class="n">rulers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">88</span><span class="p">]</span>
+<span class="n">text</span><span class="o">-</span><span class="n">width</span> <span class="o">=</span> <span class="mi">88</span>
 </pre></div>
 </div>
-<p>The above get’s us vim and git to install vim-plugins. The following are
-dependencies for plugins, installing them ahead of time:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="o">-</span><span class="n">qy</span> <span class="n">install</span> \
-  <span class="n">build</span><span class="o">-</span><span class="n">essential</span> \
-  <span class="n">cmake</span> \
-  <span class="n">default</span><span class="o">-</span><span class="n">jdk</span> \
-  <span class="n">golang</span> \
-  <span class="n">mono</span><span class="o">-</span><span class="n">complete</span> \
-  <span class="n">nodejs</span> \
-  <span class="n">npm</span> \
-  <span class="n">python3</span><span class="o">-</span><span class="n">dev</span> \
-  <span class="n">vim</span><span class="o">-</span><span class="n">nox</span>
+<p><code class="docutils literal notranslate"><span class="pre">~/.config/helix/config.toml</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">theme</span> <span class="o">=</span> <span class="s2">&quot;tokyonight_storm&quot;</span>
+
+<span class="p">[</span><span class="n">editor</span><span class="o">.</span><span class="n">cursor</span><span class="o">-</span><span class="n">shape</span><span class="p">]</span>
+<span class="n">insert</span> <span class="o">=</span> <span class="s2">&quot;bar&quot;</span>
+<span class="n">normal</span> <span class="o">=</span> <span class="s2">&quot;block&quot;</span>
+<span class="n">select</span> <span class="o">=</span> <span class="s2">&quot;underline&quot;</span>
+
+<span class="p">[</span><span class="n">editor</span><span class="o">.</span><span class="n">lsp</span><span class="p">]</span>
+<span class="n">display</span><span class="o">-</span><span class="n">messages</span> <span class="o">=</span> <span class="n">true</span>
+<span class="n">display</span><span class="o">-</span><span class="n">inlay</span><span class="o">-</span><span class="n">hints</span> <span class="o">=</span> <span class="n">true</span>
+
+<span class="p">[</span><span class="n">editor</span><span class="p">]</span>
+<span class="n">mouse</span> <span class="o">=</span> <span class="n">false</span>
+<span class="n">bufferline</span> <span class="o">=</span> <span class="s2">&quot;multiple&quot;</span>
+<span class="n">true</span><span class="o">-</span><span class="n">color</span> <span class="o">=</span> <span class="n">true</span>
+<span class="n">rulers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">80</span><span class="p">]</span>
+<span class="n">cursorline</span> <span class="o">=</span> <span class="n">true</span>
+<span class="n">color</span><span class="o">-</span><span class="n">modes</span> <span class="o">=</span> <span class="n">true</span>
+<span class="n">insert</span><span class="o">-</span><span class="n">final</span><span class="o">-</span><span class="n">newline</span> <span class="o">=</span> <span class="n">false</span>
+
+<span class="p">[</span><span class="n">editor</span><span class="o">.</span><span class="n">file</span><span class="o">-</span><span class="n">picker</span><span class="p">]</span>
+<span class="n">hidden</span> <span class="o">=</span> <span class="n">false</span>
+
+<span class="p">[</span><span class="n">keys</span><span class="o">.</span><span class="n">normal</span><span class="p">]</span>
+<span class="n">esc</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;collapse_selection&quot;</span><span class="p">,</span> <span class="s2">&quot;keep_primary_selection&quot;</span><span class="p">]</span>
+<span class="n">G</span> <span class="o">=</span> <span class="s2">&quot;goto_file_end&quot;</span>
+<span class="n">X</span> <span class="o">=</span> <span class="s2">&quot;extend_line_above&quot;</span>
+<span class="n">ret</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;move_line_down&quot;</span><span class="p">,</span> <span class="s2">&quot;goto_line_start&quot;</span><span class="p">]</span>
+<span class="n">C</span><span class="o">-</span><span class="n">n</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;extend_to_line_bounds&quot;</span><span class="p">,</span> <span class="s2">&quot;delete_selection&quot;</span><span class="p">,</span> <span class="s2">&quot;paste_after&quot;</span><span class="p">]</span>
+
+<span class="p">[</span><span class="n">keys</span><span class="o">.</span><span class="n">select</span><span class="o">.</span><span class="n">g</span><span class="p">]</span>
+<span class="n">w</span> <span class="o">=</span> <span class="s2">&quot;:reflow&quot;</span>
+
+<span class="p">[</span><span class="n">keys</span><span class="o">.</span><span class="n">normal</span><span class="o">.</span><span class="n">space</span><span class="p">]</span>
+<span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;:quit&quot;</span>
+<span class="n">n</span> <span class="o">=</span> <span class="s2">&quot;:bn&quot;</span>
+
+<span class="p">[</span><span class="n">editor</span><span class="o">.</span><span class="n">whitespace</span><span class="o">.</span><span class="n">render</span><span class="p">]</span>
+<span class="n">space</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span>
+<span class="n">tab</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span>
+<span class="n">newline</span> <span class="o">=</span> <span class="s2">&quot;none&quot;</span>
 </pre></div>
 </div>
-<section id="configuration">
-<h3>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h3>
-<p>Create directory layout and initial configuration file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">.</span><span class="n">vim</span>
-<span class="n">touch</span> <span class="o">.</span><span class="n">vimrc</span>
-</pre></div>
-</div>
-</section>
-<section id="plugin-manager">
-<h3>Plugin Manager<a class="headerlink" href="#plugin-manager" title="Permalink to this headline">¶</a></h3>
-<p>vundle or pathogen:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">VundleVim</span><span class="o">/</span><span class="n">Vundle</span><span class="o">.</span><span class="n">vim</span><span class="o">.</span><span class="n">git</span> <span class="o">~/.</span><span class="n">vim</span><span class="o">/</span><span class="n">bundle</span><span class="o">/</span><span class="n">Vundle</span><span class="o">.</span><span class="n">vim</span>
-</pre></div>
-</div>
-<p>Provide the plugin-manager configuration as the first thing in your <code class="docutils literal notranslate"><span class="pre">.vimrc</span></code>:</p>
-<div class="highlight-vim notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="k">set</span> <span class="nb">nocompatible</span>              <span class="c">&quot; be iMproved, required</span>
-<span class="linenos">  2</span><span class="k">filetype</span> off                  <span class="c">&quot; required</span>
-<span class="linenos">  3</span>
-<span class="linenos">  4</span><span class="c">&quot; ==== Plugin-Manager: vundle -- begin ============================================================</span>
-<span class="linenos">  5</span><span class="c">&quot; Brief help: {PluginList, PluginInstall, PluginClean}</span>
-<span class="linenos">  6</span><span class="c">&quot; set the runtime path to include Vundle and initialize</span>
-<span class="linenos">  7</span><span class="k">set</span> <span class="nb">rtp</span><span class="p">+=~</span><span class="sr">/.vim/</span>bundle/Vundle.<span class="k">vim</span>
-<span class="linenos">  8</span><span class="k">call</span> vundle#begin<span class="p">()</span>
-<span class="linenos">  9</span>
-<span class="linenos"> 10</span>Plugin <span class="s1">&#39;VundleVim/Vundle.vim&#39;</span>
-<span class="linenos"> 11</span>
-<span class="linenos"> 12</span>Plugin <span class="s1">&#39;flazz/vim-colorschemes&#39;</span>
-<span class="linenos"> 13</span>Plugin <span class="s1">&#39;powerline/fonts&#39;</span>
-<span class="linenos"> 14</span>Plugin <span class="s1">&#39;tpope/vim-fugitive&#39;</span>
-<span class="linenos"> 15</span>Plugin <span class="s1">&#39;vim-airline/vim-airline&#39;</span>
-<span class="linenos"> 16</span>Plugin <span class="s1">&#39;vim-airline/vim-airline-themes&#39;</span>
-<span class="linenos"> 17</span>Plugin <span class="s1">&#39;ludovicchabant/vim-gutentags&#39;</span>
-<span class="linenos"> 18</span>Plugin <span class="s1">&#39;kien/ctrlp.vim&#39;</span>
-<span class="linenos"> 19</span>Plugin <span class="s1">&#39;valloric/youcompleteme&#39;</span>
-<span class="linenos"> 20</span>
-<span class="linenos"> 21</span><span class="c">&quot; Unused plugins</span>
-<span class="linenos"> 22</span><span class="c">&quot;Plugin &#39;scrooloose/syntastic&#39;</span>
-<span class="linenos"> 23</span><span class="c">&quot;Plugin &#39;nathanaelkane/vim-indent-guides&#39;</span>
-<span class="linenos"> 24</span>
-<span class="linenos"> 25</span><span class="c">&quot; All of your Plugins must be added before the following line</span>
-<span class="linenos"> 26</span><span class="k">call</span> vundle#<span class="k">end</span><span class="p">()</span>            <span class="c">&quot; required</span>
-<span class="hll"><span class="linenos"> 27</span><span class="c">&quot; ==== Plugin-Manager: vundle -- end ==============================================================</span>
-</span><span class="linenos"> 28</span><span class="k">filetype</span> plugin indent <span class="k">on</span>    <span class="c">&quot; required</span>
-<span class="linenos"> 29</span><span class="c">&quot; ==== Plugin-Configuration:-- begin ==============================================================</span>
-<span class="linenos"> 30</span>
-<span class="linenos"> 31</span><span class="c">&quot; ==== vim-airline</span>
-<span class="linenos"> 32</span><span class="k">let</span> <span class="k">g</span>:airline_theme<span class="p">=</span><span class="s1">&#39;solarized&#39;</span>
-<span class="linenos"> 33</span><span class="k">let</span> <span class="k">g</span>:airline_solarized_bg<span class="p">=</span><span class="s1">&#39;dark&#39;</span>
-<span class="linenos"> 34</span><span class="k">let</span> <span class="k">g</span>:airline_powerline_fonts<span class="p">=</span><span class="m">1</span>
-<span class="linenos"> 35</span><span class="c">&quot;let g:airline_statusline_ontop=1</span>
-<span class="linenos"> 36</span>
-<span class="linenos"> 37</span><span class="c">&quot; ==== Plugin-Configuration -- end ================================================================</span>
-<span class="linenos"> 38</span>
-<span class="linenos"> 39</span><span class="c">&quot; ==== General Configuration ======================================================================</span>
-<span class="linenos"> 40</span><span class="k">set</span> <span class="k">number</span>                      <span class="c">&quot;Line numbers are good</span>
-<span class="linenos"> 41</span><span class="k">set</span> <span class="nb">backspace</span><span class="p">=</span>indent<span class="p">,</span><span class="nb">eol</span><span class="p">,</span><span class="k">start</span>  <span class="c">&quot;Allow backspace in insert mode</span>
-<span class="linenos"> 42</span><span class="k">set</span> <span class="k">history</span><span class="p">=</span><span class="m">1000</span>                <span class="c">&quot;Store lots of :cmdline history</span>
-<span class="linenos"> 43</span><span class="k">set</span> <span class="nb">showcmd</span>                     <span class="c">&quot;Show incomplete cmds down the bottom</span>
-<span class="linenos"> 44</span><span class="k">set</span> <span class="nb">showmode</span>                    <span class="c">&quot;Show current mode down the bottom</span>
-<span class="linenos"> 45</span><span class="k">set</span> <span class="nb">gcr</span><span class="p">=</span><span class="k">a</span>:blinkon0              <span class="c">&quot;Disable cursor blink</span>
-<span class="linenos"> 46</span>
-<span class="linenos"> 47</span><span class="c">&quot; ==== Enable syntax high-light ===================================================================</span>
-<span class="linenos"> 48</span><span class="nb">syntax</span> <span class="k">on</span>
-<span class="linenos"> 49</span><span class="k">let</span> <span class="k">g</span>:solarized_termcolors<span class="p">=</span><span class="m">16</span>
-<span class="linenos"> 50</span><span class="k">set</span> <span class="nb">t_Co</span><span class="p">=</span><span class="m">16</span>
-<span class="linenos"> 51</span><span class="k">set</span> <span class="nb">background</span><span class="p">=</span><span class="nb">dark</span>
-<span class="linenos"> 52</span><span class="k">colorscheme</span> solarized
-<span class="linenos"> 53</span>
-<span class="linenos"> 54</span><span class="c">&quot; ==== Reload files changed outside vim ===========================================================</span>
-<span class="linenos"> 55</span><span class="k">set</span> <span class="nb">autoread</span>
-<span class="linenos"> 56</span>
-<span class="linenos"> 57</span><span class="c">&quot; This makes vim act like all other editors, buffers can</span>
-<span class="linenos"> 58</span><span class="c">&quot; exist in the background without being in a window.</span>
-<span class="linenos"> 59</span><span class="c">&quot; http://items.sjbach.com/319/configuring-vim-right</span>
-<span class="linenos"> 60</span><span class="k">set</span> <span class="nb">hidden</span>
-<span class="linenos"> 61</span>
-<span class="linenos"> 62</span><span class="c">&quot; ==== Scrolling ==================================================================================</span>
-<span class="linenos"> 63</span><span class="c">&quot; = Start scrolling when &#39;scrollloff&#39; lines away from top/bottom</span>
-<span class="linenos"> 64</span><span class="c">&quot; = and &#39;sidescrollloff&#39; characters from top/bottom</span>
-<span class="linenos"> 65</span><span class="k">set</span> <span class="nb">scrolloff</span><span class="p">=</span><span class="m">8</span>
-<span class="linenos"> 66</span><span class="k">set</span> <span class="nb">sidescrolloff</span><span class="p">=</span><span class="m">15</span>
-<span class="linenos"> 67</span><span class="k">set</span> <span class="nb">sidescroll</span><span class="p">=</span><span class="m">1</span>
-<span class="linenos"> 68</span>
-<span class="linenos"> 69</span><span class="c">&quot; ==== Turn Off Swap Files ========================================================================</span>
-<span class="linenos"> 70</span><span class="k">set</span> <span class="nb">noswapfile</span>
-<span class="linenos"> 71</span><span class="k">set</span> <span class="nb">nobackup</span>
-<span class="linenos"> 72</span><span class="k">set</span> <span class="nb">nowb</span>
-<span class="linenos"> 73</span>
-<span class="linenos"> 74</span><span class="c">&quot; ====  Persistent Undo ===========================================================================</span>
-<span class="linenos"> 75</span><span class="c">&quot; Keep undo history across sessions, by storing in file.</span>
-<span class="linenos"> 76</span><span class="c">&quot; Only works all the time.</span>
-<span class="linenos"> 77</span><span class="k">if</span> has<span class="p">(</span><span class="s1">&#39;persistent_undo&#39;</span><span class="p">)</span>
-<span class="linenos"> 78</span>  <span class="k">silent</span> <span class="p">!</span>mkdir <span class="p">~</span><span class="sr">/.vim/</span>backups <span class="p">&gt;</span> <span class="sr">/dev/</span>null <span class="m">2</span><span class="p">&gt;</span>&amp;<span class="m">1</span>
-<span class="linenos"> 79</span>  <span class="k">set</span> <span class="nb">undodir</span><span class="p">=~</span><span class="sr">/.vim/</span>backups
-<span class="linenos"> 80</span>  <span class="k">set</span> <span class="nb">undofile</span>
-<span class="linenos"> 81</span><span class="k">endif</span>
-<span class="linenos"> 82</span>
-<span class="linenos"> 83</span><span class="c">&quot; ==== Indentation ================================================================================</span>
-<span class="linenos"> 84</span><span class="k">set</span> <span class="nb">autoindent</span>
-<span class="linenos"> 85</span><span class="k">set</span> <span class="nb">smartindent</span>
-<span class="linenos"> 86</span><span class="k">set</span> <span class="nb">smarttab</span>
-<span class="linenos"> 87</span><span class="k">set</span> <span class="nb">shiftwidth</span><span class="p">=</span><span class="m">8</span>
-<span class="linenos"> 88</span><span class="k">set</span> <span class="nb">softtabstop</span><span class="p">=</span><span class="m">8</span>
-<span class="linenos"> 89</span><span class="k">set</span> <span class="nb">tabstop</span><span class="p">=</span><span class="m">8</span>
-<span class="linenos"> 90</span>
-<span class="linenos"> 91</span><span class="c">&quot; ==== Indentation: file-specific =================================================================</span>
-<span class="linenos"> 92</span>autocmd <span class="nb">BufEnter</span> *.css :<span class="k">setlocal</span> <span class="k">filetype</span><span class="p">=</span>html
-<span class="linenos"> 93</span>autocmd <span class="nb">BufEnter</span> *.cu :<span class="k">setlocal</span> <span class="k">filetype</span><span class="p">=</span>cpp
-<span class="linenos"> 94</span>autocmd <span class="nb">BufEnter</span> *.<span class="k">h</span> :<span class="k">setlocal</span> <span class="k">filetype</span><span class="p">=</span><span class="k">c</span>
-<span class="linenos"> 95</span>autocmd <span class="nb">BufEnter</span> *.html :<span class="k">setlocal</span> <span class="k">filetype</span><span class="p">=</span>html
-<span class="linenos"> 96</span>autocmd <span class="nb">BufEnter</span> *.<span class="nb">js</span> :<span class="k">setlocal</span> <span class="k">filetype</span><span class="p">=</span>html
-<span class="linenos"> 97</span>autocmd <span class="nb">BufEnter</span> *.json :<span class="k">setlocal</span> <span class="k">filetype</span><span class="p">=</span>html
-<span class="linenos"> 98</span>autocmd <span class="nb">BufEnter</span> *.plan :<span class="k">setlocal</span> <span class="k">filetype</span><span class="p">=</span>yaml
-<span class="linenos"> 99</span>autocmd <span class="nb">BufEnter</span> *.preseed :<span class="k">setlocal</span> <span class="k">ts</span><span class="p">=</span><span class="m">4</span> <span class="k">sw</span><span class="p">=</span><span class="m">4</span> <span class="nb">expandtab</span>
-<span class="linenos">100</span>autocmd <span class="nb">BufEnter</span> *.<span class="k">sh</span> :<span class="k">setlocal</span> <span class="k">ts</span><span class="p">=</span><span class="m">2</span> <span class="k">sw</span><span class="p">=</span><span class="m">2</span> <span class="nb">expandtab</span>
-<span class="linenos">101</span>autocmd <span class="nb">BufEnter</span> *.suite :<span class="k">setlocal</span> <span class="k">filetype</span><span class="p">=</span><span class="k">shell</span>
-<span class="linenos">102</span>autocmd Filetype <span class="k">c</span> <span class="k">setlocal</span> <span class="k">ts</span><span class="p">=</span><span class="m">8</span> <span class="k">sw</span><span class="p">=</span><span class="m">8</span> <span class="nb">textwidth</span><span class="p">=</span><span class="m">99</span> <span class="nb">noexpandtab</span>
-<span class="linenos">103</span>autocmd Filetype cpp <span class="k">setlocal</span> <span class="k">ts</span><span class="p">=</span><span class="m">2</span> <span class="k">sw</span><span class="p">=</span><span class="m">2</span> <span class="nb">expandtab</span>
-<span class="linenos">104</span>autocmd Filetype html <span class="k">setlocal</span> <span class="k">ts</span><span class="p">=</span><span class="m">2</span> <span class="k">sw</span><span class="p">=</span><span class="m">2</span> <span class="nb">expandtab</span> <span class="nb">textwidth</span><span class="p">=</span><span class="m">99</span>
-<span class="linenos">105</span>autocmd Filetype <span class="nb">js</span> <span class="k">setlocal</span> <span class="k">ts</span><span class="p">=</span><span class="m">2</span> <span class="k">sw</span><span class="p">=</span><span class="m">2</span> <span class="nb">expandtab</span> <span class="nb">textwidth</span><span class="p">=</span><span class="m">99</span>
-<span class="linenos">106</span>autocmd Filetype markdown <span class="k">setlocal</span> <span class="k">ts</span><span class="p">=</span><span class="m">4</span> <span class="k">sw</span><span class="p">=</span><span class="m">4</span> <span class="nb">expandtab</span>
-<span class="linenos">107</span>autocmd Filetype python <span class="k">setlocal</span> <span class="k">ts</span><span class="p">=</span><span class="m">4</span> <span class="k">sw</span><span class="p">=</span><span class="m">4</span> <span class="nb">textwidth</span><span class="p">=</span><span class="m">88</span> <span class="nb">autoindent</span> <span class="nb">fileformat</span><span class="p">=</span>unix <span class="nb">expandtab</span>
-<span class="linenos">108</span>autocmd Filetype rst <span class="k">setlocal</span> <span class="k">ts</span><span class="p">=</span><span class="m">2</span> <span class="k">sw</span><span class="p">=</span><span class="m">2</span> <span class="nb">expandtab</span> <span class="nb">textwidth</span><span class="p">=</span><span class="m">79</span> <span class="nb">wrapmargin</span><span class="p">=</span><span class="m">0</span> <span class="nb">formatoptions</span><span class="p">=</span>nt
-<span class="linenos">109</span>autocmd Filetype <span class="k">ruby</span> <span class="k">setlocal</span> <span class="k">ts</span><span class="p">=</span><span class="m">2</span> <span class="k">sw</span><span class="p">=</span><span class="m">2</span> <span class="nb">expandtab</span>
-<span class="linenos">110</span>autocmd Filetype <span class="k">shell</span> <span class="k">setlocal</span> <span class="nb">textwidth</span><span class="p">=</span><span class="m">0</span> <span class="nb">wrapmargin</span><span class="p">=</span><span class="m">0</span>
-<span class="linenos">111</span>autocmd Filetype yaml <span class="k">setlocal</span> <span class="k">ts</span><span class="p">=</span><span class="m">2</span> <span class="k">sw</span><span class="p">=</span><span class="m">2</span> <span class="nb">expandtab</span>
-<span class="linenos">112</span>
-<span class="linenos">113</span><span class="c">&quot; ==== Indentation: display tabs and trailing spaces visually =====================================</span>
-<span class="linenos">114</span><span class="k">set</span> <span class="nb">list</span> <span class="nb">listchars</span><span class="p">=</span><span class="k">tab</span>:»·<span class="p">,</span>trail:·<span class="p">,</span>extends:$<span class="p">,</span>nbsp:<span class="p">=</span>
-<span class="linenos">115</span><span class="k">set</span> <span class="nb">nowrap</span>       <span class="c">&quot;Don&#39;t wrap lines</span>
-<span class="linenos">116</span><span class="k">set</span> <span class="nb">linebreak</span>    <span class="c">&quot;Wrap lines at convenient points</span>
-<span class="linenos">117</span>
-<span class="linenos">118</span><span class="c">&quot; ==== Redrawing ==================================================================================</span>
-<span class="linenos">119</span><span class="k">set</span> <span class="nb">lazyredraw</span>
-<span class="linenos">120</span><span class="k">set</span> <span class="nb">ttyfast</span>
-<span class="linenos">121</span>
-<span class="linenos">122</span><span class="c">&quot; ==== yank to clipboard ==========================================================================</span>
-<span class="linenos">123</span><span class="k">set</span> <span class="nb">clipboard</span><span class="p">=</span>unnamedplus
-<span class="linenos">124</span><span class="k">set</span> <span class="nb">clipboard</span>^<span class="p">=</span>unnamed
-<span class="linenos">125</span>
-<span class="linenos">126</span><span class="c">&quot; ==== Wrapping ===================================================================================</span>
-<span class="linenos">127</span><span class="k">set</span> <span class="nb">formatoptions</span><span class="p">+=</span><span class="k">t</span> <span class="nb">colorcolumn</span><span class="p">=+</span><span class="m">1</span> <span class="nb">tw</span><span class="p">=</span><span class="m">80</span>
-<span class="linenos">128</span><span class="k">set</span> <span class="nb">formatoptions</span><span class="p">+=</span><span class="k">t</span> <span class="nb">colorcolumn</span><span class="p">=+</span><span class="m">1</span> <span class="nb">tw</span><span class="p">=</span><span class="m">99</span>
-<span class="linenos">129</span>
-<span class="linenos">130</span><span class="c">&quot; ==== Display tabs and trailing spaces visually ==================================================</span>
-<span class="linenos">131</span><span class="k">set</span> <span class="nb">list</span> <span class="nb">listchars</span><span class="p">=</span><span class="k">tab</span>:»·<span class="p">,</span>trail:·<span class="p">,</span>extends:$<span class="p">,</span>nbsp:<span class="p">=</span>
-<span class="linenos">132</span>
-<span class="linenos">133</span><span class="c">&quot; ==== Use vim-built-in file-browser (netrw) in a NERDTree-like fashion ===========================</span>
-<span class="linenos">134</span>nmap <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;</span> <span class="p">&lt;</span>f2<span class="p">&gt;</span> :Lexplore<span class="p">&lt;</span><span class="k">cr</span><span class="p">&gt;</span>
-<span class="linenos">135</span><span class="k">let</span> <span class="k">g</span>:netrw_altv <span class="p">=</span> <span class="m">1</span>
-<span class="linenos">136</span><span class="k">let</span> <span class="k">g</span>:netrw_banner <span class="p">=</span> <span class="m">0</span>
-<span class="linenos">137</span><span class="k">let</span> <span class="k">g</span>:netrw_browse_split <span class="p">=</span> <span class="m">4</span>
-<span class="linenos">138</span><span class="k">let</span> <span class="k">g</span>:netrw_liststyle <span class="p">=</span> <span class="m">3</span>
-<span class="linenos">139</span><span class="k">let</span> <span class="k">g</span>:netrw_winsize <span class="p">=</span> <span class="m">25</span>
-<span class="linenos">140</span>
-<span class="linenos">141</span><span class="c">&quot; ==== tags: search upwards for tags file ===========</span>
-<span class="linenos">142</span><span class="k">set</span> <span class="k">tags</span><span class="p">=~</span><span class="sr">/tags/</span>xnvme<span class="p">,~</span><span class="sr">/tags/</span>spdk<span class="p">,</span>.<span class="sr">/tags;/</span>
-<span class="linenos">143</span>
-<span class="linenos">144</span><span class="c">&quot; ==== Disabled options ===========================================================================</span>
-<span class="linenos">145</span><span class="c">&quot; set visualbell                  &quot;No sounds</span>
-</pre></div>
-</div>
-<p>Then install the plugin-manager, by running the following command inside <code class="docutils literal notranslate"><span class="pre">vim</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">PluginInstall</span>
-</pre></div>
-</div>
-</section>
-<section id="code-completion">
-<h3>Code-Completion<a class="headerlink" href="#code-completion" title="Permalink to this headline">¶</a></h3>
-<p>Go ahead, build and install YouCompleteMe(YCM):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/.</span><span class="n">vim</span><span class="o">/</span><span class="n">bundle</span><span class="o">/</span><span class="n">youcompleteme</span>
-<span class="c1"># For c only</span>
-<span class="c1">#python3 install.py --clangd-completer</span>
-<span class="n">python3</span> <span class="n">install</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="nb">all</span>
-</pre></div>
-</div>
-</section>
-<section id="clipboard">
-<h3>Clipboard<a class="headerlink" href="#clipboard" title="Permalink to this headline">¶</a></h3>
-<p>…</p>
-</section>
-<section id="indentation">
-<h3>Indentation<a class="headerlink" href="#indentation" title="Permalink to this headline">¶</a></h3>
-<p>…</p>
-<p><a class="reference external" href="https://vimawesome.com/plugin/vim-colors-solarized-ours">https://vimawesome.com/plugin/vim-colors-solarized-ours</a></p>
-<p><a class="reference external" href="https://shapeshed.com/vim-netrw/">https://shapeshed.com/vim-netrw/</a></p>
-</section>
 </section>
 </section>
 
@@ -301,14 +171,7 @@ dependencies for plugins, installing them ahead of time:</p>
       <h3>Here</h3>
       <ul>
 <li><a class="reference internal" href="#">Text Editors</a><ul>
-<li><a class="reference internal" href="#vim">Vim</a><ul>
-<li><a class="reference internal" href="#configuration">Configuration</a></li>
-<li><a class="reference internal" href="#plugin-manager">Plugin Manager</a></li>
-<li><a class="reference internal" href="#code-completion">Code-Completion</a></li>
-<li><a class="reference internal" href="#clipboard">Clipboard</a></li>
-<li><a class="reference internal" href="#indentation">Indentation</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#configs">Configs</a></li>
 </ul>
 </li>
 </ul>
@@ -329,8 +192,8 @@ dependencies for plugins, installing them ahead of time:</p>
 
   <footer class="row">
     <div class="col-lg-12">
-        &copy; Copyright 2023 Simon A. F. Lund.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.
+        &copy; Copyright 2024 Simon A. F. Lund.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.0.
     </div>
   </footer>
 

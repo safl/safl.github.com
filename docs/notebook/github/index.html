@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>GitHUB &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
@@ -13,6 +13,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
@@ -78,9 +79,9 @@
     
     
   <section id="github">
-<h1>GitHUB<a class="headerlink" href="#github" title="Permalink to this headline">¶</a></h1>
+<h1>GitHUB<a class="headerlink" href="#github" title="Permalink to this heading">¶</a></h1>
 <section id="boot-images">
-<h2>Boot-images<a class="headerlink" href="#boot-images" title="Permalink to this headline">¶</a></h2>
+<h2>Boot-images<a class="headerlink" href="#boot-images" title="Permalink to this heading">¶</a></h2>
 <p>To serve qemu boot images to GitHUB runners. Something simple like:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">nginx</span>
 <span class="n">sudo</span> <span class="n">mkdir</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">boot_images</span>
@@ -93,14 +94,14 @@
 </div>
 </section>
 <section id="self-hosted-runners">
-<h2>Self-hosted Runners<a class="headerlink" href="#self-hosted-runners" title="Permalink to this headline">¶</a></h2>
+<h2>Self-hosted Runners<a class="headerlink" href="#self-hosted-runners" title="Permalink to this heading">¶</a></h2>
 <p>There are limits to what you can do on the runners hosted by GitHUB. This is
 where GitHUB self-hosted runners comes into play. You can BYOD to the GitHUB
 Actions. This can be HW in your garage, basement, attic, or, often more
 conveniently, provided via cloud-hosting or bare-metal host.</p>
 <p>This explores the latter approaches: virtual and bare-metal providers.</p>
 <section id="virtual">
-<h3>Virtual<a class="headerlink" href="#virtual" title="Permalink to this headline">¶</a></h3>
+<h3>Virtual<a class="headerlink" href="#virtual" title="Permalink to this heading">¶</a></h3>
 <p>To the authors knowledge, then the only cloud-provider supporting
 nested-virtualization is <a class="reference external" href="https://www.digitalocean.com/">Digital-Ocean</a>. That is, atleast for low-tier
 virtual machines e.g less than <strong>100USD/mo</strong> per instance.</p>
@@ -112,7 +113,7 @@ when running qemu-instances.</p>
 <p>A more cost-effective solution is deploying multiple runners on the same machine.</p>
 </section>
 <section id="bare-metal">
-<h3>Bare-metal<a class="headerlink" href="#bare-metal" title="Permalink to this headline">¶</a></h3>
+<h3>Bare-metal<a class="headerlink" href="#bare-metal" title="Permalink to this heading">¶</a></h3>
 <p><a class="reference external" href="https://www.hetzner.com/">Hetzner</a> is a great place to get hosted bare-metal, at the time writing this
 then a <code class="docutils literal notranslate"><span class="pre">AX41-NVMe</span></code> (priced at <strong>51.3EUR/mo</strong>) system gives you a machine with
 the following specs:</p>
@@ -136,7 +137,7 @@ the following specs:</p>
 <p>Basically getting six times the resources, plus some to spare.</p>
 </section>
 <section id="system-setup">
-<h3>System Setup<a class="headerlink" href="#system-setup" title="Permalink to this headline">¶</a></h3>
+<h3>System Setup<a class="headerlink" href="#system-setup" title="Permalink to this heading">¶</a></h3>
 <p>The machine will be named <code class="docutils literal notranslate"><span class="pre">ghrbox</span></code> with a numeral postfix, specifically <code class="docutils literal notranslate"><span class="pre">ghrbox01</span></code></p>
 <p>Deploy your keys:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-copy-id<span class="w"> </span>root@&lt;SYSTEM_IP&gt;
@@ -184,7 +185,7 @@ usermod<span class="w"> </span>-aG<span class="w"> </span>docker<span class="w">
 </pre></div>
 </div>
 <section id="actions-runner">
-<h4>Actions Runner<a class="headerlink" href="#actions-runner" title="Permalink to this headline">¶</a></h4>
+<h4>Actions Runner<a class="headerlink" href="#actions-runner" title="Permalink to this heading">¶</a></h4>
 <p>Log into the system as the <code class="docutils literal notranslate"><span class="pre">ghr</span></code> user, and setup a couple environment
 variables, as they will be needed for the subsequent commands:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is the username of the user created previously</span>
@@ -250,7 +251,7 @@ tar<span class="w"> </span>xzf<span class="w"> </span>./actions-runner-linux-x64
 </section>
 </section>
 <section id="tips-n-tricks">
-<h2>Tips’n’Tricks<a class="headerlink" href="#tips-n-tricks" title="Permalink to this headline">¶</a></h2>
+<h2>Tips’n’Tricks<a class="headerlink" href="#tips-n-tricks" title="Permalink to this heading">¶</a></h2>
 <p>Fetching pull-requests without adding remotes:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">fetch</span> <span class="n">upstream</span> <span class="n">pull</span><span class="o">/</span><span class="mi">49</span><span class="o">/</span><span class="n">head</span><span class="p">:</span><span class="n">ghpr</span><span class="o">-</span><span class="mi">49</span>
 </pre></div>
@@ -297,8 +298,8 @@ tar<span class="w"> </span>xzf<span class="w"> </span>./actions-runner-linux-x64
 
   <footer class="row">
     <div class="col-lg-12">
-        &copy; Copyright 2023 Simon A. F. Lund.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.
+        &copy; Copyright 2024 Simon A. F. Lund.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.0.
     </div>
   </footer>
 

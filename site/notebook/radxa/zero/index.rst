@@ -5,7 +5,7 @@ Install::
   brew install python lsusb libusb
   python3 -m pip install pyamlboot
 
-The ``boot-g12.py`` comes with ``pyamlboot``. Run it::
+The ``boot-g12.py`` comes with ``pyamlboot``. Run it.
 
 Download::
 
