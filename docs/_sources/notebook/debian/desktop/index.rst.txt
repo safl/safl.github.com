@@ -87,13 +87,13 @@ compositor formerly named compton.
 
 A picture says more than a 1000 words... so... have a look here. From left to
 right, screenshots showing the desktop environment without and then with picom
-running.
+running. I eventually dropped rounded-corners as it did not look "natural".
 
-.. image:: picom01.png
+.. image:: picom01.jpg
    :width: 33%
-.. image:: picom02.png
+.. image:: picom02.jpg
    :width: 33%
-.. image:: picom03.png
+.. image:: picom03.jpg
    :width: 33%
 
 In addition to the visual changes as shown above, then using ``picom`` has

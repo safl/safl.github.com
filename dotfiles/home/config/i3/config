@@ -27,7 +27,7 @@ exec --no-startup-id dex --autostart --environment i3
 gaps inner 15px
 
 # picom compositor for windows with rounded corners and blurred transparency
-exec --no-startup-id picom -b --corner-radius 25 --experimental-backends
+exec --no-startup-id picom -b --experimental-backends
 
 # Wallpapers
 exec --no-startup-id feh --bg-scale --zoom fill /home/safl/git/safl.github.com/backdrops/pixelart03.webp
