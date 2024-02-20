@@ -121,52 +121,17 @@ The cli-tool ``feh`` gets the job done, another popular tool is ``nitrogen``. I
 chose ``feh`` since the wallpapers I have:
 
 .. image:: ../../../../backdrops/pixelart01.webp
-    :width: 20%
+    :width: 24%
 
 .. image:: ../../../../backdrops/pixelart02.webp
-    :width: 20%
+    :width: 24%
 
 .. image:: ../../../../backdrops/pixelart03.webp
-    :width: 20%
+    :width: 24%
 
 .. image:: ../../../../backdrops/pixelart04.webp
-    :width: 20%
+    :width: 24%
 
-.. image:: ../../../../backdrops/pixelart05.webp
-    :width: 20%
-
-.. image:: ../../../../backdrops/pixelart06.webp
-    :width: 20%
-
-.. image:: ../../../../backdrops/pixelart07.webp
-    :width: 20%
-
-.. image:: ../../../../backdrops/pixelart08.webp
-    :width: 20%
-
-.. image:: ../../../../backdrops/pixelart09.webp
-    :width: 20%
-
-.. image:: ../../../../backdrops/pixelart10.webp
-    :width: 20%
-
-.. image:: ../../../../backdrops/pixelart11.webp
-    :width: 20%
-
-.. image:: ../../../../backdrops/pixelart12.webp
-    :width: 20%
-
-.. image:: ../../../../backdrops/pixelart13.webp
-    :width: 20%
-
-.. image:: ../../../../backdrops/pixelart14.webp
-    :width: 20%
-
-.. image:: ../../../../backdrops/pixelart15.webp
-    :width: 20%
-
-.. image:: ../../../../backdrops/pixelart16.webp
-    :width: 20%
 
 are in ``.webp`` format and compresses great. Back to the point, ``nitrogen``
 does not support ``.webp`` but ``feh`` does.
@@ -175,8 +140,8 @@ does not support ``.webp`` but ``feh`` does.
 
 	sudo apt-get install feh
 
-Configure :xref-wm-i3:`i3<>` to launch ``feh`` by editing ``~/.config/i3/
-config`` and adding:
+Launch ``feh`` via :xref-wm-i3:`i3<>` by opening ``~/.config/i3/config`` to
+and adding:
 
 .. literalinclude:: ../../../../dotfiles/home/config/i3/config
    :lines: 33-34
@@ -230,25 +195,40 @@ to not follow the scaling. This can then be fixed up by invoking ``xrandr --dpi
    :lines: 35-36
 
 
-Lightdm background
-~~~~~~~~~~~~~~~~~~
+Lightdm Greeter background
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-For a coherent vibe, then I like to also change the background on the
-session-manager / login-screen as well. I use the backgrounds from above and
-convert them to ``.png`` since Lightdm does not support ``.webp``. By running:
+For a coherent vibe, then I like to also change the background on
+thesession-manager / login-screen as well. I use the backgrounds from above
+and convert them to ``.jpg`` since Lightdm does not support ``.webp``. The end
+result, with scaling as well, looks something like this:
+
+.. figure:: lightdm-scaled-bg.jpg
+   :figwidth: 50%
+   :width: 95%
+
+   Lightdm greeter after after scaling and changing background.
+
+Here is what I did:
 
 .. code-block:: bash
 
-  parallel dwebp {} -o {.}.png ::: *.webp
+  # Grab some tools
+  sudo apt-get install -qy parallel webp
 
-Then copy them to ``/opt/backdrops`` and edit the lightdm configuration at ``/
-etc/lightdm/lightdm-gtk-greeter.conf``, setting e.g.:
+  # Convert .webp to a format that lightdm can render
+  cd ~/git/safl.github.com/backdrops
+  parallel convert {} {.}.jpg ::: *.webp
+
+  # Copy the files to a location that lightdm can read
+  sudo cp -r ~/git/safl.github.com/backdrops /opt/backdrops
+
+Then copy them to ``/opt/backdrops`` and edit the lightdm configuration at
+``/etc/lightdm/lightdm-gtk-greeter.conf``, setting e.g.:
 
 
-.. code-block:: bash
-
-  [greeter]
-  background=/opt/backdrops/pixelart02.png
+.. literalinclude:: ../../../../dotfiles/etc/lightdm/lightdm-gtk-greeter.conf
+   :lines: 50-51
 
 
 XFCE Appearance
@@ -274,11 +254,11 @@ however, i don't like the vertical spacing. Instead, I install:
 Which can then be set as the system-wide font in the :xref-de-xfce:`XFCE<>`
 Apperance dialog:
 
-.. image:: xfce-appearance-style.png
+.. image:: xfce-appearance-style.jpg
    :width: 33%
-.. image:: xfce-appearance-icons.png
+.. image:: xfce-appearance-icons.jpg
    :width: 33%
-.. image:: xfce-appearance-fonts.png
+.. image:: xfce-appearance-fonts.jpg
    :width: 33%
 
 

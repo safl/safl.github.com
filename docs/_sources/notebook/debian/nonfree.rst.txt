@@ -19,7 +19,6 @@ Install Spotify, Discord, Zoom, Sublime Text and via flatpak::
 
   flatpak install flathub \
     com.discordapp.Discord \
-    com.microsoft.Teams \
     com.slack.Slack \
     com.spotify.Client \
     com.sublimetext.three \
@@ -32,3 +31,8 @@ prepend the name with the ``flatpak run`` for example::
   flatpak run com.spotify.Client
 
 Which will start :xref-app-spotify:`Spotify<>`.
+
+.. note::
+   MS Teams is no longer available as a flatpak, it is instead a so-called
+   Progressive-Web-App, whatever that entails, MS guarantees us that it is to
+   provide a better product for Linux ahems. Ahem...

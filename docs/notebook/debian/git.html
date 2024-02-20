@@ -92,13 +92,29 @@
 <p>Install:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> \
   <span class="n">git</span> \
+  <span class="n">gitk</span> \
   <span class="n">git</span><span class="o">-</span><span class="n">gui</span> \
   <span class="n">meld</span>
 </pre></div>
 </div>
 <p>Setup the default email and username for git:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="n">os</span><span class="nd">@safl</span><span class="o">.</span><span class="n">dk</span>
-<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="s2">&quot;Simon A. F. Lund&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Author</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span>os@safl.dk
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;Simon A. F. Lund&quot;</span>
+
+<span class="c1"># Tools</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>core.editor<span class="w"> </span>hx
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>merge.tool<span class="w"> </span>meld
+</pre></div>
+</div>
+<p>And do the same in repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Author</span>
+git<span class="w"> </span>config<span class="w"> </span>user.email<span class="w"> </span>os@safl.dk
+git<span class="w"> </span>config<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;Simon A. F. Lund&quot;</span>
+
+<span class="c1"># Tools</span>
+git<span class="w"> </span>config<span class="w"> </span>core.editor<span class="w"> </span>hx
+git<span class="w"> </span>config<span class="w"> </span>merge.tool<span class="w"> </span>meld
 </pre></div>
 </div>
 </section>

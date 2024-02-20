@@ -24,19 +24,19 @@ font pango:DejaVu Sans Mono 10
 exec --no-startup-id dex --autostart --environment i3
 
 # Window gaps, makes the tiled windows feel more "airy"
-gaps inner 15px
+gaps inner 20px
 
 # picom compositor for windows with rounded corners and blurred transparency
 exec --no-startup-id picom -b --experimental-backends
 
 # Wallpapers
-exec --no-startup-id feh --bg-scale --zoom fill /home/safl/git/safl.github.com/backdrops/pixelart03.webp
+exec --no-startup-id feh --bg-scale --zoom fill /home/safl/git/safl.github.com/backdrops/pixelart02.webp
 
 # GDK_SCALE is set, but this does not affect non-GTK thus setting this
 exec --no-startup-id xrandr --dpi 196
 
 # Borders around windows, this helps put focus on the active window
-for_window [class="^.*"] border pixel 8
+for_window [class="^.*"] border pixel 4
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -70,7 +70,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # Launcher
-bindsym $mod+space exec "rofi -modi drun,run -show-icons -show drun -font 'monospace 32'"
+bindsym $mod+space exec "rofi -modi drun,run -show-icons -show drun -font 'monospace 24'"
 
 # change focus
 bindsym $mod+Left focus left

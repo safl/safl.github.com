@@ -172,19 +172,19 @@ font pango:DejaVu Sans Mono 10
 exec --no-startup-id dex --autostart --environment i3
 
 # Window gaps, makes the tiled windows feel more &quot;airy&quot;
-gaps inner 15px
+gaps inner 20px
 
 # picom compositor for windows with rounded corners and blurred transparency
 exec --no-startup-id picom -b --experimental-backends
 
 # Wallpapers
-exec --no-startup-id feh --bg-scale --zoom fill /home/safl/git/safl.github.com/backdrops/pixelart03.webp
+exec --no-startup-id feh --bg-scale --zoom fill /home/safl/git/safl.github.com/backdrops/pixelart02.webp
 
 # GDK_SCALE is set, but this does not affect non-GTK thus setting this
 exec --no-startup-id xrandr --dpi 196
 
 # Borders around windows, this helps put focus on the active window
-for_window [class=&quot;^.*&quot;] border pixel 8
+for_window [class=&quot;^.*&quot;] border pixel 4
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -368,30 +368,18 @@ of <a class="reference external" href="https://xfce.org/">XFCE</a>. Install with
 <h3>Backgrounds / wall-papers<a class="headerlink" href="#backgrounds-wall-papers" title="Permalink to this heading">¶</a></h3>
 <p>The cli-tool <code class="docutils literal notranslate"><span class="pre">feh</span></code> gets the job done, another popular tool is <code class="docutils literal notranslate"><span class="pre">nitrogen</span></code>. I
 chose <code class="docutils literal notranslate"><span class="pre">feh</span></code> since the wallpapers I have:</p>
-<a class="reference internal image-reference" href="../../../_images/pixelart01.webp"><img alt="../../../_images/pixelart01.webp" src="../../../_images/pixelart01.webp" style="width: 20%;" /></a>
-<a class="reference internal image-reference" href="../../../_images/pixelart02.webp"><img alt="../../../_images/pixelart02.webp" src="../../../_images/pixelart02.webp" style="width: 20%;" /></a>
-<a class="reference internal image-reference" href="../../../_images/pixelart03.webp"><img alt="../../../_images/pixelart03.webp" src="../../../_images/pixelart03.webp" style="width: 20%;" /></a>
-<a class="reference internal image-reference" href="../../../_images/pixelart04.webp"><img alt="../../../_images/pixelart04.webp" src="../../../_images/pixelart04.webp" style="width: 20%;" /></a>
-<a class="reference internal image-reference" href="../../../_images/pixelart05.webp"><img alt="../../../_images/pixelart05.webp" src="../../../_images/pixelart05.webp" style="width: 20%;" /></a>
-<a class="reference internal image-reference" href="../../../_images/pixelart06.webp"><img alt="../../../_images/pixelart06.webp" src="../../../_images/pixelart06.webp" style="width: 20%;" /></a>
-<a class="reference internal image-reference" href="../../../_images/pixelart07.webp"><img alt="../../../_images/pixelart07.webp" src="../../../_images/pixelart07.webp" style="width: 20%;" /></a>
-<a class="reference internal image-reference" href="../../../_images/pixelart08.webp"><img alt="../../../_images/pixelart08.webp" src="../../../_images/pixelart08.webp" style="width: 20%;" /></a>
-<a class="reference internal image-reference" href="../../../_images/pixelart09.webp"><img alt="../../../_images/pixelart09.webp" src="../../../_images/pixelart09.webp" style="width: 20%;" /></a>
-<a class="reference internal image-reference" href="../../../_images/pixelart10.webp"><img alt="../../../_images/pixelart10.webp" src="../../../_images/pixelart10.webp" style="width: 20%;" /></a>
-<a class="reference internal image-reference" href="../../../_images/pixelart11.webp"><img alt="../../../_images/pixelart11.webp" src="../../../_images/pixelart11.webp" style="width: 20%;" /></a>
-<a class="reference internal image-reference" href="../../../_images/pixelart12.webp"><img alt="../../../_images/pixelart12.webp" src="../../../_images/pixelart12.webp" style="width: 20%;" /></a>
-<a class="reference internal image-reference" href="../../../_images/pixelart13.webp"><img alt="../../../_images/pixelart13.webp" src="../../../_images/pixelart13.webp" style="width: 20%;" /></a>
-<a class="reference internal image-reference" href="../../../_images/pixelart14.webp"><img alt="../../../_images/pixelart14.webp" src="../../../_images/pixelart14.webp" style="width: 20%;" /></a>
-<a class="reference internal image-reference" href="../../../_images/pixelart15.webp"><img alt="../../../_images/pixelart15.webp" src="../../../_images/pixelart15.webp" style="width: 20%;" /></a>
-<a class="reference internal image-reference" href="../../../_images/pixelart16.webp"><img alt="../../../_images/pixelart16.webp" src="../../../_images/pixelart16.webp" style="width: 20%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/pixelart01.webp"><img alt="../../../_images/pixelart01.webp" src="../../../_images/pixelart01.webp" style="width: 24%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/pixelart02.webp"><img alt="../../../_images/pixelart02.webp" src="../../../_images/pixelart02.webp" style="width: 24%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/pixelart03.webp"><img alt="../../../_images/pixelart03.webp" src="../../../_images/pixelart03.webp" style="width: 24%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/pixelart04.webp"><img alt="../../../_images/pixelart04.webp" src="../../../_images/pixelart04.webp" style="width: 24%;" /></a>
 <p>are in <code class="docutils literal notranslate"><span class="pre">.webp</span></code> format and compresses great. Back to the point, <code class="docutils literal notranslate"><span class="pre">nitrogen</span></code>
 does not support <code class="docutils literal notranslate"><span class="pre">.webp</span></code> but <code class="docutils literal notranslate"><span class="pre">feh</span></code> does.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>feh
 </pre></div>
 </div>
-<p>Configure <a class="reference external" href="https://i3wm.org/">i3</a> to launch <code class="docutils literal notranslate"><span class="pre">feh</span></code> by editing <code class="docutils literal notranslate"><span class="pre">~/.config/i3/</span>
-<span class="pre">config</span></code> and adding:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">exec</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">startup</span><span class="o">-</span><span class="nb">id</span> <span class="n">feh</span> <span class="o">--</span><span class="n">bg</span><span class="o">-</span><span class="n">scale</span> <span class="o">--</span><span class="n">zoom</span> <span class="n">fill</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">safl</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">safl</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">backdrops</span><span class="o">/</span><span class="n">pixelart03</span><span class="o">.</span><span class="n">webp</span>
+<p>Launch <code class="docutils literal notranslate"><span class="pre">feh</span></code> via <a class="reference external" href="https://i3wm.org/">i3</a> by opening <code class="docutils literal notranslate"><span class="pre">~/.config/i3/config</span></code> to
+and adding:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">exec</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">startup</span><span class="o">-</span><span class="nb">id</span> <span class="n">feh</span> <span class="o">--</span><span class="n">bg</span><span class="o">-</span><span class="n">scale</span> <span class="o">--</span><span class="n">zoom</span> <span class="n">fill</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">safl</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">safl</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">backdrops</span><span class="o">/</span><span class="n">pixelart02</span><span class="o">.</span><span class="n">webp</span>
 
 </pre></div>
 </div>
@@ -436,18 +424,34 @@ to not follow the scaling. This can then be fixed up by invoking <code class="do
 </pre></div>
 </div>
 </section>
-<section id="lightdm-background">
-<h3>Lightdm background<a class="headerlink" href="#lightdm-background" title="Permalink to this heading">¶</a></h3>
-<p>For a coherent vibe, then I like to also change the background on the
-session-manager / login-screen as well. I use the backgrounds from above and
-convert them to <code class="docutils literal notranslate"><span class="pre">.png</span></code> since Lightdm does not support <code class="docutils literal notranslate"><span class="pre">.webp</span></code>. By running:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>parallel<span class="w"> </span>dwebp<span class="w"> </span><span class="o">{}</span><span class="w"> </span>-o<span class="w"> </span><span class="o">{</span>.<span class="o">}</span>.png<span class="w"> </span>:::<span class="w"> </span>*.webp
+<section id="lightdm-greeter-background">
+<h3>Lightdm Greeter background<a class="headerlink" href="#lightdm-greeter-background" title="Permalink to this heading">¶</a></h3>
+<p>For a coherent vibe, then I like to also change the background on
+thesession-manager / login-screen as well. I use the backgrounds from above
+and convert them to <code class="docutils literal notranslate"><span class="pre">.jpg</span></code> since Lightdm does not support <code class="docutils literal notranslate"><span class="pre">.webp</span></code>. The end
+result, with scaling as well, looks something like this:</p>
+<figure class="align-default" id="id3" style="width: 50%">
+<a class="reference internal image-reference" href="../../../_images/lightdm-scaled-bg.jpg"><img alt="../../../_images/lightdm-scaled-bg.jpg" src="../../../_images/lightdm-scaled-bg.jpg" style="width: 95%;" /></a>
+<figcaption>
+<p><span class="caption-text">Lightdm greeter after after scaling and changing background.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Here is what I did:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grab some tools</span>
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-qy<span class="w"> </span>parallel<span class="w"> </span>webp
+
+<span class="c1"># Convert .webp to a format that lightdm can render</span>
+<span class="nb">cd</span><span class="w"> </span>~/git/safl.github.com/backdrops
+parallel<span class="w"> </span>convert<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="o">{</span>.<span class="o">}</span>.jpg<span class="w"> </span>:::<span class="w"> </span>*.webp
+
+<span class="c1"># Copy the files to a location that lightdm can read</span>
+sudo<span class="w"> </span>cp<span class="w"> </span>-r<span class="w"> </span>~/git/safl.github.com/backdrops<span class="w"> </span>/opt/backdrops
 </pre></div>
 </div>
-<p>Then copy them to <code class="docutils literal notranslate"><span class="pre">/opt/backdrops</span></code> and edit the lightdm configuration at <code class="docutils literal notranslate"><span class="pre">/</span>
-<span class="pre">etc/lightdm/lightdm-gtk-greeter.conf</span></code>, setting e.g.:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>greeter<span class="o">]</span>
-<span class="nv">background</span><span class="o">=</span>/opt/backdrops/pixelart02.png
+<p>Then copy them to <code class="docutils literal notranslate"><span class="pre">/opt/backdrops</span></code> and edit the lightdm configuration at
+<code class="docutils literal notranslate"><span class="pre">/etc/lightdm/lightdm-gtk-greeter.conf</span></code>, setting e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">greeter</span><span class="p">]</span>
+<span class="n">background</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">backdrops</span><span class="o">/</span><span class="n">pixelart02</span><span class="o">.</span><span class="n">jpg</span>
 </pre></div>
 </div>
 </section>
@@ -468,9 +472,9 @@ however, i don’t like the vertical spacing. Instead, I install:</p>
 </div>
 <p>Which can then be set as the system-wide font in the <a class="reference external" href="https://xfce.org/">XFCE</a>
 Apperance dialog:</p>
-<a class="reference internal image-reference" href="../../../_images/xfce-appearance-style.png"><img alt="../../../_images/xfce-appearance-style.png" src="../../../_images/xfce-appearance-style.png" style="width: 33%;" /></a>
-<a class="reference internal image-reference" href="../../../_images/xfce-appearance-icons.png"><img alt="../../../_images/xfce-appearance-icons.png" src="../../../_images/xfce-appearance-icons.png" style="width: 33%;" /></a>
-<a class="reference internal image-reference" href="../../../_images/xfce-appearance-fonts.png"><img alt="../../../_images/xfce-appearance-fonts.png" src="../../../_images/xfce-appearance-fonts.png" style="width: 33%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/xfce-appearance-style.jpg"><img alt="../../../_images/xfce-appearance-style.jpg" src="../../../_images/xfce-appearance-style.jpg" style="width: 33%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/xfce-appearance-icons.jpg"><img alt="../../../_images/xfce-appearance-icons.jpg" src="../../../_images/xfce-appearance-icons.jpg" style="width: 33%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/xfce-appearance-fonts.jpg"><img alt="../../../_images/xfce-appearance-fonts.jpg" src="../../../_images/xfce-appearance-fonts.jpg" style="width: 33%;" /></a>
 </section>
 <section id="panel">
 <h3>Panel<a class="headerlink" href="#panel" title="Permalink to this heading">¶</a></h3>
@@ -510,7 +514,7 @@ terminal emulator (<code class="docutils literal notranslate"><span class="pre">
 <li><a class="reference internal" href="#backgrounds-wall-papers">Backgrounds / wall-papers</a></li>
 <li><a class="reference internal" href="#launcher">Launcher</a></li>
 <li><a class="reference internal" href="#hidpi">HiDPI</a></li>
-<li><a class="reference internal" href="#lightdm-background">Lightdm background</a></li>
+<li><a class="reference internal" href="#lightdm-greeter-background">Lightdm Greeter background</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#xfce-appearance">XFCE Appearance</a><ul>
