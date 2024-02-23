@@ -24,7 +24,7 @@ font pango:DejaVu Sans Mono 10
 exec --no-startup-id dex --autostart --environment i3
 
 # Window gaps, makes the tiled windows feel more "airy"
-gaps inner 20px
+gaps inner 10px
 
 # picom compositor for windows with rounded corners and blurred transparency
 exec --no-startup-id picom -b --experimental-backends
@@ -33,7 +33,7 @@ exec --no-startup-id picom -b --experimental-backends
 exec --no-startup-id feh --bg-scale --zoom fill /home/safl/git/safl.github.com/backdrops/pixelart02.webp
 
 # GDK_SCALE is set, but this does not affect non-GTK thus setting this
-exec --no-startup-id xrandr --dpi 196
+#exec xrandr --dpi 196
 
 # Borders around windows, this helps put focus on the active window
 for_window [class="^.*"] border pixel 4
