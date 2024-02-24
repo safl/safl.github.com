@@ -89,33 +89,63 @@
     
   <section id="workstation-installation">
 <h1>Workstation Installation<a class="headerlink" href="#workstation-installation" title="Permalink to this heading">¶</a></h1>
-<p>Grab the non-free installer image, it is just a lot easier to use since it
-contains non-free drivers for network devices like your WiFi adapter.</p>
+<p>Grab the latest offical Debian installer image. Note that, starting with
+<code class="docutils literal notranslate"><span class="pre">bookworm</span></code> then non-free is included, thus the official installer image is
+great. Put this on installation media. I really enjoy using Ventoy for this.</p>
+<p>Post install I do the following, regardless of the whether the system is a SBC,
+a laptop, or a workstation.</p>
 <section id="enable-sudo">
 <h2>Enable <code class="docutils literal notranslate"><span class="pre">sudo</span></code><a class="headerlink" href="#enable-sudo" title="Permalink to this heading">¶</a></h2>
 <p>Switch user to <code class="docutils literal notranslate"><span class="pre">root</span></code>, update repositories, install <code class="docutils literal notranslate"><span class="pre">sudo</span></code> and add your
 user to sudoers:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Switch user to &#39;root&#39;</span>
-<span class="n">su</span> <span class="o">-</span>
-<span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="o">-</span><span class="n">qy</span> <span class="n">update</span>
-<span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="o">-</span><span class="n">qy</span> <span class="n">install</span> <span class="n">sudo</span>
-<span class="n">usermod</span> <span class="o">-</span><span class="n">aG</span> <span class="n">sudo</span> <span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Switch user to &#39;root&#39;</span>
+su<span class="w"> </span>-
+apt-get<span class="w"> </span>-qy<span class="w"> </span>update
+apt-get<span class="w"> </span>-qy<span class="w"> </span>install<span class="w"> </span>sudo
+usermod<span class="w"> </span>-aG<span class="w"> </span>sudo<span class="w"> </span>&lt;username&gt;
 </pre></div>
 </div>
 <p>Log out and log back in for the group addition to take effect.</p>
 </section>
+<section id="increase-console-text-size">
+<h2>Increase console text size<a class="headerlink" href="#increase-console-text-size" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dpkg-reconfigure<span class="w"> </span>console-setup
+</pre></div>
+</div>
+</section>
+<section id="set-timezone">
+<h2>Set timezone<a class="headerlink" href="#set-timezone" title="Permalink to this heading">¶</a></h2>
+<p>See the timezones with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>timedatectl<span class="w"> </span>list-timezones
+</pre></div>
+</div>
+<p>Then switch to it by using one of the following, this is usually convenient as a
+post-install step as well, e.g. when traveling:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Denmark</span>
+sudo<span class="w"> </span>timedatectl<span class="w"> </span>set-timezone<span class="w"> </span>Europe/Copenhagen
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Korea / Seoul</span>
+sudo<span class="w"> </span>timedatectl<span class="w"> </span>set-timezone<span class="w"> </span>Asia/Seoul
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># US West-coast</span>
+sudo<span class="w"> </span>timedatectl<span class="w"> </span>set-timezone<span class="w"> </span>US/Pacific
+</pre></div>
+</div>
+</section>
 <section id="update-repositories-and-packages">
 <h2>Update repositories and packages<a class="headerlink" href="#update-repositories-and-packages" title="Permalink to this heading">¶</a></h2>
 <p>Make sure repositories and installation is up-to-date:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">upgrade</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">dist</span><span class="o">-</span><span class="n">upgrade</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>upgrade<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>dist-upgrade
 </pre></div>
 </div>
 </section>
 <section id="update-firmware">
 <h2>Update Firmware<a class="headerlink" href="#update-firmware" title="Permalink to this heading">¶</a></h2>
 <p>Update firmware:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">isenkram</span>
-<span class="n">sudo</span> <span class="n">isenkram</span><span class="o">-</span><span class="n">autoinstall</span><span class="o">-</span><span class="n">firmware</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>isenkram
+sudo<span class="w"> </span>isenkram-autoinstall-firmware
 </pre></div>
 </div>
 <p>Then reboot for the firmware additons to take effect.</p>
@@ -123,22 +153,25 @@ user to sudoers:</p>
 <section id="toolbelt">
 <h2>Toolbelt<a class="headerlink" href="#toolbelt" title="Permalink to this heading">¶</a></h2>
 <p>For the rest we need some basic tools:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> \
-  <span class="n">build</span><span class="o">-</span><span class="n">essential</span> \
-  <span class="n">clang</span> \
-  <span class="n">clangd</span> \
-  <span class="n">curl</span> \
-  <span class="n">gdb</span> \
-  <span class="n">git</span> \
-  <span class="n">htop</span> \
-  <span class="n">meld</span> \
-  <span class="n">meson</span> \
-  <span class="n">pahole</span> \
-  <span class="n">pipx</span> \
-  <span class="n">screen</span> \
-  <span class="n">stow</span> \
-  <span class="n">valgrind</span> \
-  <span class="n">vim</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>btop<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>build-essential<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>clang<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>clangd<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>curl<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>gdb<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>git<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>htop<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>meld<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>meson<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>pahole<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>parallel<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>pipx<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>rsync<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>screen<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>stow<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>valgrind<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>vim
 </pre></div>
 </div>
 <p>Setup <code class="docutils literal notranslate"><span class="pre">pipx`</span></code>:</p>
@@ -162,6 +195,8 @@ pipx<span class="w"> </span>completions
       <ul>
 <li><a class="reference internal" href="#">Workstation Installation</a><ul>
 <li><a class="reference internal" href="#enable-sudo">Enable <code class="docutils literal notranslate"><span class="pre">sudo</span></code></a></li>
+<li><a class="reference internal" href="#increase-console-text-size">Increase console text size</a></li>
+<li><a class="reference internal" href="#set-timezone">Set timezone</a></li>
 <li><a class="reference internal" href="#update-repositories-and-packages">Update repositories and packages</a></li>
 <li><a class="reference internal" href="#update-firmware">Update Firmware</a></li>
 <li><a class="reference internal" href="#toolbelt">Toolbelt</a></li>

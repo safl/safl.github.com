@@ -42,18 +42,29 @@ Do this:
   # Create a system-wide symlink named 'lvim'
   sudo ln -s /home/safl/.cargo/bin/hx /usr/local/bin/lvim
 
-.. note::
-
-  It might seem like weird thing to name a symlink for the Helix Editor. However, as mentioned, then I have used vim for a long time, so it is ingrained in my muscle-memory. The addition of ``l`` infront comes from when I used Lunar VIM.
-  Thus, today, I like to use they plain version of vi-iMprovied using ``vim`` and then having my "fancy" editor at ``lvim``.
+It might seem like weird thing to name a symlink for the Helix Editor. However,
+as mentioned, then I have used vim for a long time, so it is ingrained in my
+muscle-memory. The addition of ``l`` infront comes from when I used Lunar VIM.
+Thus, today, I like to use they plain version of vi-iMprovied using ``vim`` and
+then having my *fancy* editor at ``lvim``.
 
 Configs
 -------
 
 ``~/.config/helix/languages.toml``:
 
-.. literalinclude:: ../../../dotfiles/home/config/helix/languages.toml
+.. literalinclude:: ../../../dotfiles/config/helix/languages.toml
 
 ``~/.config/helix/config.toml``:
 
-.. literalinclude:: ../../../dotfiles/home/config/helix/config.toml
+.. literalinclude:: ../../../dotfiles/config/helix/config.toml
+
+
+xorg clipboard (Space+Y)
+------------------------
+
+Needs these packages as well:
+
+.. code-block:: bash
+
+  sudo apt-get install -qy xsel xclip

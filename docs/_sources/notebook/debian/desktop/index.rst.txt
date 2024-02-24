@@ -6,12 +6,12 @@ There are a ton options when it comes to desktop environments including
 such as :xref-de-xfce:`XFCE<>`, :xref-de-mate:`MATE<>` and
 :xref-de-cinnamon:`Cinnamon<>`. 
 
-Lightweight vs heavyweight is often measured in terms not just of window
+Heavyeight vs lightweight is often measured in terms not just of window
 management and composition but the entire offering of the desktop environment
 provided tools and utilizes are such as network-managers, file-browsers,
 screensavers, session-managers, key-chains, printer-configurators, system
 configuration, and the list goes on.such as the inclusion of as well as the
-supporting libraries for gui components /  widgets.
+supporting libraries for gui components / widgets.
 
 In addition to choosing an existing desktop environment then another 
 approach is combining different software projects, such as replacing the
@@ -71,11 +71,23 @@ Install it with:
 
 	sudo apt-get install i3
 
-To configure :xref-wm-i3:`i3<>` then edit the configuration file at
-``~/.config/i3/config``. For reference then the one I am using is available
-below in full form.
+Then run the following to switch the window-manager from ``xfwm`` to ``i3``, and
+to disable ``xfdesktop```:
 
-.. literalinclude:: ../../../../dotfiles/home/config/i3/config
+.. code-block:: bash
+
+   xfconf-query -c xfce4-session -p /sessions/Failsafe/Client0_Command -t string -sa xfsettingsd -t string -s --daemon
+   xfconf-query -c xfce4-session -p /sessions/Failsafe/Client1_Command -t string -sa i3
+   xfconf-query -c xfce4-session -p /sessions/Failsafe/Client2_Command -t string -sa xfce4-panel 
+   xfconf-query -c xfce4-session -p /sessions/Failsafe/Client3_Command -t string -s thunar -t string -s --daemon
+
+Lastly, then disable the launch of ``xfsettingsd``.
+
+The configuration of :xref-wm-i3:`i3<>` is done via the configuration file at
+``~/.config/i3/config``. In the following sections then there will be references
+to subsections of this config, however, in its full form, then here it is:
+
+.. literalinclude:: ../../../../dotfiles/config/i3/config
 
 Compositor
 ~~~~~~~~~~
@@ -105,11 +117,11 @@ of :xref-de-xfce:`XFCE<>`. Install with:
 
 Configure ``picom`` like by editing ``~/.config/picom.conf``:
 
-.. literalinclude:: ../../../../dotfiles/home/config/picom/picom.conf
+.. literalinclude:: ../../../../dotfiles/config/picom/picom.conf
 
 Then launch it via the :xref-wm-i3:`i3<>` config ``~/.config/i3/config``:
 
-.. literalinclude:: ../../../../dotfiles/home/config/i3/config
+.. literalinclude:: ../../../../dotfiles/config/i3/config
    :lines: 30-31
 
 
@@ -142,7 +154,7 @@ does not support ``.webp`` but ``feh`` does.
 Launch ``feh`` via :xref-wm-i3:`i3<>` by opening ``~/.config/i3/config`` to
 and adding:
 
-.. literalinclude:: ../../../../dotfiles/home/config/i3/config
+.. literalinclude:: ../../../../dotfiles/config/i3/config
    :lines: 33-34
 
 Launcher
@@ -158,27 +170,8 @@ since it is treated as a regular window.
 
 Then launch it via the :xref-wm-i3:`i3<>` config ``~/.config/i3/config``:
 
-.. literalinclude:: ../../../../dotfiles/home/config/i3/config
+.. literalinclude:: ../../../../dotfiles/config/i3/config
    :lines: 73-74
-
-
-HiDPI
-~~~~~
-
-High resolution displays are great for putting a bunch of stuff on them. E.g.
-more pixels, more space for stuff. Another use, is increasing readability by
-increasing the number of dots-per-inch, this can make text look so so good,
-crisp, clear, easy on the eyes. Less squinting...
-
-Unfortunately, then configuring it is very cumbersome. But start by editing ``/etc/environment``:
-
-.. literalinclude:: ../../../../dotfiles/etc/environment
-
-To do so, then :xref-de-xfce:`XFCE<>` has a nice **Window Scaling** feature,
-however, it does not affect :xref-wm-i3:`i3<>`. :xref-wm-i3:`i3<>` on the other
-hand uses ``Xft.dpi`` which can be set in ``.Xresources`` and then run ``xrdb
--merge -I$HOME ~/.Xresources`` from ``.xinitrc``. Alas, this won't affect
-lightdm, e.g. the login screen.
 
 
 Lightdm Greeter background
@@ -216,6 +209,29 @@ Then copy them to ``/opt/backdrops`` and edit the lightdm configuration at
 .. literalinclude:: ../../../../dotfiles/etc/lightdm/lightdm-gtk-greeter.conf
    :lines: 50-51
 
+HiDPI
+~~~~~
+
+High resolution displays are great for putting a bunch of stuff on them. E.g.
+more pixels, more space for stuff. Another use, is increasing readability by
+increasing the number of dots-per-inch, this can make text look so so good,
+crisp, clear, easy on the eyes. Less squinting...
+
+Unfortunately, then configuring it is very cumbersome. To do so,
+then :xref-de-xfce:`XFCE<>` has a nice **Window Scaling** feature, however, it
+does not affect :xref-wm-i3:`i3<>`. :xref-wm-i3:`i3<>` on the other hand uses
+``Xft.dpi`` which can be set in ``.Xresources`` and then run ``xrdb -merge
+-I$HOME ~/.Xresources`` from ``.xinitrc``. Alas, this won't affect lightdm, e.g.
+the login screen.
+
+Alas, I found the most effective is to edit ``/etc/environment``:
+
+.. literalinclude:: ../../../../dotfiles/etc/environment
+
+And then invoke ``xrandr --dpi 192`` via :xref-wm-i3:`i3<>`:
+
+.. literalinclude:: ../../../../dotfiles/config/i3/config
+   :lines: 35-36
 
 XFCE Appearance
 ---------------
@@ -225,7 +241,6 @@ settings / configuration application. This is great for exploring what
 is possible.
 In the following sections the theme, style, fonts and icons used
 by :xref-de-xfce:`XFCE<>`. gui-settings to alter are provided as screenshots.
-
 
 Font, theme, icons
 ~~~~~~~~~~~~~~~~~~
@@ -241,12 +256,19 @@ Which can then be set as the system-wide font in the :xref-de-xfce:`XFCE<>`
 Apperance dialog:
 
 .. image:: xfce-appearance-style.jpg
-   :width: 33%
+   :width: 24%
 .. image:: xfce-appearance-icons.jpg
-   :width: 33%
+   :width: 24%
 .. image:: xfce-appearance-fonts.jpg
-   :width: 33%
+   :width: 24%
+.. image:: xfce-appearance-settings.jpg
+   :width: 24%
 
+Mouse
+~~~~~
+
+.. image:: xfce-mouse-theme.jpg
+   :width: 24%
 
 Panel 
 ~~~~~
@@ -279,4 +301,3 @@ Now, for opacity, this is controlable via the apllication settings, like so:
     :width: 45%
 
 
-Another setting is in the "colors" tab, here I enable "Solarized Dark".

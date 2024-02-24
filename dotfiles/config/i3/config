@@ -33,7 +33,7 @@ exec --no-startup-id picom -b --experimental-backends
 exec --no-startup-id feh --bg-scale --zoom fill /home/safl/git/safl.github.com/backdrops/pixelart02.webp
 
 # GDK_SCALE is set, but this does not affect non-GTK thus setting this
-#exec xrandr --dpi 196
+exec xrandr --dpi 196
 
 # Borders around windows, this helps put focus on the active window
 for_window [class="^.*"] border pixel 4
@@ -48,6 +48,8 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
+
+bindsym Mod1+F4 exec --no-startup-id xfce4-session-logout
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
