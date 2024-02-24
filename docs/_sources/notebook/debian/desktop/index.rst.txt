@@ -13,7 +13,6 @@ screensavers, session-managers, key-chains, printer-configurators, system
 configuration, and the list goes on.such as the inclusion of as well as the
 supporting libraries for gui components /  widgets.
 
-
 In addition to choosing an existing desktop environment then another 
 approach is combining different software projects, such as replacing the
 window-manager, or adding another compositor, etc.
@@ -171,28 +170,15 @@ more pixels, more space for stuff. Another use, is increasing readability by
 increasing the number of dots-per-inch, this can make text look so so good,
 crisp, clear, easy on the eyes. Less squinting...
 
+Unfortunately, then configuring it is very cumbersome. But start by editing ``/etc/environment``:
+
+.. literalinclude:: ../../../../dotfiles/etc/environment
+
 To do so, then :xref-de-xfce:`XFCE<>` has a nice **Window Scaling** feature,
 however, it does not affect :xref-wm-i3:`i3<>`. :xref-wm-i3:`i3<>` on the other
 hand uses ``Xft.dpi`` which can be set in ``.Xresources`` and then run ``xrdb
 -merge -I$HOME ~/.Xresources`` from ``.xinitrc``. Alas, this won't affect
 lightdm, e.g. the login screen.
-
-Have no fear, a solution is here! Edit ``/etc/environment``, by adding:
-
-.. code-block::
-
-  GDK_SCALE=2
-
-This scales everything based on the Gnome Toolkit
-(gtk), which is most of the stuff I use, since they are tools
-from :xref-de-xfce:`XFCE<>` or GNOME. This leaves non-gtk apps such as ``gitk``,
-``git gui``, ``kdiff3`` and others
-to not follow the scaling. This can then be fixed up by invoking ``xrandr --dpi
-196``. Which can be left conveniently in the hands of the :xref-wm-i3:`i3<>`.
-
-
-.. literalinclude:: ../../../../dotfiles/home/config/i3/config
-   :lines: 35-36
 
 
 Lightdm Greeter background

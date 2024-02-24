@@ -172,7 +172,7 @@ font pango:DejaVu Sans Mono 10
 exec --no-startup-id dex --autostart --environment i3
 
 # Window gaps, makes the tiled windows feel more &quot;airy&quot;
-gaps inner 20px
+gaps inner 10px
 
 # picom compositor for windows with rounded corners and blurred transparency
 exec --no-startup-id picom -b --experimental-backends
@@ -181,7 +181,7 @@ exec --no-startup-id picom -b --experimental-backends
 exec --no-startup-id feh --bg-scale --zoom fill /home/safl/git/safl.github.com/backdrops/pixelart02.webp
 
 # GDK_SCALE is set, but this does not affect non-GTK thus setting this
-exec --no-startup-id xrandr --dpi 196
+#exec xrandr --dpi 196
 
 # Borders around windows, this helps put focus on the active window
 for_window [class=&quot;^.*&quot;] border pixel 4
@@ -218,7 +218,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # Launcher
-bindsym $mod+space exec &quot;rofi -modi drun,run -show-icons -show drun -font &#39;monospace 32&#39;&quot;
+bindsym $mod+space exec &quot;rofi -modi drun,run -show-icons -show drun -font &#39;monospace 24&#39;&quot;
 
 # change focus
 bindsym $mod+Left focus left
@@ -393,7 +393,7 @@ since it is treated as a regular window.</p>
 </pre></div>
 </div>
 <p>Then launch it via the <a class="reference external" href="https://i3wm.org/">i3</a> config <code class="docutils literal notranslate"><span class="pre">~/.config/i3/config</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>bindsym $mod+space exec &quot;rofi -modi drun,run -show-icons -show drun -font &#39;monospace 32&#39;&quot;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>bindsym $mod+space exec &quot;rofi -modi drun,run -show-icons -show drun -font &#39;monospace 24&#39;&quot;
 
 </pre></div>
 </div>
@@ -404,25 +404,17 @@ since it is treated as a regular window.</p>
 more pixels, more space for stuff. Another use, is increasing readability by
 increasing the number of dots-per-inch, this can make text look so so good,
 crisp, clear, easy on the eyes. Less squinting…</p>
+<p>Unfortunately, then configuring it is very cumbersome. But start by editing <code class="docutils literal notranslate"><span class="pre">/etc/environment</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GDK_DPI_SCALE</span><span class="o">=</span><span class="mf">0.5</span>
+<span class="n">QT_SCALE_FACTOR</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">QT_FONT_DPI</span><span class="o">=</span><span class="mi">96</span>
+</pre></div>
+</div>
 <p>To do so, then <a class="reference external" href="https://xfce.org/">XFCE</a> has a nice <strong>Window Scaling</strong> feature,
 however, it does not affect <a class="reference external" href="https://i3wm.org/">i3</a>. <a class="reference external" href="https://i3wm.org/">i3</a> on the other
 hand uses <code class="docutils literal notranslate"><span class="pre">Xft.dpi</span></code> which can be set in <code class="docutils literal notranslate"><span class="pre">.Xresources</span></code> and then run <code class="docutils literal notranslate"><span class="pre">xrdb</span>
 <span class="pre">-merge</span> <span class="pre">-I$HOME</span> <span class="pre">~/.Xresources</span></code> from <code class="docutils literal notranslate"><span class="pre">.xinitrc</span></code>. Alas, this won’t affect
 lightdm, e.g. the login screen.</p>
-<p>Have no fear, a solution is here! Edit <code class="docutils literal notranslate"><span class="pre">/etc/environment</span></code>, by adding:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GDK_SCALE</span><span class="o">=</span><span class="mi">2</span>
-</pre></div>
-</div>
-<p>This scales everything based on the Gnome Toolkit
-(gtk), which is most of the stuff I use, since they are tools
-from <a class="reference external" href="https://xfce.org/">XFCE</a> or GNOME. This leaves non-gtk apps such as <code class="docutils literal notranslate"><span class="pre">gitk</span></code>,
-<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">gui</span></code>, <code class="docutils literal notranslate"><span class="pre">kdiff3</span></code> and others
-to not follow the scaling. This can then be fixed up by invoking <code class="docutils literal notranslate"><span class="pre">xrandr</span> <span class="pre">--dpi</span>
-<span class="pre">196</span></code>. Which can be left conveniently in the hands of the <a class="reference external" href="https://i3wm.org/">i3</a>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># GDK_SCALE is set, but this does not affect non-GTK thus setting this</span>
-<span class="n">exec</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">startup</span><span class="o">-</span><span class="nb">id</span> <span class="n">xrandr</span> <span class="o">--</span><span class="n">dpi</span> <span class="mi">196</span>
-</pre></div>
-</div>
 </section>
 <section id="lightdm-greeter-background">
 <h3>Lightdm Greeter background<a class="headerlink" href="#lightdm-greeter-background" title="Permalink to this heading">¶</a></h3>
