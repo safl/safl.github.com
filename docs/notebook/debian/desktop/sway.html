@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>From XFCE + i3 to sway &amp; co &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/blue8bit.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="MacOS" href="../../macos/index.html" />
+    <link rel="prev" title="Desktop Environment" href="index.html" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link href="/_static/blue8bit.css" rel="stylesheet" crossorigin="anonymous">
+    <style>
+    .align-left {
+      float: left;
+    }
+    .align-right {
+      float: right;
+    }
+    </style>
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-222706364-1']);
+      _gaq.push(['_trackPageview']);
+    </script>
+
+  </head><body>
+
+
+  
+
+
+<div class="container justify-content-md-center">
+
+  <header class="row">
+    <div class="col-lg-12"><a href="/">safl.dk</a></div>
+  </header>
+
+  <nav class="row" style="vertical-align:baseline;">
+    <div class="col-lg-8">
+      <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../projects/index.html">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../uni/index.html">Uni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cv/index.html">CV</a></li>
+</ul>
+
+    </div>
+    <div id="search" class="col-lg-4 ms-sm-auto">
+      <form action="../../../search.html" method="get">
+      <input type="text" name="q" class="form-control" placeholder="Search" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </nav>
+
+  <div id="related" class="row">
+    <div class="col-lg-12">
+      <a href="/">safl.dk</a> &#187;
+      <a href="../../index.html" >Notebook</a> &#187;
+      <a href="../index.html" accesskey="U">Debian</a> &#187;
+      <a href="">From XFCE + i3 to sway &amp; co</a>
+    </div>
+  </div>
+
+  <main class="row">
+    <div class="col-lg-9">
+    
+    
+  <section id="from-xfce-i3-to-sway-co">
+<h1>From XFCE + i3 to sway &amp; co<a class="headerlink" href="#from-xfce-i3-to-sway-co" title="Permalink to this heading">¶</a></h1>
+<p>So, sway is just the compositor and manager, so a lot of stuff is missing in
+terms of complete desktop experience provided by XFCE. Here is what I have come
+up with so far:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> \
+        <span class="n">alacritty</span> \
+        <span class="n">grim</span> \
+        <span class="n">keychain</span> \
+        <span class="n">libwayland</span><span class="o">-</span><span class="n">egl</span><span class="o">-</span><span class="n">backend</span><span class="o">-</span><span class="n">dev</span> \
+        <span class="n">lightdm</span><span class="o">-</span><span class="n">gtk</span><span class="o">-</span><span class="n">greeter</span><span class="o">-</span><span class="n">settings</span> \
+        <span class="n">pasystray</span> \
+        <span class="n">seatd</span> \
+        <span class="n">slurp</span> \
+        <span class="n">sway</span> \
+        <span class="n">sway</span><span class="o">-</span><span class="n">backgrounds</span> \
+        <span class="n">swaybg</span> \
+        <span class="n">swayidle</span> \
+        <span class="n">swaylock</span> \
+        <span class="n">waybar</span> \
+        <span class="n">wdisplays</span> \
+        <span class="n">wl</span><span class="o">-</span><span class="n">clipboard</span> \
+        <span class="n">wlogout</span> \
+        <span class="n">wofi</span> \
+        <span class="n">xdg</span><span class="o">-</span><span class="n">desktop</span><span class="o">-</span><span class="n">portal</span><span class="o">-</span><span class="n">wlr</span> \
+        <span class="n">xwayland</span>
+</pre></div>
+</div>
+<p>Unfortunately, then a lot of applications are running incredibly slow. Such
+as firefox, thunderbird, and for some reason then launching the waybar takes
+forever.</p>
+<p>Then launch it with a script <code class="docutils literal notranslate"><span class="pre">letsgo.sh</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
+
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>tty<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="s2">&quot;/dev/tty1&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Invalid tty(</span><span class="nv">$tty</span><span class="s2">)&quot;</span>
+<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
+<span class="k">fi</span>
+
+<span class="nb">export</span><span class="w"> </span><span class="nv">CLUTTER_BACKEND</span><span class="o">=</span>wayland
+<span class="nb">export</span><span class="w"> </span><span class="nv">ECORE_EVAS_ENGINE</span><span class="o">=</span>wayland-egl
+<span class="nb">export</span><span class="w"> </span><span class="nv">ELM_ENGINE</span><span class="o">=</span>wayland_egl
+<span class="nb">export</span><span class="w"> </span><span class="nv">GDK_BACKEND</span><span class="o">=</span>wayland
+<span class="nb">export</span><span class="w"> </span><span class="nv">_JAVA_AWT_WM_NONREPARENTING</span><span class="o">=</span><span class="m">1</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">MOZ_ENABLE_WAYLAND</span><span class="o">=</span><span class="m">1</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">MOZ_WEBRENDER</span><span class="o">=</span><span class="m">1</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">NO_AT_BRIDGE</span><span class="o">=</span><span class="m">1</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">QT_QPA_PLATFORM</span><span class="o">=</span>wayland-egl
+<span class="nb">export</span><span class="w"> </span><span class="nv">QT_WAYLAND_DISABLE_WINDOWDECORATION</span><span class="o">=</span><span class="m">1</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">QT_WAYLAND_FORCE_DPI</span><span class="o">=</span>physical
+<span class="nb">export</span><span class="w"> </span><span class="nv">SDL_VIDEODRIVER</span><span class="o">=</span>wayland
+<span class="nb">export</span><span class="w"> </span><span class="nv">XDG_CURRENT_DESKTOP</span><span class="o">=</span>sway
+<span class="nb">export</span><span class="w"> </span><span class="nv">XDG_RUNTIME_DIR</span><span class="o">=</span>/tmp
+<span class="nb">export</span><span class="w"> </span><span class="nv">XDG_SESSION_DESKTOP</span><span class="o">=</span>sway
+<span class="nb">export</span><span class="w"> </span><span class="nv">XDG_SESSION_TYPE</span><span class="o">=</span>wayland
+<span class="nb">export</span><span class="w"> </span><span class="nv">PYTHON_KEYRING_BACKEND</span><span class="o">=</span>keyring.backends.null.Keyring
+
+<span class="nb">eval</span><span class="w"> </span><span class="k">$(</span>keychain<span class="w"> </span>--eval<span class="w"> </span>--dir<span class="w"> </span><span class="nv">$HOME</span>/.config/keychain<span class="w"> </span>--quiet<span class="w"> </span>--noask<span class="w"> </span>--agents<span class="w"> </span>gpg,ssh<span class="w"> </span>id_rsa<span class="k">)</span>
+<span class="nb">exec</span><span class="w"> </span>sway
+</pre></div>
+</div>
+<p>.</p>
+</section>
+
+
+    
+    </div>
+    <div class="col-lg-3 ms-sm-auto d-none d-lg-block">
+      <div id="localtoc" >
+      <h3>Here</h3>
+      <ul>
+<li><a class="reference internal" href="#">From XFCE + i3 to sway &amp; co</a></li>
+</ul>
+
+      <hr/>
+        <h4>Next</h4>
+      <ul><li>
+        <a href="../../macos/index.html" title="next chapter">MacOS</a>
+      </li></ul>
+      <h4>Prev</h4>
+      <ul><li>
+        <a href="index.html" title="previous chapter">Desktop Environment</a>
+      </li></ul>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="row">
+    <div class="col-lg-12">
+        &copy; Copyright 2024 Simon A. F. Lund.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.0.
+    </div>
+  </footer>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script>
+  (function() {
+    var ga = document.createElement('script');
+    ga.src = ('https:' == document.location.protocol ?
+              'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    ga.setAttribute('async', 'true');
+    document.documentElement.firstChild.appendChild(ga);
+  })();
+</script>
+
+  </body>
+</html>

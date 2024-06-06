@@ -27,6 +27,8 @@ G = "goto_file_end"
 X = "extend_line_above"
 ret = ["move_line_down", "goto_line_start"]
 C-n = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+C-tab = ":bn"
+C-S-tab = ":bp"
 
 [keys.select.g]
 w = ":reflow"
