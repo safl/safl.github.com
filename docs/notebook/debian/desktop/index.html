@@ -19,7 +19,7 @@
     <script src="../../../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="MacOS" href="../../macos/index.html" />
+    <link rel="next" title="From XFCE + i3 to sway &amp; co" href="sway.html" />
     <link rel="prev" title="Custom Kernel" href="../custom_kernel/index.html" />
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -187,10 +187,10 @@ gaps inner 10px
 exec --no-startup-id picom -b --experimental-backends
 
 # Wallpapers
-exec --no-startup-id feh --bg-scale --zoom fill /home/safl/git/safl.github.com/backdrops/pixelart02.webp
+exec_always --no-startup-id feh --no-fehbg --bg-fill /home/safl/git/safl.github.com/backdrops/pixelart02.webp
 
 # GDK_SCALE is set, but this does not affect non-GTK thus setting this
-exec xrandr --dpi 196
+exec_always xrandr --dpi 196
 
 # Borders around windows, this helps put focus on the active window
 for_window [class=&quot;^.*&quot;] border pixel 4
@@ -200,11 +200,11 @@ for_window [class=&quot;^.*&quot;] border pixel 4
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+#exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+#exec --no-startup-id nm-applet
 
 bindsym Mod1+F4 exec --no-startup-id xfce4-session-logout
 
@@ -224,6 +224,7 @@ tiling_drag modifier titlebar
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -390,7 +391,7 @@ does not support <code class="docutils literal notranslate"><span class="pre">.w
 </div>
 <p>Launch <code class="docutils literal notranslate"><span class="pre">feh</span></code> via <a class="reference external" href="https://i3wm.org/">i3</a> by opening <code class="docutils literal notranslate"><span class="pre">~/.config/i3/config</span></code> to
 and adding:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">exec</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">startup</span><span class="o">-</span><span class="nb">id</span> <span class="n">feh</span> <span class="o">--</span><span class="n">bg</span><span class="o">-</span><span class="n">scale</span> <span class="o">--</span><span class="n">zoom</span> <span class="n">fill</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">safl</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">safl</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">backdrops</span><span class="o">/</span><span class="n">pixelart02</span><span class="o">.</span><span class="n">webp</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">exec_always</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">startup</span><span class="o">-</span><span class="nb">id</span> <span class="n">feh</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">fehbg</span> <span class="o">--</span><span class="n">bg</span><span class="o">-</span><span class="n">fill</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">safl</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">safl</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">backdrops</span><span class="o">/</span><span class="n">pixelart02</span><span class="o">.</span><span class="n">webp</span>
 
 </pre></div>
 </div>
@@ -404,8 +405,8 @@ since it is treated as a regular window.</p>
 </pre></div>
 </div>
 <p>Then launch it via the <a class="reference external" href="https://i3wm.org/">i3</a> config <code class="docutils literal notranslate"><span class="pre">~/.config/i3/config</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-<span class="c1"># Launcher</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>bindsym $mod+Shift+q kill
+
 </pre></div>
 </div>
 </section>
@@ -460,7 +461,7 @@ the login screen.</p>
 </div>
 <p>And then invoke <code class="docutils literal notranslate"><span class="pre">xrandr</span> <span class="pre">--dpi</span> <span class="pre">192</span></code> via <a class="reference external" href="https://i3wm.org/">i3</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># GDK_SCALE is set, but this does not affect non-GTK thus setting this</span>
-<span class="n">exec</span> <span class="n">xrandr</span> <span class="o">--</span><span class="n">dpi</span> <span class="mi">196</span>
+<span class="n">exec_always</span> <span class="n">xrandr</span> <span class="o">--</span><span class="n">dpi</span> <span class="mi">196</span>
 </pre></div>
 </div>
 </section>
@@ -544,7 +545,7 @@ terminal emulator (<code class="docutils literal notranslate"><span class="pre">
       <hr/>
         <h4>Next</h4>
       <ul><li>
-        <a href="../../macos/index.html" title="next chapter">MacOS</a>
+        <a href="sway.html" title="next chapter">From XFCE + i3 to sway &amp; co</a>
       </li></ul>
       <h4>Prev</h4>
       <ul><li>

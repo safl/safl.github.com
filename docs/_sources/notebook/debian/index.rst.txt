@@ -37,3 +37,4 @@ as :xref-flatpak:`Flatpak<>`, :xref-snapcraft:`SnapCraft<>` and
    *
    custom_kernel/index.rst
    desktop/index.rst
+   desktop/sway.rst
