@@ -14,8 +14,8 @@ gaps inner 10
 exec --no-startup-id dex --autostart --environment sway
 
 # Start keychain
+#exec_always --no-startup-id ~/.config/sway/scripts/keychain.sh
 exec_always --no-startup-id /usr/bin/keychain --nogui --quiet
-exec_always --no-startup-id source ~/.keychain/${HOSTNAME}-sh
 
 # Waybar
 exec --no-startup-id waybar
