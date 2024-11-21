@@ -1,0 +1,29 @@
+profile "atwork" {
+    output "DP-10" {
+        scale 1.5
+        transform 270
+        position 0,0
+    }
+
+    output "DP-11" {
+        scale 1.5
+        position 1440,0
+    }
+
+    output "eDP-1" {
+        position 1440,1440
+        scale 2.0
+    }
+}
+
+profile "athome" {
+    output "DP-11" {
+        scale 1.5
+        position 0,0
+    }
+
+    output "eDP-1" {
+        position 2560,0
+        scale 2.0
+    }
+}

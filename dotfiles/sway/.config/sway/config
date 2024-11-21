@@ -2,6 +2,10 @@
 
 set $mod Mod4
 
+exec --no-startup-id fprintd-verify
+
+exec_always pkill kanshi; exec kanshi
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:DejaVu Sans Mono 10
@@ -24,7 +28,10 @@ exec --no-startup-id waybar
 exec --no-startup-id ~/.config/sway/scripts/start-pa.sh
 
 # Wallpapers
-exec_always --no-startup-id swaybg -i /home/safl/git/safl.github.com/backdrops/pixelart02.png -m filo
+#exec_always --no-startup-id swaybg -i /home/safl/git/safl.github.com/backdrops/pixelart01.png -m fill
+#exec_always --no-startup-id swaybg -i /home/safl/git/safl.github.com/backdrops/pixelart02.png -m fill
+#exec_always --no-startup-id swaybg -i /home/safl/git/safl.github.com/backdrops/pixelart03.png -m fill
+exec_always --no-startup-id swaybg -i /home/safl/git/safl.github.com/backdrops/pixelart04.png -m fill
 
 # NetworkManager Applet for managing network connections
 exec_always --no-startup-id nm-applet --indicator
