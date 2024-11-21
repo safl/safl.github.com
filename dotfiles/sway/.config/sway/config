@@ -35,10 +35,43 @@ exec_always --no-startup-id ~/.config/sway/scripts/start-printer-applet.sh
 # Bluetooth management
 exec_always --no-startup-id blueman-applet
 
+bindsym $mod+l exec swaylock
+
 bindsym Mod1+F4 exec --no-startup-id wlogout
+
+# Set your preferred screenshot directory
+set $screenshot_dir ~/Pictures
+
+# Screenshot of the whole screen
+#bindsym $mod+Shift+s exec flameshot full -p $screenshot_dir
+
+# Set your preferred screenshot directory
+set $screenshot_dir ~/Pictures
+
+# Screenshot of the whole screen
+bindsym $mod+Shift+s exec grim $screenshot_dir/screenshot-$(date +'%Y-%m-%d_%H-%M-%S').png
+
+# Screenshot of a selected area
+bindsym $mod+s exec grim -g "$(slurp)" - | tee $screenshot_dir/screenshot-$(date +'%Y-%m-%d_%H-%M-%S').png | wl-copy
+
+# Screenshot of the focused window
+bindsym $mod+Shift+w exec grim -g "$(swaymsg -t get_tree | jq -r '.. | select(.type?) | select(.focused==true) | .rect | "\(.x),\(.y) \(.width)x\(.height)"')" $screenshot_dir/screenshot-$(date +'%Y-%m-%d_%H-%M-%S').png
 
 # Borders around windows, this helps put focus on the active window
 for_window [app_id="^.*"] border pixel 4
+
+# For fullscreen playback
+for_window [app_id="mpv"] floating enable, border pixel 0
+for_window [app_id="mpv"] resize set 100 ppt 100 ppt
+for_window [app_id="mpv"] opacity 1.0
+
+bindsym $mod+u exec echo "/home/safl/Gifs/bianca.gif" > /tmp/gif_path 
+#bindsym $mod+u exec echo "/home/safl/Gifs/hadouken.gif" > /tmp/gif_path 
+bindsym $mod+i exec echo "/home/safl/Gifs/boom.gif" > /tmp/gif_path 
+bindsym $mod+o exec echo "/home/safl/Gifs/colin.gif" > /tmp/gif_path 
+bindsym $mod+p exec echo "/home/safl/Gifs/ken.gif" > /tmp/gif_path 
+
+bindsym $mod+g exec ~/.config/sway/scripts/play_transparent_gif.sh $(cat /tmp/gif_path)
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_swaystatus killall -SIGUSR1 swaystatus
@@ -46,6 +79,10 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_swaystatus
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_swaystatus
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_swaystatus
+
+# Brightness control
+bindsym XF86MonBrightnessUp exec --no-startup-id light -s sysfs/backlight/auto -A 10
+bindsym XF86MonBrightnessDown exec --no-startup-id light -s sysfs/backlight/auto -U 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -55,7 +92,8 @@ floating_modifier $mod
 #tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+#bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec foot
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -160,4 +198,10 @@ input * {
     xkb_options ctrl:nocaps,grp:alt_shift_toggle
     repeat_delay 500
     repeat_rate 25
+}
+
+input "type:touchpad" {
+    dwt enabled
+    tap enabled
+    middle_emulation enabled
 }

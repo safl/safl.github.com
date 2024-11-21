@@ -1,0 +1,43 @@
+theme = "tokyonight_storm"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true
+
+[editor]
+mouse = false
+bufferline = "multiple"
+true-color = true
+rulers = [80]
+cursorline = true
+color-modes = true
+insert-final-newline = false
+
+[editor.file-picker]
+hidden = false
+
+[keys.normal]
+esc = ["collapse_selection", "keep_primary_selection"]
+G = "goto_file_end"
+X = "extend_line_above"
+ret = ["move_line_down", "goto_line_start"]
+C-n = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+C-tab = ":bn"
+C-S-tab = ":bp"
+
+[keys.select.g]
+w = ":reflow"
+
+[keys.normal.space]
+q = ":quit"
+n = ":bn"
+
+[editor.whitespace.render]
+space = "all"
+tab = "all"
+newline = "none"

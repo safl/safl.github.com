@@ -1,0 +1,34 @@
+[[language]]
+name = "c"
+#indent = { tab-width = 8, unit = "        " }
+indent = { tab-width = 8, unit = "\t" }
+file-types = [ "c", "h"]
+rulers = [99]
+text-width = 99
+
+[[language]]
+name = "git-commit"
+rulers = [72]
+text-width = 72
+
+[[language]]
+name = "python"
+rulers = [88]
+text-width = 88
+language-servers = ["pylsp"]
+
+[language-server.pylsp.config.pylsp.plugins]
+black.enabled = true
+flake8.enabled = true
+isort.enabled = true
+ruff.enabled = false
+autopep8.enabled = false
+mccabe.enabled = false
+pycodestyle.enabled = false
+pyflakes.enabled = false
+pylint.enabled = false
+yapf.enabled = false
+
+[language.formatter]
+command = "black"
+args = ["--line-length", "88", "--quiet", "-"]
