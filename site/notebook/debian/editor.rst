@@ -53,11 +53,11 @@ Configs
 
 ``~/.config/helix/languages.toml``:
 
-.. literalinclude:: ../../../dotfiles/config/helix/languages.toml
+.. literalinclude:: ../../../dotfiles/helix/.config/helix/languages.toml
 
 ``~/.config/helix/config.toml``:
 
-.. literalinclude:: ../../../dotfiles/config/helix/config.toml
+.. literalinclude:: ../../../dotfiles/helix/.config/helix/config.toml
 
 
 xorg clipboard (Space+Y)

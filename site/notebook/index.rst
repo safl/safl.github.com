@@ -9,6 +9,7 @@ Notes of various stuff...
    :maxdepth: 2
 
    debian/index.rst
+   fedora/index.rst
    macos/index.rst
    dotfiles/index
    freebsd/index.rst
