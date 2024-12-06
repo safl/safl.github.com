@@ -87,7 +87,7 @@ The configuration of :xref-wm-i3:`i3<>` is done via the configuration file at
 ``~/.config/i3/config``. In the following sections then there will be references
 to subsections of this config, however, in its full form, then here it is:
 
-.. literalinclude:: ../../../../dotfiles/config/i3/config
+.. literalinclude:: ../../../../dotfiles/b0rk3d/config/i3/config
 
 Compositor
 ~~~~~~~~~~
@@ -117,11 +117,11 @@ of :xref-de-xfce:`XFCE<>`. Install with:
 
 Configure ``picom`` like by editing ``~/.config/picom.conf``:
 
-.. literalinclude:: ../../../../dotfiles/config/picom/picom.conf
+.. literalinclude:: ../../../../dotfiles/b0rk3d/config/picom/picom.conf
 
 Then launch it via the :xref-wm-i3:`i3<>` config ``~/.config/i3/config``:
 
-.. literalinclude:: ../../../../dotfiles/config/i3/config
+.. literalinclude:: ../../../../dotfiles/b0rk3d/config/i3/config
    :lines: 30-31
 
 
@@ -154,7 +154,7 @@ does not support ``.webp`` but ``feh`` does.
 Launch ``feh`` via :xref-wm-i3:`i3<>` by opening ``~/.config/i3/config`` to
 and adding:
 
-.. literalinclude:: ../../../../dotfiles/config/i3/config
+.. literalinclude:: ../../../../dotfiles/b0rk3d/config/i3/config
    :lines: 33-34
 
 Launcher
@@ -170,7 +170,7 @@ since it is treated as a regular window.
 
 Then launch it via the :xref-wm-i3:`i3<>` config ``~/.config/i3/config``:
 
-.. literalinclude:: ../../../../dotfiles/config/i3/config
+.. literalinclude:: ../../../../dotfiles/b0rk3d/config/i3/config
    :lines: 73-74
 
 
@@ -206,7 +206,7 @@ Then copy them to ``/opt/backdrops`` and edit the lightdm configuration at
 ``/etc/lightdm/lightdm-gtk-greeter.conf``, setting e.g.:
 
 
-.. literalinclude:: ../../../../dotfiles/etc/lightdm/lightdm-gtk-greeter.conf
+.. literalinclude:: ../../../../dotfiles/b0rk3d/etc/lightdm/lightdm-gtk-greeter.conf
    :lines: 50-51
 
 HiDPI
@@ -226,11 +226,11 @@ the login screen.
 
 Alas, I found the most effective is to edit ``/etc/environment``:
 
-.. literalinclude:: ../../../../dotfiles/etc/environment
+.. literalinclude:: ../../../../dotfiles/b0rk3d/etc/environment
 
 And then invoke ``xrandr --dpi 192`` via :xref-wm-i3:`i3<>`:
 
-.. literalinclude:: ../../../../dotfiles/config/i3/config
+.. literalinclude:: ../../../../dotfiles/b0rk3d/config/i3/config
    :lines: 35-36
 
 XFCE Appearance

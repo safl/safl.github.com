@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Fedora as Desktop &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="MacOS" href="../macos/index.html" />
+    <link rel="prev" title="From XFCE + i3 to sway &amp; co" href="../debian/desktop/sway.html" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link href="/_static/blue8bit.css" rel="stylesheet" crossorigin="anonymous">
+    <style>
+    .align-left {
+      float: left;
+    }
+    .align-right {
+      float: right;
+    }
+    </style>
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-222706364-1']);
+      _gaq.push(['_trackPageview']);
+    </script>
+
+  </head><body>
+
+
+  
+
+
+<div class="container justify-content-md-center">
+
+  <header class="row">
+    <div class="col-lg-12"><a href="/">safl.dk</a></div>
+  </header>
+
+  <nav class="row" style="vertical-align:baseline;">
+    <div class="col-lg-8">
+      <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../projects/index.html">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../uni/index.html">Uni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cv/index.html">CV</a></li>
+</ul>
+
+    </div>
+    <div id="search" class="col-lg-4 ms-sm-auto">
+      <form action="../../search.html" method="get">
+      <input type="text" name="q" class="form-control" placeholder="Search" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </nav>
+
+  <div id="related" class="row">
+    <div class="col-lg-12">
+      <a href="/">safl.dk</a> &#187;
+      <a href="../index.html" accesskey="U">Notebook</a> &#187;
+      <a href="">Fedora as Desktop</a>
+    </div>
+  </div>
+
+  <main class="row">
+    <div class="col-lg-9">
+    
+    
+  <section id="fedora-as-desktop">
+<h1>Fedora as Desktop<a class="headerlink" href="#fedora-as-desktop" title="Permalink to this heading">¶</a></h1>
+<p>Using the Fedora sway spin, installing this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dnf</span> <span class="n">install</span> \
+        <span class="n">asciinema</span> \
+        <span class="n">btop</span> \
+        <span class="n">clangd</span> \
+        <span class="n">clang</span><span class="o">-</span><span class="n">tools</span><span class="o">-</span><span class="n">extra</span> \
+        <span class="n">cloud</span><span class="o">-</span><span class="n">utils</span> \
+        <span class="n">dmidecode</span> \
+        <span class="n">doxygen</span> \
+        <span class="n">flatpak</span> \
+        <span class="n">git</span> \
+        <span class="n">gparted</span> \
+        <span class="n">helix</span> \
+        <span class="n">htop</span> \
+        <span class="n">keychain</span> \
+        <span class="n">light</span> \
+        <span class="n">meld</span> \
+        <span class="n">pipx</span> \
+        <span class="n">python3</span><span class="o">-</span><span class="n">jinja2</span> \
+        <span class="n">qemu</span><span class="o">-</span><span class="n">kvm</span> \
+        <span class="n">qemu</span><span class="o">-</span><span class="n">system</span><span class="o">-</span><span class="n">x86</span> \
+        <span class="n">rsync</span> \
+        <span class="n">screen</span> \
+        <span class="n">slurp</span> \
+        <span class="n">stow</span> \
+        <span class="n">s</span><span class="o">-</span><span class="n">tui</span> \
+        <span class="n">lm_sensors</span> \
+        <span class="n">thunderbird</span> \
+        <span class="n">virt</span><span class="o">-</span><span class="n">manager</span> \
+        <span class="n">virt</span><span class="o">-</span><span class="n">viewer</span> \
+        <span class="n">wdisplays</span> \
+        <span class="n">wl</span><span class="o">-</span><span class="n">clipboard</span> \
+        <span class="n">wlogout</span> \
+</pre></div>
+</div>
+<p>Install Google-Chrome:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dnf</span> <span class="n">install</span> <span class="n">fedora</span><span class="o">-</span><span class="n">workstation</span><span class="o">-</span><span class="n">repositories</span>
+<span class="n">sudo</span> <span class="n">dnf</span> <span class="n">config</span><span class="o">-</span><span class="n">manager</span> <span class="n">setopt</span> <span class="n">google</span><span class="o">-</span><span class="n">chrome</span><span class="o">.</span><span class="n">enabled</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">sudo</span> <span class="n">dnf</span> <span class="n">install</span> <span class="n">google</span><span class="o">-</span><span class="n">chrome</span><span class="o">-</span><span class="n">stable</span>
+</pre></div>
+</div>
+<p>Add Flathub to Flatpak repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">flatpak</span> <span class="n">remote</span><span class="o">-</span><span class="n">add</span> <span class="o">--</span><span class="k">if</span><span class="o">-</span><span class="ow">not</span><span class="o">-</span><span class="n">exists</span> <span class="n">flathub</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">dl</span><span class="o">.</span><span class="n">flathub</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">repo</span><span class="o">/</span><span class="n">flathub</span><span class="o">.</span><span class="n">flatpakrepo</span>
+</pre></div>
+</div>
+<p>Install Discord (via flatpak):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">flatpak</span> <span class="n">install</span> <span class="n">discord</span>
+<span class="n">flatpak</span> <span class="n">override</span> <span class="o">--</span><span class="n">user</span> <span class="o">--</span><span class="n">socket</span><span class="o">=</span><span class="n">wayland</span> <span class="n">com</span><span class="o">.</span><span class="n">discordapp</span><span class="o">.</span><span class="n">Discord</span>
+</pre></div>
+</div>
+<p>Install rust-lang via rustup (<a class="reference external" href="https://rustup.rs/">https://rustup.rs/</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">--</span><span class="n">proto</span> <span class="s1">&#39;=https&#39;</span> <span class="o">--</span><span class="n">tlsv1</span><span class="mf">.2</span> <span class="o">-</span><span class="n">sSf</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">sh</span><span class="o">.</span><span class="n">rustup</span><span class="o">.</span><span class="n">rs</span> <span class="o">|</span> <span class="n">sh</span>
+</pre></div>
+</div>
+<p>Install via <code class="docutils literal notranslate"><span class="pre">cargo</span></code>:</p>
+<blockquote>
+<div><p>cargo install jless</p>
+</div></blockquote>
+<p>For those pesky MS Exchange endpoints via Thunderbird or webmail:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">update</span><span class="o">-</span><span class="n">crypto</span><span class="o">-</span><span class="n">policies</span> <span class="o">--</span><span class="nb">set</span> <span class="n">LEGACY</span>
+</pre></div>
+</div>
+<p>Config Changes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sudo usermod -aG libvirt $USER
+</pre></div>
+</div>
+</section>
+<section id="docker">
+<h1>Docker<a class="headerlink" href="#docker" title="Permalink to this heading">¶</a></h1>
+<p>Remove stuff:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dnf</span> <span class="n">remove</span> <span class="n">docker</span> \
+        <span class="n">docker</span><span class="o">-</span><span class="n">client</span> \
+        <span class="n">docker</span><span class="o">-</span><span class="n">client</span><span class="o">-</span><span class="n">latest</span> \
+        <span class="n">docker</span><span class="o">-</span><span class="n">common</span> \
+        <span class="n">docker</span><span class="o">-</span><span class="n">latest</span> \
+        <span class="n">docker</span><span class="o">-</span><span class="n">latest</span><span class="o">-</span><span class="n">logrotate</span> \
+        <span class="n">docker</span><span class="o">-</span><span class="n">logrotate</span> \
+        <span class="n">docker</span><span class="o">-</span><span class="n">selinux</span> \
+        <span class="n">docker</span><span class="o">-</span><span class="n">engine</span><span class="o">-</span><span class="n">selinux</span> \
+        <span class="n">docker</span><span class="o">-</span><span class="n">engine</span>
+</pre></div>
+</div>
+<p>Setup repos:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dnf</span> <span class="o">-</span><span class="n">y</span> <span class="n">install</span> <span class="n">dnf</span><span class="o">-</span><span class="n">plugins</span><span class="o">-</span><span class="n">core</span>
+<span class="n">sudo</span> <span class="n">dnf</span><span class="o">-</span><span class="mi">3</span> <span class="n">config</span><span class="o">-</span><span class="n">manager</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">repo</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">docker</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">linux</span><span class="o">/</span><span class="n">fedora</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">ce</span><span class="o">.</span><span class="n">repo</span>
+</pre></div>
+</div>
+<p>Install Docker:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dnf</span> <span class="n">install</span> <span class="n">docker</span><span class="o">-</span><span class="n">ce</span> <span class="n">docker</span><span class="o">-</span><span class="n">ce</span><span class="o">-</span><span class="n">cli</span> <span class="n">containerd</span><span class="o">.</span><span class="n">io</span> <span class="n">docker</span><span class="o">-</span><span class="n">buildx</span><span class="o">-</span><span class="n">plugin</span> <span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">-</span><span class="n">plugin</span>
+</pre></div>
+</div>
+<p>Then add yourself to the docker-group:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sudo usermod -aG docker $USER
+</pre></div>
+</div>
+<p>Start Docker:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">enable</span> <span class="o">--</span><span class="n">now</span> <span class="n">docker</span>
+</pre></div>
+</div>
+</section>
+<section id="keychain">
+<h1>Keychain<a class="headerlink" href="#keychain" title="Permalink to this heading">¶</a></h1>
+<p>Enable the keychain:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">systemctl</span> <span class="o">--</span><span class="n">user</span> <span class="n">status</span> <span class="n">ssh</span><span class="o">-</span><span class="n">agent</span>
+<span class="n">systemctl</span> <span class="o">--</span><span class="n">user</span> <span class="n">start</span> <span class="n">ssh</span><span class="o">-</span><span class="n">agent</span>
+<span class="n">systemctl</span> <span class="o">--</span><span class="n">user</span> <span class="n">enable</span> <span class="n">ssh</span><span class="o">-</span><span class="n">agent</span>
+</pre></div>
+</div>
+</section>
+
+
+    
+    </div>
+    <div class="col-lg-3 ms-sm-auto d-none d-lg-block">
+      <div id="localtoc" >
+      <h3>Here</h3>
+      <ul>
+<li><a class="reference internal" href="#">Fedora as Desktop</a></li>
+<li><a class="reference internal" href="#docker">Docker</a></li>
+<li><a class="reference internal" href="#keychain">Keychain</a></li>
+</ul>
+
+      <hr/>
+        <h4>Next</h4>
+      <ul><li>
+        <a href="../macos/index.html" title="next chapter">MacOS</a>
+      </li></ul>
+      <h4>Prev</h4>
+      <ul><li>
+        <a href="../debian/desktop/sway.html" title="previous chapter">From XFCE + i3 to sway &amp; co</a>
+      </li></ul>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="row">
+    <div class="col-lg-12">
+        &copy; Copyright 2024 Simon A. F. Lund.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.0.0.
+    </div>
+  </footer>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script>
+  (function() {
+    var ga = document.createElement('script');
+    ga.src = ('https:' == document.location.protocol ?
+              'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    ga.setAttribute('async', 'true');
+    document.documentElement.firstChild.appendChild(ga);
+  })();
+</script>
+
+  </body>
+</html>
