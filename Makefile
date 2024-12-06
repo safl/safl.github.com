@@ -6,7 +6,7 @@ default: clean deps build view
 
 .PHONY: deps
 deps:
-	pipx install sphinx==5.0
+	pipx install sphinx==7.0
 	pipx inject sphinx sphinx-copybutton
 
 .PHONY: build
