@@ -18,8 +18,11 @@ Using the Fedora sway spin, installing this::
 		htop \
 		keychain \
 		light \
+		lm_sensors \
 		meld \
 		pipx \
+		pre-commit \
+		pylsp \
 		python3-jinja2 \
 		qemu-kvm \
 		qemu-system-x86 \
@@ -28,13 +31,12 @@ Using the Fedora sway spin, installing this::
 		slurp \
 		stow \
 		s-tui \
-		lm_sensors \
 		thunderbird \
 		virt-manager \
 		virt-viewer \
 		wdisplays \
 		wl-clipboard \
-		wlogout \
+		wlogout
 
 Install Google-Chrome::
 

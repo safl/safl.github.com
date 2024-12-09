@@ -12,14 +12,20 @@ Using the Fedora sway spin, installing this::
 		dmidecode \
 		doxygen \
 		flatpak \
+		gimp \
 		git \
 		gparted \
 		helix \
 		htop \
 		keychain \
 		light \
+		lm_sensors \
 		meld \
+		meson \
 		pipx \
+		pre-commit \
+		pylsp \
+		python3-build \
 		python3-jinja2 \
 		qemu-kvm \
 		qemu-system-x86 \
@@ -28,13 +34,17 @@ Using the Fedora sway spin, installing this::
 		slurp \
 		stow \
 		s-tui \
-		lm_sensors \
 		thunderbird \
 		virt-manager \
 		virt-viewer \
 		wdisplays \
 		wl-clipboard \
-		wlogout \
+		wlogout
+
+These packages are for building qemu from source::
+
+	sudo dnf install \
+		glib2-devel \
 
 Install Google-Chrome::
 
