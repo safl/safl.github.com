@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Fedora as Desktop &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=02ca0aaa" />
+    <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css?v=84ebf9b3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="MacOS" href="../macos/index.html" />
@@ -84,7 +84,7 @@
     
     
   <section id="fedora-as-desktop">
-<h1>Fedora as Desktop<a class="headerlink" href="#fedora-as-desktop" title="Permalink to this heading">¶</a></h1>
+<h1>Fedora as Desktop<a class="headerlink" href="#fedora-as-desktop" title="Link to this heading">¶</a></h1>
 <p>Using the Fedora sway spin, installing this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dnf</span> <span class="n">install</span> \
         <span class="n">asciinema</span> \
@@ -95,17 +95,22 @@
         <span class="n">dmidecode</span> \
         <span class="n">doxygen</span> \
         <span class="n">flatpak</span> \
+        <span class="n">gimp</span> \
         <span class="n">git</span> \
+        <span class="n">git</span><span class="o">-</span><span class="n">gui</span> \
         <span class="n">gparted</span> \
         <span class="n">helix</span> \
         <span class="n">htop</span> \
         <span class="n">keychain</span> \
+        <span class="n">libxcb</span><span class="o">-</span><span class="n">devel</span> \
         <span class="n">light</span> \
         <span class="n">lm_sensors</span> \
         <span class="n">meld</span> \
+        <span class="n">meson</span> \
         <span class="n">pipx</span> \
         <span class="n">pre</span><span class="o">-</span><span class="n">commit</span> \
         <span class="n">pylsp</span> \
+        <span class="n">python3</span><span class="o">-</span><span class="n">build</span> \
         <span class="n">python3</span><span class="o">-</span><span class="n">jinja2</span> \
         <span class="n">qemu</span><span class="o">-</span><span class="n">kvm</span> \
         <span class="n">qemu</span><span class="o">-</span><span class="n">system</span><span class="o">-</span><span class="n">x86</span> \
@@ -122,40 +127,23 @@
         <span class="n">wlogout</span>
 </pre></div>
 </div>
-<p>Install Google-Chrome:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dnf</span> <span class="n">install</span> <span class="n">fedora</span><span class="o">-</span><span class="n">workstation</span><span class="o">-</span><span class="n">repositories</span>
-<span class="n">sudo</span> <span class="n">dnf</span> <span class="n">config</span><span class="o">-</span><span class="n">manager</span> <span class="n">setopt</span> <span class="n">google</span><span class="o">-</span><span class="n">chrome</span><span class="o">.</span><span class="n">enabled</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">sudo</span> <span class="n">dnf</span> <span class="n">install</span> <span class="n">google</span><span class="o">-</span><span class="n">chrome</span><span class="o">-</span><span class="n">stable</span>
+<p>These packages are for building qemu from source:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dnf</span> <span class="n">install</span> \
+        <span class="n">glib2</span><span class="o">-</span><span class="n">devel</span> \
 </pre></div>
 </div>
-<p>Add Flathub to Flatpak repository:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">flatpak</span> <span class="n">remote</span><span class="o">-</span><span class="n">add</span> <span class="o">--</span><span class="k">if</span><span class="o">-</span><span class="ow">not</span><span class="o">-</span><span class="n">exists</span> <span class="n">flathub</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">dl</span><span class="o">.</span><span class="n">flathub</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">repo</span><span class="o">/</span><span class="n">flathub</span><span class="o">.</span><span class="n">flatpakrepo</span>
-</pre></div>
-</div>
-<p>Install Discord (via flatpak):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">flatpak</span> <span class="n">install</span> <span class="n">discord</span>
-<span class="n">flatpak</span> <span class="n">override</span> <span class="o">--</span><span class="n">user</span> <span class="o">--</span><span class="n">socket</span><span class="o">=</span><span class="n">wayland</span> <span class="n">com</span><span class="o">.</span><span class="n">discordapp</span><span class="o">.</span><span class="n">Discord</span>
-</pre></div>
-</div>
-<p>Install rust-lang via rustup (<a class="reference external" href="https://rustup.rs/">https://rustup.rs/</a>):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">--</span><span class="n">proto</span> <span class="s1">&#39;=https&#39;</span> <span class="o">--</span><span class="n">tlsv1</span><span class="mf">.2</span> <span class="o">-</span><span class="n">sSf</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">sh</span><span class="o">.</span><span class="n">rustup</span><span class="o">.</span><span class="n">rs</span> <span class="o">|</span> <span class="n">sh</span>
-</pre></div>
-</div>
-<p>Install via <code class="docutils literal notranslate"><span class="pre">cargo</span></code>:</p>
-<blockquote>
-<div><p>cargo install jless</p>
-</div></blockquote>
-<p>For those pesky MS Exchange endpoints via Thunderbird or webmail:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">update</span><span class="o">-</span><span class="n">crypto</span><span class="o">-</span><span class="n">policies</span> <span class="o">--</span><span class="nb">set</span> <span class="n">LEGACY</span>
-</pre></div>
-</div>
-<p>Config Changes:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sudo usermod -aG libvirt $USER
+</section>
+<section id="keychain">
+<h1>Keychain<a class="headerlink" href="#keychain" title="Link to this heading">¶</a></h1>
+<p>Enable the keychain:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">systemctl</span> <span class="o">--</span><span class="n">user</span> <span class="n">status</span> <span class="n">ssh</span><span class="o">-</span><span class="n">agent</span>
+<span class="n">systemctl</span> <span class="o">--</span><span class="n">user</span> <span class="n">start</span> <span class="n">ssh</span><span class="o">-</span><span class="n">agent</span>
+<span class="n">systemctl</span> <span class="o">--</span><span class="n">user</span> <span class="n">enable</span> <span class="n">ssh</span><span class="o">-</span><span class="n">agent</span>
 </pre></div>
 </div>
 </section>
 <section id="docker">
-<h1>Docker<a class="headerlink" href="#docker" title="Permalink to this heading">¶</a></h1>
+<h1>Docker<a class="headerlink" href="#docker" title="Link to this heading">¶</a></h1>
 <p>Remove stuff:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dnf</span> <span class="n">remove</span> <span class="n">docker</span> \
         <span class="n">docker</span><span class="o">-</span><span class="n">client</span> \
@@ -187,14 +175,48 @@
 </pre></div>
 </div>
 </section>
-<section id="keychain">
-<h1>Keychain<a class="headerlink" href="#keychain" title="Permalink to this heading">¶</a></h1>
-<p>Enable the keychain:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">systemctl</span> <span class="o">--</span><span class="n">user</span> <span class="n">status</span> <span class="n">ssh</span><span class="o">-</span><span class="n">agent</span>
-<span class="n">systemctl</span> <span class="o">--</span><span class="n">user</span> <span class="n">start</span> <span class="n">ssh</span><span class="o">-</span><span class="n">agent</span>
-<span class="n">systemctl</span> <span class="o">--</span><span class="n">user</span> <span class="n">enable</span> <span class="n">ssh</span><span class="o">-</span><span class="n">agent</span>
+<section id="rust-lang">
+<h1>Rust-lang<a class="headerlink" href="#rust-lang" title="Link to this heading">¶</a></h1>
+<p>Install rust-lang via rustup (<a class="reference external" href="https://rustup.rs/">https://rustup.rs/</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">--</span><span class="n">proto</span> <span class="s1">&#39;=https&#39;</span> <span class="o">--</span><span class="n">tlsv1</span><span class="mf">.2</span> <span class="o">-</span><span class="n">sSf</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">sh</span><span class="o">.</span><span class="n">rustup</span><span class="o">.</span><span class="n">rs</span> <span class="o">|</span> <span class="n">sh</span>
 </pre></div>
 </div>
+<p>Install via <code class="docutils literal notranslate"><span class="pre">cargo</span></code>:</p>
+<blockquote>
+<div><p>cargo install jless</p>
+</div></blockquote>
+</section>
+<section id="google-chrome">
+<h1>Google Chrome<a class="headerlink" href="#google-chrome" title="Link to this heading">¶</a></h1>
+<p>Install Google-Chrome</p>
+<blockquote>
+<div><p>sudo dnf install fedora-workstation-repositories
+sudo dnf config-manager setopt google-chrome.enabled=1
+sudo dnf install google-chrome-stable</p>
+</div></blockquote>
+</section>
+<section id="flathub">
+<h1>FlatHub<a class="headerlink" href="#flathub" title="Link to this heading">¶</a></h1>
+<p>Add Flathub to Flatpak repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">flatpak</span> <span class="n">remote</span><span class="o">-</span><span class="n">add</span> <span class="o">--</span><span class="k">if</span><span class="o">-</span><span class="ow">not</span><span class="o">-</span><span class="n">exists</span> <span class="n">flathub</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">dl</span><span class="o">.</span><span class="n">flathub</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">repo</span><span class="o">/</span><span class="n">flathub</span><span class="o">.</span><span class="n">flatpakrepo</span>
+</pre></div>
+</div>
+<section id="discord-via-flatpak">
+<h2>Discord (via flatpak)<a class="headerlink" href="#discord-via-flatpak" title="Link to this heading">¶</a></h2>
+<p>Do this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">flatpak</span> <span class="n">install</span> <span class="n">discord</span>
+<span class="n">flatpak</span> <span class="n">override</span> <span class="o">--</span><span class="n">user</span> <span class="o">--</span><span class="n">socket</span><span class="o">=</span><span class="n">wayland</span> <span class="n">com</span><span class="o">.</span><span class="n">discordapp</span><span class="o">.</span><span class="n">Discord</span>
+</pre></div>
+</div>
+<p>For those pesky MS Exchange endpoints via Thunderbird or webmail:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">update</span><span class="o">-</span><span class="n">crypto</span><span class="o">-</span><span class="n">policies</span> <span class="o">--</span><span class="nb">set</span> <span class="n">LEGACY</span>
+</pre></div>
+</div>
+<p>Config Changes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sudo usermod -aG libvirt $USER
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -205,8 +227,14 @@
       <h3>Here</h3>
       <ul>
 <li><a class="reference internal" href="#">Fedora as Desktop</a></li>
-<li><a class="reference internal" href="#docker">Docker</a></li>
 <li><a class="reference internal" href="#keychain">Keychain</a></li>
+<li><a class="reference internal" href="#docker">Docker</a></li>
+<li><a class="reference internal" href="#rust-lang">Rust-lang</a></li>
+<li><a class="reference internal" href="#google-chrome">Google Chrome</a></li>
+<li><a class="reference internal" href="#flathub">FlatHub</a><ul>
+<li><a class="reference internal" href="#discord-via-flatpak">Discord (via flatpak)</a></li>
+</ul>
+</li>
 </ul>
 
       <hr/>
@@ -225,8 +253,8 @@
 
   <footer class="row">
     <div class="col-lg-12">
-        &copy; Copyright 2024 Simon A. F. Lund.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.0.0.
+        &copy; Copyright 2025 Simon A. F. Lund.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </footer>
 

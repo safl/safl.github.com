@@ -14,10 +14,12 @@ Using the Fedora sway spin, installing this::
 		flatpak \
 		gimp \
 		git \
+		git-gui \
 		gparted \
 		helix \
 		htop \
 		keychain \
+		libxcb-devel \
 		light \
 		lm_sensors \
 		meld \
@@ -46,36 +48,14 @@ These packages are for building qemu from source::
 	sudo dnf install \
 		glib2-devel \
 
-Install Google-Chrome::
+Keychain
+========
 
-	sudo dnf install fedora-workstation-repositories
-	sudo dnf config-manager setopt google-chrome.enabled=1
-	sudo dnf install google-chrome-stable
+Enable the keychain::
 
-Add Flathub to Flatpak repository::
-
-	flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
-Install Discord (via flatpak)::
-
-	flatpak install discord
-	flatpak override --user --socket=wayland com.discordapp.Discord	
-
-Install rust-lang via rustup (https://rustup.rs/)::
-
-	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
-Install via ``cargo``:
-
-	cargo install jless
-
-For those pesky MS Exchange endpoints via Thunderbird or webmail::
-
-	sudo update-crypto-policies --set LEGACY
-
-Config Changes::
-
-	sudo usermod -aG libvirt $USER
+	systemctl --user status ssh-agent
+	systemctl --user start ssh-agent
+	systemctl --user enable ssh-agent
 
 Docker
 ======
@@ -110,11 +90,45 @@ Start Docker::
 
 	sudo systemctl enable --now docker
 
-Keychain
-========
+Rust-lang
+=========
 
-Enable the keychain::
+Install rust-lang via rustup (https://rustup.rs/)::
 
-	systemctl --user status ssh-agent
-	systemctl --user start ssh-agent
-	systemctl --user enable ssh-agent
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+Install via ``cargo``:
+
+	cargo install jless
+
+Google Chrome
+=============
+
+Install Google-Chrome
+
+	sudo dnf install fedora-workstation-repositories
+	sudo dnf config-manager setopt google-chrome.enabled=1
+	sudo dnf install google-chrome-stable
+
+FlatHub
+=======
+
+Add Flathub to Flatpak repository::
+
+	flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+Discord (via flatpak)
+~~~~~~~~~~~~~~~~~~~~~
+
+Do this::
+
+	flatpak install discord
+	flatpak override --user --socket=wayland com.discordapp.Discord	
+
+For those pesky MS Exchange endpoints via Thunderbird or webmail::
+
+	sudo update-crypto-policies --set LEGACY
+
+Config Changes::
+
+	sudo usermod -aG libvirt $USER

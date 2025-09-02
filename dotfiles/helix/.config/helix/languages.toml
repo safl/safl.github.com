@@ -5,6 +5,7 @@ indent = { tab-width = 8, unit = "\t" }
 file-types = [ "c", "h"]
 rulers = [99]
 text-width = 99
+formatter = { command = "clang-format" }
 
 [[language]]
 name = "git-commit"

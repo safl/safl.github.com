@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Getting familiar with BlueField-2 &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=02ca0aaa" />
+    <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css?v=84ebf9b3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Zellij" href="../exploration/zellij.html" />
+    <link rel="prev" title="Getting 4.3 M IOPS with an emulated NVMe device in a qemu guest" href="../exploration/vfio_user.html" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link href="/_static/blue8bit.css" rel="stylesheet" crossorigin="anonymous">
+    <style>
+    .align-left {
+      float: left;
+    }
+    .align-right {
+      float: right;
+    }
+    </style>
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-222706364-1']);
+      _gaq.push(['_trackPageview']);
+    </script>
+
+  </head><body>
+
+
+  
+
+
+<div class="container justify-content-md-center">
+
+  <header class="row">
+    <div class="col-lg-12"><a href="/">safl.dk</a></div>
+  </header>
+
+  <nav class="row" style="vertical-align:baseline;">
+    <div class="col-lg-8">
+      <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../projects/index.html">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../uni/index.html">Uni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cv/index.html">CV</a></li>
+</ul>
+
+    </div>
+    <div id="search" class="col-lg-4 ms-sm-auto">
+      <form action="../../search.html" method="get">
+      <input type="text" name="q" class="form-control" placeholder="Search" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </nav>
+
+  <div id="related" class="row">
+    <div class="col-lg-12">
+      <a href="/">safl.dk</a> &#187;
+      <a href="../index.html" accesskey="U">Notebook</a> &#187;
+      <a href="">Getting familiar with BlueField-2</a>
+    </div>
+  </div>
+
+  <main class="row">
+    <div class="col-lg-9">
+    
+    
+  <section id="getting-familiar-with-bluefield-2">
+<h1>Getting familiar with BlueField-2<a class="headerlink" href="#getting-familiar-with-bluefield-2" title="Link to this heading">¶</a></h1>
+<p>I wanted to familiarize myself with DPUs and found the NVIDIA / Mellanox
+BlueField-2 DPU on ebay with model number <code class="docutils literal notranslate"><span class="pre">BF2H532C</span></code>.</p>
+<p>For debugging it seems like it would be good to get a hold of:</p>
+<ul class="simple">
+<li><p>MBF35-DKIT</p></li>
+</ul>
+</section>
+<section id="host-hw">
+<h1>Host HW<a class="headerlink" href="#host-hw" title="Link to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Assemble parts</p></li>
+<li><p>Physically install the</p></li>
+</ul>
+</section>
+<section id="host-fw-os">
+<h1>Host FW/OS<a class="headerlink" href="#host-fw-os" title="Link to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Disable Secure Boot</p></li>
+<li><p>Install Ubuntu 24.04</p></li>
+</ul>
+<p>You can manually load the drivers with <code class="docutils literal notranslate"><span class="pre">mst</span> <span class="pre">start</span></code> or set on boot via:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">systemctl</span> <span class="n">enable</span> <span class="n">mst</span><span class="o">.</span><span class="n">service</span>
+<span class="n">systemctl</span> <span class="n">start</span> <span class="n">mst</span><span class="o">.</span><span class="n">service</span>
+</pre></div>
+</div>
+<p>I would recommend doing the above, otherwise the boot-process will be hanging
+until timeout. With messages such as:</p>
+<p>Now that the drivers are loaded, i see:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">10</span><span class="p">:</span><span class="mf">00.0</span> <span class="n">Ethernet</span> <span class="n">controller</span><span class="p">:</span> <span class="n">Mellanox</span> <span class="n">Technologies</span> <span class="n">MT42822</span> <span class="n">BlueField</span><span class="o">-</span><span class="mi">2</span> <span class="n">integrated</span> <span class="n">ConnectX</span><span class="o">-</span><span class="mi">6</span> <span class="n">Dx</span> <span class="n">network</span> <span class="n">controller</span> <span class="p">(</span><span class="n">rev</span> <span class="mi">01</span><span class="p">)</span>
+<span class="mi">10</span><span class="p">:</span><span class="mf">00.1</span> <span class="n">Ethernet</span> <span class="n">controller</span><span class="p">:</span> <span class="n">Mellanox</span> <span class="n">Technologies</span> <span class="n">MT42822</span> <span class="n">BlueField</span><span class="o">-</span><span class="mi">2</span> <span class="n">integrated</span> <span class="n">ConnectX</span><span class="o">-</span><span class="mi">6</span> <span class="n">Dx</span> <span class="n">network</span> <span class="n">controller</span> <span class="p">(</span><span class="n">rev</span> <span class="mi">01</span><span class="p">)</span>
+<span class="mi">10</span><span class="p">:</span><span class="mf">00.2</span> <span class="n">Ethernet</span> <span class="n">controller</span><span class="p">:</span> <span class="n">Mellanox</span> <span class="n">Technologies</span> <span class="n">BlueField</span> <span class="n">DPU</span> <span class="n">Family</span> <span class="n">Auxiliary</span> <span class="n">Communication</span> <span class="n">Channel</span> <span class="p">[</span><span class="n">BlueField</span> <span class="n">Family</span><span class="p">]</span> <span class="p">(</span><span class="n">rev</span> <span class="mi">01</span><span class="p">)</span>
+<span class="mi">10</span><span class="p">:</span><span class="mf">00.3</span> <span class="n">DMA</span> <span class="n">controller</span><span class="p">:</span> <span class="n">Mellanox</span> <span class="n">Technologies</span> <span class="n">MT42822</span> <span class="n">BlueField</span><span class="o">-</span><span class="mi">2</span> <span class="n">SoC</span> <span class="n">Management</span> <span class="n">Interface</span> <span class="p">(</span><span class="n">rev</span> <span class="mi">01</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>That is, now there is this <strong>new</strong> device:</p>
+<blockquote>
+<div><p>10:00.2 Ethernet controller: Mellanox Technologies BlueField DPU Family Auxiliary Communication Channel [BlueField Family] (rev 01)</p>
+</div></blockquote>
+<p>Which is probably what is needed.</p>
+<p>Then ensure that the Mellanox drivers are loaded:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mst</span> <span class="n">start</span>
+</pre></div>
+</div>
+<p>Now devices pop up:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">mst</span><span class="o">/</span>
+<span class="n">mt41686_pciconf0</span>  <span class="n">mt41686_pciconf0</span><span class="mf">.1</span>  <span class="n">mt49873_pciconf0</span><span class="mf">.2</span>
+</pre></div>
+</div>
+<p>Should be possible to get a login using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">screen</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">rshim0</span><span class="o">/</span><span class="n">console</span> <span class="mi">115200</span>
+</pre></div>
+</div>
+</section>
+<section id="dpu">
+<h1>DPU<a class="headerlink" href="#dpu" title="Link to this heading">¶</a></h1>
+<p>Default login is <code class="docutils literal notranslate"><span class="pre">ubuntu</span></code> / <code class="docutils literal notranslate"><span class="pre">ubuntu</span></code>.</p>
+<p>Change the password to something else upon first login. E.g. Mellanox.321!</p>
+<p>Check the version:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">mlnx</span><span class="o">-</span><span class="n">release</span>
+<span class="n">cat</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">lsb</span><span class="o">-</span><span class="n">release</span>
+<span class="n">bfb</span><span class="o">-</span><span class="n">info</span>
+</pre></div>
+</div>
+<p>I got:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DOCA_2</span><span class="mf">.0.2</span><span class="n">_BSP_4</span><span class="mf">.0.3</span><span class="n">_Ubuntu_22</span><span class="mf">.04</span><span class="o">-</span><span class="mf">11.23</span><span class="o">-</span><span class="mf">04.</span><span class="n">prod</span>
+<span class="n">DISTRIB_ID</span><span class="o">=</span><span class="n">Ubuntu</span>
+<span class="n">DISTRIB_RELEASE</span><span class="o">=</span><span class="mf">22.04</span>
+<span class="n">DISTRIB_CODENAME</span><span class="o">=</span><span class="n">jammy</span>
+<span class="n">DISTRIB_DESCRIPTION</span><span class="o">=</span><span class="s2">&quot;Ubuntu 22.04.3 LTS&quot;</span>
+</pre></div>
+</div>
+<p>And the bfb-info:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Versions</span><span class="p">:</span>
+<span class="n">ATF</span><span class="p">:</span> <span class="n">v2</span><span class="mf">.2</span><span class="p">(</span><span class="n">release</span><span class="p">):</span><span class="mf">4.0.2</span><span class="o">-</span><span class="mi">37</span><span class="o">-</span><span class="n">g6b2609f</span>
+<span class="n">UEFI</span><span class="p">:</span> <span class="mf">4.0.2</span><span class="o">-</span><span class="mi">15</span><span class="o">-</span><span class="n">g0613586</span>
+<span class="n">BSP</span><span class="p">:</span> <span class="n">mlxbf</span><span class="o">-</span><span class="n">bootimages</span> <span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>
+<span class="n">DOCA</span> <span class="n">Base</span> <span class="p">(</span><span class="n">OFED</span><span class="p">):</span> <span class="mf">23.04</span><span class="o">-</span><span class="mf">0.5.3.0</span>
+<span class="n">MFT</span><span class="p">:</span> <span class="mf">4.24.0</span><span class="o">-</span><span class="mi">72</span>
+<span class="n">DOCA</span><span class="p">:</span> <span class="mf">2.0.2027</span><span class="o">-</span><span class="mi">1</span>
+
+<span class="n">Firmware</span><span class="p">:</span>
+<span class="n">BF2</span> <span class="n">FW</span><span class="p">:</span> <span class="mf">24.36.7506</span>
+
+<span class="n">mlnx</span><span class="o">-</span><span class="n">dpdk</span><span class="p">:</span>  <span class="s1">&#39;MLNX_DPDK 22.11.1.4.2&#39;</span>
+<span class="n">mlx</span><span class="o">-</span><span class="n">regex</span> <span class="mf">1.2</span><span class="o">-</span><span class="n">ubuntu1</span>
+<span class="n">virtio</span><span class="o">-</span><span class="n">net</span><span class="o">-</span><span class="n">controller</span> <span class="mf">1.5.18</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">collectx</span><span class="o">-</span><span class="n">clxapi</span> <span class="mf">1.13.2</span>
+<span class="n">libvma</span> <span class="mf">9.8.20</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">libxlio</span> <span class="mf">3.0.2</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">dpcp</span> <span class="mf">1.1.39</span><span class="o">-</span><span class="mf">1.2304053</span>
+
+<span class="n">SNAP3</span><span class="p">:</span>
+<span class="o">-</span> <span class="n">mlnx</span><span class="o">-</span><span class="n">libsnap</span> <span class="mf">1.5.2</span><span class="o">-</span><span class="mi">5</span>
+<span class="o">-</span> <span class="n">mlnx</span><span class="o">-</span><span class="n">snap</span> <span class="mf">3.7.2</span><span class="o">-</span><span class="mi">8</span>
+<span class="o">-</span> <span class="n">spdk</span> <span class="mf">23.01</span><span class="o">-</span><span class="mi">6</span>
+
+<span class="n">DOCA</span><span class="p">:</span>
+<span class="o">-</span> <span class="n">doca</span><span class="o">-</span><span class="n">apps</span> <span class="mf">2.0.2027</span><span class="o">-</span><span class="mi">1</span>
+<span class="o">-</span> <span class="n">doca</span><span class="o">-</span><span class="n">apps</span><span class="o">-</span><span class="n">dev</span> <span class="mf">2.0.2027</span><span class="o">-</span><span class="mi">1</span>
+<span class="o">-</span> <span class="n">doca</span><span class="o">-</span><span class="n">grpc</span> <span class="mf">2.0.2027</span><span class="o">-</span><span class="mi">1</span>
+<span class="o">-</span> <span class="n">doca</span><span class="o">-</span><span class="n">grpc</span><span class="o">-</span><span class="n">dev</span> <span class="mf">2.0.2027</span><span class="o">-</span><span class="mi">1</span>
+<span class="o">-</span> <span class="n">doca</span><span class="o">-</span><span class="n">libs</span> <span class="mf">2.0.2027</span><span class="o">-</span><span class="mi">1</span>
+<span class="o">-</span> <span class="n">doca</span><span class="o">-</span><span class="n">prime</span><span class="o">-</span><span class="n">runtime</span> <span class="mf">2.0.2027</span><span class="o">-</span><span class="mi">1</span>
+<span class="o">-</span> <span class="n">doca</span><span class="o">-</span><span class="n">prime</span><span class="o">-</span><span class="n">sdk</span> <span class="mf">2.0.2027</span><span class="o">-</span><span class="mi">1</span>
+<span class="o">-</span> <span class="n">doca</span><span class="o">-</span><span class="n">prime</span><span class="o">-</span><span class="n">tools</span> <span class="mf">2.0.2027</span><span class="o">-</span><span class="mi">1</span>
+<span class="o">-</span> <span class="n">doca</span><span class="o">-</span><span class="n">runtime</span> <span class="mf">2.0.2027</span><span class="o">-</span><span class="mf">1.23.04.0.5.3.0</span><span class="o">.</span><span class="n">bf</span><span class="mf">.4.0.2.12679.11.23</span>
+<span class="o">-</span> <span class="n">doca</span><span class="o">-</span><span class="n">runtime</span><span class="o">-</span><span class="n">kernel</span> <span class="mf">2.0.2027</span><span class="o">-</span><span class="mf">1.23.04.0.5.3.0</span><span class="o">.</span><span class="n">bf</span><span class="mf">.4.0.2.12679.11.23</span>
+<span class="o">-</span> <span class="n">doca</span><span class="o">-</span><span class="n">runtime</span><span class="o">-</span><span class="n">user</span> <span class="mf">2.0.2027</span><span class="o">-</span><span class="mf">1.23.04.0.5.3.0</span><span class="o">.</span><span class="n">bf</span><span class="mf">.4.0.2.12679.11.23</span>
+<span class="o">-</span> <span class="n">doca</span><span class="o">-</span><span class="n">samples</span> <span class="mf">2.0.2027</span><span class="o">-</span><span class="mi">1</span>
+<span class="o">-</span> <span class="n">doca</span><span class="o">-</span><span class="n">sdk</span> <span class="mf">2.0.2027</span><span class="o">-</span><span class="mf">1.23.04.0.5.3.0</span><span class="o">.</span><span class="n">bf</span><span class="mf">.4.0.2.12679.11.23</span>
+<span class="o">-</span> <span class="n">doca</span><span class="o">-</span><span class="n">sdk</span><span class="o">-</span><span class="n">kernel</span> <span class="mf">2.0.2027</span><span class="o">-</span><span class="mf">1.23.04.0.5.3.0</span><span class="o">.</span><span class="n">bf</span><span class="mf">.4.0.2.12679.11.23</span>
+<span class="o">-</span> <span class="n">doca</span><span class="o">-</span><span class="n">sdk</span><span class="o">-</span><span class="n">user</span> <span class="mf">2.0.2027</span><span class="o">-</span><span class="mf">1.23.04.0.5.3.0</span><span class="o">.</span><span class="n">bf</span><span class="mf">.4.0.2.12679.11.23</span>
+<span class="o">-</span> <span class="n">doca</span><span class="o">-</span><span class="n">services</span> <span class="mf">2.0.2027</span><span class="o">-</span><span class="mi">1</span>
+<span class="o">-</span> <span class="n">doca</span><span class="o">-</span><span class="n">tools</span> <span class="mf">2.0.2027</span><span class="o">-</span><span class="mf">1.23.04.0.5.3.0</span><span class="o">.</span><span class="n">bf</span><span class="mf">.4.0.2.12679.11.23</span>
+<span class="o">-</span> <span class="n">dpa</span><span class="o">-</span><span class="n">compiler</span> <span class="mf">1.4.0</span>
+<span class="o">-</span> <span class="n">dpacc</span> <span class="mf">1.4.0</span>
+<span class="o">-</span> <span class="n">flexio</span> <span class="mf">23.4.1494</span>
+<span class="o">-</span> <span class="n">libdoca</span><span class="o">-</span><span class="n">libs</span><span class="o">-</span><span class="n">dev</span> <span class="mf">2.0.2027</span><span class="o">-</span><span class="mi">1</span>
+<span class="o">-</span> <span class="n">librxpcompiler</span><span class="o">-</span><span class="n">dev</span> <span class="mf">23.04.1</span>
+<span class="o">-</span> <span class="n">librxpcompiler</span><span class="o">-</span><span class="n">dev</span> <span class="mf">23.04.1</span>
+<span class="o">-</span> <span class="n">rxp</span><span class="o">-</span><span class="n">compiler</span> <span class="mf">23.04.1</span>
+<span class="o">-</span> <span class="n">rxpbench</span> <span class="mf">23.04.0</span>
+
+<span class="n">OFED</span><span class="p">:</span>
+<span class="n">dpcp</span> <span class="mf">1.1.39</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">ibacm</span> <span class="mi">2304</span><span class="n">mlnx44</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">ibutils2</span> <span class="mf">2.1.1</span><span class="o">-</span><span class="mf">0.162</span><span class="o">.</span><span class="n">MLNX20230417</span><span class="o">.</span><span class="n">g738750f2</span><span class="mf">.2304053</span>
+<span class="n">ibverbs</span><span class="o">-</span><span class="n">providers</span><span class="p">:</span><span class="n">arm64</span> <span class="mi">2304</span><span class="n">mlnx44</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">ibverbs</span><span class="o">-</span><span class="n">utils</span> <span class="mi">2304</span><span class="n">mlnx44</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">infiniband</span><span class="o">-</span><span class="n">diags</span> <span class="mi">2304</span><span class="n">mlnx44</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">libibmad5</span><span class="p">:</span><span class="n">arm64</span> <span class="mi">2304</span><span class="n">mlnx44</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">libibmad</span><span class="o">-</span><span class="n">dev</span><span class="p">:</span><span class="n">arm64</span> <span class="mi">2304</span><span class="n">mlnx44</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">libibnetdisc5</span><span class="p">:</span><span class="n">arm64</span> <span class="mi">2304</span><span class="n">mlnx44</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">libibumad3</span><span class="p">:</span><span class="n">arm64</span> <span class="mi">2304</span><span class="n">mlnx44</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">libibumad</span><span class="o">-</span><span class="n">dev</span><span class="p">:</span><span class="n">arm64</span> <span class="mi">2304</span><span class="n">mlnx44</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">libibverbs1</span><span class="p">:</span><span class="n">arm64</span> <span class="mi">2304</span><span class="n">mlnx44</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">libibverbs</span><span class="o">-</span><span class="n">dev</span><span class="p">:</span><span class="n">arm64</span> <span class="mi">2304</span><span class="n">mlnx44</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">libopensm</span> <span class="mf">5.15.0</span><span class="o">.</span><span class="n">MLNX20230417</span><span class="o">.</span><span class="n">d84ecf64</span><span class="o">-</span><span class="mf">0.1.2304053</span>
+<span class="n">libopensm</span><span class="o">-</span><span class="n">devel</span> <span class="mf">5.15.0</span><span class="o">.</span><span class="n">MLNX20230417</span><span class="o">.</span><span class="n">d84ecf64</span><span class="o">-</span><span class="mf">0.1.2304053</span>
+<span class="n">libopenvswitch</span><span class="p">:</span><span class="n">arm64</span> <span class="mf">2.17.7</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">librdmacm1</span><span class="p">:</span><span class="n">arm64</span> <span class="mi">2304</span><span class="n">mlnx44</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">librdmacm</span><span class="o">-</span><span class="n">dev</span><span class="p">:</span><span class="n">arm64</span> <span class="mi">2304</span><span class="n">mlnx44</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">libvma</span> <span class="mf">9.8.20</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">libvma</span><span class="o">-</span><span class="n">dev</span> <span class="mf">9.8.20</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">libvma</span><span class="o">-</span><span class="n">utils</span> <span class="mf">9.8.20</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">libxlio</span> <span class="mf">3.0.2</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">libxlio</span><span class="o">-</span><span class="n">dev</span> <span class="mf">3.0.2</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">libxlio</span><span class="o">-</span><span class="n">utils</span> <span class="mf">3.0.2</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">mlnx</span><span class="o">-</span><span class="n">dpdk</span> <span class="mf">22.11.0</span><span class="o">-</span><span class="mf">1.4.2.23040530.1.4.2</span>
+<span class="n">mlnx</span><span class="o">-</span><span class="n">dpdk</span><span class="o">-</span><span class="n">dev</span><span class="p">:</span><span class="n">arm64</span> <span class="mf">22.11.0</span><span class="o">-</span><span class="mf">1.4.2.23040530.1.4.2</span>
+<span class="n">mlnx</span><span class="o">-</span><span class="n">ethtool</span> <span class="mf">6.0</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">mlnx</span><span class="o">-</span><span class="n">iproute2</span> <span class="mf">6.2.0</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">mlnx</span><span class="o">-</span><span class="n">ofed</span><span class="o">-</span><span class="n">kernel</span><span class="o">-</span><span class="n">utils</span> <span class="mf">23.04</span><span class="o">-</span><span class="n">OFED</span><span class="mf">.23.04.0.5.3.1</span><span class="o">.</span><span class="n">bf</span><span class="o">.</span><span class="n">kver</span><span class="mf">.5.15.0</span><span class="o">-</span><span class="mi">1015</span><span class="o">-</span><span class="n">bluefield</span>
+<span class="n">mlnx</span><span class="o">-</span><span class="n">tools</span> <span class="mf">23.04</span><span class="o">-</span><span class="mf">0.2304053</span>
+<span class="n">mstflint</span> <span class="mf">4.16.1</span><span class="o">-</span><span class="mf">2.2304053</span>
+<span class="n">opensm</span> <span class="mf">5.15.0</span><span class="o">.</span><span class="n">MLNX20230417</span><span class="o">.</span><span class="n">d84ecf64</span><span class="o">-</span><span class="mf">0.1.2304053</span>
+<span class="n">openvswitch</span><span class="o">-</span><span class="n">common</span> <span class="mf">2.17.7</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">openvswitch</span><span class="o">-</span><span class="n">common</span> <span class="mf">2.17.7</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">openvswitch</span><span class="o">-</span><span class="n">ipsec</span> <span class="mf">2.17.7</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">openvswitch</span><span class="o">-</span><span class="n">ipsec</span> <span class="mf">2.17.7</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">openvswitch</span><span class="o">-</span><span class="n">switch</span> <span class="mf">2.17.7</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">openvswitch</span><span class="o">-</span><span class="n">switch</span> <span class="mf">2.17.7</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">perftest</span> <span class="mf">23.04.0</span><span class="o">-</span><span class="mf">0.23</span><span class="o">.</span><span class="n">g63e250f</span><span class="mf">.2304053</span>
+<span class="n">python3</span><span class="o">-</span><span class="n">openvswitch</span> <span class="mf">2.17.7</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">python3</span><span class="o">-</span><span class="n">pyverbs</span><span class="p">:</span><span class="n">arm64</span> <span class="mi">2304</span><span class="n">mlnx44</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">rdmacm</span><span class="o">-</span><span class="n">utils</span> <span class="mi">2304</span><span class="n">mlnx44</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">rdma</span><span class="o">-</span><span class="n">core</span> <span class="mi">2304</span><span class="n">mlnx44</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">srptools</span> <span class="mi">2304</span><span class="n">mlnx44</span><span class="o">-</span><span class="mf">1.2304053</span>
+<span class="n">ucx</span> <span class="mf">1.15.0</span><span class="o">-</span><span class="mf">1.2304053</span>
+</pre></div>
+</div>
+<section id="pci-devices">
+<h2>PCI devices:<a class="headerlink" href="#pci-devices" title="Link to this heading">¶</a></h2>
+<p>DEVICE_TYPE             MST                           PCI       RDMA            NET                                     NUMA
+BlueField2(rev:1)       /dev/mst/mt41686_pciconf0     10:00.0                                           -1</p>
+<p>BlueField2(rev:1)       /dev/mst/mt41686_pciconf0.1   10:00.1                                           -1</p>
+<p>BlueField2(rev:1)       /dev/mst/mt49873_pciconf0.2   10:00.2                                           -1</p>
+</section>
+<section id="bf-config">
+<h2>BF Config<a class="headerlink" href="#bf-config" title="Link to this heading">¶</a></h2>
+<p>DOCA_2.0.2_BSP_4.0.3_Ubuntu_22.04-11.23-04.prod</p>
+<p>Content of <code class="docutils literal notranslate"><span class="pre">bf.cfg</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ubuntu_PASSWORD</span><span class="o">=</span><span class="s1">&#39;$1$tFWHnhQf$vn2b7vms6Apf287uZi75./&#39;</span>
+</pre></div>
+</div>
+<p>The password is created with <cite>openssl passwd -1</cite> and the input ‘Odus.321’</p>
+<p>Download the latest DOCA and install it with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bfb</span><span class="o">-</span><span class="n">install</span> <span class="o">--</span><span class="n">bfb</span> <span class="n">bf</span><span class="o">-</span><span class="n">bundle</span><span class="o">-</span><span class="mf">2.10.0</span><span class="o">-</span><span class="mf">147_25.01</span><span class="n">_ubuntu</span><span class="o">-</span><span class="mf">22.04</span><span class="n">_prod</span><span class="o">.</span><span class="n">bfb</span> <span class="o">--</span><span class="n">rshim</span> <span class="n">rshim0</span>
+</pre></div>
+</div>
+<p>Resulted in:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Checking if local host has root access...
+Checking if rshim driver is running locally...
+Pushing bfb
+ 192KiB 0:00:05 [23.3KiB/s] [    &lt;=&gt;                                                                                                               ]
+1.62MiB 0:00:21 [93.1KiB/s] [         &lt;=&gt;                                                                                                          ]
+13.6MiB 0:00:31 [4.96MiB/s] [                &lt;=&gt;                                                                                                   ]
+1.25GiB 0:02:01 [10.6MiB/s] [                                                                                                     &lt;=&gt;              ]
+Collecting BlueField booting status. Press Ctrl+C to stop…
+ INFO[BL2]: start
+ INFO[BL2]: boot mode (rshim)
+ INFO[BL2]: DDR POST passed
+ INFO[BL2]: UEFI loaded
+ INFO[BL31]: start
+ INFO[BL31]: lifecycle GA Secured
+ INFO[BL31]: runtime
+ INFO[UEFI]: UPVS valid
+ INFO[UEFI]: eMMC init
+ INFO[UEFI]: eMMC probed
+ INFO[UEFI]: PMI: updates started
+ INFO[UEFI]: PMI: total updates: 1
+ INFO[UEFI]: PMI: updates completed, status 0
+ INFO[UEFI]: PCIe enum start
+ INFO[UEFI]: PCIe enum end
+ INFO[UEFI]: UEFI Secure Boot (enabled)
+ INFO[UEFI]: Redfish enabled
+ WARN[UEFI]: UPVS reclaim start
+ WARN[UEFI]: UPVS reclaim done
+ INFO[UEFI]: exit Boot Service
+ INFO[MISC]: Erasing eMMC drive: /dev/mmcblk0
+ INFO[MISC]: Ubuntu installation started
+ INFO[MISC]: Installing OS image
+ INFO[MISC]: Ubuntu installation completed
+ INFO[MISC]: Installed NIC Firmware is the same as provided. Skipping NIC Firmware update.
+ INFO[MISC]: Installation finished
+</pre></div>
+</div>
+<p>Then doing <code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">/dev/rshim0/misc</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DISPLAY_LEVEL</span>   <span class="mi">2</span> <span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="n">basic</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="n">advanced</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="n">log</span><span class="p">)</span>
+<span class="n">BOOT_MODE</span>       <span class="mi">1</span> <span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="n">rshim</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="n">emmc</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="n">emmc</span><span class="o">-</span><span class="n">boot</span><span class="o">-</span><span class="n">swap</span><span class="p">)</span>
+<span class="n">BOOT_TIMEOUT</span>    <span class="mi">300</span> <span class="p">(</span><span class="n">seconds</span><span class="p">)</span>
+<span class="n">USB_TIMEOUT</span>     <span class="mi">40</span> <span class="p">(</span><span class="n">seconds</span><span class="p">)</span>
+<span class="n">DROP_MODE</span>       <span class="mi">0</span> <span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="n">normal</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="n">drop</span><span class="p">)</span>
+<span class="n">SW_RESET</span>        <span class="mi">0</span> <span class="p">(</span><span class="mi">1</span><span class="p">:</span> <span class="n">reset</span><span class="p">)</span>
+<span class="n">DEV_NAME</span>        <span class="n">pcie</span><span class="o">-</span><span class="mi">0000</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mf">00.3</span>
+<span class="n">DEV_INFO</span>        <span class="n">BlueField</span><span class="o">-</span><span class="mi">2</span><span class="p">(</span><span class="n">Rev</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">OPN_STR</span>         <span class="n">N</span><span class="o">/</span><span class="n">A</span>
+<span class="n">FORCE_CMD</span>       <span class="mi">0</span> <span class="p">(</span><span class="mi">1</span><span class="p">:</span> <span class="n">send</span> <span class="n">Force</span> <span class="n">command</span><span class="p">)</span>
+<span class="o">---------------------------------------</span>
+         <span class="n">Log</span> <span class="n">Messages</span>
+<span class="o">---------------------------------------</span>
+<span class="n">INFO</span><span class="p">[</span><span class="n">BL2</span><span class="p">]:</span> <span class="n">start</span>
+<span class="n">INFO</span><span class="p">[</span><span class="n">BL2</span><span class="p">]:</span> <span class="n">boot</span> <span class="n">mode</span> <span class="p">(</span><span class="n">emmc</span><span class="p">)</span>
+<span class="n">INFO</span><span class="p">[</span><span class="n">BL2</span><span class="p">]:</span> <span class="n">DDR</span> <span class="n">POST</span> <span class="n">passed</span>
+<span class="n">INFO</span><span class="p">[</span><span class="n">BL2</span><span class="p">]:</span> <span class="n">UEFI</span> <span class="n">loaded</span>
+<span class="n">INFO</span><span class="p">[</span><span class="n">BL31</span><span class="p">]:</span> <span class="n">start</span>
+<span class="n">INFO</span><span class="p">[</span><span class="n">BL31</span><span class="p">]:</span> <span class="n">lifecycle</span> <span class="n">GA</span> <span class="n">Secured</span>
+<span class="n">INFO</span><span class="p">[</span><span class="n">BL31</span><span class="p">]:</span> <span class="n">runtime</span>
+<span class="n">INFO</span><span class="p">[</span><span class="n">UEFI</span><span class="p">]:</span> <span class="n">UPVS</span> <span class="n">valid</span>
+<span class="n">INFO</span><span class="p">[</span><span class="n">UEFI</span><span class="p">]:</span> <span class="n">eMMC</span> <span class="n">init</span>
+<span class="n">INFO</span><span class="p">[</span><span class="n">UEFI</span><span class="p">]:</span> <span class="n">eMMC</span> <span class="n">probed</span>
+<span class="n">INFO</span><span class="p">[</span><span class="n">UEFI</span><span class="p">]:</span> <span class="n">PCIe</span> <span class="n">enum</span> <span class="n">start</span>
+<span class="n">INFO</span><span class="p">[</span><span class="n">UEFI</span><span class="p">]:</span> <span class="n">PCIe</span> <span class="n">enum</span> <span class="n">end</span>
+<span class="n">INFO</span><span class="p">[</span><span class="n">UEFI</span><span class="p">]:</span> <span class="n">PMI</span><span class="p">:</span> <span class="n">updates</span> <span class="n">started</span>
+<span class="n">INFO</span><span class="p">[</span><span class="n">UEFI</span><span class="p">]:</span> <span class="n">PMI</span><span class="p">:</span> <span class="n">total</span> <span class="n">updates</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">INFO</span><span class="p">[</span><span class="n">UEFI</span><span class="p">]:</span> <span class="n">PMI</span><span class="p">:</span> <span class="n">updates</span> <span class="n">completed</span><span class="p">,</span> <span class="n">status</span> <span class="mi">0</span>
+<span class="n">INFO</span><span class="p">[</span><span class="n">UEFI</span><span class="p">]:</span> <span class="n">PMI</span><span class="p">:</span> <span class="n">updates</span> <span class="n">started</span>
+<span class="n">INFO</span><span class="p">[</span><span class="n">UEFI</span><span class="p">]:</span> <span class="n">PMI</span><span class="p">:</span> <span class="n">total</span> <span class="n">updates</span><span class="p">:</span> <span class="mi">6</span>
+<span class="n">INFO</span><span class="p">[</span><span class="n">UEFI</span><span class="p">]:</span> <span class="n">PMI</span><span class="p">:</span> <span class="n">updates</span> <span class="n">completed</span><span class="p">,</span> <span class="n">status</span> <span class="mi">0</span>
+<span class="n">INFO</span><span class="p">[</span><span class="n">UEFI</span><span class="p">]:</span> <span class="n">UEFI</span> <span class="n">Secure</span> <span class="n">Boot</span> <span class="p">(</span><span class="n">enabled</span><span class="p">)</span>
+<span class="n">INFO</span><span class="p">[</span><span class="n">UEFI</span><span class="p">]:</span> <span class="n">Redfish</span> <span class="n">enabled</span>
+<span class="n">INFO</span><span class="p">[</span><span class="n">UEFI</span><span class="p">]:</span> <span class="n">RF</span> <span class="n">DHCPv6</span> <span class="n">failed</span>
+<span class="n">WARN</span><span class="p">[</span><span class="n">UEFI</span><span class="p">]:</span> <span class="n">UPVS</span> <span class="n">reclaim</span> <span class="n">start</span>
+<span class="n">WARN</span><span class="p">[</span><span class="n">UEFI</span><span class="p">]:</span> <span class="n">UPVS</span> <span class="n">reclaim</span> <span class="n">done</span>
+<span class="n">INFO</span><span class="p">[</span><span class="n">UEFI</span><span class="p">]:</span> <span class="n">exit</span> <span class="n">Boot</span> <span class="n">Service</span>
+<span class="n">INFO</span><span class="p">[</span><span class="n">MISC</span><span class="p">]:</span> <span class="n">Linux</span> <span class="n">up</span>
+<span class="n">INFO</span><span class="p">[</span><span class="n">MISC</span><span class="p">]:</span> <span class="n">DPU</span> <span class="ow">is</span> <span class="n">ready</span>
+<span class="n">INFO</span><span class="p">[</span><span class="n">MISC</span><span class="p">]:</span> <span class="p">:</span> <span class="n">DPU</span> <span class="ow">is</span> <span class="n">ready</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.devops.lol/used-dpus/">https://www.devops.lol/used-dpus/</a></p></li>
+<li><p><a class="reference external" href="https://insujang.github.io/2022-01-06/configuring-nvidia-bluefield2-smartnic/">https://insujang.github.io/2022-01-06/configuring-nvidia-bluefield2-smartnic/</a></p></li>
+</ul>
+<p>disable tmfifo_net0 as it is grabbing the gateway / route…</p>
+</section>
+</section>
+<section id="host-system">
+<h1>Host System<a class="headerlink" href="#host-system" title="Link to this heading">¶</a></h1>
+<section id="hardware">
+<h2>Hardware<a class="headerlink" href="#hardware" title="Link to this heading">¶</a></h2>
+<p>…</p>
+</section>
+<section id="bios-uefi-setup">
+<h2>BIOS/UEFI Setup<a class="headerlink" href="#bios-uefi-setup" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Disable Secure Boot</p>
+<ul>
+<li><p>To allow running unsigned drivers / kernel</p></li>
+</ul>
+</li>
+<li><p>Enable SR-IOV</p></li>
+</ul>
+</section>
+</section>
+<section id="host-system-setup">
+<h1>Host System Setup<a class="headerlink" href="#host-system-setup" title="Link to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Install Ubuntu 24.04</p>
+<ul>
+<li><p>This seems to be the simplest to get the DOCA SDK running</p></li>
+<li><dl class="simple">
+<dt>An Ubuntu variant of BFB (BlueField-Bundle) came pre-installed, thus, went</dt><dd><p>with this version when upgrade the BFB and assumed the simplest would be to use
+the same Linux distribution on the host as well</p>
+</dd>
+</dl>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+
+
+    
+    </div>
+    <div class="col-lg-3 ms-sm-auto d-none d-lg-block">
+      <div id="localtoc" >
+      <h3>Here</h3>
+      <ul>
+<li><a class="reference internal" href="#">Getting familiar with BlueField-2</a></li>
+<li><a class="reference internal" href="#host-hw">Host HW</a></li>
+<li><a class="reference internal" href="#host-fw-os">Host FW/OS</a></li>
+<li><a class="reference internal" href="#dpu">DPU</a><ul>
+<li><a class="reference internal" href="#pci-devices">PCI devices:</a></li>
+<li><a class="reference internal" href="#bf-config">BF Config</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#host-system">Host System</a><ul>
+<li><a class="reference internal" href="#hardware">Hardware</a></li>
+<li><a class="reference internal" href="#bios-uefi-setup">BIOS/UEFI Setup</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#host-system-setup">Host System Setup</a></li>
+</ul>
+
+      <hr/>
+        <h4>Next</h4>
+      <ul><li>
+        <a href="../exploration/zellij.html" title="next chapter">Zellij</a>
+      </li></ul>
+      <h4>Prev</h4>
+      <ul><li>
+        <a href="../exploration/vfio_user.html" title="previous chapter">Getting 4.3 M IOPS with an emulated NVMe device in a qemu guest</a>
+      </li></ul>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="row">
+    <div class="col-lg-12">
+        &copy; Copyright 2025 Simon A. F. Lund.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </footer>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script>
+  (function() {
+    var ga = document.createElement('script');
+    ga.src = ('https:' == document.location.protocol ?
+              'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    ga.setAttribute('async', 'true');
+    document.documentElement.firstChild.appendChild(ga);
+  })();
+</script>
+
+  </body>
+</html>

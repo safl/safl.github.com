@@ -19,3 +19,6 @@ Notes of various stuff...
    vmmanager/index.rst
    windows/index.rst
    radxa/zero/index.rst
+   exploration/vfio_user.rst
+   dpu/index.rst
+   exploration/zellij.rst

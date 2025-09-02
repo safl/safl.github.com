@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Text Editors &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=02ca0aaa" />
+    <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css?v=84ebf9b3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Mounting fat32" href="fat32.html" />
@@ -85,7 +85,7 @@
     
     
   <section id="text-editors">
-<h1>Text Editors<a class="headerlink" href="#text-editors" title="Permalink to this heading">¶</a></h1>
+<h1>Text Editors<a class="headerlink" href="#text-editors" title="Link to this heading">¶</a></h1>
 <p>I have used vim for some 20+ years. I have tried neovim at several occassions
 and not felt an urge to switch. However, at some pointin 2023 a co-worker of
 mine showed me LunarVIM and i took it for a spin. I liked it, and ditched my
@@ -102,7 +102,7 @@ for decades.</p></li>
 available, and for my main text-editor and code-mangling I use Helix. Thus, this
 page is re-written with notes on getting the Helix editor running.</p>
 <section id="install-from-source">
-<h2>Install from source<a class="headerlink" href="#install-from-source" title="Permalink to this heading">¶</a></h2>
+<h2>Install from source<a class="headerlink" href="#install-from-source" title="Link to this heading">¶</a></h2>
 <p>Do this:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build and install</span>
 <span class="nb">cd</span><span class="w"> </span>~/git
@@ -128,7 +128,7 @@ Thus, today, I like to use they plain version of vi-iMprovied using <code class=
 then having my <em>fancy</em> editor at <code class="docutils literal notranslate"><span class="pre">lvim</span></code>.</p>
 </section>
 <section id="configs">
-<h2>Configs<a class="headerlink" href="#configs" title="Permalink to this heading">¶</a></h2>
+<h2>Configs<a class="headerlink" href="#configs" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">~/.config/helix/languages.toml</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="n">language</span><span class="p">]]</span>
 <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;c&quot;</span>
@@ -137,6 +137,7 @@ then having my <em>fancy</em> editor at <code class="docutils literal notranslat
 <span class="n">file</span><span class="o">-</span><span class="n">types</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;h&quot;</span><span class="p">]</span>
 <span class="n">rulers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">99</span><span class="p">]</span>
 <span class="n">text</span><span class="o">-</span><span class="n">width</span> <span class="o">=</span> <span class="mi">99</span>
+<span class="n">formatter</span> <span class="o">=</span> <span class="p">{</span> <span class="n">command</span> <span class="o">=</span> <span class="s2">&quot;clang-format&quot;</span> <span class="p">}</span>
 
 <span class="p">[[</span><span class="n">language</span><span class="p">]]</span>
 <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;git-commit&quot;</span>
@@ -176,7 +177,7 @@ then having my <em>fancy</em> editor at <code class="docutils literal notranslat
 
 <span class="p">[</span><span class="n">editor</span><span class="o">.</span><span class="n">lsp</span><span class="p">]</span>
 <span class="n">display</span><span class="o">-</span><span class="n">messages</span> <span class="o">=</span> <span class="n">true</span>
-<span class="n">display</span><span class="o">-</span><span class="n">inlay</span><span class="o">-</span><span class="n">hints</span> <span class="o">=</span> <span class="n">true</span>
+<span class="c1">#display-inlay-hints = true</span>
 
 <span class="p">[</span><span class="n">editor</span><span class="p">]</span>
 <span class="n">mouse</span> <span class="o">=</span> <span class="n">false</span>
@@ -198,6 +199,10 @@ then having my <em>fancy</em> editor at <code class="docutils literal notranslat
 <span class="n">C</span><span class="o">-</span><span class="n">n</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;extend_to_line_bounds&quot;</span><span class="p">,</span> <span class="s2">&quot;delete_selection&quot;</span><span class="p">,</span> <span class="s2">&quot;paste_after&quot;</span><span class="p">]</span>
 <span class="n">C</span><span class="o">-</span><span class="n">tab</span> <span class="o">=</span> <span class="s2">&quot;:bn&quot;</span>
 <span class="n">C</span><span class="o">-</span><span class="n">S</span><span class="o">-</span><span class="n">tab</span> <span class="o">=</span> <span class="s2">&quot;:bp&quot;</span>
+<span class="s2">&quot;C-f&quot;</span> <span class="o">=</span> <span class="s2">&quot;:pipe ~/.config/helix/assist.sh&quot;</span>
+
+<span class="p">[</span><span class="n">keys</span><span class="o">.</span><span class="n">select</span><span class="p">]</span>
+<span class="s2">&quot;C-f&quot;</span> <span class="o">=</span> <span class="s2">&quot;:pipe ~/.config/helix/assist.sh&quot;</span>
 
 <span class="p">[</span><span class="n">keys</span><span class="o">.</span><span class="n">select</span><span class="o">.</span><span class="n">g</span><span class="p">]</span>
 <span class="n">w</span> <span class="o">=</span> <span class="s2">&quot;:reflow&quot;</span>
@@ -214,7 +219,7 @@ then having my <em>fancy</em> editor at <code class="docutils literal notranslat
 </div>
 </section>
 <section id="xorg-clipboard-space-y">
-<h2>xorg clipboard (Space+Y)<a class="headerlink" href="#xorg-clipboard-space-y" title="Permalink to this heading">¶</a></h2>
+<h2>xorg clipboard (Space+Y)<a class="headerlink" href="#xorg-clipboard-space-y" title="Link to this heading">¶</a></h2>
 <p>Needs these packages as well:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-qy<span class="w"> </span>xsel<span class="w"> </span>xclip
 </pre></div>
@@ -253,8 +258,8 @@ then having my <em>fancy</em> editor at <code class="docutils literal notranslat
 
   <footer class="row">
     <div class="col-lg-12">
-        &copy; Copyright 2024 Simon A. F. Lund.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.0.0.
+        &copy; Copyright 2025 Simon A. F. Lund.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </footer>
 

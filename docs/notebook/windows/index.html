@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Windows &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=02ca0aaa" />
+    <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css?v=84ebf9b3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="v4l2" href="../radxa/zero/index.html" />
@@ -84,7 +84,7 @@
     
     
   <section id="windows">
-<h1>Windows<a class="headerlink" href="#windows" title="Permalink to this heading">¶</a></h1>
+<h1>Windows<a class="headerlink" href="#windows" title="Link to this heading">¶</a></h1>
 <p>I got a Windows 95 installation CD with my first PC. I installed it, played
 around, played Pinball, Hearts, Moto Racer, and QUAKE. Then I installed Borland
 Delphi, then Apache + PHP. Then I started getting annoyed with Windows and
@@ -100,7 +100,7 @@ give the system a proper name, then enable remote access via RDP and SSH.</p>
 <p>Then the tool-installation can commence, starting with the Chocolatey package
 manager and msys2. Later, the other stuff such as the Microsoft Visual Studio.</p>
 <section id="chocolatey">
-<h2>Chocolatey<a class="headerlink" href="#chocolatey" title="Permalink to this heading">¶</a></h2>
+<h2>Chocolatey<a class="headerlink" href="#chocolatey" title="Link to this heading">¶</a></h2>
 <p>A package manager for Windows providing native software installation. How
 <strong>sweet</strong>. Install it via an elevated PowerShell:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Set</span><span class="o">-</span><span class="n">ExecutionPolicy</span> <span class="n">Bypass</span> <span class="o">-</span><span class="n">Scope</span> <span class="n">Process</span> <span class="o">-</span><span class="n">Force</span><span class="p">;</span> <span class="p">[</span><span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">ServicePointManager</span><span class="p">]::</span><span class="n">SecurityProtocol</span> <span class="o">=</span> <span class="p">[</span><span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">ServicePointManager</span><span class="p">]::</span><span class="n">SecurityProtocol</span> <span class="o">-</span><span class="n">bor</span> <span class="mi">3072</span><span class="p">;</span> <span class="n">iex</span> <span class="p">((</span><span class="n">New</span><span class="o">-</span><span class="n">Object</span> <span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">WebClient</span><span class="p">)</span><span class="o">.</span><span class="n">DownloadString</span><span class="p">(</span><span class="s1">&#39;https://community.chocolatey.org/install.ps1&#39;</span><span class="p">))</span>
@@ -108,7 +108,7 @@ manager and msys2. Later, the other stuff such as the Microsoft Visual Studio.</
 </div>
 </section>
 <section id="tools">
-<h2>Tools<a class="headerlink" href="#tools" title="Permalink to this heading">¶</a></h2>
+<h2>Tools<a class="headerlink" href="#tools" title="Link to this heading">¶</a></h2>
 <p>Here are a couple of the usual suspects on Windows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">choco</span><span class="o">.</span><span class="n">exe</span> <span class="n">install</span> <span class="n">git</span> <span class="n">vscode</span> <span class="n">firefox</span>
 </pre></div>
@@ -128,15 +128,15 @@ git-installation, you can find it somewhere equivalent to:</p>
 login shell. Ahh, serenity.</p>
 </section>
 <section id="rename-your-pc">
-<h2>Rename your PC<a class="headerlink" href="#rename-your-pc" title="Permalink to this heading">¶</a></h2>
+<h2>Rename your PC<a class="headerlink" href="#rename-your-pc" title="Link to this heading">¶</a></h2>
 <p>…</p>
 </section>
 <section id="remote-desktop">
-<h2>Remote Desktop<a class="headerlink" href="#remote-desktop" title="Permalink to this heading">¶</a></h2>
+<h2>Remote Desktop<a class="headerlink" href="#remote-desktop" title="Link to this heading">¶</a></h2>
 <p>…</p>
 </section>
 <section id="enable-openssh-server">
-<h2>Enable OpenSSH Server<a class="headerlink" href="#enable-openssh-server" title="Permalink to this heading">¶</a></h2>
+<h2>Enable OpenSSH Server<a class="headerlink" href="#enable-openssh-server" title="Link to this heading">¶</a></h2>
 <p>Something wonderful has happened; Windows has native OpenSSH support and it is
 officially documented here:</p>
 <blockquote>
@@ -217,8 +217,8 @@ icacls.exe &quot;C:\ProgramData\ssh\administrators_authorized_keys&quot; /inheri
 
   <footer class="row">
     <div class="col-lg-12">
-        &copy; Copyright 2024 Simon A. F. Lund.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.0.0.
+        &copy; Copyright 2025 Simon A. F. Lund.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </footer>
 

@@ -7,7 +7,7 @@ select = "underline"
 
 [editor.lsp]
 display-messages = true
-display-inlay-hints = true
+#display-inlay-hints = true
 
 [editor]
 mouse = false
@@ -29,6 +29,10 @@ ret = ["move_line_down", "goto_line_start"]
 C-n = ["extend_to_line_bounds", "delete_selection", "paste_after"]
 C-tab = ":bn"
 C-S-tab = ":bp"
+"C-f" = ":pipe ~/.config/helix/assist.sh"
+
+[keys.select]
+"C-f" = ":pipe ~/.config/helix/assist.sh"
 
 [keys.select.g]
 w = ":reflow"

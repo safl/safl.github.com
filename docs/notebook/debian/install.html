@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Workstation Installation &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=02ca0aaa" />
+    <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css?v=84ebf9b3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Java" href="java.html" />
@@ -85,14 +85,14 @@
     
     
   <section id="workstation-installation">
-<h1>Workstation Installation<a class="headerlink" href="#workstation-installation" title="Permalink to this heading">¶</a></h1>
+<h1>Workstation Installation<a class="headerlink" href="#workstation-installation" title="Link to this heading">¶</a></h1>
 <p>Grab the latest offical Debian installer image. Note that, starting with
 <code class="docutils literal notranslate"><span class="pre">bookworm</span></code> then non-free is included, thus the official installer image is
 great. Put this on installation media. I really enjoy using Ventoy for this.</p>
 <p>Post install I do the following, regardless of the whether the system is a SBC,
 a laptop, or a workstation.</p>
 <section id="enable-sudo">
-<h2>Enable <code class="docutils literal notranslate"><span class="pre">sudo</span></code><a class="headerlink" href="#enable-sudo" title="Permalink to this heading">¶</a></h2>
+<h2>Enable <code class="docutils literal notranslate"><span class="pre">sudo</span></code><a class="headerlink" href="#enable-sudo" title="Link to this heading">¶</a></h2>
 <p>Switch user to <code class="docutils literal notranslate"><span class="pre">root</span></code>, update repositories, install <code class="docutils literal notranslate"><span class="pre">sudo</span></code> and add your
 user to sudoers:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Switch user to &#39;root&#39;</span>
@@ -105,13 +105,13 @@ usermod<span class="w"> </span>-aG<span class="w"> </span>sudo<span class="w"> <
 <p>Log out and log back in for the group addition to take effect.</p>
 </section>
 <section id="increase-console-text-size">
-<h2>Increase console text size<a class="headerlink" href="#increase-console-text-size" title="Permalink to this heading">¶</a></h2>
+<h2>Increase console text size<a class="headerlink" href="#increase-console-text-size" title="Link to this heading">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dpkg-reconfigure<span class="w"> </span>console-setup
 </pre></div>
 </div>
 </section>
 <section id="set-timezone">
-<h2>Set timezone<a class="headerlink" href="#set-timezone" title="Permalink to this heading">¶</a></h2>
+<h2>Set timezone<a class="headerlink" href="#set-timezone" title="Link to this heading">¶</a></h2>
 <p>See the timezones with:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>timedatectl<span class="w"> </span>list-timezones
 </pre></div>
@@ -132,14 +132,14 @@ sudo<span class="w"> </span>timedatectl<span class="w"> </span>set-timezone<span
 </div>
 </section>
 <section id="update-repositories-and-packages">
-<h2>Update repositories and packages<a class="headerlink" href="#update-repositories-and-packages" title="Permalink to this heading">¶</a></h2>
+<h2>Update repositories and packages<a class="headerlink" href="#update-repositories-and-packages" title="Link to this heading">¶</a></h2>
 <p>Make sure repositories and installation is up-to-date:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>upgrade<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>dist-upgrade
 </pre></div>
 </div>
 </section>
 <section id="update-firmware">
-<h2>Update Firmware<a class="headerlink" href="#update-firmware" title="Permalink to this heading">¶</a></h2>
+<h2>Update Firmware<a class="headerlink" href="#update-firmware" title="Link to this heading">¶</a></h2>
 <p>Update firmware:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>isenkram
 sudo<span class="w"> </span>isenkram-autoinstall-firmware
@@ -148,7 +148,7 @@ sudo<span class="w"> </span>isenkram-autoinstall-firmware
 <p>Then reboot for the firmware additons to take effect.</p>
 </section>
 <section id="toolbelt">
-<h2>Toolbelt<a class="headerlink" href="#toolbelt" title="Permalink to this heading">¶</a></h2>
+<h2>Toolbelt<a class="headerlink" href="#toolbelt" title="Link to this heading">¶</a></h2>
 <p>For the rest we need some basic tools:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>btop<span class="w"> </span><span class="se">\</span>
@@ -217,8 +217,8 @@ pipx<span class="w"> </span>completions
 
   <footer class="row">
     <div class="col-lg-12">
-        &copy; Copyright 2024 Simon A. F. Lund.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.0.0.
+        &copy; Copyright 2025 Simon A. F. Lund.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </footer>
 

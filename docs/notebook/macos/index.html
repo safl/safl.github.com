@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>MacOS &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=02ca0aaa" />
+    <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css?v=84ebf9b3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title=".files" href="../dotfiles/index.html" />
@@ -84,7 +84,7 @@
     
     
   <section id="macos">
-<h1>MacOS<a class="headerlink" href="#macos" title="Permalink to this heading">¶</a></h1>
+<h1>MacOS<a class="headerlink" href="#macos" title="Link to this heading">¶</a></h1>
 <p>These are a couple of notes on how I like to use a Mac with macOS on it, and
 why I bother.</p>
 <p>Those Apple Silicon based Macs are pretty awesome, especially in terms of
@@ -100,7 +100,7 @@ unstable and <strong>very</strong> annoying.</p>
 mac, for me atleast. Allowing myself the use of things like <strong>Yabai</strong>, to spend
 less time moving and resizing windwows.</p>
 <section id="settings">
-<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this heading">¶</a></h2>
+<h2>Settings<a class="headerlink" href="#settings" title="Link to this heading">¶</a></h2>
 <p>The stuff below are settings in the macOS Ventura System Settings:</p>
 <ul class="simple">
 <li><p>Appearance</p>
@@ -140,12 +140,12 @@ less time moving and resizing windwows.</p>
 </ul>
 </section>
 <section id="tweaks">
-<h2>Tweaks<a class="headerlink" href="#tweaks" title="Permalink to this heading">¶</a></h2>
+<h2>Tweaks<a class="headerlink" href="#tweaks" title="Link to this heading">¶</a></h2>
 <p>The <strong>tweaks</strong> are things which I haven’t found a convenient way to configure
 via <code class="docutils literal notranslate"><span class="pre">Settings.app</span></code>. Howevever, they are still within the functionality of the
 macOS sandbox.</p>
 <section id="home-end">
-<h3>Home/End<a class="headerlink" href="#home-end" title="Permalink to this heading">¶</a></h3>
+<h3>Home/End<a class="headerlink" href="#home-end" title="Link to this heading">¶</a></h3>
 <p>When hitting the physcial Home/End keys on a keyboard, which actually have
 those keys, then it moves the text-cursor to the begginning / end of the line.
 Additionally, then shift/move selects text.</p>
@@ -167,7 +167,7 @@ nothing.</p>
 </section>
 </section>
 <section id="brew">
-<h2>Brew<a class="headerlink" href="#brew" title="Permalink to this heading">¶</a></h2>
+<h2>Brew<a class="headerlink" href="#brew" title="Link to this heading">¶</a></h2>
 <p>Apple provides an App store, however, it requires logging in with an
 Apple-account. Plus, it is a graphical application, I much prefer a
 software/package manager in the <code class="docutils literal notranslate"><span class="pre">SHELL</span></code>.
@@ -250,7 +250,7 @@ eval &quot;$(/opt/homebrew/bin/brew shellenv)&quot;
 </div>
 </section>
 <section id="python">
-<h2>Python<a class="headerlink" href="#python" title="Permalink to this heading">¶</a></h2>
+<h2>Python<a class="headerlink" href="#python" title="Link to this heading">¶</a></h2>
 <p>A recent Python interpreter comes with macOS, thus no need to grab a newer one
 via Brew. However, what is nice, is using <code class="docutils literal notranslate"><span class="pre">pipx</span></code> to manage Python-based
 cli-tools. Thus ensure you run:</p>
@@ -259,7 +259,7 @@ cli-tools. Thus ensure you run:</p>
 </div>
 </section>
 <section id="rust">
-<h2>Rust<a class="headerlink" href="#rust" title="Permalink to this heading">¶</a></h2>
+<h2>Rust<a class="headerlink" href="#rust" title="Link to this heading">¶</a></h2>
 <p>Install via untrusted sources:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>--proto<span class="w"> </span><span class="s1">&#39;=https&#39;</span><span class="w"> </span>--tlsv1.2<span class="w"> </span>-sSf<span class="w"> </span>https://sh.rustup.rs<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
 </pre></div>
@@ -267,7 +267,7 @@ cli-tools. Thus ensure you run:</p>
 <p>setting <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.</p>
 </section>
 <section id="lunarvim">
-<h2>LunarVim<a class="headerlink" href="#lunarvim" title="Permalink to this heading">¶</a></h2>
+<h2>LunarVim<a class="headerlink" href="#lunarvim" title="Link to this heading">¶</a></h2>
 <p>macOS comes with vim, which is pretty great! However, much like <code class="docutils literal notranslate"><span class="pre">vim</span></code> was an
 improvement over <code class="docutils literal notranslate"><span class="pre">vi</span></code>, then the extended <code class="docutils literal notranslate"><span class="pre">neovim</span></code> is a potential
 evolutionary step to the greatest text-editor ever.</p>
@@ -277,7 +277,7 @@ evolutionary step to the greatest text-editor ever.</p>
 </div>
 </section>
 <section id="iterm2">
-<h2>iTerm2<a class="headerlink" href="#iterm2" title="Permalink to this heading">¶</a></h2>
+<h2>iTerm2<a class="headerlink" href="#iterm2" title="Link to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">Terminal.app</span></code> is great, however for use with <code class="docutils literal notranslate"><span class="pre">lvim</span></code>, then better
 color-support is needed. Also, <code class="docutils literal notranslate"><span class="pre">iTerm2.app</span></code> has been the “category-killer”
 for Terminal applications on macOS for 10+ years. Thus, when looking to
@@ -299,7 +299,7 @@ customize/configuring something, then there is more hits on <code class="docutil
 </ul>
 </section>
 <section id="window-manager">
-<h2>Window Manager<a class="headerlink" href="#window-manager" title="Permalink to this heading">¶</a></h2>
+<h2>Window Manager<a class="headerlink" href="#window-manager" title="Link to this heading">¶</a></h2>
 <p><strong>Yabai</strong> is a tiling window manager, other alternatives include Amethyst, and the
 very simple <code class="docutils literal notranslate"><span class="pre">Rectangle.app</span></code>. I tried out <code class="docutils literal notranslate"><span class="pre">Rectangle.app</span></code> but got frustrated
 as it allows be to position windows, however, it does not automatically manage
@@ -379,7 +379,7 @@ alt<span class="w"> </span>-<span class="w"> </span>right<span class="w"> </span
 </div>
 </section>
 <section id="meld">
-<h2>Meld<a class="headerlink" href="#meld" title="Permalink to this heading">¶</a></h2>
+<h2>Meld<a class="headerlink" href="#meld" title="Link to this heading">¶</a></h2>
 <p>Meld is not officially supported on macOS, however, unofficially <code class="docutils literal notranslate"><span class="pre">.dmg</span></code>
 exists and they are installable via <code class="docutils literal notranslate"><span class="pre">brew</span></code>. However, they are not <strong>signed</strong>
 and thus, not allowed to run on Ventura. Here is an unsafe way to work around
@@ -389,7 +389,7 @@ that short-coming:</p>
 </div>
 </section>
 <section id="ds-store">
-<h2>DS_STORE<a class="headerlink" href="#ds-store" title="Permalink to this heading">¶</a></h2>
+<h2>DS_STORE<a class="headerlink" href="#ds-store" title="Link to this heading">¶</a></h2>
 <p>Do:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">defaults</span> <span class="n">write</span> <span class="n">com</span><span class="o">.</span><span class="n">apple</span><span class="o">.</span><span class="n">desktopservices</span> <span class="n">DSDontWriteNetworkStores</span> <span class="n">true</span>
 </pre></div>
@@ -400,11 +400,11 @@ that short-coming:</p>
 </div>
 </section>
 <section id="cdrtools">
-<h2>cdrtools<a class="headerlink" href="#cdrtools" title="Permalink to this heading">¶</a></h2>
+<h2>cdrtools<a class="headerlink" href="#cdrtools" title="Link to this heading">¶</a></h2>
 <p>Using cloud-init tools… images… recall which tool was used here.</p>
 </section>
 <section id="microsoft-office">
-<h2>Microsoft Office<a class="headerlink" href="#microsoft-office" title="Permalink to this heading">¶</a></h2>
+<h2>Microsoft Office<a class="headerlink" href="#microsoft-office" title="Link to this heading">¶</a></h2>
 <p>This thing just works, with OneDrive sync and everything with your Microsoft
 Account. One note, regarding the use of Outlook and Exchange, To utilize this,
 then first log into Word/Excel/OneDrive, because then the office-suite knows
@@ -414,7 +414,7 @@ Legacy”. With this version Exchange is functional.</p>
 </section>
 </section>
 <section id="short-comings">
-<h1>Short-comings<a class="headerlink" href="#short-comings" title="Permalink to this heading">¶</a></h1>
+<h1>Short-comings<a class="headerlink" href="#short-comings" title="Link to this heading">¶</a></h1>
 <p>I miss the following tools:</p>
 <ul class="simple">
 <li><p>cloud-init</p></li>
@@ -468,8 +468,8 @@ Legacy”. With this version Exchange is functional.</p>
 
   <footer class="row">
     <div class="col-lg-12">
-        &copy; Copyright 2024 Simon A. F. Lund.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.0.0.
+        &copy; Copyright 2025 Simon A. F. Lund.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </footer>
 

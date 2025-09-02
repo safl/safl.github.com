@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Getting 4.3 M IOPS with an emulated NVMe device in a qemu guest &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=02ca0aaa" />
+    <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css?v=84ebf9b3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Getting familiar with BlueField-2" href="../dpu/index.html" />
+    <link rel="prev" title="v4l2" href="../radxa/zero/index.html" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link href="/_static/blue8bit.css" rel="stylesheet" crossorigin="anonymous">
+    <style>
+    .align-left {
+      float: left;
+    }
+    .align-right {
+      float: right;
+    }
+    </style>
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-222706364-1']);
+      _gaq.push(['_trackPageview']);
+    </script>
+
+  </head><body>
+
+
+  
+
+
+<div class="container justify-content-md-center">
+
+  <header class="row">
+    <div class="col-lg-12"><a href="/">safl.dk</a></div>
+  </header>
+
+  <nav class="row" style="vertical-align:baseline;">
+    <div class="col-lg-8">
+      <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../projects/index.html">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../uni/index.html">Uni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cv/index.html">CV</a></li>
+</ul>
+
+    </div>
+    <div id="search" class="col-lg-4 ms-sm-auto">
+      <form action="../../search.html" method="get">
+      <input type="text" name="q" class="form-control" placeholder="Search" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </nav>
+
+  <div id="related" class="row">
+    <div class="col-lg-12">
+      <a href="/">safl.dk</a> &#187;
+      <a href="../index.html" accesskey="U">Notebook</a> &#187;
+      <a href="">Getting 4.3 M IOPS with an emulated NVMe device in a qemu guest</a>
+    </div>
+  </div>
+
+  <main class="row">
+    <div class="col-lg-9">
+    
+    
+  <section id="getting-4-3-m-iops-with-an-emulated-nvme-device-in-a-qemu-guest">
+<h1>Getting 4.3 M IOPS with an emulated NVMe device in a qemu guest<a class="headerlink" href="#getting-4-3-m-iops-with-an-emulated-nvme-device-in-a-qemu-guest" title="Link to this heading">¶</a></h1>
+<p>These are initial notes on exploring the use of <code class="docutils literal notranslate"><span class="pre">vfio-user</span></code> for NVMe device
+emulation in QEMU, backed by an SPDK block device (e.g., <code class="docutils literal notranslate"><span class="pre">bdev_malloc</span></code>).
+The goal is to assess whether such a setup is viable as a test vehicle for
+evaluating the performance characteristics of the host software stack atop a
+PCIe endpoint.</p>
+<p>Traditional approaches rely on physical hardware, which introduces challenges
+such as opaque, black-box behavior of real-world SSDs, pre-conditioning
+requirements, and QoS variations due to garbage collection—all of which impact
+I/O latency in ways that cannot readily be attributed to either host-side or
+device-side effects.</p>
+<p>Alternatives include NVMeVirt and QEMU’s built-in NVMe emulation.</p>
+<p>To date, 4.3M IOPS has been achieved without tuning, using a single CPU core
+for the SPDK target application. The next steps is to determine viability of the
+method are:</p>
+<ul class="simple">
+<li><p>Can a single SPDK target provide a single emulated NVMe device capable of
+100 million IOPS?</p></li>
+<li><p>Alternatively, can this be scaled out—e.g., by providing 24 emulated devices
+to collectively reach 100 million IOPS?</p></li>
+</ul>
+<p>The notes contain the steps needed to reproduce setup and numbers from using it.</p>
+<section id="system-setup">
+<h2>System Setup<a class="headerlink" href="#system-setup" title="Link to this heading">¶</a></h2>
+<p>In this system the host-side software consists of Debian Bookworm with misc.
+packages and the main actors: <strong>SPDK</strong> and <strong>qemu</strong>. The guest-side consists of
+Debian Bookworm, misc. packages, and the main actors to driving I/O efficiently
+are: <strong>xNVMe / uPCIe</strong> and <strong>fio</strong>.</p>
+<p>For the misc. packages then <strong>SPDK</strong> provides <code class="docutils literal notranslate"><span class="pre">spdk/scripts/pkgdep.sh</span></code>,
+<strong>xNVMe</strong> provides <code class="docutils literal notranslate"><span class="pre">./toolbox/pkgs/debian-bookworm.sh</span></code>, <strong>qemu</strong> provides
+errors indicating what is missing, and <strong>fio</strong> just need what is provided by
+the others. For details on building and running the main actors, then details
+follow.</p>
+<section id="cijoe-and-guest-data-host">
+<h3>cijoe and guest-data (host)<a class="headerlink" href="#cijoe-and-guest-data-host" title="Link to this heading">¶</a></h3>
+<p>Install cijoe and rehash paths:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pipx</span> <span class="n">install</span> <span class="n">cijoe</span>
+<span class="n">pipx</span> <span class="n">ensurepath</span>
+</pre></div>
+</div>
+<p>After logging in again, you should be able to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cijoe</span> <span class="o">--</span><span class="n">example</span> <span class="n">qemu</span><span class="o">.</span><span class="n">guest_x86_64</span>
+<span class="n">cd</span> <span class="n">cijoe</span><span class="o">-</span><span class="n">example</span><span class="o">-</span><span class="n">qemu</span><span class="o">.</span><span class="n">guest_x86_64</span><span class="o">/</span>
+<span class="n">cijoe</span> <span class="o">--</span><span class="n">monitor</span>
+</pre></div>
+</div>
+<p>By doing so a Debian Bookworm guest is provisioned using cloud-init, the purpose
+of which is to have a boot.img to use later on, it should be available here:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">guests</span><span class="o">/</span><span class="n">generic</span><span class="o">-</span><span class="n">bios</span><span class="o">-</span><span class="n">kvm</span><span class="o">-</span><span class="n">x86_64</span><span class="o">/</span><span class="n">boot</span><span class="o">.</span><span class="n">img</span>
+</pre></div>
+</div>
+<p>With this, done, then please do continue.</p>
+</section>
+<section id="variability-host">
+<h3>Variability (host)<a class="headerlink" href="#variability-host" title="Link to this heading">¶</a></h3>
+<p>The configuration provided here is for an CPU with eight cores. The kernel is
+instrumented for reduced variability via:</p>
+<ul class="simple">
+<li><p>Symmetric Multi-threading is disabled</p></li>
+<li><p>Processor power state is set to max</p></li>
+<li><p>Idle state is busy</p></li>
+<li><p>Cores 0-1 are for the host OS and interrupts</p></li>
+<li><p>Cores 2-7 are for qemu and the SPDK target app</p></li>
+</ul>
+<p>This is done with the following kernel arguments:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nosmt</span> <span class="n">processor</span><span class="o">.</span><span class="n">max_cstate</span><span class="o">=</span><span class="mi">1</span> <span class="n">idle</span><span class="o">=</span><span class="n">poll</span> <span class="n">isolcpus</span><span class="o">=</span><span class="mi">2</span><span class="o">-</span><span class="mi">7</span> <span class="n">nohz_full</span><span class="o">=</span><span class="mi">2</span><span class="o">-</span><span class="mi">7</span> <span class="n">rcu_nocbs</span><span class="o">=</span><span class="mi">2</span><span class="o">-</span><span class="mi">7</span> <span class="n">irqaffinity</span><span class="o">=</span><span class="mi">0</span><span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>Then the following packages do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">fy</span> \
+        <span class="n">linux</span><span class="o">-</span><span class="n">cpupower</span> \
+        <span class="n">linux</span><span class="o">-</span><span class="n">perf</span> \
+        <span class="n">lm</span><span class="o">-</span><span class="n">sensors</span>
+</pre></div>
+</div>
+<p>Then additionally via userspace tooling then the CPU frequency is fixed, the
+governor is set for performance and boost is turned off:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the performance governor</span>
+<span class="n">cpupower</span> <span class="n">frequency</span><span class="o">-</span><span class="nb">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">performance</span>
+
+<span class="c1"># For reference, this shows what is available, should have</span>
+<span class="c1"># available frequency steps:  3.65 GHz, 2.20 GHz, 1.60 GHz</span>
+<span class="n">cpupower</span> <span class="n">frequency</span><span class="o">-</span><span class="n">info</span>
+
+<span class="c1"># Lock it at 3.65</span>
+<span class="n">cpupower</span> <span class="n">frequency</span><span class="o">-</span><span class="nb">set</span> <span class="o">-</span><span class="n">f</span> <span class="mf">3.65</span><span class="n">GHz</span>
+
+<span class="c1"># Disable turbo boost</span>
+<span class="n">echo</span> <span class="mi">0</span> <span class="o">|</span> <span class="n">tee</span> <span class="o">/</span><span class="n">sys</span><span class="o">/</span><span class="n">devices</span><span class="o">/</span><span class="n">system</span><span class="o">/</span><span class="n">cpu</span><span class="o">/</span><span class="n">cpufreq</span><span class="o">/</span><span class="n">boost</span>
+</pre></div>
+</div>
+<p>This should provide a reliable core frequency and thus less variability on the
+IOPS rate. Since the IOPS rate is directly proportional to th CPU-frequency,
+then we want to reduce this.</p>
+<p>Hugepages … disable limits</p>
+</section>
+<section id="spdk-host">
+<h3>SPDK (host)<a class="headerlink" href="#spdk-host" title="Link to this heading">¶</a></h3>
+<p>Retrieving and build the, at the time of writing, latest release:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grab the source</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">spdk</span><span class="o">/</span><span class="n">spdk</span><span class="o">.</span><span class="n">git</span> <span class="o">~/</span><span class="n">git</span><span class="o">/</span><span class="n">spdk</span>
+<span class="n">cd</span> <span class="o">~/</span><span class="n">git</span><span class="o">/</span><span class="n">spdk</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">v25</span><span class="mf">.05</span>
+<span class="n">git</span> <span class="n">submodule</span> <span class="n">update</span> <span class="o">--</span><span class="n">init</span> <span class="o">--</span><span class="n">recursive</span>
+
+<span class="c1"># System Packages</span>
+<span class="o">./</span><span class="n">scripts</span><span class="o">/</span><span class="n">pkgdep</span><span class="o">.</span><span class="n">sh</span>
+<span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python3</span><span class="o">-</span><span class="n">pyelftools</span>
+
+<span class="c1"># Configure and build (do not install)</span>
+<span class="o">./</span><span class="n">configure</span> \
+ <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">lto</span> \
+ <span class="o">--</span><span class="k">with</span><span class="o">-</span><span class="n">vfio</span><span class="o">-</span><span class="n">user</span> \
+ <span class="o">--</span><span class="n">disable</span><span class="o">-</span><span class="n">unit</span><span class="o">-</span><span class="n">tests</span>
+<span class="n">make</span> <span class="o">-</span><span class="n">j</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
+<span class="nb">set</span><span class="w"> </span>-euo<span class="w"> </span>pipefail
+
+<span class="c1"># --- Paths (intentionally separate) ---</span>
+<span class="nv">SPDK_TGT_BIN</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SPDK_TGT_BIN</span><span class="k">:-</span><span class="p">/root/git/spdk/build/bin/spdk_tgt</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="c1"># installed binary</span>
+<span class="nv">SPDK_RPC_PY</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SPDK_RPC_PY</span><span class="k">:-</span><span class="p">/root/git/spdk/scripts/rpc.py</span><span class="si">}</span><span class="s2">&quot;</span><span class="w">       </span><span class="c1"># from repo checkout</span>
+
+<span class="c1"># --- Config ---</span>
+<span class="nv">SUBSYSTEM_NQN</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SUBSYSTEM_NQN</span><span class="k">:-</span><span class="nv">nqn</span><span class="p">.2016-06.io.spdk:</span><span class="nv">cnode1</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nv">SUBSYSTEM_SN</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SUBSYSTEM_SN</span><span class="k">:-</span><span class="nv">SPDK00</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nv">BDEV_NAME</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">BDEV_NAME</span><span class="k">:-</span><span class="nv">Malloc0</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nv">SIZE_MB</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SIZE_MB</span><span class="k">:-</span><span class="nv">4092</span><span class="si">}</span><span class="s2">&quot;</span><span class="w">       </span><span class="c1"># 4 GiB</span>
+<span class="nv">BLKSZ</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">BLKSZ</span><span class="k">:-</span><span class="nv">512</span><span class="si">}</span><span class="s2">&quot;</span><span class="w">            </span><span class="c1"># 512-byte LBA</span>
+<span class="nv">VFIO_DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">VFIO_DIR</span><span class="k">:-</span><span class="p">/tmp/vfu</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="c1"># directory; socket(s) created inside (cntrl)</span>
+<span class="nv">COREMASK</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">COREMASK</span><span class="k">:-</span><span class="nv">0x10</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># --- Sanity checks ---</span>
+<span class="o">[</span><span class="w"> </span>-x<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SPDK_TGT_BIN</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;spdk_tgt not executable: </span><span class="nv">$SPDK_TGT_BIN</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span><span class="p">;</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="o">}</span>
+<span class="o">[</span><span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SPDK_RPC_PY</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w">  </span><span class="o">||</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;rpc.py not readable:     </span><span class="nv">$SPDK_RPC_PY</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span><span class="p">;</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="o">}</span>
+
+RPC<span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SPDK_RPC_PY</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="o">}</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[+] Killing any existing spdk_tgt...&quot;</span>
+pkill<span class="w"> </span>-f<span class="w"> </span>spdk_tgt<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
+sleep<span class="w"> </span><span class="m">4</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[+] Dedicating 32GB to hugepages etc.&quot;</span>
+<span class="nv">HUGEMEM</span><span class="o">=</span><span class="k">$((</span><span class="m">32</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">1024</span><span class="k">))</span><span class="w"> </span>~/git/spdk/scripts/setup.sh
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[+] Resetting vfio-user dir: </span><span class="nv">$VFIO_DIR</span><span class="s2">&quot;</span>
+rm<span class="w"> </span>-rf<span class="w"> </span>--<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$VFIO_DIR</span><span class="s2">&quot;</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>--<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$VFIO_DIR</span><span class="s2">&quot;</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[+] Starting spdk_tgt (COREMASK=</span><span class="nv">$COREMASK</span><span class="s2">)...&quot;</span>
+<span class="s2">&quot;</span><span class="nv">$SPDK_TGT_BIN</span><span class="s2">&quot;</span><span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$COREMASK</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="nv">SPDK_PID</span><span class="o">=</span><span class="nv">$!</span>
+
+<span class="c1"># Give RPC a moment then block until framework ready</span>
+sleep<span class="w"> </span><span class="m">0</span>.5
+RPC<span class="w"> </span>framework_wait_init<span class="w"> </span>&gt;/dev/null
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[+] Creating malloc bdev: </span><span class="nv">$BDEV_NAME</span><span class="s2"> (</span><span class="si">${</span><span class="nv">SIZE_MB</span><span class="si">}</span><span class="s2">MB, LBA=</span><span class="si">${</span><span class="nv">BLKSZ</span><span class="si">}</span><span class="s2">)&quot;</span>
+RPC<span class="w"> </span>bdev_malloc_create<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SIZE_MB</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BLKSZ</span><span class="s2">&quot;</span><span class="w"> </span>-b<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BDEV_NAME</span><span class="s2">&quot;</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[+] Creating VFIOUSER transport&quot;</span>
+RPC<span class="w"> </span>nvmf_create_transport<span class="w"> </span>-t<span class="w"> </span>VFIOUSER
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[+] Creating subsystem: </span><span class="nv">$SUBSYSTEM_NQN</span><span class="s2"> (SN=</span><span class="nv">$SUBSYSTEM_SN</span><span class="s2">)&quot;</span>
+RPC<span class="w"> </span>nvmf_create_subsystem<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SUBSYSTEM_NQN</span><span class="s2">&quot;</span><span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SUBSYSTEM_SN</span><span class="s2">&quot;</span><span class="w"> </span>-a
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[+] Adding namespace: </span><span class="nv">$BDEV_NAME</span><span class="s2">&quot;</span>
+RPC<span class="w"> </span>nvmf_subsystem_add_ns<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SUBSYSTEM_NQN</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BDEV_NAME</span><span class="s2">&quot;</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[+] Adding VFIO-user listener at </span><span class="nv">$VFIO_DIR</span><span class="s2">&quot;</span>
+RPC<span class="w"> </span>nvmf_subsystem_add_listener<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SUBSYSTEM_NQN</span><span class="s2">&quot;</span><span class="w"> </span>-t<span class="w"> </span>VFIOUSER<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$VFIO_DIR</span><span class="s2">&quot;</span><span class="w"> </span>-s<span class="w"> </span><span class="m">0</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[✓] Ready: NQN=</span><span class="nv">$SUBSYSTEM_NQN</span><span class="s2">  BDEV=</span><span class="nv">$BDEV_NAME</span><span class="s2">  LBA=</span><span class="nv">$BLKSZ</span><span class="s2">  SIZE=</span><span class="si">${</span><span class="nv">SIZE_MB</span><span class="si">}</span><span class="s2">MB  PID=</span><span class="nv">$SPDK_PID</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="qemu-host">
+<h3>qemu (host)<a class="headerlink" href="#qemu-host" title="Link to this heading">¶</a></h3>
+<p>Retrieving and build the, at the time of writing, latest release:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># System Packages</span>
+<span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="o">-</span><span class="n">fy</span> <span class="n">install</span> <span class="n">libcurl4</span>
+
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">qemu</span><span class="o">/</span><span class="n">qemu</span><span class="o">.</span><span class="n">git</span> <span class="o">~/</span><span class="n">git</span><span class="o">/</span><span class="n">qemu</span>
+<span class="n">cd</span> <span class="o">~/</span><span class="n">git</span><span class="o">/</span><span class="n">qemu</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">v10</span><span class="mf">.1.0</span>
+<span class="n">git</span> <span class="n">submodule</span> <span class="n">update</span> <span class="o">--</span><span class="n">init</span> <span class="o">--</span><span class="n">recursive</span>
+<span class="n">mkdir</span> <span class="n">build</span>
+<span class="n">cd</span> <span class="n">build</span>
+<span class="o">../</span><span class="n">configure</span> \
+ <span class="o">--</span><span class="n">target</span><span class="o">-</span><span class="nb">list</span><span class="o">=</span><span class="n">x86_64</span><span class="o">-</span><span class="n">softmmu</span> \
+ <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">kvm</span> \
+ <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">numa</span> \
+ <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">curl</span> \
+ <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">virtfs</span> \
+ <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">slirp</span>
+<span class="n">make</span> <span class="o">-</span><span class="n">j</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
+<span class="nb">set</span><span class="w"> </span>-euo<span class="w"> </span>pipefail
+
+taskset<span class="w"> </span>-c<span class="w"> </span><span class="m">8</span>-11<span class="w"> </span><span class="se">\</span>
+qemu-system-x86_64<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-enable-kvm<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-M<span class="w"> </span>q35,accel<span class="o">=</span>kvm<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-object<span class="w"> </span>memory-backend-memfd,id<span class="o">=</span>mem,size<span class="o">=</span>8G,share<span class="o">=</span>on,prealloc<span class="o">=</span>on<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-numa<span class="w"> </span>node,memdev<span class="o">=</span>mem<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-m<span class="w"> </span>8G<span class="w"> </span>-smp<span class="w"> </span><span class="m">4</span><span class="w"> </span>-cpu<span class="w"> </span>host<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-device<span class="w"> </span>pcie-root-port,id<span class="o">=</span>rp0,bus<span class="o">=</span>pcie.0,chassis<span class="o">=</span><span class="m">1</span>,slot<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-device<span class="w"> </span><span class="s1">&#39;{&quot;driver&quot;:&quot;vfio-user-pci&quot;,&quot;bus&quot;:&quot;rp0&quot;,&quot;addr&quot;:&quot;0x0&quot;,&quot;socket&quot;:{&quot;type&quot;:&quot;unix&quot;,&quot;path&quot;:&quot;/tmp/vfu/cntrl&quot;}}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-drive<span class="w"> </span><span class="nv">file</span><span class="o">=</span>/root/guests/generic-bios-kvm-x86_64/boot.img,format<span class="o">=</span>qcow2,if<span class="o">=</span>virtio<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-nographic
+</pre></div>
+</div>
+</section>
+<section id="misc-guest">
+<h3>Misc. (guest)<a class="headerlink" href="#misc-guest" title="Link to this heading">¶</a></h3>
+<p>Fire up the guest to add a couple of things:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qemu</span><span class="o">-</span><span class="n">system</span><span class="o">-</span><span class="n">x86_64</span> \
+  <span class="o">-</span><span class="n">enable</span><span class="o">-</span><span class="n">kvm</span> \
+  <span class="o">-</span><span class="n">M</span> <span class="n">q35</span><span class="p">,</span><span class="n">accel</span><span class="o">=</span><span class="n">kvm</span> \
+  <span class="o">-</span><span class="n">m</span> <span class="mi">8</span><span class="n">G</span> <span class="o">-</span><span class="n">smp</span> <span class="mi">4</span> <span class="o">-</span><span class="n">cpu</span> <span class="n">host</span> \
+  <span class="o">-</span><span class="n">drive</span> <span class="n">file</span><span class="o">=/</span><span class="n">root</span><span class="o">/</span><span class="n">guests</span><span class="o">/</span><span class="n">generic</span><span class="o">-</span><span class="n">bios</span><span class="o">-</span><span class="n">kvm</span><span class="o">-</span><span class="n">x86_64</span><span class="o">/</span><span class="n">boot</span><span class="o">.</span><span class="n">img</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="n">qcow2</span><span class="p">,</span><span class="k">if</span><span class="o">=</span><span class="n">virtio</span> \
+  <span class="o">-</span><span class="n">nographic</span>
+</pre></div>
+</div>
+<p>Install:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">fy</span> \
+        <span class="n">build</span><span class="o">-</span><span class="n">essential</span> \
+        <span class="n">git</span> \
+        <span class="n">meson</span> \
+        <span class="n">pkg</span><span class="o">-</span><span class="n">config</span>
+</pre></div>
+</div>
+</section>
+<section id="upcie-guest">
+<h3>uPCIe (guest)<a class="headerlink" href="#upcie-guest" title="Link to this heading">¶</a></h3>
+<p>The uPCIe driver itself it embedded in <strong>xNVMe</strong>, however, the repository
+provides a couple of useful tools (<code class="docutils literal notranslate"><span class="pre">devbind</span></code> and <code class="docutils literal notranslate"><span class="pre">hugepages</span></code>), so build and
+install it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">safl</span><span class="o">/</span><span class="n">upcie</span> <span class="o">~/</span><span class="n">git</span><span class="o">/</span><span class="n">upcie</span>
+<span class="n">cd</span> <span class="o">~/</span><span class="n">git</span><span class="o">/</span><span class="n">upcie</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">v0</span><span class="mf">.3.2</span>
+<span class="n">make</span> <span class="n">clean</span> <span class="n">config</span> <span class="n">build</span> <span class="n">install</span>
+</pre></div>
+</div>
+</section>
+<section id="xnvme-guest">
+<h3>xNVMe (guest)<a class="headerlink" href="#xnvme-guest" title="Link to this heading">¶</a></h3>
+<p><strong>xNVMe</strong> has the <strong>uPCIe</strong> NVMe driver embedded, thus it can be utilized via
+the <strong>xNVMe</strong> fio io-engine. The <strong>uPCIe</strong> driver is not available upstream
+<strong>xNVMe</strong> yet, so get it from the fork as described below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">safl</span><span class="o">/</span><span class="n">xnvme</span> <span class="o">~/</span><span class="n">git</span><span class="o">/</span><span class="n">xnvme</span>
+<span class="n">cd</span> <span class="o">~/</span><span class="n">git</span><span class="o">/</span><span class="n">xnvme</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">upcie</span>
+<span class="n">make</span> <span class="n">config</span><span class="o">-</span><span class="n">slim</span>
+<span class="n">make</span> <span class="o">-</span><span class="n">j</span>
+<span class="n">make</span> <span class="n">install</span>
+<span class="n">ldconfig</span>
+</pre></div>
+</div>
+</section>
+<section id="fio-guest">
+<h3>fio (guest)<a class="headerlink" href="#fio-guest" title="Link to this heading">¶</a></h3>
+<p>Then to utilize this I/O path, build fio from source:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">axboe</span><span class="o">/</span><span class="n">fio</span> <span class="o">~/</span><span class="n">git</span><span class="o">/</span><span class="n">fio</span>
+<span class="n">cd</span> <span class="o">~/</span><span class="n">git</span><span class="o">/</span><span class="n">fio</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">v3</span><span class="mf">.40</span>
+<span class="o">./</span><span class="n">configure</span>
+<span class="n">make</span> <span class="o">-</span><span class="n">j</span>
+</pre></div>
+</div>
+<p>In the output above, verify that the xNVMe ioengine is enabled.</p>
+</section>
+</section>
+<section id="evaluation">
+<h2>Evaluation<a class="headerlink" href="#evaluation" title="Link to this heading">¶</a></h2>
+<p>Inside the guest, one has to manually bind the driver one wants to use with the
+PCIe device. In this case I want to use the NVMe driver embedded in <strong>xNVMe</strong>,
+thus <code class="docutils literal notranslate"><span class="pre">uio_pci_generic</span></code> is loaded, associated with the device, and hugepages
+are reserved:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">modprobe</span> <span class="n">uio_pci_generic</span>
+<span class="n">echo</span> <span class="mf">4e58</span> <span class="mi">0001</span> <span class="o">|</span> <span class="n">sudo</span> <span class="n">tee</span> <span class="o">/</span><span class="n">sys</span><span class="o">/</span><span class="n">bus</span><span class="o">/</span><span class="n">pci</span><span class="o">/</span><span class="n">drivers</span><span class="o">/</span><span class="n">uio_pci_generic</span><span class="o">/</span><span class="n">new_id</span>
+<span class="n">hugepages</span> <span class="n">setup</span> <span class="o">--</span><span class="n">count</span> <span class="mi">512</span>
+</pre></div>
+</div>
+<p>With this in place then <code class="docutils literal notranslate"><span class="pre">fio</span></code> can be executed making use of the <strong>xNVMe</strong> fio
+io-engine and the <strong>upcie</strong> backend in <strong>xNVMe</strong>. Thus, you must provide the
+PCIe address on the domain-bus-device-function form as shown below as well as
+tell it which namespace to make use of:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">fio</span> \
+        <span class="o">--</span><span class="n">name</span><span class="o">=</span><span class="n">randread</span> \
+        <span class="o">--</span><span class="n">rw</span><span class="o">=</span><span class="n">randread</span> \
+        <span class="o">--</span><span class="n">bs</span><span class="o">=</span><span class="mi">512</span> \
+        <span class="o">--</span><span class="n">iodepth</span><span class="o">=</span><span class="mi">16</span> \
+        <span class="o">--</span><span class="n">numjobs</span><span class="o">=</span><span class="mi">1</span> \
+        <span class="o">--</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;0000</span><span class="se">\\</span><span class="s2">:01</span><span class="se">\\</span><span class="s2">:00.0&quot;</span> \
+        <span class="o">--</span><span class="n">ioengine</span><span class="o">=</span><span class="n">xnvme</span> \
+        <span class="o">--</span><span class="n">xnvme_dev_nsid</span><span class="o">=</span><span class="mh">0x1</span> \
+        <span class="o">--</span><span class="n">thread</span><span class="o">=</span><span class="mi">1</span> \
+        <span class="o">--</span><span class="n">time_based</span> \
+        <span class="o">--</span><span class="n">runtime</span><span class="o">=</span><span class="mi">60</span><span class="n">s</span>
+</pre></div>
+</div>
+<p>Numbers from different systems provided below.</p>
+<section id="intel">
+<h3>Intel<a class="headerlink" href="#intel" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>cpu</dt><dd><p>Core i5-12500 CPU</p>
+</dd>
+<dt>mb</dt><dd><p>PRIME Z690M-HZ</p>
+</dd>
+<dt>mem</dt><dd><p>2x 32GB DDR4 &#64; 3200 MHz - Samsung M378A4G43AB2-CWE</p>
+</dd>
+</dl>
+<p>I got the following numbers:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">randread</span><span class="p">:</span> <span class="p">(</span><span class="n">g</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span> <span class="n">rw</span><span class="o">=</span><span class="n">randread</span><span class="p">,</span> <span class="n">bs</span><span class="o">=</span><span class="p">(</span><span class="n">R</span><span class="p">)</span> <span class="mi">512</span><span class="n">B</span><span class="o">-</span><span class="mi">512</span><span class="n">B</span><span class="p">,</span> <span class="p">(</span><span class="n">W</span><span class="p">)</span> <span class="mi">512</span><span class="n">B</span><span class="o">-</span><span class="mi">512</span><span class="n">B</span><span class="p">,</span> <span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="mi">512</span><span class="n">B</span><span class="o">-</span><span class="mi">512</span><span class="n">B</span><span class="p">,</span> <span class="n">ioengine</span><span class="o">=</span><span class="n">xnvme</span><span class="p">,</span> <span class="n">iodepth</span><span class="o">=</span><span class="mi">16</span>
+<span class="n">fio</span><span class="o">-</span><span class="mf">3.40</span><span class="o">-</span><span class="mi">88</span><span class="o">-</span><span class="n">gd6ac</span>
+<span class="n">Starting</span> <span class="mi">1</span> <span class="n">thread</span>
+<span class="n">Jobs</span><span class="p">:</span> <span class="mi">1</span> <span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span> <span class="p">[</span><span class="n">r</span><span class="p">(</span><span class="mi">1</span><span class="p">)][</span><span class="mf">100.0</span><span class="o">%</span><span class="p">][</span><span class="n">r</span><span class="o">=</span><span class="mi">2105</span><span class="n">MiB</span><span class="o">/</span><span class="n">s</span><span class="p">][</span><span class="n">r</span><span class="o">=</span><span class="mi">4311</span><span class="n">k</span> <span class="n">IOPS</span><span class="p">][</span><span class="n">eta</span> <span class="mi">00</span><span class="n">m</span><span class="p">:</span><span class="mi">00</span><span class="n">s</span><span class="p">]</span>
+<span class="n">randread</span><span class="p">:</span> <span class="p">(</span><span class="n">groupid</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span> <span class="n">err</span><span class="o">=</span> <span class="mi">0</span><span class="p">:</span> <span class="n">pid</span><span class="o">=</span><span class="mi">484</span><span class="p">:</span> <span class="n">Tue</span> <span class="n">Sep</span>  <span class="mi">2</span> <span class="mi">12</span><span class="p">:</span><span class="mi">17</span><span class="p">:</span><span class="mi">29</span> <span class="mi">2025</span>
+  <span class="n">read</span><span class="p">:</span> <span class="n">IOPS</span><span class="o">=</span><span class="mi">4299</span><span class="n">k</span><span class="p">,</span> <span class="n">BW</span><span class="o">=</span><span class="mi">2099</span><span class="n">MiB</span><span class="o">/</span><span class="n">s</span> <span class="p">(</span><span class="mi">2201</span><span class="n">MB</span><span class="o">/</span><span class="n">s</span><span class="p">)(</span><span class="mi">123</span><span class="n">GiB</span><span class="o">/</span><span class="mi">60000</span><span class="n">msec</span><span class="p">)</span>
+    <span class="n">slat</span> <span class="p">(</span><span class="n">nsec</span><span class="p">):</span> <span class="nb">min</span><span class="o">=</span><span class="mi">41</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">62633</span><span class="p">,</span> <span class="n">avg</span><span class="o">=</span><span class="mf">46.68</span><span class="p">,</span> <span class="n">stdev</span><span class="o">=</span><span class="mf">17.72</span>
+    <span class="n">clat</span> <span class="p">(</span><span class="n">nsec</span><span class="p">):</span> <span class="nb">min</span><span class="o">=</span><span class="mi">1521</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">3768.9</span><span class="n">k</span><span class="p">,</span> <span class="n">avg</span><span class="o">=</span><span class="mf">3550.21</span><span class="p">,</span> <span class="n">stdev</span><span class="o">=</span><span class="mf">1419.48</span>
+     <span class="n">lat</span> <span class="p">(</span><span class="n">nsec</span><span class="p">):</span> <span class="nb">min</span><span class="o">=</span><span class="mi">1568</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">3769.0</span><span class="n">k</span><span class="p">,</span> <span class="n">avg</span><span class="o">=</span><span class="mf">3596.88</span><span class="p">,</span> <span class="n">stdev</span><span class="o">=</span><span class="mf">1419.84</span>
+    <span class="n">clat</span> <span class="n">percentiles</span> <span class="p">(</span><span class="n">nsec</span><span class="p">):</span>
+     <span class="o">|</span>  <span class="mf">1.00</span><span class="n">th</span><span class="o">=</span><span class="p">[</span> <span class="mi">3280</span><span class="p">],</span>  <span class="mf">5.00</span><span class="n">th</span><span class="o">=</span><span class="p">[</span> <span class="mi">3344</span><span class="p">],</span> <span class="mf">10.00</span><span class="n">th</span><span class="o">=</span><span class="p">[</span> <span class="mi">3376</span><span class="p">],</span> <span class="mf">20.00</span><span class="n">th</span><span class="o">=</span><span class="p">[</span> <span class="mi">3408</span><span class="p">],</span>
+     <span class="o">|</span> <span class="mf">30.00</span><span class="n">th</span><span class="o">=</span><span class="p">[</span> <span class="mi">3440</span><span class="p">],</span> <span class="mf">40.00</span><span class="n">th</span><span class="o">=</span><span class="p">[</span> <span class="mi">3472</span><span class="p">],</span> <span class="mf">50.00</span><span class="n">th</span><span class="o">=</span><span class="p">[</span> <span class="mi">3472</span><span class="p">],</span> <span class="mf">60.00</span><span class="n">th</span><span class="o">=</span><span class="p">[</span> <span class="mi">3504</span><span class="p">],</span>
+     <span class="o">|</span> <span class="mf">70.00</span><span class="n">th</span><span class="o">=</span><span class="p">[</span> <span class="mi">3536</span><span class="p">],</span> <span class="mf">80.00</span><span class="n">th</span><span class="o">=</span><span class="p">[</span> <span class="mi">3600</span><span class="p">],</span> <span class="mf">90.00</span><span class="n">th</span><span class="o">=</span><span class="p">[</span> <span class="mi">3696</span><span class="p">],</span> <span class="mf">95.00</span><span class="n">th</span><span class="o">=</span><span class="p">[</span> <span class="mi">3856</span><span class="p">],</span>
+     <span class="o">|</span> <span class="mf">99.00</span><span class="n">th</span><span class="o">=</span><span class="p">[</span> <span class="mi">4512</span><span class="p">],</span> <span class="mf">99.50</span><span class="n">th</span><span class="o">=</span><span class="p">[</span> <span class="mi">5920</span><span class="p">],</span> <span class="mf">99.90</span><span class="n">th</span><span class="o">=</span><span class="p">[</span><span class="mi">14272</span><span class="p">],</span> <span class="mf">99.95</span><span class="n">th</span><span class="o">=</span><span class="p">[</span><span class="mi">16320</span><span class="p">],</span>
+     <span class="o">|</span> <span class="mf">99.99</span><span class="n">th</span><span class="o">=</span><span class="p">[</span><span class="mi">17280</span><span class="p">]</span>
+   <span class="n">bw</span> <span class="p">(</span>  <span class="n">MiB</span><span class="o">/</span><span class="n">s</span><span class="p">):</span> <span class="nb">min</span><span class="o">=</span> <span class="mi">2057</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span> <span class="mi">2129</span><span class="p">,</span> <span class="n">per</span><span class="o">=</span><span class="mf">100.00</span><span class="o">%</span><span class="p">,</span> <span class="n">avg</span><span class="o">=</span><span class="mf">2100.85</span><span class="p">,</span> <span class="n">stdev</span><span class="o">=</span><span class="mf">18.03</span><span class="p">,</span> <span class="n">samples</span><span class="o">=</span><span class="mi">119</span>
+   <span class="n">iops</span>        <span class="p">:</span> <span class="nb">min</span><span class="o">=</span><span class="mi">4212818</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">4362210</span><span class="p">,</span> <span class="n">avg</span><span class="o">=</span><span class="mf">4302538.20</span><span class="p">,</span> <span class="n">stdev</span><span class="o">=</span><span class="mf">36931.60</span><span class="p">,</span> <span class="n">samples</span><span class="o">=</span><span class="mi">119</span>
+  <span class="n">lat</span> <span class="p">(</span><span class="n">usec</span><span class="p">)</span>   <span class="p">:</span> <span class="mi">2</span><span class="o">=</span><span class="mf">0.01</span><span class="o">%</span><span class="p">,</span> <span class="mi">4</span><span class="o">=</span><span class="mf">96.61</span><span class="o">%</span><span class="p">,</span> <span class="mi">10</span><span class="o">=</span><span class="mf">3.26</span><span class="o">%</span><span class="p">,</span> <span class="mi">20</span><span class="o">=</span><span class="mf">0.12</span><span class="o">%</span><span class="p">,</span> <span class="mi">50</span><span class="o">=</span><span class="mf">0.01</span><span class="o">%</span>
+  <span class="n">lat</span> <span class="p">(</span><span class="n">usec</span><span class="p">)</span>   <span class="p">:</span> <span class="mi">100</span><span class="o">=</span><span class="mf">0.01</span><span class="o">%</span>
+  <span class="n">lat</span> <span class="p">(</span><span class="n">msec</span><span class="p">)</span>   <span class="p">:</span> <span class="mi">4</span><span class="o">=</span><span class="mf">0.01</span><span class="o">%</span>
+  <span class="n">cpu</span>          <span class="p">:</span> <span class="n">usr</span><span class="o">=</span><span class="mf">99.99</span><span class="o">%</span><span class="p">,</span> <span class="n">sys</span><span class="o">=</span><span class="mf">0.00</span><span class="o">%</span><span class="p">,</span> <span class="n">ctx</span><span class="o">=</span><span class="mi">298</span><span class="p">,</span> <span class="n">majf</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">minf</span><span class="o">=</span><span class="mi">0</span>
+  <span class="n">IO</span> <span class="n">depths</span>    <span class="p">:</span> <span class="mi">1</span><span class="o">=</span><span class="mf">0.1</span><span class="o">%</span><span class="p">,</span> <span class="mi">2</span><span class="o">=</span><span class="mf">0.1</span><span class="o">%</span><span class="p">,</span> <span class="mi">4</span><span class="o">=</span><span class="mf">0.1</span><span class="o">%</span><span class="p">,</span> <span class="mi">8</span><span class="o">=</span><span class="mf">0.1</span><span class="o">%</span><span class="p">,</span> <span class="mi">16</span><span class="o">=</span><span class="mf">100.0</span><span class="o">%</span><span class="p">,</span> <span class="mi">32</span><span class="o">=</span><span class="mf">0.0</span><span class="o">%</span><span class="p">,</span> <span class="o">&gt;=</span><span class="mi">64</span><span class="o">=</span><span class="mf">0.0</span><span class="o">%</span>
+     <span class="n">submit</span>    <span class="p">:</span> <span class="mi">0</span><span class="o">=</span><span class="mf">0.0</span><span class="o">%</span><span class="p">,</span> <span class="mi">4</span><span class="o">=</span><span class="mf">100.0</span><span class="o">%</span><span class="p">,</span> <span class="mi">8</span><span class="o">=</span><span class="mf">0.0</span><span class="o">%</span><span class="p">,</span> <span class="mi">16</span><span class="o">=</span><span class="mf">0.0</span><span class="o">%</span><span class="p">,</span> <span class="mi">32</span><span class="o">=</span><span class="mf">0.0</span><span class="o">%</span><span class="p">,</span> <span class="mi">64</span><span class="o">=</span><span class="mf">0.0</span><span class="o">%</span><span class="p">,</span> <span class="o">&gt;=</span><span class="mi">64</span><span class="o">=</span><span class="mf">0.0</span><span class="o">%</span>
+     <span class="n">complete</span>  <span class="p">:</span> <span class="mi">0</span><span class="o">=</span><span class="mf">0.0</span><span class="o">%</span><span class="p">,</span> <span class="mi">4</span><span class="o">=</span><span class="mf">100.0</span><span class="o">%</span><span class="p">,</span> <span class="mi">8</span><span class="o">=</span><span class="mf">0.0</span><span class="o">%</span><span class="p">,</span> <span class="mi">16</span><span class="o">=</span><span class="mf">0.1</span><span class="o">%</span><span class="p">,</span> <span class="mi">32</span><span class="o">=</span><span class="mf">0.0</span><span class="o">%</span><span class="p">,</span> <span class="mi">64</span><span class="o">=</span><span class="mf">0.0</span><span class="o">%</span><span class="p">,</span> <span class="o">&gt;=</span><span class="mi">64</span><span class="o">=</span><span class="mf">0.0</span><span class="o">%</span>
+     <span class="n">issued</span> <span class="n">rwts</span><span class="p">:</span> <span class="n">total</span><span class="o">=</span><span class="mi">257932731</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span> <span class="n">short</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span> <span class="n">dropped</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+     <span class="n">latency</span>   <span class="p">:</span> <span class="n">target</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">percentile</span><span class="o">=</span><span class="mf">100.00</span><span class="o">%</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">16</span>
+
+<span class="n">Run</span> <span class="n">status</span> <span class="n">group</span> <span class="mi">0</span> <span class="p">(</span><span class="nb">all</span> <span class="n">jobs</span><span class="p">):</span>
+   <span class="n">READ</span><span class="p">:</span> <span class="n">bw</span><span class="o">=</span><span class="mi">2099</span><span class="n">MiB</span><span class="o">/</span><span class="n">s</span> <span class="p">(</span><span class="mi">2201</span><span class="n">MB</span><span class="o">/</span><span class="n">s</span><span class="p">),</span> <span class="mi">2099</span><span class="n">MiB</span><span class="o">/</span><span class="n">s</span><span class="o">-</span><span class="mi">2099</span><span class="n">MiB</span><span class="o">/</span><span class="n">s</span> <span class="p">(</span><span class="mi">2201</span><span class="n">MB</span><span class="o">/</span><span class="n">s</span><span class="o">-</span><span class="mi">2201</span><span class="n">MB</span><span class="o">/</span><span class="n">s</span><span class="p">),</span> <span class="n">io</span><span class="o">=</span><span class="mi">123</span><span class="n">GiB</span> <span class="p">(</span><span class="mi">132</span><span class="n">GB</span><span class="p">),</span> <span class="n">run</span><span class="o">=</span><span class="mi">60000</span><span class="o">-</span><span class="mi">60000</span><span class="n">msec</span>
+</pre></div>
+</div>
+<p>The key metrics being to observe above is the avg. latency of <strong>3600ns</strong> <strong>and
+4.3M IOPS</strong>. Do not that this was without core-isolation and with a single
+device emulated pinned on a single core. Thus, the i5 core was able to do a
+dramatic turbo-boost.</p>
+</section>
+<section id="amd">
+<h3>AMD<a class="headerlink" href="#amd" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>cpu</dt><dd><p>Ryzen 7 PRO 8700GE</p>
+</dd>
+<dt>mb</dt><dd><p>ASRock Rack B665D4U-1L</p>
+</dd>
+<dt>mem</dt><dd><p>2x 32GB DDR5 &#64; 5600 MHz - Micron MTC20C2085S1EC56BD1 KC</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+    
+    </div>
+    <div class="col-lg-3 ms-sm-auto d-none d-lg-block">
+      <div id="localtoc" >
+      <h3>Here</h3>
+      <ul>
+<li><a class="reference internal" href="#">Getting 4.3 M IOPS with an emulated NVMe device in a qemu guest</a><ul>
+<li><a class="reference internal" href="#system-setup">System Setup</a><ul>
+<li><a class="reference internal" href="#cijoe-and-guest-data-host">cijoe and guest-data (host)</a></li>
+<li><a class="reference internal" href="#variability-host">Variability (host)</a></li>
+<li><a class="reference internal" href="#spdk-host">SPDK (host)</a></li>
+<li><a class="reference internal" href="#qemu-host">qemu (host)</a></li>
+<li><a class="reference internal" href="#misc-guest">Misc. (guest)</a></li>
+<li><a class="reference internal" href="#upcie-guest">uPCIe (guest)</a></li>
+<li><a class="reference internal" href="#xnvme-guest">xNVMe (guest)</a></li>
+<li><a class="reference internal" href="#fio-guest">fio (guest)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#evaluation">Evaluation</a><ul>
+<li><a class="reference internal" href="#intel">Intel</a></li>
+<li><a class="reference internal" href="#amd">AMD</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      <hr/>
+        <h4>Next</h4>
+      <ul><li>
+        <a href="../dpu/index.html" title="next chapter">Getting familiar with BlueField-2</a>
+      </li></ul>
+      <h4>Prev</h4>
+      <ul><li>
+        <a href="../radxa/zero/index.html" title="previous chapter">v4l2</a>
+      </li></ul>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="row">
+    <div class="col-lg-12">
+        &copy; Copyright 2025 Simon A. F. Lund.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </footer>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script>
+  (function() {
+    var ga = document.createElement('script');
+    ga.src = ('https:' == document.location.protocol ?
+              'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    ga.setAttribute('async', 'true');
+    document.documentElement.firstChild.appendChild(ga);
+  })();
+</script>
+
+  </body>
+</html>
