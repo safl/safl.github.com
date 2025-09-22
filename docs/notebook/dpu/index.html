@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="../../">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Getting familiar with BlueField-2 &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=02ca0aaa" />
-    <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css?v=84ebf9b3" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Zellij" href="../exploration/zellij.html" />
@@ -84,7 +84,7 @@
     
     
   <section id="getting-familiar-with-bluefield-2">
-<h1>Getting familiar with BlueField-2<a class="headerlink" href="#getting-familiar-with-bluefield-2" title="Link to this heading">¶</a></h1>
+<h1>Getting familiar with BlueField-2<a class="headerlink" href="#getting-familiar-with-bluefield-2" title="Permalink to this heading">¶</a></h1>
 <p>I wanted to familiarize myself with DPUs and found the NVIDIA / Mellanox
 BlueField-2 DPU on ebay with model number <code class="docutils literal notranslate"><span class="pre">BF2H532C</span></code>.</p>
 <p>For debugging it seems like it would be good to get a hold of:</p>
@@ -93,14 +93,14 @@ BlueField-2 DPU on ebay with model number <code class="docutils literal notransl
 </ul>
 </section>
 <section id="host-hw">
-<h1>Host HW<a class="headerlink" href="#host-hw" title="Link to this heading">¶</a></h1>
+<h1>Host HW<a class="headerlink" href="#host-hw" title="Permalink to this heading">¶</a></h1>
 <ul class="simple">
 <li><p>Assemble parts</p></li>
 <li><p>Physically install the</p></li>
 </ul>
 </section>
 <section id="host-fw-os">
-<h1>Host FW/OS<a class="headerlink" href="#host-fw-os" title="Link to this heading">¶</a></h1>
+<h1>Host FW/OS<a class="headerlink" href="#host-fw-os" title="Permalink to this heading">¶</a></h1>
 <ul class="simple">
 <li><p>Disable Secure Boot</p></li>
 <li><p>Install Ubuntu 24.04</p></li>
@@ -139,7 +139,7 @@ until timeout. With messages such as:</p>
 </div>
 </section>
 <section id="dpu">
-<h1>DPU<a class="headerlink" href="#dpu" title="Link to this heading">¶</a></h1>
+<h1>DPU<a class="headerlink" href="#dpu" title="Permalink to this heading">¶</a></h1>
 <p>Default login is <code class="docutils literal notranslate"><span class="pre">ubuntu</span></code> / <code class="docutils literal notranslate"><span class="pre">ubuntu</span></code>.</p>
 <p>Change the password to something else upon first login. E.g. Mellanox.321!</p>
 <p>Check the version:</p>
@@ -257,14 +257,14 @@ until timeout. With messages such as:</p>
 </pre></div>
 </div>
 <section id="pci-devices">
-<h2>PCI devices:<a class="headerlink" href="#pci-devices" title="Link to this heading">¶</a></h2>
+<h2>PCI devices:<a class="headerlink" href="#pci-devices" title="Permalink to this heading">¶</a></h2>
 <p>DEVICE_TYPE             MST                           PCI       RDMA            NET                                     NUMA
 BlueField2(rev:1)       /dev/mst/mt41686_pciconf0     10:00.0                                           -1</p>
 <p>BlueField2(rev:1)       /dev/mst/mt41686_pciconf0.1   10:00.1                                           -1</p>
 <p>BlueField2(rev:1)       /dev/mst/mt49873_pciconf0.2   10:00.2                                           -1</p>
 </section>
 <section id="bf-config">
-<h2>BF Config<a class="headerlink" href="#bf-config" title="Link to this heading">¶</a></h2>
+<h2>BF Config<a class="headerlink" href="#bf-config" title="Permalink to this heading">¶</a></h2>
 <p>DOCA_2.0.2_BSP_4.0.3_Ubuntu_22.04-11.23-04.prod</p>
 <p>Content of <code class="docutils literal notranslate"><span class="pre">bf.cfg</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ubuntu_PASSWORD</span><span class="o">=</span><span class="s1">&#39;$1$tFWHnhQf$vn2b7vms6Apf287uZi75./&#39;</span>
@@ -363,13 +363,13 @@ Collecting BlueField booting status. Press Ctrl+C to stop…
 </section>
 </section>
 <section id="host-system">
-<h1>Host System<a class="headerlink" href="#host-system" title="Link to this heading">¶</a></h1>
+<h1>Host System<a class="headerlink" href="#host-system" title="Permalink to this heading">¶</a></h1>
 <section id="hardware">
-<h2>Hardware<a class="headerlink" href="#hardware" title="Link to this heading">¶</a></h2>
+<h2>Hardware<a class="headerlink" href="#hardware" title="Permalink to this heading">¶</a></h2>
 <p>…</p>
 </section>
 <section id="bios-uefi-setup">
-<h2>BIOS/UEFI Setup<a class="headerlink" href="#bios-uefi-setup" title="Link to this heading">¶</a></h2>
+<h2>BIOS/UEFI Setup<a class="headerlink" href="#bios-uefi-setup" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Disable Secure Boot</p>
 <ul>
@@ -381,7 +381,7 @@ Collecting BlueField booting status. Press Ctrl+C to stop…
 </section>
 </section>
 <section id="host-system-setup">
-<h1>Host System Setup<a class="headerlink" href="#host-system-setup" title="Link to this heading">¶</a></h1>
+<h1>Host System Setup<a class="headerlink" href="#host-system-setup" title="Permalink to this heading">¶</a></h1>
 <ul class="simple">
 <li><p>Install Ubuntu 24.04</p>
 <ul>
@@ -437,7 +437,7 @@ the same Linux distribution on the host as well</p>
   <footer class="row">
     <div class="col-lg-12">
         &copy; Copyright 2025 Simon A. F. Lund.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.0.0.
     </div>
   </footer>
 

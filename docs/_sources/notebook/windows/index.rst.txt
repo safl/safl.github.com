@@ -1,106 +1,188 @@
 Windows
 =======
 
-I got a Windows 95 installation CD with my first PC. I installed it, played
-around, played Pinball, Hearts, Moto Racer, and QUAKE. Then I installed Borland
-Delphi, then Apache + PHP. Then I started getting annoyed with Windows and
-switched to FreeBSD and later Linux.
+I got a Windows 95 installation CD with my first PC. I installed it and played
+around with Pinball, Hearts, Moto Racer, and QUAKE. Then I installed Borland
+Delphi, followed by Apache and PHP. Eventually, I started getting annoyed with
+Windows and switched to FreeBSD, and later to Linux. I have not used Windows for
+my personal computer since then, except of course to play games that would not
+run on Wine.
 
-Haven't used Windows for my personal computer since, except of course... to
-play games that would not run on Wine. However, I have needed Windows in a
-bunch of scenarious, but usually running it via VM would suffice. So, can't
-really shake Windows. Thus, i decided to note down a couple of nice things
-which are actually possible today which makes not too terrible to use.
+However, I have needed Windows in a number of scenarios, but usually running it
+via a virtual machine would suffice. So I cannot really shake Windows. That is
+why I decided to note down a couple of nice things that are actually possible
+today, which make it not too terrible to use.
 
-Here are a couple of notes on setting up a Windows machine in such a manner
-that it is bearable to use. First steps involve waiting for updates to finish,
-give the system a proper name, then enable remote access via RDP and SSH.
+Here are a few notes on setting up a Windows machine in a way that makes it
+bearable to use. The first steps involve waiting for updates to finish, giving
+the system a proper name, and enabling remote access via RDP and SSH. Then the
+tool installation can begin, starting with the Chocolatey package manager and
+MSYS2. Later comes the other software, such as Microsoft Visual Studio.
 
-Then the tool-installation can commence, starting with the Chocolatey package
-manager and msys2. Later, the other stuff such as the Microsoft Visual Studio.
+Recent Developments
+-------------------
 
-Chocolatey
+The above was state of things, for me atleast, until i in 2025 stumbled upon
+Windows 11 with WSL2. Wow, the landscape has changed! I had always found that
+Windows was more a nuisance, However, today, some 25 years later, Windows now
+have some fundamentals done right, and baked in:
+
+* Software is easy to install via ``winget``
+
+  - Finally MS provides what FreeBSD and Linux had for ages, package management
+    with a decent cli interface. Stuff, like **Chocolatey** and **Scoop** are not
+    really needed anymore. ``winget`` + **WSL2** checks all the boxes for me.
+
+* A functional Terminal emulator
+
+  - Although the Window "shells" ``cmd.exe`` and ``PowerShell`` remain
+    absolutely useless as a daily-driver, then atleast, there is now a decent
+    **Terminal** built-in and aptly named.
+
+* Windows System for Linux
+
+  - It is well known that **MS** cannot create a useful shell. However, what
+    they have managed to do **very** well, is integrate Linux and Windows.
+    Tightly integrating access to file-system and HW ressources even with
+    nested virtualization. E.g. one can do qemu-development with ease. Thus, you
+    get your favorite shell and the entire Linux userland, plus the option to
+    customize the kernel. Boom. Mike drop.
+
+* Window-manager
+
+  - Although not a neat tiling window-manager such as sway, but not entirely
+    useless like macOS. Then Windows now provides a bit of throwing windows
+    around, jumping between virtual desktops, and snapping windows to grids.
+  - Also, with WSL + ZelliJ, then most of the 
+
+* Game Streaming
+
+  - Although not a Windows-feat, however, still related is the usability of
+    game-streaming service, especially GeforceNow. No need to install, and keep
+    a library of games updated, just sign in and play.
+
+Thus, piloting Windows with these fundamentals in place makes it a far bit
+more than bearable. It is actually a quite nice merge of proprietary and open
+systems. You can utilize Windows for all the proprietary HW stuff that usually
+always break on Linux, and leave all the toolchain essentials to the Linux.
+
+Thus, the following are notes on setting up Windows 11 in ways I have found useful.
+
+
+Windows Native Software
+-----------------------
+
+Run the following in a Powershell::
+
+  winget install `
+    AutoHotkey.AutoHotkey `
+    Cisco.Webex `
+    Citrix.Workspace `
+    DEVCOM.JetBrainsMonoNerdFont `
+    Discord.Discord `
+    Google.Chrome `
+    Microsoft.Office `
+    Microsoft.PowerToys `
+    Mozilla.Firefox `
+    SlackTechnologies.Slack `
+    SublimeHQ.SublimeText.4 `
+    WireGuard.WireGuard
+
+Attaching **USB** devices to in **WSL** instances::
+
+	winget install `
+	  dorssel.usbipd-win
+
+And for a bit of entertainment::
+
+  winget install `
+    Nvidia.GeForceNow `
+    Spotify.Spotify
+
+AutoHotKey
 ----------
 
-A package manager for Windows providing native software installation. How
-**sweet**. Install it via an elevated PowerShell::
+I am missing several things from **Sway** the most important one is
+``Alt+ArrowKey``` for window navigation. With AutoHotKey, one can make a script
+that does that. Along the lines of::
 
-  Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+  #Requires AutoHotkey v2.0
 
-Tools
------
+  AltFocus(direction) {
+      hwndCurrent := WinActive("A")
+      if !hwndCurrent
+          return
 
-Here are a couple of the usual suspects on Windows::
+      WinGetPos(&curX, &curY, &curW, &curH, hwndCurrent)
+      curCenterX := curX + curW // 2
+      curCenterY := curY + curH // 2
 
-  choco.exe install git vscode firefox
+      winList := []
 
-It is so nice, that one does not need to go visit a bunch of websites and
-download ``.msi`` and random ``.exe`` installation Wizards. It is all
-downloaded from the same arbitrary places, they are to the greatest extended
-untrusted and untested, however, Chocolatey does a an effort to scan, verify,
-etc. the packages that they ship as "community" packages, as well as those with
-regular maintenance. Excellent!
+      for hwnd in WinGetList() {
+          if hwnd = hwndCurrent || !WinExist(hwnd)
+              continue
 
-After installing the tools above, then bash is also avaiable via the
-git-installation, you can find it somewhere equivalent to::
+          WinGetPos(&x, &y, &w, &h, hwnd)
+          centerX := x + w // 2
+          centerY := y + h // 2
 
-  c:\Program Files\Git\bin\bash.exe
+          dx := centerX - curCenterX
+          dy := centerY - curCenterY
 
-This is incredibly nice, as you can tell the OpenSSH server to use Bash as your
-login shell. Ahh, serenity.
+          if (direction = "Left" && dx < 0 && Abs(dy) < h) {
+              winList.Push({hwnd: hwnd, dist: Abs(dx)})
+          } else if (direction = "Right" && dx > 0 && Abs(dy) < h) {
+              winList.Push({hwnd: hwnd, dist: dx})
+          } else if (direction = "Up" && dy < 0 && Abs(dx) < w) {
+              winList.Push({hwnd: hwnd, dist: Abs(dy)})
+          } else if (direction = "Down" && dy > 0 && Abs(dx) < w) {
+              winList.Push({hwnd: hwnd, dist: dy})
+          }
+      }
+
+      if winList.Length = 0
+          return
+
+      ; Manual sort by distance
+      for i, _ in winList {
+          j := i + 1
+          while j <= winList.Length {
+              if winList[j].dist < winList[i].dist {
+                  temp := winList[i]
+                  winList[i] := winList[j]
+                  winList[j] := temp
+              }
+              j++
+          }
+      }
+
+      WinActivate(winList[1].hwnd)
+  }
+
+  !Left::AltFocus("Left")
+  !Right::AltFocus("Right")
+  !Up::AltFocus("Up")
+  !Down::AltFocus("Down")
+
+Note, the script above was made with the assistance of the default provided
+CoPilot in Windows 11.
+
+WSL2
+----
+
+Install Windows Subsystem for Linux 2 and a Fedora distro::
+
+	wsl --install
+	wsl --status
+	wsl --set-default-version 2
+	wsl --list --online
+	wsl --install -d Fedora
+	wsl --set-default Fedora
 
 Rename your PC
 --------------
 
 ...
 
-Remote Desktop
---------------
 
-...
-
-Enable OpenSSH Server
----------------------
-
-Something wonderful has happened; Windows has native OpenSSH support and it is
-officially documented here:
-
- * https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview
-
-**Notes:**
-
-Check whether it is installed::
-
-  Get-WindowsCapability -Online | Where-Object Name -like 'OpenSSH*'
-
-Then install it::
-
-  # Install the OpenSSH Client
-  Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
-
-  # Install the OpenSSH Server
-  Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
-
-Then continue::
-
-  # Start the sshd service
-  Start-Service sshd
-
-  # OPTIONAL but recommended:
-  Set-Service -Name sshd -StartupType 'Automatic'
-
-  # Confirm the Firewall rule is configured. It should be created automatically by setup. Run the following to verify
-  if (!(Get-NetFirewallRule -Name "OpenSSH-Server-In-TCP" -ErrorAction SilentlyContinue | Select-Object Name, Enabled)) {
-      Write-Output "Firewall Rule 'OpenSSH-Server-In-TCP' does not exist, creating it..."
-      New-NetFirewallRule -Name 'OpenSSH-Server-In-TCP' -DisplayName 'OpenSSH Server (sshd)' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22
-  } else {
-      Write-Output "Firewall rule 'OpenSSH-Server-In-TCP' has been created and exists."
-  }
-
-  # Add your authorized_keys file and set permissions
-  # Copy it to: C:\ProgramData\ssh\administrators_authorized_keys, then 
-  icacls.exe "C:\ProgramData\ssh\administrators_authorized_keys" /inheritance:r /grant "Administrators:F" /grant "SYSTEM:F"
-
-And here is the winner, set ``Bash`` as your default Shell::
-
-  New-ItemProperty -Path "HKLM:\SOFTWARE\OpenSSH" -Name DefaultShell -Value "c:\Program Files\Git\bin\bash.exe" -PropertyType String -Force

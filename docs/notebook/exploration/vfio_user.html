@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="../../">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Getting 4.3 M IOPS with an emulated NVMe device in a qemu guest &#8212; safl.dk - Don&#39;t push me cause I&#39;m close to the edge...</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=02ca0aaa" />
-    <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css?v=84ebf9b3" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/blue8bit.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Getting familiar with BlueField-2" href="../dpu/index.html" />
@@ -84,7 +84,7 @@
     
     
   <section id="getting-4-3-m-iops-with-an-emulated-nvme-device-in-a-qemu-guest">
-<h1>Getting 4.3 M IOPS with an emulated NVMe device in a qemu guest<a class="headerlink" href="#getting-4-3-m-iops-with-an-emulated-nvme-device-in-a-qemu-guest" title="Link to this heading">¶</a></h1>
+<h1>Getting 4.3 M IOPS with an emulated NVMe device in a qemu guest<a class="headerlink" href="#getting-4-3-m-iops-with-an-emulated-nvme-device-in-a-qemu-guest" title="Permalink to this heading">¶</a></h1>
 <p>These are initial notes on exploring the use of <code class="docutils literal notranslate"><span class="pre">vfio-user</span></code> for NVMe device
 emulation in QEMU, backed by an SPDK block device (e.g., <code class="docutils literal notranslate"><span class="pre">bdev_malloc</span></code>).
 The goal is to assess whether such a setup is viable as a test vehicle for
@@ -107,7 +107,7 @@ to collectively reach 100 million IOPS?</p></li>
 </ul>
 <p>The notes contain the steps needed to reproduce setup and numbers from using it.</p>
 <section id="system-setup">
-<h2>System Setup<a class="headerlink" href="#system-setup" title="Link to this heading">¶</a></h2>
+<h2>System Setup<a class="headerlink" href="#system-setup" title="Permalink to this heading">¶</a></h2>
 <p>In this system the host-side software consists of Debian Bookworm with misc.
 packages and the main actors: <strong>SPDK</strong> and <strong>qemu</strong>. The guest-side consists of
 Debian Bookworm, misc. packages, and the main actors to driving I/O efficiently
@@ -118,7 +118,7 @@ errors indicating what is missing, and <strong>fio</strong> just need what is pr
 the others. For details on building and running the main actors, then details
 follow.</p>
 <section id="cijoe-and-guest-data-host">
-<h3>cijoe and guest-data (host)<a class="headerlink" href="#cijoe-and-guest-data-host" title="Link to this heading">¶</a></h3>
+<h3>cijoe and guest-data (host)<a class="headerlink" href="#cijoe-and-guest-data-host" title="Permalink to this heading">¶</a></h3>
 <p>Install cijoe and rehash paths:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pipx</span> <span class="n">install</span> <span class="n">cijoe</span>
 <span class="n">pipx</span> <span class="n">ensurepath</span>
@@ -138,7 +138,7 @@ of which is to have a boot.img to use later on, it should be available here:</p>
 <p>With this, done, then please do continue.</p>
 </section>
 <section id="variability-host">
-<h3>Variability (host)<a class="headerlink" href="#variability-host" title="Link to this heading">¶</a></h3>
+<h3>Variability (host)<a class="headerlink" href="#variability-host" title="Permalink to this heading">¶</a></h3>
 <p>The configuration provided here is for an CPU with eight cores. The kernel is
 instrumented for reduced variability via:</p>
 <ul class="simple">
@@ -181,7 +181,7 @@ then we want to reduce this.</p>
 <p>Hugepages … disable limits</p>
 </section>
 <section id="spdk-host">
-<h3>SPDK (host)<a class="headerlink" href="#spdk-host" title="Link to this heading">¶</a></h3>
+<h3>SPDK (host)<a class="headerlink" href="#spdk-host" title="Permalink to this heading">¶</a></h3>
 <p>Retrieving and build the, at the time of writing, latest release:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grab the source</span>
 <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">spdk</span><span class="o">/</span><span class="n">spdk</span><span class="o">.</span><span class="n">git</span> <span class="o">~/</span><span class="n">git</span><span class="o">/</span><span class="n">spdk</span>
@@ -262,7 +262,7 @@ RPC<span class="w"> </span>nvmf_subsystem_add_listener<span class="w"> </span><s
 </div>
 </section>
 <section id="qemu-host">
-<h3>qemu (host)<a class="headerlink" href="#qemu-host" title="Link to this heading">¶</a></h3>
+<h3>qemu (host)<a class="headerlink" href="#qemu-host" title="Permalink to this heading">¶</a></h3>
 <p>Retrieving and build the, at the time of writing, latest release:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># System Packages</span>
 <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="o">-</span><span class="n">fy</span> <span class="n">install</span> <span class="n">libcurl4</span>
@@ -301,7 +301,7 @@ qemu-system-x86_64<span class="w"> </span><span class="se">\</span>
 </div>
 </section>
 <section id="misc-guest">
-<h3>Misc. (guest)<a class="headerlink" href="#misc-guest" title="Link to this heading">¶</a></h3>
+<h3>Misc. (guest)<a class="headerlink" href="#misc-guest" title="Permalink to this heading">¶</a></h3>
 <p>Fire up the guest to add a couple of things:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qemu</span><span class="o">-</span><span class="n">system</span><span class="o">-</span><span class="n">x86_64</span> \
   <span class="o">-</span><span class="n">enable</span><span class="o">-</span><span class="n">kvm</span> \
@@ -321,7 +321,7 @@ qemu-system-x86_64<span class="w"> </span><span class="se">\</span>
 </div>
 </section>
 <section id="upcie-guest">
-<h3>uPCIe (guest)<a class="headerlink" href="#upcie-guest" title="Link to this heading">¶</a></h3>
+<h3>uPCIe (guest)<a class="headerlink" href="#upcie-guest" title="Permalink to this heading">¶</a></h3>
 <p>The uPCIe driver itself it embedded in <strong>xNVMe</strong>, however, the repository
 provides a couple of useful tools (<code class="docutils literal notranslate"><span class="pre">devbind</span></code> and <code class="docutils literal notranslate"><span class="pre">hugepages</span></code>), so build and
 install it:</p>
@@ -333,7 +333,7 @@ install it:</p>
 </div>
 </section>
 <section id="xnvme-guest">
-<h3>xNVMe (guest)<a class="headerlink" href="#xnvme-guest" title="Link to this heading">¶</a></h3>
+<h3>xNVMe (guest)<a class="headerlink" href="#xnvme-guest" title="Permalink to this heading">¶</a></h3>
 <p><strong>xNVMe</strong> has the <strong>uPCIe</strong> NVMe driver embedded, thus it can be utilized via
 the <strong>xNVMe</strong> fio io-engine. The <strong>uPCIe</strong> driver is not available upstream
 <strong>xNVMe</strong> yet, so get it from the fork as described below:</p>
@@ -348,7 +348,7 @@ the <strong>xNVMe</strong> fio io-engine. The <strong>uPCIe</strong> driver is n
 </div>
 </section>
 <section id="fio-guest">
-<h3>fio (guest)<a class="headerlink" href="#fio-guest" title="Link to this heading">¶</a></h3>
+<h3>fio (guest)<a class="headerlink" href="#fio-guest" title="Permalink to this heading">¶</a></h3>
 <p>Then to utilize this I/O path, build fio from source:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">axboe</span><span class="o">/</span><span class="n">fio</span> <span class="o">~/</span><span class="n">git</span><span class="o">/</span><span class="n">fio</span>
 <span class="n">cd</span> <span class="o">~/</span><span class="n">git</span><span class="o">/</span><span class="n">fio</span>
@@ -361,7 +361,7 @@ the <strong>xNVMe</strong> fio io-engine. The <strong>uPCIe</strong> driver is n
 </section>
 </section>
 <section id="evaluation">
-<h2>Evaluation<a class="headerlink" href="#evaluation" title="Link to this heading">¶</a></h2>
+<h2>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this heading">¶</a></h2>
 <p>Inside the guest, one has to manually bind the driver one wants to use with the
 PCIe device. In this case I want to use the NVMe driver embedded in <strong>xNVMe</strong>,
 thus <code class="docutils literal notranslate"><span class="pre">uio_pci_generic</span></code> is loaded, associated with the device, and hugepages
@@ -391,7 +391,7 @@ tell it which namespace to make use of:</p>
 </div>
 <p>Numbers from different systems provided below.</p>
 <section id="intel">
-<h3>Intel<a class="headerlink" href="#intel" title="Link to this heading">¶</a></h3>
+<h3>Intel<a class="headerlink" href="#intel" title="Permalink to this heading">¶</a></h3>
 <dl class="simple">
 <dt>cpu</dt><dd><p>Core i5-12500 CPU</p>
 </dd>
@@ -438,7 +438,7 @@ device emulated pinned on a single core. Thus, the i5 core was able to do a
 dramatic turbo-boost.</p>
 </section>
 <section id="amd">
-<h3>AMD<a class="headerlink" href="#amd" title="Link to this heading">¶</a></h3>
+<h3>AMD<a class="headerlink" href="#amd" title="Permalink to this heading">¶</a></h3>
 <dl class="simple">
 <dt>cpu</dt><dd><p>Ryzen 7 PRO 8700GE</p>
 </dd>
@@ -496,7 +496,7 @@ dramatic turbo-boost.</p>
   <footer class="row">
     <div class="col-lg-12">
         &copy; Copyright 2025 Simon A. F. Lund.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.0.0.
     </div>
   </footer>
 
