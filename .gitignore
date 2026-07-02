@@ -1,6 +1,13 @@
-docs/.doctrees/environment.pickle
-docs/.buildinfo
+# Sphinx build output
+docs/_build/
+
+# Python
 *.py[cod]
+__pycache__/
+*.egg-info/
+
+# Editor / OS cruft
 dotfiles/vim/.vim
 dotfiles/vim/.netrwhist
 tags
+.DS_Store

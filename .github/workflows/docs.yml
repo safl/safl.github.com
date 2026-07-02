@@ -1,0 +1,69 @@
+name: Docs
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: docs-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  build:
+    name: Build docs
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install pipx
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends pipx make
+
+      - name: Install docs tooling
+        run: |
+          pipx install ./docs/tooling
+          pipx ensurepath
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Build HTML
+        working-directory: docs
+        run: safldk-docs-build-html
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: docs-html
+          path: docs/_build/html
+          if-no-files-found: error
+          retention-days: 14
+
+  deploy:
+    name: Deploy to GitHub Pages
+    # Deploy on pushes to main only; PR / workflow_dispatch builds stay
+    # artifacts-only.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+      contents: read
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: docs-html
+          path: html/
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: html/
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
