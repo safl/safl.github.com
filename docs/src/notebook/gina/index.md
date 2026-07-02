@@ -266,11 +266,44 @@ plain volatile loads and no mirror. Ours exists only because the CQ is in host
 memory. Put the CQ in device memory (or a coherent mapping the GPU can read) and
 the mirror goes away too.
 
-Resume plan for a fresh session: start with the vfio dma-buf BAR import. If the
-GPU gets a usable BAR pointer, point `qp->sqdb`/`qp->cqdb` at it (the device
-code is unchanged), drop the doorbell relay, move the CQ to device memory, and
-the poller disappears. If the import path is also blocked, the bridge stays as
-the correct consumer-RDNA answer and direct-doorbell is a CDNA / newer-stack
-feature. All of this lives in uPCIe under `include/upcie/nvme/*_hip.h` and
-`tests/test_hip_nvme_readwrite.c`; the bridge, poller, and reap are in
-`nvme_controller_hip.h` and `nvme_qpair_hip.h`.
+When I come back to this, the first thing I want to try is the vfio dma-buf BAR
+import. If the GPU gets a usable pointer to the BAR, the rest falls out almost
+for free: `qp->sqdb`/`qp->cqdb` can point straight at it with the device code
+untouched, the doorbell relay goes away, and once the CQ moves into device
+memory the poller disappears with it. If that import path turns out to be
+blocked too, then I think the bridge is simply the right answer for a consumer
+RDNA card, and direct-doorbell stays something you only get on CDNA or a newer
+stack.
+
+Either way, the code to pick up from lives in uPCIe. The queue and I/O paths are
+in `include/upcie/nvme/*_hip.h` and `tests/test_hip_nvme_readwrite.c`, and the
+bridge, poller, and reap are in `nvme_controller_hip.h` and
+`nvme_qpair_hip.h`.
+
+### The path I actually want: vfio-pci + iommufd
+
+Right now the NVMe sits on `uio_pci_generic` with `iommu=pt`, which means raw
+physical DMA and the IOMMU left idle. That was the quickest way to get something
+running, but it is a dead end for the clean version of this idea: no
+translation, no isolation, and no real handle for peer memory. The direction I
+want to explore is binding the NVMe to `vfio-pci` and driving the IOMMU through
+`iommufd` instead of the legacy VFIO type1 container.
+
+The specific question I want to answer is whether the whole data path can be
+expressed as dma-bufs. The shape I have in mind: let each driver export what it
+owns as a dma-buf (the NVMe's BAR0 on one side, GPU VRAM on the other), then
+import those into an iommufd IOAS with `IOMMU_IOAS_MAP_FILE` rather than mapping
+a host user-space VA the usual way with `IOMMU_IOAS_MAP`. If that works, the
+IOMMU mappings for both the doorbell BAR and the payload buffers come straight
+from the exporting driver, with no host-VA round-trip and no `iommu=pt` escape
+hatch. The GPU would ring an IOMMU-translated BAR, the SSD would DMA into
+IOMMU-translated VRAM, and the reason the bridge exists in the first place
+(user-space peer-MMIO registration getting rejected) is sidestepped, because the
+mapping happens in the kernel from the dma-buf rather than through
+`hipHostRegister` / `hsa_amd_memory_lock`.
+
+What I do not yet know is whether `IOAS_MAP_FILE` will accept a dma-buf-backed
+file as things stand, or whether the driver-exported-dma-buf into iommufd path
+for peer-to-peer is upstream on this kernel. That is the next experiment: set up
+vfio-pci and iommufd, try to import a BAR dma-buf through `IOAS_MAP_FILE`, and
+see how far it gets before something says no.
